@@ -1,0 +1,29 @@
+// login & register
+.controller-account {
+
+  .navbar {
+    .navbar-inner {
+      border-bottom: 0 none;
+      @include box-shadow(none);
+      @include gradient-vertical($bodyBackground, $bodyBackground);
+
+      .nav {
+        left: 0;
+      }
+    }
+  }
+
+  .container {
+    .main {
+      @extend .span14;
+      padding: 0;
+      margin: 0 auto;
+      @include box-shadow(0 2px 2px rgba(0,0,0,0.08));
+
+      .account-container {
+        margin: 0;
+      }
+    }
+  }
+
+}

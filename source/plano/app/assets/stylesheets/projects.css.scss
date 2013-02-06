@@ -1,0 +1,51 @@
+// sidebar
+.project-info {
+
+  .basic-info {
+    .actions {
+      margin: 12px 0px 0px;
+    }
+  }
+
+  .description {
+    margin: 5px 5px 15px;
+    color: $lightTextColor;
+  }
+
+  .member {
+    h5 {
+      .btn {
+        margin-top: -3px;
+      }
+    }
+    
+    ul {
+      margin: 0;
+      padding: 0;
+      border-bottom: $dashedBorder;
+      overflow: hidden;
+      list-style: none;
+
+      li {
+        margin-bottom: 10px;
+
+        .span17 {
+          line-height: 16px;
+        }
+      }
+    }
+  }
+}
+
+// wiki
+.wiki-nav {
+  border-bottom: $dashedBorder;
+
+  .nav-pills {
+    margin-bottom: 5px;
+  }
+
+  .btn {
+    margin-top: -10px;
+  }
+}

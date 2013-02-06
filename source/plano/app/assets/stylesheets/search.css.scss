@@ -1,0 +1,43 @@
+#search-results {
+  dt {
+    padding-top: 10px;
+
+    a {
+      color: $darkTextColor;
+      font-size: $bigFontSize;
+      font-weight: bold;
+    }
+
+    .project {
+      color: $lightTextColor;
+      font-size: $baseFontSize;
+      font-weight: normal;
+    }
+  }
+
+  dd {
+    padding-bottom: 10px;
+    border-bottom: $dashedBorder;
+    margin-left: 0;
+    color: $lightTextColor;
+
+    span {
+      min-height: 0;
+    }
+  }
+}
+
+#advance_search_formx {
+  margin-bottom: 30px;
+
+  #sort_by {
+    position: relative;
+    top: 50px;
+  }
+}
+
+#results-count {
+  position: relative;
+  top: -5px;
+  left: 160px;
+}

@@ -1,0 +1,1 @@
+$('#<%= dom_id @push_notification %>').replaceWith('<%= j render("/push_notifications/#{@push_notification.underscore}", { push_notification: @push_notification, popover: false }) %>');

@@ -1,0 +1,7 @@
+<p>
+  <%= @member_invitation.inviter %> invite you to join <%= link_to @member_invitation.project.name, member_invitation_url(@member_invitation) %>
+</p>
+
+<p>
+  <%= @member_invitation.description %>
+</p>

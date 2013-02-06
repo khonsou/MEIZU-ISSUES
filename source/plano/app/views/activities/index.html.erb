@@ -1,0 +1,20 @@
+<% html_title(l(:label_notification_plural), @author) -%>
+
+<% content_for :sidebar do %>
+  <div class="row-fluid">
+    <%= link_to home_path, class: 'btn span24' do %>
+      <i class="icon-arrow-left"></i><%= l(:label_home) %>
+    <% end -%>
+  </div>
+<% end %>
+
+<h5><%= l(:label_notification_plural) %></h5>
+<%= render 'list', { events: @events } %>
+
+<%= link_to_content_update("\xc2\xab " + l(:label_previous),
+                   params.merge(:from => @date_to - @days - 1),
+                   :title => l(:label_date_from_to, :start => format_date(@date_to - 2*@days), :end => format_date(@date_to - @days - 1))) %>
+
+<%= link_to_content_update(l(:label_next) + " \xc2\xbb",
+                   params.merge(:from => @date_to + @days - 1),
+                   :title => l(:label_date_from_to, :start => format_date(@date_to), :end => format_date(@date_to + @days - 1))) unless @date_to >= Date.today %>

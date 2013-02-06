@@ -1,0 +1,13 @@
+.file-nav {
+  margin-top: -10px;
+  margin-bottom: 20px;
+
+  #new-files-form {
+    margin-bottom: 0px;
+
+    .fileinput-button {
+      @extend .pull-right;
+    }
+  }
+}
+

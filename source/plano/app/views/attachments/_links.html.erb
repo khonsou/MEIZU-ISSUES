@@ -1,0 +1,34 @@
+<div class="attachments">
+<% for attachment in attachments %>
+  <p>
+    <%= link_to_attachment attachment, :download => true, target: '_blank' -%>
+    <% if attachment.is_text? %>
+      <%= link_to(image_tag('magnifier.png'), attachment_path(id: attachment, filename: attachment.filename), target: '_blank') %>
+    <% end %>
+    <%= h(" - #{attachment.description}") unless attachment.description.blank? %>
+    <span class="size">(<%= number_to_human_size attachment.filesize %>)</span>
+    <% if options[:deletable] %>
+      <%= link_to image_tag('delete.png'), attachment_path(attachment),
+                                           :data => {:confirm => l(:text_are_you_sure)},
+                                           :method => :delete,
+                                           :class => 'delete',
+                                           :title => l(:button_delete) %>
+    <% end %>
+    <% if options[:author] %>
+      <span class="author"><%= h(attachment.author) %>, <%= format_time(attachment.created_on) %></span>
+    <% end %>
+  </p>
+<% end %>
+<% if defined?(thumbnails) && thumbnails %>
+  <% images = attachments.select(&:thumbnailable?) %>
+  <% if images.any? %>
+    <div class="row-fluid">
+      <ul class="thumbnails">
+        <% images.each do |attachment| %>
+          <li class="span6"><%= thumbnail_tag(attachment) %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>
+</div>

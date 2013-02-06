@@ -1,0 +1,84 @@
+// customize bootstrap _modals.scss
+
+// Background 14
+.modal-backdrop {
+  background-color: #2e3338;
+}
+
+.modal-backdrop,
+.modal-backdrop.fade.in {
+  @include opacity(0.3);
+}
+
+// Base modal 32
+.modal {
+  width: 680px;
+  margin-left: -340px;
+  background-color: $lightBackgroudThree;
+  border: $darkSolidBorder;
+  @include box-shadow($boxShadowFive);
+}
+
+// Body (where all modal content resides) 67
+.modal-body {
+  max-height: 410px;
+  background-color: $lightBackgroudThree;
+  padding: $gridGutterWidth;
+}
+
+// Footer (for actions) 77
+.modal-footer {
+  padding: 25px $gridGutterWidth 10px;
+  background-color: $lightBackgroudThree;
+  border-top: $dashedBorder;
+}
+
+// theme style
+.user-info {
+  .modal-body {
+    .name {
+      color: $darkTextColor;
+      font-size: $baseFontSize + 6px;
+    }
+
+    .btn {
+      margin-top: 10px;
+    }
+  }
+
+  .modal-footer {
+    margin-bottom: 20px;
+  }
+}
+
+#all-members-modal {
+  .modal-body {
+    max-height: 265px;
+
+    h5 {
+      padding-left: 20px;
+      border-bottom: 0 none;
+      font-weight: bold;
+    }
+
+    .each-member {
+      margin-bottom: 10px;
+
+      .span17 {
+        line-height: 16px;
+      }
+    }
+  }
+
+  .modal-footer {
+    margin-bottom: 20px;
+  }
+}
+
+form#issue-form.new_issue,
+form#issue-form.edit_issue {
+  .modal-body {
+    padding-bottom: 5px;
+  }
+}
+

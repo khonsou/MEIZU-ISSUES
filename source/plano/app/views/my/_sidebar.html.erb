@@ -1,0 +1,12 @@
+<h3><%=l(:label_my_account)%></h3>
+
+<ul class="nav nav-tabs nav-stacked">
+  <li>
+    <%= link_to l(:label_my_account), my_account_path %>
+  </li>
+  <% if @user.change_password_allowed? %>
+    <li>
+      <%= link_to(l(:button_change_password), {:action => 'password'}) %>
+    </li>
+  <% end -%>
+</ul>

@@ -1,0 +1,36 @@
+<% reply_links = authorize_for('issues', 'edit') -%>
+
+<% for journal in journals %>
+  <div id="change-<%= journal.id %>" class="<%= journal.css_classes %>">
+    <div id="note-<%= journal.indice %>">
+      <div class="avatar">
+        <%= image_tag journal.user.avatar_url(:small) %>
+      </div>
+      <div class="content">
+        <div class="basic">
+          <strong><%= link_to_user journal.user %></strong><br>
+          <span class="date"><%= localize(journal.created_on, format: :long) %></span>
+        </div>
+        <%= render_notes(issue, journal, :reply_links => reply_links) unless journal.notes.blank? %>
+        <% if journal.details.any? %>
+          <ul class="details">
+            <% details_to_strings(journal.details).each do |string| %>
+             <li><%= string %></li>
+            <% end %>
+          </ul>
+        <% end %>
+        <% thumbnails = journal.own_attachments.select(&:thumbnailable?) %>
+        <% if thumbnails.any? %>
+          <div class="row-fluid">
+            <ul class="thumbnails">
+              <% thumbnails.each do |thumbnail| %>
+                <li class="span6"><%= thumbnail_tag(thumbnail) %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end -%>
+      </div>
+    </div>
+  </div>
+  <%= call_hook(:view_issues_history_journal_bottom, { :journal => journal }) %>
+<% end %>

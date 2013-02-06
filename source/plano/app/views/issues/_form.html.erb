@@ -1,0 +1,43 @@
+<div class="form-content">
+  <div class="row-fluid">
+
+    <div>
+      <% if @issue.safe_attribute? 'project_id' %>
+      <p><%= f.select :project_id, project_tree_options_for_select(@issue.allowed_target_projects, :selected => @issue.project), {:required => true},
+                      :onchange => "updateIssueFrom('#{escape_javascript project_issue_form_path(@project, :id => @issue, :format => 'js')}')" %></p>
+      <% end %>
+    </div>
+
+    <div>
+        <% if @issue.safe_attribute? 'subject' %>
+          <%= f.text_field :subject, required: true, placeholder: l(:field_subject) %>
+        <% end %>
+    </div>
+
+    <div id="attributes" class="attributes">
+      <%= render :partial => 'issues/attributes' %>
+    </div>
+
+    <div>
+      <% if @issue.safe_attribute? 'description' %>
+      <p>
+        <%= content_tag 'span', :id => "issue_description_and_toolbar" do %>
+          <%= f.text_area :description,
+                         placeholder: l(:field_description),
+                         rows: '7',
+                         class: 'wiki-edit span24' %>
+        <% end %>
+      </p>
+      <% end %>
+    </div>
+
+    <%= labelled_fields_for :issue, @issue do |f| %>
+    <%= call_hook(:view_issues_form_details_top, { :issue => @issue, :form => f }) %>
+
+    <%= f.hidden_field :tracker_id, value: @issue.project.trackers.last.id %>
+
+
+    <%= call_hook(:view_issues_form_details_bottom, { :issue => @issue, :form => f }) %>
+    <% end %>
+  </div>
+</div>

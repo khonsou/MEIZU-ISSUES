@@ -1,0 +1,19 @@
+<div class="activity-list">
+  <% events.each do |e| %>
+    <div class="<%= e.event_type %>  <%= User.current.logged? && e.respond_to?(:event_author) && User.current == e.event_author ? 'me' : nil %>">
+      <%= image_tag e.event_author.avatar_url(:small), class: 'user-image' if e.respond_to?(:event_author) %>
+      <div>
+        <span class="author"><%= link_to_user(e.event_author) if e.respond_to?(:event_author) %></span>
+        <span class="time"><%= localize(e.event_datetime, format: :short) %></span>
+      </div>
+      <div>
+        <%= link_to format_activity_title(e.event_title), e.event_url %>
+        <%= content_tag('span', :class => 'project') do %>
+          (<%= h(e.project) %>)
+        <% end -%>
+      </div>
+    </div>
+  <% end -%>
+</div>
+
+<%= content_tag('p', l(:label_no_data), :class => 'nodata') if events.empty? %>

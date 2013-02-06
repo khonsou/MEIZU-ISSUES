@@ -1,0 +1,12 @@
+<h1><%= link_to(h(issue.subject), issue_url) %></h1>
+
+<ul>
+<li><%=l(:field_author)%>: <%=h issue.author %></li>
+<li><%=l(:field_status)%>: <%=h issue.status %></li>
+<li><%=l(:field_assigned_to)%>: <%=h issue.assigned_to %></li>
+<% issue.custom_field_values.each do |c| %>
+  <li><%=h c.custom_field.name %>: <%=h show_value(c) %></li>
+<% end %>
+</ul>
+
+<%= textilizable(issue, :description, :only_path => false) %>

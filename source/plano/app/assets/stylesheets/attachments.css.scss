@@ -1,0 +1,20 @@
+a.add_attachment {
+  position: absolute;
+  bottom: 0;
+}
+
+.modal a.add_attachment {
+  bottom: 30px;
+}
+
+.thumbnails {
+  margin-bottom: 0;
+  
+  >li {
+    margin-bottom: 10px;
+
+    a {
+      @extend .thumbnail;
+    }
+  }
+}

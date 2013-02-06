@@ -1,0 +1,12 @@
+<div id="project-list">
+  <ul class="nav nav-tabs nav-stacked span24">
+    <% find_visible_projects.each do |project| %>
+      <li>
+        <%= link_to project_issues_path(project) do %>
+          <%= image_tag(project.icon_url(:small)) %>
+          <span><%= truncate(project.name, length: 19) %> (<%= project.issues.open.count %>)</span>
+        <% end -%>
+      </li>
+    <% end -%>
+  </ul>
+</div>

@@ -1,0 +1,95 @@
+<% content_for :sidebar do %>
+  <div class="row-fluid">
+    <%= link_to project_issues_path(@issue.project), class: 'btn span24' do %>
+      <i class="icon-arrow-left"></i><%= @issue.project.name %>
+    <% end -%>
+
+    <div class="issue-info">
+      <h5>
+        <i class="icon-summary"></i><%= l(:field_summary) %>
+      </h5>
+      <div class="attributes">
+        <div class="issue-status">
+          <i class="<%= @issue.status.is_closed ? 'icon-closed' : 'icon-open' %>"></i>
+          <%= h(@issue.status.name) %>
+        </div>
+        <% unless @issue.disabled_core_fields.include?('assigned_to_id') %>
+          <div class="assignee">
+            <span><%= l(:field_assigned_to) %>: </span></br>
+            <i class="icon-assignee"></i><%= link_to_user(@issue.assigned_to) %>
+          </div>
+        <% end -%>
+        <% unless @issue.disabled_core_fields.include?('due_date') %>
+          <div class="due">
+            <span><%= l(:field_due_date) %>: </span></br>
+            <i class="icon-due"></i><span class="date <%= 'overdue' if @issue.overdue? %>"><%= format_date(@issue.due_date) %></span>
+          </div>
+        <% end -%>
+      </div>
+    </div>
+
+    <% if User.current.allowed_to?(:add_issue_watchers, @project) ||
+      (@issue.watchers.present? && User.current.allowed_to?(:view_issue_watchers, @project)) %>
+      <div id="watchers">
+        <%= render :partial => 'watchers/watchers', :locals => {:watched => @issue} %>
+      </div>
+    <% end %>
+  </div>
+<% end -%>
+
+<div class="issue">
+
+  <div class="clearfix">
+    <div class="avatar">
+      <%= image_tag @issue.author.avatar_url(:small) %>
+    </div>
+    <div class="author">
+      <strong><%= link_to_user(@issue.author) %></strong><br/>
+      <div class="date">
+        <em>
+          发表于<%= time_tag(@issue.created_on) %>前
+          <% if @issue.created_on != @issue.updated_on %>
+            (<%= l(:label_updated_time, time_tag(@issue.updated_on)).html_safe %>)
+          <% end %>
+        </em>
+      </div>
+    </div>
+    <div class="actions">
+      <%= render 'action_menu', { issue: @issue } %>
+    </div>
+  </div>
+
+  <div class="issue-content">
+    <div class="subject">
+      <%= render_issue_subject_with_tree(@issue) %>
+    </div>
+    <% attachments = @issue.attachments - @issue.journals.map(&:own_attachments).flatten %>
+    <% if @issue.description? || attachments.any? -%>
+      <% if @issue.description? %>
+        <div class="wiki description">
+          <%= textilizable @issue, :description, :attachments => attachments %>
+        </div>
+      <% end %>
+      <%= render 'attachments/links', { :attachments => attachments, :options => { deletable: false, author: false }, :thumbnails => true } %>
+    <% end -%>
+  </div>
+
+  <% if @journals.present? %>
+    <div class="history">
+      <%= render :partial => 'history', :locals => { :issue => @issue, :journals => @journals } %>
+    </div>
+  <% end %>
+
+  <% if !@issue.closed? && User.current.allowed_to?(:add_issue_notes, @issue.project) %>
+    <%= labelled_form_for @issue, html: { :multipart => true } do |f| %>
+      <div class="row-fluid">
+        <%= text_area_tag 'notes', @notes, :rows => 3, :class => 'wiki-edit span24', :placeholder => '在此添加讨论内容......' %>
+        <%= render :partial => 'attachments/form', :locals => {:container => @issue} %>
+
+        <%= submit_tag l(:button_submit), disable_with: l(:button_submiting), class: 'btn btn-primary pull-right bg-new' %>
+      </div>
+    <% end -%>
+  <% end -%>
+</div>
+
+<% html_title "#{@issue.tracker.name} ##{@issue.id}: #{@issue.subject}" %>

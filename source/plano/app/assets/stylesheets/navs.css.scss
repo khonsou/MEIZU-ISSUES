@@ -1,0 +1,117 @@
+// customize bootstrap _navs.scss
+
+// Make links block level 15
+.nav > li > a:hover {
+  background-color: transparent;
+}
+
+// Links rendered as pills 136
+.nav-pills > li > a {
+  padding-top: 0px;
+  // font-weight: bold;
+  color: $lightTextColor;
+
+  &:hover {
+    color: $linkColorHover;
+  }
+}
+
+// Active state 145
+.nav-pills > .active > a,
+.nav-pills > .active > a:hover {
+  color: $textColor;
+  background-color: transparent;
+}
+
+// theme style
+
+#project-list {
+  .nav li {
+    margin-bottom: 5px;
+    font-size: $bigFontSize;
+  }
+}
+
+.title-bar,
+.tabbable .tab-title {
+  .nav-tabs {
+    border-bottom: 0 none;
+  }
+
+  .nav-tabs > li > a {
+    width: 50px;
+    padding: 5px 30px 5px 50px;
+    margin-right: 0px;
+    background-color: $lightBackgroudTwo;
+    border-color: #dedede;
+    font-size: $bigFontSize;
+    color: $lightTextColor;
+
+    &:hover {
+      border-color: #cbcbcb;
+      background-color: $white;
+      color: $textColor;
+    }
+  }
+
+  .nav-tabs > .active > a,
+  .nav-tabs > .active > a:hover {
+    border-color: #cbcbcb;
+    border-bottom-color: transparent;
+    background-color: $white;
+    color: $textColor;
+  }
+
+  .nav-tabs {
+    .issues, .wiki, .files,
+    .account, .password {
+      background-repeat: no-repeat;
+      background-position: 20px 6px;
+    }
+
+    .issues {
+      background-image: url('icon-issues.png');
+    }
+
+    .wiki {
+      background-image: url('icon-wiki.png');
+    }
+
+    .files {
+      background-image: url('icon-files.png');
+    }
+
+    .account {
+      background-image: url('icon-account.png');
+    }
+
+    .password {
+      background-image: url('icon-account-password.png');
+    }
+  }
+}
+
+.tabbable {
+  .tab-title {
+    @include gradient-vertical($white, #f2f1f1);
+
+    .nav-tabs {
+      margin: 30px 0 0 30px;
+
+      > li > a {
+        width: 120px;
+      }
+    }
+  }
+
+  .tab-content {
+    border-top: $solidBorder;
+  }
+}
+
+.action-register li.register-link,
+.action-login li.login-link {
+  a {
+    color: $textColor;
+  }
+}

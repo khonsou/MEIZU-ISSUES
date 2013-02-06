@@ -1,0 +1,17 @@
+// customize bootstrap _labels-badges.scss
+
+// Base classes 6
+.label,
+.badge {
+  color: $textColor;
+  font-weight: normal;
+  background-color: $bodyBackground;
+  text-shadow: none;
+  padding: 1px 5px 2px;
+  @include border-radius($borderRadius);
+}
+
+.journal .badge {
+  margin-top: 11px;
+  margin-right: 7px;
+}

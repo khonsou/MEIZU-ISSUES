@@ -1,0 +1,12 @@
+<% html_title l(:label_issue_plural) %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'issues/sidebar' %>
+<% end %>
+
+<% content_for :title_bar do %>
+  <%= render '/projects/title_bar' %>
+<% end -%>
+
+<%= render 'tabs' %>
+<%= render 'issues/list', { issues: @issues, limit: @limit, max_limit: @max_limit, project: @project } %>

@@ -1,0 +1,164 @@
+.nav.issues-tabs {
+  margin-bottom: 15px;
+  padding-bottom: 5px;
+  border-bottom: $dashedBorder;
+}
+
+.issue-list {  
+  .issue-item {
+    padding: 15px 0px 10px;
+    border-bottom: $dashedBorder;
+
+    [class*="span"] {
+      min-height: 20px;
+    }
+
+    .btn-group {
+      display: inline-block;
+      margin-left: 5px;
+    }
+
+    .info {
+      .subject {
+        color: $darkTextColor;
+        font-size: $bigFontSize;
+        font-weight: bold;
+      }
+
+      .project,
+      .project a {
+        color: $lightTextColor;
+      }
+
+      .due {
+        height: 23px;
+        line-height: 23px;
+      }
+    }
+
+    .journal a {
+      display: block;
+      color: $lightTextColor;
+
+      &:hover .span5,
+      &:hover .span17 {
+        text-decoration: underline;
+      }
+      
+      .avatar {
+        margin-top: 4px;
+        margin-right: 10px;
+      }
+
+      .span17 {
+        width: 482px;
+        margin-left: 5px;
+      }
+    }
+  }
+}
+
+.issue-info .attributes .issue-status,
+#watchers ul {
+  border-bottom: $dashedBorder;
+  margin-bottom: 10px;
+}
+
+.issue-info {
+  clear: both;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  .attributes {
+    .issue-status {
+      padding: 5px 0 15px;
+      text-align: center;
+      color: $lightTextColor;
+      font-size: $bigFontSize;
+      font-weight: bold;
+    }
+
+    .assignee {
+      margin-bottom: 5px;
+    }
+
+    .assignee a,
+    .due .date {
+      font-weight: bold;
+    }
+  }
+}
+
+#watchers {
+  ul {
+    margin-left: 0px;
+    list-style: none;
+
+    li {
+      margin-bottom: 10px;
+
+      img {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+.issue {
+  position: relative;
+
+  .avatar, .author {
+    @extend .pull-left;
+    margin-right: 8px;
+  }
+
+  .author {
+    line-height: 16px;
+  }
+
+  .actions {
+    @extend .pull-right;
+  }
+
+  .issue-content {
+    margin: 10px 0 30px 40px;
+  }
+
+  h3 {
+    color: $darkTextColor;
+    font-size: 14px;
+    line-height: $baseLineHeight;
+  } 
+
+  .history {
+    padding: 15px 0 0;
+    border-top: $dashedBorder;
+
+    .journal {
+      padding-bottom: 10px;
+
+      .avatar {
+        @extend .pull-left;
+      }
+
+      .content {
+        margin-left: 40px;
+
+        .basic {
+          height: 32px;
+          line-height: 16px;
+          margin-bottom: 5px;
+
+          .date {
+            color: $lightTextColor;
+            font-style: italic;
+          }
+        }
+      }
+    }
+  }
+}
+
+.overdue {
+  color: $red;
+}

@@ -1,0 +1,16 @@
+<% html_title(l(:label_notification_plural), @author) -%>
+
+<% content_for :sidebar do %>
+  <div class="row-fluid">
+    <%= link_to home_path, class: 'btn span24' do %>
+      <i class="icon-arrow-left"></i><%= l(:label_home) %>
+    <% end -%>
+  </div>
+<% end %>
+
+<div class="notifications_header clearfix">
+  <span class="pull-left title"><%= l(:label_notification_plural) %></span>
+  <span class="pull-right action"><%= link_to l(:button_mark_all_as_read), mark_all_as_read_push_notifications_path, method: :post %></span>
+</div>
+
+<%= render 'list', { push_notifications: @push_notifications, limit: @limit, max_limit: @max_limit } %>

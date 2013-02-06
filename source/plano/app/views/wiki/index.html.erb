@@ -1,0 +1,15 @@
+<% content_for :sidebar do %>
+  <%= render '/projects/info', { project: @project } %>
+<% end %>
+
+<% content_for :title_bar do %>
+  <%= render '/projects/title_bar' %>
+<% end -%>
+
+<%= render 'tabs' %>
+
+<% if @pages.empty? %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>
+
+<%= render_page_hierarchy(@pages_by_parent_id, nil, :timestamp => true) %>

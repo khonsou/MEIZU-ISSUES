@@ -1,0 +1,27 @@
+<li class="header"><%= l(:label_notification_plural) %></li>
+<% unless @events.blank? %>
+  <% @events.each do |e| %>
+    <li class="item">
+      <%= link_to e.event_url do %>
+        <div class="<%= e.event_type %>  <%= User.current.logged? && e.respond_to?(:event_author) && User.current == e.event_author ? 'me' : nil %>">
+          <%= image_tag e.event_author.avatar_url(:small), class: 'user-image' if e.respond_to?(:event_author) %>
+          <div class="item-content">
+            <div>
+              <span class="author"><%= e.event_author if e.respond_to?(:event_author) %></span>
+              <span class="time"><%= localize(e.event_datetime, format: :short) %></span>
+            </div>
+            <div>
+              <%= format_activity_title(e.event_title) %>
+              <%= content_tag('span', :class => 'project') do %>
+                (<%= h(e.project) %>)
+              <% end -%>
+            </div>
+          </div>
+        </div>
+      <% end -%>
+    </li>
+  <% end -%>
+<% else %>
+  <li class="item"><%= link_to l(:label_no_data), '#' %></li>
+<% end -%>
+<li class="footer"><%= link_to 'See All Notification', activity_path %></li>

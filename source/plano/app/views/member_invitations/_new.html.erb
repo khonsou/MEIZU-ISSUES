@@ -1,0 +1,11 @@
+<div class="modal" id="container-modal">
+  <%= form_tag(member_invitations_path, method: :post, remote: true) do %>
+    <div class="modal-body">
+      <%= render :partial => 'form' %>
+    </div>
+    <div class="modal-footer">
+      <%= link_to l(:button_close), '#', class: 'btn', data: { dismiss: 'modal' } %>
+      <%= submit_tag l(:button_send), disable_with: l(:button_submiting), class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

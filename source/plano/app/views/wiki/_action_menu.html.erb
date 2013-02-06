@@ -1,0 +1,18 @@
+<div class="btn-group pull-right">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+    <i class="icon-select"></i>
+  </a>
+  <ul class="dropdown-menu">
+    <% if @editable %>
+      <li>
+        <%= link_to_if_authorized(l(:button_edit), {:action => 'edit', :id => @page.title}, :accesskey => accesskey(:edit)) if @content.current_version? %>
+      </li>
+      <li>
+        <%= link_to_if_authorized(l(:button_delete), {:action => 'destroy', :id => @page.title}, :method => :delete, :data => {:confirm => l(:text_are_you_sure)}) %>
+      </li>
+    <% end -%>
+    <li>
+      <%= link_to_if_authorized(l(:label_history), {:action => 'history', :id => @page.title}) %>
+    </li>
+  </ul>
+</div>

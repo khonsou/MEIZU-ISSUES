@@ -1,0 +1,14 @@
+<div class="clearfix wiki-nav">
+  <ul class="nav nav-pills pull-left">
+    <li class="<%= 'active' if action_name == 'show' %>">
+      <%= link_to l(:field_start_page), {:action => 'show', :id => nil} %>
+    </li>
+    <li class="<%= 'active' if action_name == 'index' %>">
+      <%= link_to l(:label_index_by_title), {:action => 'index'} %>
+    </li>
+  </ul>
+
+  <% if User.current.allowed_to?(:edit_wiki_pages, @project) %>
+    <%= link_to l(:label_wiki_page_new), new_project_wiki_path(@project), { class: 'btn pull-right btn-primary bg-new', remote: true } %>
+  <% end -%>
+</div>

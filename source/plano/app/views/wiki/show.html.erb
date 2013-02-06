@@ -1,0 +1,39 @@
+<% content_for :sidebar do %>
+  <%= render '/projects/info', { project: @project } %>
+<% end %>
+
+<% content_for :title_bar do %>
+  <%= render '/projects/title_bar' %>
+<% end -%>
+
+<%= render 'tabs' %>
+
+<div class="clearfix">
+  <h4 class="pull-left"><%= @page.pretty_title %></h4>
+  <%= render 'action_menu' %>
+</div>
+
+<% unless @content.current_version? %>
+    <p>
+    <%= link_to(("\xc2\xab " + l(:label_previous)),
+                :action => 'show', :id => @page.title, :project_id => @page.project,
+                :version => (@content.version - 1)) + " - " if @content.version > 1 %>
+    <%= "#{l(:label_version)} #{@content.version}/#{@page.content.version}" %>
+    <%= '('.html_safe + link_to(l(:label_diff), :controller => 'wiki', :action => 'diff',
+                      :id => @page.title, :project_id => @page.project,
+                      :version => @content.version) + ')'.html_safe if @content.version > 1 %> - 
+    <%= link_to((l(:label_next) + " \xc2\xbb"), :action => 'show',
+                :id => @page.title, :project_id => @page.project,
+                :version => (@content.version + 1)) + " - " if @content.version < @page.content.version %>
+    <%= link_to(l(:label_current_version), :action => 'show', :id => @page.title, :project_id => @page.project) %>
+    <br />
+    <em><%= @content.author ? link_to_user(@content.author) : l(:label_user_anonymous)
+         %>, <%= format_time(@content.updated_on) %> </em><br />
+    <%=h @content.comments %>
+    </p>
+    <hr />
+<% end %>
+
+<%= render(:partial => "wiki/content", :locals => {:content => @content}) %>
+
+<% html_title @page.pretty_title %>

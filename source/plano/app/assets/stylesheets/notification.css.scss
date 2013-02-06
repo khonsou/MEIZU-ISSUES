@@ -1,0 +1,144 @@
+.notify .dropdown-menu {
+  left: 5px;
+  width: 500px;
+
+  .header, .footer {
+    color: $textColor;
+    font-size: $bigFontSize;
+  }
+  
+  .header {
+    padding: 0 10px;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: $dashedBorder;
+
+    a {
+      display: inline;
+      padding: 0;
+      border: 0 none;
+      line-height: auto;
+
+      &:hover {
+        color: $linkColorHover;
+        text-decoration: underline;
+        background: none;
+      }
+    }
+  }
+
+  .footer {
+    height: 60px;
+    text-align: center;
+    margin-top: 1px;
+
+    a {
+      padding: 0;
+      line-height: 60px;
+
+      &:hover {
+        color: $linkColorHover;
+        text-decoration: underline;
+        @include gradient-vertical($white, $white);
+      }
+    }
+  }
+
+  .no-data {
+    a {
+      line-height: 40px;
+    }
+  }
+
+  .item {
+    height: 50px;
+
+    a {
+      @extend .clearfix;
+
+      .user-image {
+        @extend .pull-left;
+        margin: 4px 10px 0 0;
+      }
+
+      .time, .project {
+        color: $lightTextColor;
+      }
+
+      .project {
+        margin-left: 5px;
+      }
+
+      .span17 {
+        white-space: normal;
+      }
+
+      &:hover {
+        .time, .project {
+          color: $white;
+        }
+      }
+    }
+  }
+}
+
+.notifications_header {
+  border-bottom: $dashedBorder;
+  line-height: 20px;
+  padding: 10px 0;
+
+  .title {
+    color: $darkTextColor;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .action {
+    color: $lightTextColor;
+  }
+}
+
+.push_notifications {
+  list-style-type: none;
+  margin: 0;
+
+  .unread {
+    background: #f9fff3;
+  }
+
+  li {
+    padding: 5px;
+    border-bottom: $dashedBorder;
+
+    .span14 a {
+      text-decoration: underline;
+    }
+
+    .user-image {
+      margin-top: 4px;
+      margin-right: 10px;
+    }
+
+    .time, 
+    .project,
+    .project a {
+      color: $lightTextColor;
+    }
+
+    .project {
+      margin-left: 5px;
+
+      a {
+      text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .btn {
+      margin-top: 9px;
+    }
+  }
+}

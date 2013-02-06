@@ -1,0 +1,38 @@
+.pages-hierarchy {
+  margin-top: 10px;
+}
+
+.wiki-diff-action {
+  padding-top: 10px;
+}
+
+.diff-title,
+.annotate-title {
+  line-height: 40px;
+}
+
+.diff_out {
+  background: $redBackground;
+}
+
+.diff_in {
+  background: $greenBackground;
+}
+
+a.wiki-anchor {
+  display: none;
+  margin-left: 6px;
+  text-decoration: none;
+
+  &:hover {
+    color: #aaa !important;
+    text-decoration: none;
+  }
+}
+
+h1:hover a.wiki-anchor,
+h2:hover a.wiki-anchor,
+h3:hover a.wiki-anchor {
+  display: inline;
+  color: #ddd;
+}
