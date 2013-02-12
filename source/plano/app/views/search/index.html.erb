@@ -1,0 +1,87 @@
+<% html_title(l(:label_search)) -%>
+
+<%= content_for :sidebar do %>
+  <ul class="search-result-counts">
+    <li class="<%= params[:project_id].blank? ? 'active' : 'btn-back' %>">
+      <%= link_to(params.select { |k, v| k.to_s != 'id' && k.to_s != 'project_id' }) do %>
+        <%= l(:label_project_all) %> (<%= @results ? @results_by_project.values.sum : 0 %>)
+      <% end -%>
+    </li>
+    <% if @results %>
+      <% @results_by_project.each do |project, count| %>
+        <li class="<%= 'active' if params[:project_id].to_s == project.id.to_s %>">
+          <%= link_to(params.merge({ project_id: project.id })) do %>
+            <%= project.name %> (<%= count %>)
+          <% end -%>
+        </li>
+      <% end -%>
+    <% end -%>
+  </ul>
+<% end -%>
+
+<h5><%= l(:label_search) %></h5>
+
+<%= form_tag({}, { :method => :get, class: 'advance-search', id: 'advance_search_formx' }) do %>
+
+  <div class="row-fluid types">
+    <label class="span6"><%= check_box_tag 'all_object_types', 1, true %> <%= l(:label_all) %></label>
+    <% @object_types.each do |t| %>
+      <label class="span6"><%= check_box_tag t, 1, @scope.include?(t), class: 'object-type' %> <%= type_label(t) %></label>
+    <% end %>
+  </div>
+
+  <div class="row-fluid">
+    <div class="span12">
+      <%= label_tag l(:field_due_date) %>
+      <%= text_field_tag 'due_date_start', params[:due_date_start], class: 'span6' %>
+      to
+      <%= text_field_tag 'due_date_end', params[:due_date_end], class: 'span6' %>
+      <%= calendar_for('due_date_start') %>
+      <%= calendar_for('due_date_end') %>
+    </div>
+    <div class="span6">
+      <%= label_tag l(:field_status) %>
+      <%= select_tag 'issue_status', options_for_select([[l(:label_open), 'open'], [l(:label_close), 'close'], [l(:label_all), 'all']], params[:issue_status] || 'all'), class: 'span6' %>
+    </div>
+    <div class="span6">
+      <%= label_tag l(:field_watched) %>
+      <%= select_tag 'issue_watched', options_for_select([[l(:general_text_yes), 'yes'], [l(:general_text_no), 'no'], [l(:label_all), 'all']], params[:issue_watched] || 'all'), class: 'span6' %>
+    </div>
+  </div>
+  
+  <div class="row-fluid">
+    <div class="span12">
+      <%= label_tag l(:field_created_on) %>
+      <%= text_field_tag 'created_on_start', params[:created_on_start], class: 'span6' %>
+      to
+      <%= text_field_tag 'created_on_end', params[:created_on_end], class: 'span6' %>
+      <%= calendar_for('created_on_start') %>
+      <%= calendar_for('created_on_end') %>
+    </div>
+    <div class="span12">
+      <%= label_tag "search-input", l(:description_search), :class => "hidden-for-sighted" %>
+      <%= text_field_tag 'q', @question, :size => 60, :id => 'search-input', class: 'span12' %>
+    </div>
+  </div>
+  <%= select_tag 'sort_by', options_for_select(@sort_types.inject({}) { |types, value| types[l("sort_by_#{value}")] = value; types }, @selected_sort_type) %>
+
+  <%= submit_tag l(:button_submit), :name => 'submit', class: 'btn btn-primary pull-right' %>
+<% end %>
+
+<%= render 'list', { results_by_type: @results_by_type, results: @results, tokens: @tokens, project: @project, limit: @limit, max_limit: @max_limit } %>
+
+<%= javascript_tag do %>
+$('#all_object_types').click(function() {
+  $('.object-type').attr('checked', this.checked);
+});
+
+$('.object-type').click(function() {
+  if (!this.checked) {
+    $('#all_object_types').attr('checked', false);
+  }
+});
+
+$('#advance_search_formx #sort_by').change(function() {
+  $('#advance_search_formx input[type="submit"]').click();
+});
+<% end -%>

@@ -1,0 +1,118 @@
+<div class="project-info">
+  <div class="basic-info clearfix">
+    <div class="row-fluid">
+      <h5 class="span20">
+        <i class="icon-flag"></i><%= project.name %>
+      </h5>
+      <div class="actions span4">
+        <div class="btn-group">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="icon-select"></i>
+          </a>
+          <ul class="dropdown-menu pull-right">
+            <% if User.current.allowed_to?(:edit_project, project) && project.creator == User.current %>
+              <li>
+                <%= link_to l(:button_edit), edit_project_path(project), remote: true %>
+              </li>
+            <% end -%>
+            <% if User.current.allowed_to?(:close_project, project) && project.creator == User.current %>
+              <% if project.active? %>
+                <li>
+                  <%= link_to l(:button_close), close_project_path(project), :data => {:confirm => l(:text_are_you_sure)}, :method => :post %>
+                </li>
+              <% else %>
+                <li>
+                  <%= link_to l(:button_reopen), reopen_project_path(project), :data => {:confirm => l(:text_are_you_sure)}, :method => :post %>
+                </li>
+              <% end %>
+            <% end %>
+            <% if project.users.include?(User.current) && project.creator != User.current %>
+              <li>
+                <%= link_to l(:button_quit), quit_project_path(project), method: :post, confirm: l(:text_are_you_sure) %>
+              </li>
+            <% end -%>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <%= image_tag(project.icon_url(:large)) %>
+  </div>
+
+  <div class="wiki description">
+    <%= textilizable(project.short_description, :project => project) %>
+  </div>
+
+  <div class="member">
+    <h5>
+      <i class="icon-members"></i><%= l(:label_member_plural) %>
+      <% if User.current.allowed_to?(:manage_member_invitations, project) && project.creator == User.current %>
+        <%= link_to l(:label_invite), new_member_invitation_path(project_id: project), remote: true, class: 'btn btn-primary btn-mini pull-right' %>
+      <% end -%>
+    </h5>
+    <ul>
+      <li class="row-fluid">
+        <div class="avatar span7">
+          <%= image_tag project.creator.avatar_url(:small) %>
+        </div>
+        <div class="span17">
+          <span class="user-name"><%= link_to_user(project.creator) %></span><br>
+          <span class="role"><%= t('role_project_creator') %></span>
+        </div>
+      </li>
+      <% project.member_principals.find(:all, :include => [:roles, :principal]).sort_by(&:created_on)[0..9].each do |member| %>
+        <% unless member.user == project.creator %>
+          <li class="row-fluid">
+            <div class="avatar span7">
+              <%= image_tag member.user.avatar_url(:small) %>
+            </div>
+            <div class="span17">
+              <span class="user-name"><%= link_to_user(member.user) %></span><br>
+              <span class="role"><%= member.roles.map(&:name).join(', ') %></span>
+            </div>
+          </li>
+        <% end -%>
+      <% end -%>
+    </ul>
+
+    <% if project.member_principals.count > 10 %>
+      <%= link_to l(:view_all_members, count: project.member_principals.count), '#all-members-modal', data: { toggle: 'modal' }, class: 'link-all-members' %>
+
+      <div class="modal" id="all-members-modal" style="display:none;">
+        <div class="modal-body">
+          <div class="row-fluid">
+            <h5><%= l(:all_members) %></h5>
+            <div class="span7">
+              <div class="row-fluid each-member">
+                <div class="avatar span7">
+                  <%= image_tag project.creator.avatar_url(:small) %>
+                </div>
+                <div class="span17">
+                  <span class="user-name"><%= link_to_user(project.creator) %></span><br>
+                  <span class="role"><%= t('role_project_creator') %></span>
+                </div>
+              </div>
+            </div>
+            <% project.member_principals.find(:all, :include => [:roles, :principal]).sort_by(&:created_on).each do |member| %>
+              <% unless member.user == project.creator %>
+                <div class="span7">
+                  <div class="row-fluid each-member">
+                    <div class="avatar span7">
+                      <%= image_tag member.user.avatar_url(:small) %>
+                    </div>
+                    <div class="span17">
+                      <span class="user-name"><%= link_to_user(member.user) %></span><br>
+                      <span class="role"><%= member.roles.map(&:name).join(', ') %></span>
+                    </div>
+                  </div>
+                </div>
+              <% end -%>
+            <% end -%>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= link_to l(:button_close), '#', class: 'btn', data: { dismiss: 'modal' } %>
+        </div>
+      </div>
+    <% end -%>
+  </div>
+</div>

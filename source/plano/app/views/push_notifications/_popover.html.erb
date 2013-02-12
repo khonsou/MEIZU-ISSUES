@@ -1,0 +1,9 @@
+<li class="header"><%= l(:label_notification_plural) %> (<%= link_to @unread_count, push_notifications_path %>)</li>
+<% unless push_notifications.blank? %>
+  <% push_notifications.each do |push_notification| %>
+    <%= render "/push_notifications/#{push_notification.underscore}", { push_notification: push_notification, popover: true } %>
+  <% end -%>
+<% else %>
+  <li class="no-data"><%= link_to l(:label_no_data), '#' %></li>
+<% end -%>
+<li class="footer"><%= link_to t(:button_see_all_notifications), push_notifications_path %></li>

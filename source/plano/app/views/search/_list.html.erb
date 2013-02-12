@@ -1,0 +1,25 @@
+<div id="search-result-list">
+  <% if results %>
+    <h5 id="results-count"><%= l(:label_result_plural) %> (<%= results_by_type.values.sum %>)</h5>
+    <dl id="search-results">
+      <% results.each do |e| %>
+        <dt class="<%= e.event_type %>">
+          <%= link_to highlight_tokens(truncate(e.event_title, :length => 255), tokens), e.event_url %>
+          <% unless project == e.project %>
+            <%= content_tag('span', :class => 'project') do %>
+              (<%= h(e.project) %>)
+            <% end -%>
+          <% end -%>
+        </dt>
+        <dd class="row-fluid"><span class="author span5"><%= format_time(e.event_datetime) %></span>
+        <span class="description span19"><%= highlight_tokens(e.event_description, tokens) %></span></dd>
+      <% end %>
+    </dl>
+
+    <% if limit < max_limit %>
+      <div class="load-more">
+        <%= link_to t('label_load_more'), params.merge(limit: limit + 20), class: 'btn btn-load-more', remote: true %>
+      </div>
+    <% end -%>
+  <% end -%>
+</div>

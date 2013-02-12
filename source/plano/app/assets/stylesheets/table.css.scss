@@ -1,0 +1,81 @@
+table.files,
+table.wiki-page-versions {
+  width: 100%;
+  border: $solidBorder;
+  @include border-radius($borderRadius);
+  background-color: $white;
+  @include box-shadow($boxShadowFour);
+
+  thead {
+    tr {
+      height: 40px;
+      @include gradient-vertical($lightBackgroudTwo, $lightBackgroudFour);
+
+      th {
+        font-size: $bigFontSize;
+        font-weight: normal;
+        padding: 8px 20px;
+        border-bottom: $solidBorder;
+        @include box-shadow($boxShadowFour);
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      height: 50px;
+
+      td {
+        vertical-align: middle;
+        padding: 8px 20px;
+        border-top: $dashedBorder;
+      }
+
+      td.filename {
+        font-size: $bigFontSize;
+      }
+    }
+  }
+}
+
+table.files {
+  thead {
+    tr {
+      th {
+        padding: 8px;
+        text-align: center;
+      }
+    }
+  }
+
+  tbody {
+    tr.file {
+      td {
+        padding: 8px;
+      }
+    }
+  }
+
+  .filename, .filename a {
+    width: 337px;
+  }
+
+  .author {
+    width: 50px;
+  }
+
+  .created_on {
+    width: 100px;
+  }
+
+  .action, .action a {
+    width: 20px;
+  }
+
+}
+
+table.annotate {
+  td {
+    padding: 5px 10px;
+  }
+}

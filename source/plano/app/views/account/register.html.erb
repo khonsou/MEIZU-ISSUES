@@ -1,0 +1,30 @@
+<div class="account-container">
+  <%= labelled_form_for @user, :url => register_path do |f| %>
+    <%= error_messages_for 'user' %>
+
+    <div class="row-fluid">
+      <div class="header">
+        <span class="title"><%=l(:label_register)%></span>
+      </div>
+
+      <div class="body clearfix">
+        <label><%= l(:field_firstname) %></label>
+        <%= f.text_field :firstname, :required => true, class: 'span24' %>
+
+        <label><%= l(:field_mail) %></label>
+        <p><%= f.text_field :mail, :required => true, class: 'span24' %></p>
+
+        <label><%= l(:field_password) %></label>
+        <%= f.password_field :password, :size => 25, :required => true, class: 'span24' %>
+        <span class="help-block"><%= l(:text_caracters_minimum, :count => Setting.password_min_length) %></span>
+
+        <label><%= l(:field_password_confirmation) %></label>
+        <%= f.password_field :password_confirmation, :size => 25, :required => true, class: 'span24' %>
+      </div>
+
+      <div class="footer">
+        <%= submit_tag l(:button_submit), class: 'btn btn-primary' %>
+      </div>
+    </div>
+  <% end %>
+</div>

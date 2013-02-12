@@ -1,0 +1,10 @@
+<div class="modal user-info" id="container-modal">
+  <div class="modal-body">
+    <div class="text-diff">
+      <%= simple_format_without_paragraph @diff.to_html %>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <%= link_to l(:button_close), '#', class: 'btn', data: { dismiss: 'modal' } %>
+  </div>
+</div>

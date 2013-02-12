@@ -1,0 +1,18 @@
+<div class="modal" id="container-modal">
+  <div class="tabbable"> <!-- Only required for left/right tabs -->
+    <div class="tab-title">
+      <ul class="nav nav-tabs">
+        <li class="active"><%= link_to l(:label_my_account), '#account-tab-content', data: { toggle: 'tab' }, class: 'account' %></li>
+        <li><%= link_to l(:button_change_password), '#password-tab-content', data: { toggle: 'tab' }, class: 'password' %></li>
+      </ul>
+    </div>
+    <div class="tab-content">
+      <div class="tab-pane active" id="account-tab-content">
+        <%= render 'account_form' %>
+      </div>
+      <div class="tab-pane" id="password-tab-content">
+        <%= render 'password_form' %>
+      </div>
+    </div>
+  </div>
+</div>

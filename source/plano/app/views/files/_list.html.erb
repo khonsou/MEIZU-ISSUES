@@ -1,0 +1,24 @@
+<table class="table files">
+  <thead>
+    <tr>
+      <th class="filename"><%= l(:field_filename) %></th>
+      <th class="author"><%= l(:field_author) %></th>
+      <th class="created_on"><%= l(:label_date) %></th>
+      <% if User.current.allowed_to?(:manage_files, @project) %>
+        <th class="action"></th>
+      <% end -%>
+    </tr>
+  </thead>
+  <tbody>
+    <% attachments.each do |file| %>
+      <tr class="file" id="<%= dom_id(file) %>">
+        <td class="filename"><%= link_to_attachment file, :download => true, :title => file.description, target: '_blank' %></td>
+        <td class="author"><%= file.author.name %></td>
+        <td class="created_on"><%= format_time(file.created_on) %></td>
+        <% if User.current.allowed_to?(:manage_files, @project) %>
+          <td class="action"><%= link_to(image_tag('icon-trash.png'), attachment_path(file), :data => {:confirm => l(:text_are_you_sure)}, :method => :delete) %></td>
+        <% end -%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,37 @@
+<% if User.current.allowed_to?(:edit_issues, issue.project) || User.current.allowed_to?(:add_issue_watchers, issue.project) || User.current.allowed_to?(:delete_issues, issue.project) %>
+  <div class="btn-group">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+      <i class="icon-select"></i>
+    </a>
+    <ul class="dropdown-menu pull-right">
+      <% if User.current.allowed_to?(:edit_issues, issue.project) %>
+        <% if issue.closed? %>
+          <li class="action-reopen">
+            <%= link_to l(:button_reopen), reopen_issue_path(issue), method: :post %>
+          </li>
+        <% else %>
+          <li class="action-close">
+            <%= link_to l(:button_close), close_issue_path(issue), method: :post %>
+          </li>
+        <% end -%>
+      <% end -%>
+      <% unless issue.closed? %>
+        <% if User.current.allowed_to?(:add_issue_watchers, issue.project) %>
+          <li class="<%= watcher_css(issue) %> action-watch">
+            <%= watcher_link(issue, User.current) %>
+          </li>
+        <% end -%>
+        <% if User.current.allowed_to?(:edit_issues, issue.project) %>
+          <li class="action-edit">
+            <%= link_to(l(:button_update), {:controller => 'issues', :action => 'edit', :id => issue }, remote: true) %>
+          </li>
+        <% end -%>
+        <% if User.current.allowed_to?(:delete_issues, issue.project) %>
+          <li class="action-delete">
+            <%= link_to l(:button_delete), issue_path(issue), :data => {:confirm => issues_destroy_confirmation_message(issue)}, :method => :delete %>
+          </li>
+        <% end -%>
+      <% end -%>
+    </ul>
+  </div>
+<% end -%>

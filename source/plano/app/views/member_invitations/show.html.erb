@@ -1,0 +1,16 @@
+<% content_for :sidebar do %>
+  <%= render '/projects/info', { project: @member_invitation.project } %>
+<% end -%>
+
+<p>
+  <%= link_to_user(@member_invitation.inviter) %> 邀请你加入项目：<%= @member_invitation.project.name %>
+</p>
+
+<p>
+  <%= @member_invitation.description %>
+</p>
+
+<div>
+  <%= link_to l(:button_accept), accept_member_invitation_url(@member_invitation, token: @member_invitation.token), class: 'btn btn-primary' %>
+  <%= link_to l(:button_reject), reject_member_invitation_url(@member_invitation, token: @member_invitation.token), class: 'btn' %>
+</div>

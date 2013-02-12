@@ -1,0 +1,33 @@
+<% html_title(l(:label_attachment_plural)) -%>
+
+<% content_for :sidebar do %>
+  <%= render '/projects/info', { project: @project } %>
+<% end %>
+
+<% content_for :title_bar do %>
+  <%= render '/projects/title_bar' %>
+<% end -%>
+
+<% if User.current.allowed_to?(:manage_files, @project) %>
+  <div class="clearfix file-nav">
+    <h4 class="pull-left"><%=l(:label_attachment_plural)%></h4>
+
+    <%= form_tag(project_files_path(@project), :multipart => true, id: 'new-files-form') do %>
+      <span class="btn btn-primary fileinput-button bg-upload">
+        <!-- <i class="icon-plus icon-white"></i> -->
+        <span><%= l(:button_upload) %></span>
+        <%= file_field_tag 'file', multiple: true, name: 'attachments[][file]' %>
+      </span>
+      <div class="clearfix"></div>
+    <% end %>
+  </div>
+
+  <script id="template-upload" type="text/x-tmpl">
+  <div class="upload">
+    {%=o.name%}
+    <div class="progress"><div class="bar" style="width: 0%"></div></div>
+  </div>
+  </script>
+<% end -%>
+
+<%= render 'list', { attachments: @attachments } %>

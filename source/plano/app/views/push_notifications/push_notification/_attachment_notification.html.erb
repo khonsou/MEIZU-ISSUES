@@ -1,0 +1,42 @@
+<% unless popover %>
+  <li class="<%= 'unread' if push_notification.unread? %> row-fluid" id="<%= dom_id push_notification %>">
+    <div class="span6">
+      <div class="user-image pull-left">
+        <%= image_tag push_notification.author.avatar_url(:small) %>
+      </div>
+      <%= link_to_user push_notification.author %><br>
+      <span class="time"><%= localize(push_notification.created_at, format: :short) %></span>
+    </div>
+    <div class="span14">
+      <% case push_notification.event_name %>
+      <% when 'upload' %>
+        上传了<%= link_to push_notification.pusher.filename, read_push_notification_path(push_notification, pusher_path: project_files_path(project_id: push_notification.project.id, anchor: dom_id(push_notification.pusher))) %>
+      <% end -%>
+      <span class="project">(<%= link_to_project push_notification.project %>)</span>
+    </div>
+    <div class="span4">
+      <% if push_notification.unread? %>
+        <%= link_to l(:button_mark_as_read), mark_as_read_push_notification_path(push_notification), method: :post, remote: true, class: 'btn btn-mini' %>
+      <% end -%>
+    </div>
+  </li>
+<% else %>
+  <li class="item row-fluid">
+    <%= link_to read_push_notification_path(push_notification, pusher_path: project_files_path(project_id: push_notification.project.id, anchor: dom_id(push_notification.pusher))) do %>
+      <div class="span7">
+        <div class="user-image pull-left">
+          <%= image_tag push_notification.author.avatar_url(:small) %>
+        </div>
+        <%= push_notification.author.name %><br>
+        <span class="time"><%= localize(push_notification.created_at, format: :short) %></span>
+      </div>
+      <div class="span17">
+        <% case push_notification.event_name %>
+        <% when 'upload' %>
+          上传了<%= push_notification.pusher.filename %>
+        <% end -%>
+        <span class="project">(<%= push_notification.project.name %>)</span>
+      </div>
+    <% end -%>
+  </li>
+<% end -%>

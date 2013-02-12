@@ -1,0 +1,171 @@
+body {
+  padding-top: 110px;
+}
+
+.container {
+  margin-bottom: 50px;
+}
+
+.main {
+  border: $solidBorder;
+  @include border-radius($borderRadius);
+  padding: 20px $gridGutterWidth;
+  background-color: $white;
+  @include box-shadow($boxShadowTwo);
+}
+
+.with-title-bar {
+  @include border-top-left-radius(0px);
+}
+
+.title-bar {
+  @include clearfix();
+
+  .nav {
+    margin-bottom: 0;
+  }
+}
+
+.sidebar {
+  .actions {
+    margin-bottom: $baseLineHeight;
+  }
+}
+
+.note-actions {
+  @extend .pull-right;
+}
+
+.flash.notice {
+  @extend .alert-success;
+}
+
+.flash.error {
+  @extend .alert-error;
+}
+
+.hidden {
+  display: none;
+}
+
+#ajax-indicator {
+  background: transparent url(loading.gif) no-repeat 0 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 2000;
+
+  span {
+    display: block;
+    margin-top: 40px;
+  }
+}
+
+//  sidebar
+.sidebar {
+  #project-list .nav li a,
+  .project-info .basic-info,
+  .project-info .member,
+  .issue-info,
+  #watchers {
+    padding: 0px 10px 10px;
+    border: $solidBorder;
+    @include gradient-vertical($lightBackgroudOne, $bodyBackground);
+    @include border-radius($borderRadius);
+    @include box-shadow(#{inset $innerShadowTwo, $boxShadowTwo});
+
+    h5 {
+      font-weight: normal;
+      padding-bottom: 5px;
+      border-bottom: $dashedBorder;
+    }
+  }
+
+  #project-list .nav li a {
+    padding: 5px 6px;
+
+    span {
+      padding-left: 5px;
+      line-height: 32px;
+    }
+  }
+
+  .project-info .basic-info {
+    h5 {
+      border-bottom: 0 none;
+    }
+  }
+
+  .project-info .member {
+    .user-name {
+      font-weight: bold;
+    }
+
+    .role {
+      color: $lightTextColor;
+      font-style: italic;
+    }
+
+    .link-all-members {
+      display: block;
+      padding-top: 5px;
+      color: $lightTextColor;
+    }
+  }
+
+  .search-result-counts {
+    list-style-type: none;
+    margin: 0;
+
+    li {
+      line-height: 40px;
+      border-bottom: $dashedBorder;
+
+      a {
+        display: block;
+        padding-right: 15px;
+        text-decoration: none;
+
+        &:hover {
+          font-weight: bold;
+          background: transparent url('icon-arrow-right.png') no-repeat 150px 10px;
+        }
+      }
+    }
+
+    li.active {
+      a {
+        font-weight: bold;
+        background: transparent url('icon-arrow-right.png') no-repeat 150px 10px;
+      }
+    }
+
+    li.btn-back {
+      border-bottom: 0 none;
+      width: 100%;
+
+      a {
+        @extend .btn;
+        width: 140px;
+        background: transparent url('icon-arrow-left.png') no-repeat 15px 5px;
+
+        &:hover {
+          font-weight: normal;
+          background: #dfe0e4 url('icon-arrow-left.png') no-repeat 15px 5px !important;
+          
+        }
+      }
+
+    }
+  }
+
+  .row-fluid {
+    .btn.span24 {
+      float: none;
+      text-align: left;
+    }
+  }
+}
+
+
+

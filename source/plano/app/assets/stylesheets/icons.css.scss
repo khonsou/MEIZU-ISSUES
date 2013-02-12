@@ -1,0 +1,92 @@
+// customize bootstrap _sprites.scss
+
+// ICONS 6
+// -----
+[class^="icon-"],
+[class*=" icon-"] {
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  margin-top: 0px;
+}
+
+// theme style
+.icon-new {
+  background-position: -20px 0;
+}
+
+.icon-home {
+  background-position: -120px 0;
+  margin-top: -2px;
+}
+
+.icon-notify {
+  background-position: -40px 0;
+  margin-right: 2px;
+  margin-top: -3px;
+}
+
+.has_notification .icon-notify {
+  background-position: -60px 0;
+  margin-right: 2px;
+  margin-top: -3px;
+}
+
+.icon-select {
+  background-position: -80px 0;
+  margin-left: 5px;
+}
+
+.issue-list .issue-item .info .icon-select {
+  margin-top: -11px;
+}
+
+.project-info .basic-info .actions .icon-select,
+.issue .actions .icon-select {
+  margin-top: -10px;
+}
+
+.icon-flag {
+  background-position: -220px 0;
+  margin-top: -1px;
+}
+
+.icon-members {
+  background-position: -240px 0;
+  margin-top: -2px;
+}
+
+.icon-arrow-left {
+  background-position: -420px 0;
+}
+
+.icon-summary {
+  background-position: -440px 0;
+}
+
+.icon-open {
+  background-position: -460px 0;
+}
+
+.icon-closed {
+  background-position: -480px 0;
+}
+
+.icon-assignee {
+  background-position: 0 -20px;
+}
+
+.icon-due {
+  background-position: -20px -20px;
+}
+
+.overdue .icon-due {
+  background-position: -260px -20px;
+}
+
+.icon-dot {
+  background-position: -160px -20px;
+  position: relative;
+  top: -27px;
+  left: 90px;
+}

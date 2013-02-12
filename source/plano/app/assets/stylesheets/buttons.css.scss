@@ -1,0 +1,76 @@
+// customize bootstrap _buttons.scss
+
+// Base styles 6
+// --------------------------------------------------
+.btn {
+  font-size: $bigFontSize;
+  text-shadow: 0 1px 0 rgba(255,255,255,1);
+  border-bottom-color: $btnBorder;
+  @include border-radius($borderRadius);
+  @include box-shadow(#{inset $innerShadowOne, $noShadow}); 
+  color: $btnTextColor;
+
+  &:hover {
+    color: $btnTextColor;
+    @include gradient-vertical(#e7e8eb, #d3d6da);
+    background-position: 0 0;
+  }
+}
+
+.btn-primary {
+  color: $white;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.49);
+  border-color: $btnPrimaryBorder;
+
+  &:hover {
+    color: $white;
+    @include gradient-vertical(#0f9ef0, #046ae3);
+  }
+}
+
+// Mini
+.btn-mini {
+  font-size: $baseFontSize;
+}
+
+// theme style
+
+.btn-primary.bg-new,
+.btn-primary.bg-upload,
+.btn.bg-files {
+  padding-left: 30px;
+  background-repeat: no-repeat;
+  background-position: 7px 3px;
+}
+
+.btn-primary.bg-new {
+  background-image: url('icon-new.png');
+}
+
+.btn-primary.bg-upload {
+  background-image: url('icon-upload.png');
+}
+
+.btn.bg-files {
+  background-image: url('icon-files.png');
+}
+
+#wiki_form .btn-primary {
+  margin-left: 10px;
+}
+
+.user-info .btn-primary {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.load-more {
+  margin: 20px 0 10px;
+  text-align: center; 
+
+  .btn-load-more {
+    font-size: 12px;
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+}

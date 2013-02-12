@@ -1,0 +1,25 @@
+<%= error_messages_for 'project' %>
+
+<div class="row-fluid form-content">
+  <div>
+    <%= f.text_field :name, :required => true, class: 'span24', placeholder: l(:field_name) %>
+  </div>
+
+  <div class="row-fluid">
+    <div class="span19">
+      <%= f.text_area :description, :rows => 6, :class => 'wiki-edit span24', placeholder: l(:field_description) %>
+    </div>
+
+    <div class="span5">
+      <div class="image-selector-container">
+        <div class="image-selector">
+          <%= image_tag(@project.icon_url(:medium)) %>
+          <span class="upload-image">
+            <%= f.file_field :icon %>
+          </span>
+          <%= f.hidden_field :icon_cache %>
+        </div>
+      </div>
+    </div>  
+  </div>
+</div>

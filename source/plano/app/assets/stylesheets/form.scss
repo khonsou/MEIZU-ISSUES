@@ -1,0 +1,347 @@
+// customize bootstrap _navbar.scss
+
+
+// theme style
+.form,
+.form-content,
+#login-form,
+#new_user,
+.advance-search,
+#my_account_form,
+#change_password_form,
+#lost-password {
+  margin: 0;
+
+  label {
+    margin: 0 0 5px;
+    font-size: $bigFontSize;
+  }
+}
+
+#new_user,
+#my_account_form,
+#change_password_form {
+  margin-bottom: 20px;
+}
+
+.basic-form {
+  padding: 5px 10px;
+  border: $solidBorder;
+  border-color: #e5e5e5;
+  @include border-radius($borderRadius); 
+  @include box-shadow($boxShadowThree);
+  color: $textColor;
+  font-size: $baseFontSize;
+}
+
+.navbar-search {
+  .search-query {
+    @extend .basic-form;
+    height: 15px;
+    width: 180px;
+    line-height: 15px;
+    padding-left: 30px;
+    color: $lightTextColor;
+    background: transparent url('icon-search.png') no-repeat 10px 5px;
+  }
+}
+
+.edit_issue {
+  #notes {
+    @extend .basic-form;
+    max-width: 668px;
+  }
+}
+
+#wiki_form {
+  #content_text,
+  #content_comments {
+    @extend .basic-form;
+  }
+}
+
+.form-content {
+  #issue_subject,
+  #issue_project_id,
+  #project_name {
+    margin-bottom: 15px;
+  }
+
+  #issue_subject {
+    width: 97%;
+    @extend .basic-form;
+  }
+
+  #issue_description {
+    @extend .basic-form;
+  }
+
+  #project_name,
+  #project_description {
+    @extend .basic-form;
+  }
+
+  #id {
+    @extend .basic-form;
+    width: 600px;
+  }
+}
+
+select#sort_by,
+select#issue_project_id,
+select#issue_assigned_to_id,
+input#issue_due_date,
+input#due_date_start,
+input#due_date_end,
+select#issue_status,
+select#issue_watched,
+input#created_on_start,
+input#created_on_end,
+select#project_id {
+  appearance: none;
+  -moz-appearance: none; /* Firefox */
+  -webkit-appearance: none; /* Safari and Chrome */
+  width: 140px;
+  padding: 5px 10px;
+  margin-bottom: 0;
+  border: $solidBorder;
+  @include box-shadow($boxShadowFour);
+  color: $textColor;
+  line-height: normal;
+  background: transparent url('btn-select.png') no-repeat 0 -1px;
+
+  &:focus {
+    outline: 0 none;
+  }
+}
+
+select#issue_project_id {
+  width: 240px;
+  background-image: url('btn-select-1.png');
+}
+
+input#issue_due_date,
+input#due_date_start,
+input#due_date_end,
+input#created_on_start,
+input#created_on_end {
+  background-image: url('btn-calender.png');
+}
+
+#login-form,
+#new_user,
+#lost-password {
+  .header {
+    padding: 10px 30px;
+    border-bottom: $solidBorder;
+    @include border-top-left-radius($borderRadius);
+    @include border-top-right-radius($borderRadius);
+    @include gradient-vertical($lightBackgroudFive, $lightBackgroudSix);
+
+    .title {
+      font-size:$bigFontSize;
+    }
+  }
+
+  .body {
+    padding: 20px $gridGutterWidth;
+
+    #username, #password,
+    #user_login, #user_password, #user_password_confirmation,
+    #user_firstname, #user_lastname, #user_mail,
+    #mail {
+      @extend .basic-form;
+      padding-left: 30px;
+      margin-bottom: 15px;
+      background-repeat: no-repeat;
+      background-position: 5px 3px;
+    }
+
+    #password, #user_password, #user_mail {
+     margin-bottom: 9px;
+   }
+
+    #username, #user_login,
+    #user_firstname, #user_lastname {
+      background-image: url('icon-user.png');
+    }
+
+    #password, #user_password, #user_password_confirmation {
+     background-image: url('icon-password.png');
+    }
+
+    #user_mail,
+    #mail {
+      background-image: url('icon-email.png');
+    }
+  }
+
+  .footer {
+    padding: 20px $gridGutterWidth 0px;
+    border-top: $dashedBorder;
+    text-align: right;
+
+    #autologin {
+      margin-top: -2px;
+      margin-right: 5px;
+    }
+
+    label {
+      font-size: $baseFontSize;
+    }
+  }
+}
+
+#lost-password {
+  .btn-primary {
+    @extend .pull-right;
+    margin: 20px 0;
+  }
+}
+
+.fileinput-button {
+  position: relative;
+  overflow: hidden;
+
+  input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    transform: translate(-300px, 0) scale(4);
+    font-size: 23px;
+    direction: ltr;
+    cursor: pointer;
+  }
+}
+
+#issue-form {
+  .attributes {
+    @include clearfix;
+    margin-bottom: 15px;
+
+    span {
+      margin: 0 15px 0 0;
+      line-height: 30px;
+      font-size: $bigFontSize;
+    }
+  }
+
+  .avatar {
+    @extend .pull-left;
+  }
+}
+
+.advance-search {
+  @extend .clearfix;
+
+  .row-fluid {
+    margin-bottom: 15px;
+  }
+
+  .types {
+    margin-bottom: 0;
+
+    label {
+      font-size: $baseFontSize;
+
+      #all_object_types,
+      #issues,
+      #wiki_pages,
+      #attachments {
+        margin: 0 5px 0 0;
+      }
+    }
+  }
+
+  #due_date_start,
+  #created_on_start {
+    margin-right: 10px;
+  }
+
+  #due_date_end,
+  #created_on_end {
+    margin-left: 10px;
+  }
+
+  #search-input {
+    width: 96%;
+    @extend .basic-form;
+  }
+
+  .btn-primary {
+    margin-right: 15px;
+  }
+}
+
+#invitations {
+
+  .title {
+    margin-bottom: 15px;
+
+    span {
+      margin: 0 15px 0 0;
+      line-height: 30px;
+      font-size: $bigFontSize;
+    }
+  }
+
+  #description {
+    @extend .basic-form;
+  }
+}
+
+#my_account_form,
+#change_password_form {
+  .modal-body .span19 {
+    input {
+      width: 90%;
+      @extend .basic-form;
+    }
+  }
+}
+
+.image-selector-container  {
+  @include box-shadow($boxShadowThree);
+
+  .image-selector {
+    padding: 10px;
+    border: 1px solid #e5e5e5;
+    text-align: center;
+
+    .upload-image {
+      display: block;
+      width: 20px;
+      height: 20px;
+      position: relative;
+      background: transparent url('icon-arrow-up.png') no-repeat 0 0;
+      margin: 0 auto;
+      
+      input {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        opacity: 0;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+#my_account_form {
+  .image-selector {
+    margin-top: 30px;
+  }
+}
+
+#attachments_fields {
+  input[type="file"] {
+    height: auto;
+    line-height: normal;
+    margin-bottom: 5px;
+  }
+  
+}

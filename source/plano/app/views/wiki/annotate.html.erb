@@ -1,0 +1,46 @@
+<% content_for :sidebar do %>
+  <%= render '/projects/info', { project: @project } %>
+<% end %>
+
+<% content_for :title_bar do %>
+  <%= render '/projects/title_bar' %>
+<% end -%>
+
+<%= render 'tabs' %>
+
+
+<%= wiki_page_breadcrumb(@page) %>
+
+<div class="clearfix annotate-title">
+  <h4 class="pull-left"><%=h @page.pretty_title %></h4>
+  <span class="pull-right"><%= link_to(l(:label_history),
+              {:action => 'history', :id => @page.title}) %></span>
+</div>
+
+<p>
+<%= l(:label_version) %> <%= link_to h(@annotate.content.version),
+                                     :action => 'show', :project_id => @project,
+                                     :id => @page.title, :version => @annotate.content.version %>
+<em>(<%= h(@annotate.content.author ?
+             @annotate.content.author.name : l(:label_user_anonymous))
+      %>, <%= format_time(@annotate.content.updated_on) %>)</em>
+</p>
+
+<% colors = Hash.new {|k,v| k[v] = (k.size % 12) } %>
+
+<table class="filecontent annotate">
+<tbody>
+<% line_num = 1 %>
+<% @annotate.lines.each do |line| -%>
+<tr class="bloc-<%= colors[line[0]] %>">
+    <th class="line-num"><%= line_num %></th>
+    <td class="revision"><%= link_to line[0], :controller => 'wiki',
+                             :action => 'show', :project_id => @project,
+                             :id => @page.title, :version => line[0] %></td>
+    <td class="author"><%= h(line[1]) %></td>
+    <td class="line-code"><pre><%=h line[2] %></pre></td>
+</tr>
+<% line_num += 1 %>
+<% end -%>
+</tbody>
+</table>

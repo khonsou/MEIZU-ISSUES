@@ -1,0 +1,23 @@
+<div class="modal" id="container-modal">
+  
+  <%= labelled_form_for @issue, :url => project_issues_path(@project),
+                               :html => {:id => 'issue-form', :multipart => true} do |f| %>
+    <div class="modal-body">
+      <%= error_messages_for 'issue' %>
+
+      <div class="box tabular">
+        <div id="all_attributes">
+          <%= render :partial => 'issues/form', :locals => {:f => f} %>
+        </div>
+      </div>
+
+      <div id="attachments_form">
+        <%= render :partial => 'attachments/form', :locals => {:container => @issue} %>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <%= link_to l(:button_close), '#', class: 'btn', data: { dismiss: 'modal' } %>
+      <%= submit_tag l(:button_create), disable_with: l(:button_submiting), class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

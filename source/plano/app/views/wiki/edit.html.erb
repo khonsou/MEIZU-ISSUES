@@ -1,0 +1,36 @@
+<% content_for :sidebar do %>
+  <%= render '/projects/info', { project: @project } %>
+<% end %>
+
+<% content_for :title_bar do %>
+  <%= render '/projects/title_bar' %>
+<% end -%>
+
+<h4><%= h @page.pretty_title %></h4>
+
+<%= form_for @content, :as => :content,
+            :url => {:action => 'update', :id => @page.title},
+            :html => {:method => :put, :multipart => true, :id => 'wiki_form'} do |f| %>
+  <div class="row-fluid">
+    <%= f.hidden_field :version %>
+    <% if @section %>
+      <%= hidden_field_tag 'section', @section %>
+      <%= hidden_field_tag 'section_hash', @section_hash %>
+    <% end %>
+    <%= error_messages_for 'content' %>
+
+    <%= text_area_tag 'content[text]', @text, :cols => 100, :rows => 20,
+                      :class => 'wiki-edit span24', :accesskey => accesskey(:edit) %>
+
+    <p><%= f.text_field :comments, class: 'span24', placeholder: l(:field_comments) %></p>
+
+    <div class="pull-right">
+      <%= preview_link({:controller => 'wiki', :action => 'preview', :project_id => @project, :id => @page.title }, 'wiki_form') %>
+      <%= submit_tag l(:button_save), class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
+
+<div id="preview" class="wiki"></div>
+
+<% html_title @page.pretty_title %>
