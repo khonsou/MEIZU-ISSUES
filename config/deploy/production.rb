@@ -1,9 +1,9 @@
-set :repository, "/Users/yzhang/projects/plano"
+set :repository, "git://github.com/khonsou/MEIZU-ISSUES.git"
 set :application_servers, %w(ubuntu)
 set :migration_server, "ubuntu"
 set :rails_env, "production"
 set :branch, "master"
-set :deploy_via, :copy
+set :deploy_via, :remote_cache
 
 load File.dirname(__FILE__) + "/shared_code"
 

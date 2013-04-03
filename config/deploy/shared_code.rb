@@ -8,7 +8,7 @@ set :use_sudo, false
 
 set :scm, :git
 set :git_shallow_clone, 1
-set :copy_exclude, [".git/*", ".gitignore"]
+set :copy_exclude, [".git/*", ".gitignore", "non_rails_doc"]
 
 # to avoid "find .../public/images" error
 set :normalize_asset_timestamps, false
