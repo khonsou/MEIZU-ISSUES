@@ -1,0 +1,14 @@
+set :repository, "/Users/yzhang/projects/plano"
+set :application_servers, %w(ubuntu)
+set :migration_server, "ubuntu"
+set :rails_env, "production"
+set :branch, "master"
+set :deploy_via, :copy
+
+load File.dirname(__FILE__) + "/shared_code"
+
+task :assets_precompile, :roles => [:app] do
+  run "cd #{release_path}; RAILS_ENV=#{rails_env} bundle exec rake assets:precompile 2>/dev/null"
+end
+
+after "deploy:update_code", :assets_precompile
