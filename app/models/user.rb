@@ -143,14 +143,17 @@ class User < Principal
       return nil if !user.active?
       if user.auth_source
         # user has an external authentication method
-        return nil unless user.auth_source.authenticate(login, password)
+        unless user.auth_source.authenticate(email2username(login), password)
+          return nil unless user.auth_source.authenticate(login, password)
+        end
       else
         # authentication with local password
         return nil unless user.check_password?(password)
       end
     else
       # user is not yet registered, try to authenticate with available sources
-      attrs = AuthSource.authenticate(login, password)
+debugger
+      attrs = AuthSource.authenticate(email2username(login), password) || AuthSource.authenticate(login, password)
       if attrs
         user = new(attrs)
         user.login = login
@@ -663,6 +666,13 @@ class User < Principal
     Redmine::Utils.random_hex(16)
   end
 
+  def self.email2username(email)
+    if email =~ /^([^@]+)\@.+/
+      $1
+    else
+      email
+    end
+  end
 end
 
 class AnonymousUser < User
