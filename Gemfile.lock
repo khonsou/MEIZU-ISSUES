@@ -116,7 +116,7 @@ GEM
     rake (10.0.3)
     rdoc (3.12)
       json (~> 1.4)
-    rmagick (2.13.1)
+    rmagick (2.13.2)
     ruby-openid (2.1.8)
     sass (3.2.5)
     sass-rails (3.2.6)
