@@ -24,6 +24,8 @@ group :development do
   gem "rdoc", ">= 2.4.2"
   gem "yard"
   gem 'awesome_print', '~> 1.0.2'
+  gem 'capistrano'
+  gem 'capistrano-ext'
 end
 
 group :test do
