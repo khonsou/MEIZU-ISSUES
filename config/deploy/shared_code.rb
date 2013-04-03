@@ -39,5 +39,13 @@ task :copy_database_yml_file, :roles => [:app] do
   run "cp #{application_root}/shared/data/database.yml #{release_path}/config/database.yml"
 end
 
-after "deploy:update_code", :copy_database_yml_file, :create_bundler_config_file
+task :make_symbolic_links, :roles => [:app] do
+  run "mkdir -p #{application_root}/shared/data/files"
+  run "mkdir -p #{application_root}/shared/data/uploads"
+
+  run "ln -s #{application_root}/shared/data/files #{release_path}/files"
+  run "ln -s #{application_root}/shared/data/uploads #{release_path}/public/uploads"
+end
+
+after "deploy:update_code", :copy_database_yml_file, :create_bundler_config_file, :make_symbolic_links
 
