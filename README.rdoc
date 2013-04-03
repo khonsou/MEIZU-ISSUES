@@ -1,5 +1,5 @@
-= Redmine
+= Plano
 
-Redmine is a flexible project management web application written using Ruby on Rails framework.
+Wireframe. free to review
 
-More details can be found in the doc directory or on the official website http://www.redmine.org
+http://invis.io/Q9593N5E
