@@ -46,7 +46,12 @@ module ApplicationHelper
   # Displays a link to user's account page if active
   def link_to_user(user, options={})
     if user.is_a?(User)
-      name = truncate(h(user.name(options[:format])), length: 8)
+      if options[:avatar]
+        name = image_tag user.avatar_url(options[:avatar])
+      else
+        name = truncate(h(user.name(options[:format])), length: 8)
+      end
+
       if user.active?
         if options[:remote] == false
           link_to name, :controller => 'users', :action => 'show', :id => user

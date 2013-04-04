@@ -52,7 +52,7 @@
     <ul>
       <li class="row-fluid">
         <div class="avatar span7">
-          <%= image_tag project.creator.avatar_url(:small) %>
+          <%= link_to_user(project.creator, :avatar => :small) %>
         </div>
         <div class="span17">
           <span class="user-name"><%= link_to_user(project.creator) %></span><br>
@@ -63,7 +63,7 @@
         <% unless member.user == project.creator %>
           <li class="row-fluid">
             <div class="avatar span7">
-              <%= image_tag member.user.avatar_url(:small) %>
+              <%= link_to_user(member.user, :avatar => :small) %>
             </div>
             <div class="span17">
               <span class="user-name"><%= link_to_user(member.user) %></span><br>
@@ -84,7 +84,7 @@
             <div class="span7">
               <div class="row-fluid each-member">
                 <div class="avatar span7">
-                  <%= image_tag project.creator.avatar_url(:small) %>
+                  <%= link_to_user(project.creator, :avatar => :small) %>
                 </div>
                 <div class="span17">
                   <span class="user-name"><%= link_to_user(project.creator) %></span><br>
@@ -97,7 +97,7 @@
                 <div class="span7">
                   <div class="row-fluid each-member">
                     <div class="avatar span7">
-                      <%= image_tag member.user.avatar_url(:small) %>
+                      <%= link_to_user(member.user, :avatar => :small) %>
                     </div>
                     <div class="span17">
                       <span class="user-name"><%= link_to_user(member.user) %></span><br>
