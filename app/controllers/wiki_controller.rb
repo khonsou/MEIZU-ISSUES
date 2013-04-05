@@ -89,7 +89,7 @@ class WikiController < ApplicationController
       @content.current_version? &&
       Redmine::WikiFormatting.supports_section_edit?
 
-    @content.push_notifications.each { |pn| pn.mark_as_read(User.current) }
+    #@content.push_notifications.each { |pn| pn.mark_as_read(User.current) }
     
     render :action => 'show'
   end
