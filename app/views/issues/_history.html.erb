@@ -4,7 +4,7 @@
   <div id="change-<%= journal.id %>" class="<%= journal.css_classes %>">
     <div id="note-<%= journal.indice %>">
       <div class="avatar">
-        <%= image_tag journal.user.avatar_url(:small) %>
+        <%= link_to_user(journal.user, :avatar => :small) %>
       </div>
       <div class="content">
         <div class="basic">
