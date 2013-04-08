@@ -41,7 +41,7 @@
 
   <div class="clearfix">
     <div class="avatar">
-      <%= image_tag @issue.author.avatar_url(:small) %>
+      <%= link_to_user(@issue.author, :avatar => :small) %>
     </div>
     <div class="author">
       <strong><%= link_to_user(@issue.author) %></strong><br/>
