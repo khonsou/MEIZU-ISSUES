@@ -45,7 +45,7 @@ module WatchersHelper
     content = ''.html_safe
     lis = object.watcher_users.collect do |user|
       s = ''.html_safe
-      s << image_tag(user.avatar_url(:small)).to_s
+      s << link_to_user(user, :avatar => :small).to_s
       s << link_to_user(user, :class => 'user')
       content << content_tag('li', s)
     end
