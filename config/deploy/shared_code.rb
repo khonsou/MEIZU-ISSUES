@@ -35,8 +35,9 @@ task :create_bundler_config_file, :roles => [:app] do
   run "echo \"BUNDLE_WITHOUT: development:test\" >> #{release_path}/.bundle/config"
 end
 
-task :copy_database_yml_file, :roles => [:app] do
-  run "cp #{application_root}/shared/data/database.yml #{release_path}/config/database.yml"
+task :copy_database_and_configuration_yml_file, :roles => [:app] do
+  run "cp #{application_root}/shared/data/database.yml      #{release_path}/config/database.yml"
+  run "cp #{application_root}/shared/data/configuration.yml #{release_path}/config/configuration.yml"
 end
 
 task :make_symbolic_links, :roles => [:app] do
@@ -47,5 +48,5 @@ task :make_symbolic_links, :roles => [:app] do
   run "ln -s #{application_root}/shared/data/uploads #{release_path}/public/uploads"
 end
 
-after "deploy:update_code", :copy_database_yml_file, :create_bundler_config_file, :make_symbolic_links
+after "deploy:update_code", :copy_database_and_configuration_yml_file, :create_bundler_config_file, :make_symbolic_links
 
