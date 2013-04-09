@@ -1152,6 +1152,11 @@ module ApplicationHelper
       options
     end
   end
+  
+  def fix_for_bootstrap_dropdown
+    # See: https://github.com/twitter/bootstrap/issues/4550
+    "<script>$('body').on('touchstart.dropdown', '.dropdown-menu', function (e) { e.stopPropagation(); });</script>".html_safe
+  end
 
   private
 
