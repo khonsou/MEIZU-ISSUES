@@ -726,6 +726,12 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def true_pending_invitations
+    pendings = MemberInvitation.where(project_id: self.id, state: 'pending')
+    member_user_ids = Member.where(project_id: self.id).map{|m|m.user_id}
+    pendings.reject {|invitation| member_user_ids.include?(invitation.user_id)}
+  end
+
   private
 
   # Copies wiki from +project+
