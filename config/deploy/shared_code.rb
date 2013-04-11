@@ -1,5 +1,4 @@
 set :application, "plano"
-set :user, "ubuntu"
 set :application_root, "/rails_apps/#{application}"
 
 ssh_options[:port] = 16120

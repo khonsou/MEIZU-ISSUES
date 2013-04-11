@@ -1,3 +1,3 @@
-set :stages, %w(demo production)
-set :default_stage, "production"
+set :stages, %w(staging production)
+set :default_stage, "staging"
 require 'capistrano/ext/multistage'
