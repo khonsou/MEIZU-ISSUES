@@ -97,7 +97,7 @@ class MailHandler < ActionMailer::Base
           if logger && logger.info
             logger.info "MailHandler: [#{@user.login}] account created"
           end
-          Mailer.account_information(@user, @user.password).deliver
+          Mailer.delay.account_information(@user, @user.password)
         else
           if logger && logger.error
             logger.error "MailHandler: could not create account for [#{sender_email}]"

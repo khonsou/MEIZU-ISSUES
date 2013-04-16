@@ -81,7 +81,7 @@ class AccountController < ApplicationController
         # create a new token for password recovery
         token = Token.new(:user => user, :action => "recovery")
         if token.save
-          Mailer.lost_password(token).deliver
+          Mailer.delay.lost_password(token)
           flash[:notice] = l(:notice_account_lost_email_sent)
           redirect_to signin_path
           return
@@ -253,7 +253,7 @@ class AccountController < ApplicationController
   def register_by_email_activation(user, &block)
     token = Token.new(:user => user, :action => "register")
     if user.save and token.save
-      Mailer.register(token).deliver
+      Mailer.delay.register(token)
       flash[:notice] = l(:notice_account_register_done)
       redirect_to signin_path
     else
@@ -283,7 +283,7 @@ class AccountController < ApplicationController
   def register_manually_by_administrator(user, &block)
     if user.save
       # Sends an email to the administrators
-      Mailer.account_activation_request(user).deliver
+      Mailer.delay.account_activation_request(user)
       account_pending
     else
       yield if block_given?

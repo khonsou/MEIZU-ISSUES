@@ -37,7 +37,7 @@ class FilesController < ApplicationController
         PushNotification::AttachmentNotification.notify(attachment, 'upload')
       end
 
-      Mailer.attachments_added(attachments[:files]).deliver
+      Mailer.delay.attachments_added(attachments[:files])
     end
 
     @attachments = @project.attachments
