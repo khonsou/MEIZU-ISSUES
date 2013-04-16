@@ -403,4 +403,16 @@ module IssuesHelper
     end
     s.html_safe
   end
+
+  def render_return_to_main_page
+    s = ''
+    if params[:project_id] # this could be done in a better way %>
+      s << "<a href=\"#{issues_path}\"  class=\"btn span24\">"
+      s << "<i class=\"icon-arrow-left\"></i>"
+      s << "#{l(:return_to_main_page)}"
+      s << "</a>"
+      s << "<br />"
+    end
+    s.html_safe
+  end
 end
