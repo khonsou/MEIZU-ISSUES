@@ -398,7 +398,7 @@ module IssuesHelper
     s = ''
     unless params[:project_id] # this could be done in a better way %>
       s << '<div class="row">'
-      s << "<div class=\"span24\">#{l(:issues_of_all_projects)}</div>"
+      s << "<div class=\"span24\" style=\"font-size:150%;\">#{l(:issues_of_all_projects)}<br/><br/></div>"
       s << '</div>'
     end
     s.html_safe
