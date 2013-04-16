@@ -10,6 +10,7 @@ gem "builder", "3.0.0"
 gem 'mini_magick', '~> 3.4'
 gem "carrierwave", "~> 0.6.1"
 gem "select2-rails", "~> 3.2.1"
+gem 'delayed_job_active_record'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.4'
