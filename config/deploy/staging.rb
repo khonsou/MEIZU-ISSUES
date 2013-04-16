@@ -2,7 +2,7 @@ set :repository, "git://github.com/khonsou/MEIZU-ISSUES.git"
 set :application_servers, %w(ubuntu)
 set :migration_server, "ubuntu"
 set :user, "ubuntu"
-set :rails_env, "production"
+set :rails_env, "staging""
 set :branch, "master"
 set :deploy_via, :remote_cache
 
