@@ -27,6 +27,6 @@ class IssueObserver < ActiveRecord::Observer
 
     PushNotification::IssueNotification.notify(issue, 'create')
 
-    Mailer.issue_add(issue).deliver
+    Mailer.delay.issue_add(issue)
   end
 end

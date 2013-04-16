@@ -19,14 +19,14 @@ class WikiContentObserver < ActiveRecord::Observer
   def after_create(wiki_content)
     PushNotification::WikiContentNotification.notify(wiki_content, 'create')
 
-    Mailer.wiki_content_added(wiki_content).deliver
+    Mailer.delay.wiki_content_added(wiki_content)
   end
 
   def after_update(wiki_content)
     if wiki_content.text_changed?
       PushNotification::WikiContentNotification.notify(wiki_content, 'update')
 
-      Mailer.wiki_content_updated(wiki_content).deliver
+      Mailer.delay.wiki_content_updated(wiki_content)
     end
   end
 end

@@ -18,7 +18,7 @@
 class CommentObserver < ActiveRecord::Observer
   def after_create(comment)
     if comment.commented.is_a?(News) && Setting.notified_events.include?('news_comment_added')
-      Mailer.news_comment_added(comment).deliver
+      Mailer.delay.news_comment_added(comment)
     end
   end
 end

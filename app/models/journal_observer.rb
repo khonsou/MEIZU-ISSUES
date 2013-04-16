@@ -64,6 +64,6 @@ class JournalObserver < ActiveRecord::Observer
       end
     end
 
-    Mailer.issue_edit(journal).deliver
+    Mailer.delay.issue_edit(journal)
   end
 end
