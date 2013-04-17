@@ -46,6 +46,10 @@ class MemberInvitation < ActiveRecord::Base
     state == 'pending'
   end
 
+  def true_user
+    self.user || User.where(:mail => self.mail).first
+  end
+
   protected
 
   def generate_token

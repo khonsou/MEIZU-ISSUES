@@ -152,7 +152,6 @@ class User < Principal
       end
     else
       # user is not yet registered, try to authenticate with available sources
-debugger
       attrs = AuthSource.authenticate(email2username(login), password) || AuthSource.authenticate(login, password)
       if attrs
         user = new(attrs)

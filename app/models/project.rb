@@ -727,9 +727,12 @@ class Project < ActiveRecord::Base
   end
 
   def true_pending_invitations
-    pendings = MemberInvitation.where(project_id: self.id, state: 'pending')
-    member_user_ids = Member.where(project_id: self.id).map{|m|m.user_id}
-    pendings.reject {|invitation| member_user_ids.include?(invitation.user_id)}
+    pendings = MemberInvitation.where(project_id: self.id, state: 'pending').order('id desc').uniq_by{|m|m.mail}
+    member_users = Member.where(project_id: self.id).includes(:user).map{|m|m.user}
+    member_users << self.creator
+    member_user_ids = member_users.map{|u|u.id}
+    member_user_emails = member_users.map{|u|u.mail}
+    pendings.reject {|invitation| invitation.user_id ? member_user_ids.include?(invitation.user_id) : member_user_emails.include?(invitation.mail)}
   end
 
   private

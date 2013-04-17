@@ -7,7 +7,7 @@
   <% pendings.each do |pending| %>
     <li class="row-fluid">
       <div class="avatar span7">
-        <% if u = pending.user %>
+        <% if u = pending.true_user %>
           <%= link_to_user(u, :avatar => :small) %>
         <% else %>
           <%= image_tag User.new.avatar_url(:small) %>
