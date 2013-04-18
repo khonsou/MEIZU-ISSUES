@@ -2,7 +2,7 @@
   <div class="modal-body">
     <div class="row-fluid">
       <div class="span5">
-        <%= image_tag @user.avatar_url(:medium) %>
+        <%= image_tag @user.avatar_url(:medium), :class => "img-rounded" %>
       </div>
       <div class="span19">
         <p class="name"><%= @user.name %></p>

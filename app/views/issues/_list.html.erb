@@ -34,7 +34,7 @@
             <%= link_to issue_path(issue, anchor: "change-#{journal.id}") do %>
               <div class="span5">
                 <div class="avatar pull-left">
-                  <%= image_tag journal.user.avatar_url(:small) %>
+                  <%= image_tag journal.user.avatar_url(:small), :class => "img-rounded" %>
                 </div>
                 <%= journal.user %><br/>
                 <em><%= time_ago_in_words(journal.created_on) %></em>
