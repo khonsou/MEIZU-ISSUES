@@ -4,4 +4,5 @@ if ($('#container-modal').length > 0) {
 }
 
 $("body").append("<%= j(render('new')) %>");
-$('#container-modal').modal('show');
+$('#container-modal').modal({keyboard: false});
+$(".modal-backdrop").unbind('click');
