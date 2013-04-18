@@ -47,7 +47,7 @@ module ApplicationHelper
   def link_to_user(user, options={})
     if user.is_a?(User)
       if options[:avatar]
-        name = image_tag user.avatar_url(options[:avatar])
+        name = image_tag user.avatar_url(options[:avatar]), :class => 'img-rounded'
       else
         name = truncate(h(user.name(options[:format])), length: 8)
       end
