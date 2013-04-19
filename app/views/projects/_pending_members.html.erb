@@ -1,10 +1,4 @@
-<% unless (pendings = project.true_pending_invitations).empty? %>
-  <br />
-  <i class="icon-members"></i><%= l(:label_invited_members) %>
-  <br />
-  <br />
-  <ul>
-  <% pendings.each do |pending| %>
+  <% project.true_pending_invitations.each do |pending| %>
     <li class="row-fluid">
       <div class="avatar span7">
         <% if u = pending.true_user %>
@@ -21,10 +15,9 @@
             <span title="<%= pending.mail %>"><%= truncate(pending.mail, length: 15) %></span>
           <% end %>
         </span><br>
+        <span class="role"><%= l(:label_invited_member) %></span>
       </div>
     </li>
   <% end %>
-  </ul>
-<% end %>
 
 

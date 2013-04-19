@@ -884,7 +884,7 @@ en:
   label_notification: "Notification"
   label_notification_plural: "Notifications"
   label_invite: Invite
-  label_invited_members: Invited Members
+  label_invited_member: Invited Member
 
   button_login: Login
   button_submit: Submit

@@ -55,6 +55,7 @@
       <% end -%>
     </h5>
     <ul>
+      <%= render '/projects/pending_members', {project: project} %>
       <li class="row-fluid">
         <div class="avatar span7">
           <%= link_to_user(project.creator, :avatar => :small) %>
@@ -119,7 +120,5 @@
         </div>
       </div>
     <% end -%>
-
-    <%= render '/projects/pending_members', {project: project} %>
   </div>
 </div>
