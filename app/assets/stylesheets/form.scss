@@ -101,18 +101,23 @@ select#project_id {
   appearance: none;
   -moz-appearance: none; /* Firefox */
   -webkit-appearance: none; /* Safari and Chrome */
-  width: 240px;
+  width: 140px;
   padding: 5px 10px;
   margin-bottom: 0;
   border: $solidBorder;
   @include box-shadow($boxShadowFour);
   color: $textColor;
   line-height: normal;
-  background: transparent url('btn-select.png') no-repeat 98px -1px;
+  background: transparent url('btn-select.png') no-repeat 0 -1px;
 
   &:focus {
     outline: 0 none;
   }
+}
+
+select#project_id {
+  width: 240px;
+  background: transparent url('btn-select.png') no-repeat 98px -1px;
 }
 
 select#issue_project_id {
