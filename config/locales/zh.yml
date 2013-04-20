@@ -505,8 +505,8 @@ zh:
   label_login: 登录
   label_logout: 退出
   label_help: 帮助
-  label_reported_issues: 我创建的课题
-  label_assigned_to_me_issues: 指派给我的课题
+  label_reported_issues: 我创建的
+  label_assigned_to_me_issues: 指派给我的
   label_last_login: 最后登录
   label_registered_on: 注册于
   label_activity: 活动
@@ -560,9 +560,9 @@ zh:
   label_export_to: 导出
   label_read: 读取...
   label_public_projects: 公开的项目
-  label_open_issues: 所有开放的课题
+  label_open_issues: 所有开放的
   label_open_issues_plural: 打开
-  label_closed_issues: 已关闭的课题
+  label_closed_issues: 已关闭的
   label_closed_issues_plural: 已关闭
   label_x_open_issues_abbr_on_total:
     zero:  0 打开 / %{total}
@@ -695,7 +695,7 @@ zh:
   label_options: 选项
   label_copy_workflow_from: 从以下选项复制工作流程
   label_permissions_report: 权限报表
-  label_watched_issues: 关注的课题
+  label_watched_issues: 关注的
   label_related_issues: 相关的课题
   label_applied_status: 应用后的状态
   label_loading: 载入中...

@@ -20,7 +20,8 @@ class WelcomeController < ApplicationController
 
   def index
     flash.to_hash.each { |k,v| flash[k] = v }
-    redirect_to issues_path
+    #redirect_to issues_path
+    redirect_to url_for(:controller => 'issues', :action => 'assigned_to_me')
   end
 
   def robots

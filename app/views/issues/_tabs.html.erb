@@ -1,12 +1,12 @@
 <ul class="nav nav-pills issues-tabs">
-  <li class="<%= 'active' if action_name == 'index' %>">
-    <%= link_to({ action: 'index', project_id: @project }) do %>
-      <%= l(:label_open_issues) %> (<%= @issues_count[:open] %>)
-    <% end -%>
-  </li>
   <li class="<%= 'active' if action_name == 'assigned_to_me' %>">
     <%= link_to({ action: 'assigned_to_me', project_id: @project }) do %>
       <%= l(:label_assigned_to_me_issues) %> (<%= @issues_count[:assigned_to_me] %>)
+    <% end -%>
+  </li>
+  <li class="<%= 'active' if action_name == 'index' %>">
+    <%= link_to({ action: 'index', project_id: @project }) do %>
+      <%= l(:label_open_issues) %> (<%= @issues_count[:open] %>)
     <% end -%>
   </li>
   <li class="<%= 'active' if action_name == 'reported' %>">
