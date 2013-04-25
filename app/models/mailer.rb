@@ -289,9 +289,16 @@ class Mailer < ActionMailer::Base
   end
 
   def member_invited(member_invitation)
+debugger
     @member_invitation = member_invitation
-    mail to: @member_invitation.mail,
-      subject: l(:mail_subject_member_invited, project: @member_invitation.project.name)
+    if @member_invitation.true_user ||
+      (members = Plano::Utility.resolve_distribution_list(@member_invitation.mail)).empty?
+      mail to: @member_invitation.mail,
+        subject: l(:mail_subject_member_invited, project: @member_invitation.project.name)
+    else
+      MemberInvitation.invite(@member_invitation.project, members, @member_invitation.description, @member_invitation.inviter)
+      @member_invitation.destroy
+    end
   end
 
   def test_email(user)

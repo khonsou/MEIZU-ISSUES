@@ -11,9 +11,9 @@ class MemberInvitation < ActiveRecord::Base
   before_save :bind_user
   after_create :notify
 
-  def self.invite(project, mails, description = nil)
+  def self.invite(project, mails, description = nil, inviter = nil)
     mails.map do |mail|
-      create(project: project, mail: mail, description: description)
+      create(project: project, mail: mail, description: description, inviter: inviter)
     end
   end
 
@@ -62,7 +62,7 @@ class MemberInvitation < ActiveRecord::Base
   end
 
   def bind_inviter
-    self.inviter = User.current
+    self.inviter ||= User.current
   end
 
   def bind_user
