@@ -47,5 +47,10 @@ task :make_symbolic_links, :roles => [:app] do
   run "ln -s #{application_root}/shared/data/uploads #{release_path}/public/uploads"
 end
 
-after "deploy:update_code", :copy_database_and_configuration_yml_file, :create_bundler_config_file, :make_symbolic_links
+task :restart_delayed_job, :roles => [:app] do
+  run "RAILS_ENV=#{rails_env} #{current_release}/script/delayed_job stop"
+  run "RAILS_ENV=#{rails_env} #{current_release}/script/delayed_job -n 2 start"
+end
 
+
+after "deploy:update_code", :copy_database_and_configuration_yml_file, :create_bundler_config_file, :make_symbolic_links, :restart_delayed_job
