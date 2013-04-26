@@ -415,4 +415,14 @@ module IssuesHelper
     end
     s.html_safe
   end
+
+  def disabled_for_form_elements
+    result = false
+    if controller_name == 'issues'
+      if controller.action_name == 'edit'
+        result = true
+      end
+    end
+    result
+  end
 end
