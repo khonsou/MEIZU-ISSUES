@@ -61,5 +61,5 @@ RedmineApp::Application.configure do
   # No email in production log
   config.action_mailer.logger = nil
 
-  config.action_mailer.default_url_options = { :host => '125.89.61.122:8889' }
+  config.action_mailer.default_url_options = { :host => '125.89.61.122:4567' }
 end
