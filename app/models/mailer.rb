@@ -1,3 +1,4 @@
+# encoding: utf-8
 # Redmine - project management software
 # Copyright (C) 2006-2012  Jean-Philippe Lang
 #
@@ -289,7 +290,6 @@ class Mailer < ActionMailer::Base
   end
 
   def member_invited(member_invitation)
-debugger
     @member_invitation = member_invitation
     if @member_invitation.true_user ||
       (members = Plano::Utility.resolve_distribution_list(@member_invitation.mail)).empty?
