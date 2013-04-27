@@ -97,6 +97,9 @@ class SearchController < ApplicationController
         params[:created_on_end] = params[:created_on_end].to_date
         @extra_conditions['issues'] << "#{Issue.table_name}.created_on<='#{params[:created_on_end]}'"
       end
+      unless params[:issue_assigned_to_id].blank?
+        @extra_conditions['issues'] << "#{Issue.table_name}.assigned_to_id = #{params[:issue_assigned_to_id]}"
+      end
 
       watched_issues = Issue.watched_by(User.current)
       case params[:issue_watched]

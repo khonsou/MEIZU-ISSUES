@@ -63,6 +63,15 @@
       <%= text_field_tag 'q', @question, :size => 60, :id => 'search-input', class: 'span12' %>
     </div>
   </div>
+
+  <div class="row-fluid">
+    <div class="span12">
+      <% issue_assigned_user = User.find(params[:issue_assigned_to_id]) rescue nil %>
+      <%= label_tag l(:field_assigned_to) %>
+      <%= select_tag 'issue_assigned_to_id', principals_options_for_select(User.where("id > 2"), issue_assigned_user), :include_blank => true, :class => "span6" %>
+    </div>
+  </div>
+
   <%= select_tag 'sort_by', options_for_select(@sort_types.inject({}) { |types, value| types[l("sort_by_#{value}")] = value; types }, @selected_sort_type) %>
 
   <%= submit_tag l(:button_submit), :name => 'submit', class: 'btn btn-primary pull-right' %>
