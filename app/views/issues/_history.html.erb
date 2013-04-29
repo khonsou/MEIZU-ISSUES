@@ -1,5 +1,5 @@
 <% reply_links = authorize_for('issues', 'edit') -%>
-
+<% thumbnail_count = 0 %>
 <% for journal in journals %>
   <div id="change-<%= journal.id %>" class="<%= journal.css_classes %>">
     <div id="note-<%= journal.indice %>">
@@ -24,7 +24,8 @@
           <div class="row-fluid">
             <ul class="thumbnails">
               <% thumbnails.each do |thumbnail| %>
-                <li class="span6"><%= thumbnail_tag(thumbnail) %></li>
+                <% thumbnail_count += 1 %>
+                <li class="span6"><%= render :partial => "shared/thumbnail", :locals => {:attachment => thumbnail, :count => thumbnail_count} %></li>
               <% end %>
             </ul>
           </div>
