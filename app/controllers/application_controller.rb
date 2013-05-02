@@ -186,7 +186,7 @@ class ApplicationController < ActionController::Base
     true
   end
 
-  def deny_access
+  def deny_access    
     User.current.logged? ? render_403 : require_login
   end
 
@@ -227,7 +227,7 @@ class ApplicationController < ActionController::Base
   # TODO: some subclasses override this, see about merging their logic
   def find_optional_project
     @project = Project.find(params[:project_id]) unless params[:project_id].blank?
-    allowed = User.current.allowed_to?({:controller => params[:controller], :action => params[:action]}, @project, :global => true)
+    allowed = User.current.allowed_to?({:controller => params[:controller], :action => params[:action]}, @project, :global => true)    
     allowed ? true : deny_access
   rescue ActiveRecord::RecordNotFound
     render_404

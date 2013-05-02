@@ -500,7 +500,8 @@ class User < Principal
 
       # authorize if user has at least one role that has this permission
       roles = memberships.collect {|m| m.roles}.flatten.uniq
-      roles << (self.logged? ? Role.non_member : Role.anonymous)
+      roles << (self.logged? ? Role.non_member : Role.anonymous)    
+
       roles.detect {|role|
         role.allowed_to?(action) &&
         (block_given? ? yield(role, self) : true)

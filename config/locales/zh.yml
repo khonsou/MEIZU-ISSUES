@@ -772,7 +772,7 @@ zh:
   label_ldap_authentication: LDAP 认证
   label_downloads_abbr: D/L
   label_optional_description: 可选的描述
-  label_add_another_file: 添加更多文件
+  label_add_another_file: 添加文件
   label_preferences: 首选项
   label_chronological_order: 按时间顺序
   label_reverse_chronological_order: 按时间顺序（倒序）
