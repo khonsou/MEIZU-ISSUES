@@ -28,6 +28,7 @@ group :development do
   gem 'awesome_print', '~> 1.0.2'
   gem 'capistrano'
   gem 'capistrano-ext'
+  gem 'quiet_assets'
 end
 
 group :test do
