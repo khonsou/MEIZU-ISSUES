@@ -2,6 +2,9 @@ a.add_attachment {
   position: absolute;
   bottom: 0;
 }
+div.add_attachments{
+  margin-bottom:5px;
+}
 
 .modal a.add_attachment {
   bottom: 30px;
@@ -17,4 +20,8 @@ a.add_attachment {
       @extend .thumbnail;
     }
   }
+}
+
+.attachment_field{
+  margin:5px 0px;
 }

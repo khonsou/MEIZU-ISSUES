@@ -6,13 +6,18 @@
     </span>
   <% end %>
 <% end %>
-<span id="attachments_fields">
-  <div>
-    <%= file_field_tag 'attachments[1][file]', :id => nil, :class => 'file',
-          :onchange => "checkFileSize(this, #{Setting.attachment_max_size.to_i.kilobytes}, '#{escape_javascript(l(:error_attachment_too_big, :max_size => number_to_human_size(Setting.attachment_max_size.to_i.kilobytes)))}');"  -%>
+
+<div id="attachments_fields">
+  <div class="attachment_field" style="display:none;">
+    <span class="attachment_name"></span>
     <%= link_to_function(image_tag('icon-trash.png'), 'removeFileField(this)', :title => (l(:button_delete))) %>
   </div>
-</span>
-<div class="add_attachment">
-  <%= link_to l(:label_add_another_file), '#', :onclick => 'addFileField(); return false;', :class => 'add_attachment btn bg-files' %>
+</div>
+
+<div class="add_attachments pull-left">
+  <span class="btn bg-files fileinput-button bg-upload">
+    <!-- <i class="icon-plus icon-white"></i> -->
+    <span><%= l(:label_add_another_file) %></span>
+    <%= file_field_tag 'file', multiple: true, name: 'attachments[1][file]', onchange: "checkFileSize(this, #{Setting.attachment_max_size.to_i.kilobytes}, '#{escape_javascript(l(:error_attachment_too_big, :max_size => number_to_human_size(Setting.attachment_max_size.to_i.kilobytes)))}'); return false;"  %>
+  </span>
 </div>

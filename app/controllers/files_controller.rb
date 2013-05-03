@@ -40,6 +40,8 @@ class FilesController < ApplicationController
       Mailer.delay.attachments_added(attachments[:files])
     end
 
-    @attachments = @project.attachments
+    @attachments = @project.attachments    
+    
   end
+  
 end

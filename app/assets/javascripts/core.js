@@ -264,25 +264,47 @@ function submit_query_form(id) {
 }
 
 var fileFieldCount = 1;
-function addFileField() {
-  var fields = $('#attachments_fields');
+function addFileField(field) {
+  
+  // get file name
+  var filename = $(field).val();
+  var lastIndex = filename.lastIndexOf("\\");
+  if (lastIndex >= 0) {
+      filename = filename.substring(lastIndex + 1);
+  }
+  
+  // add upload file field
+  var fields = $('.add_attachments')
   if (fields.children().length >= 10) return false;
   fileFieldCount++;
-  var s = fields.children('div').first().clone();
-  s.children('input.file').attr('name', "attachments[" + fileFieldCount + "][file]").val('');
-  s.children('input.description').attr('name', "attachments[" + fileFieldCount + "][description]").val('');
-  fields.append(s);
+  
+  var old_upload = $(field).parent('.bg-upload');
+  var clone = $(old_upload).clone();
+  clone.find('input').attr('name', "attachments[" + fileFieldCount + "][file]").val('');
+  fields.append(clone);
+  old_upload.attr("id", "add_attachment" + fileFieldCount).hide();
+
+  
+  // add file name div
+  var attachment =   $("#attachments_fields").find('.attachment_field:first').clone();
+  $(attachment).find(".attachment_name").text(filename);
+  $(attachment).data("field-id", $(old_upload).attr('id'));
+  $("#attachments_fields").prepend(attachment);
+  $(attachment).show();
+  
 }
 
-function removeFileField(el) {
-  var fields = $('#attachments_fields');
-  var s = $(el).parents('div').first();
-  if (fields.children().length > 1) {
-    s.remove();
-  } else {
-    s.children('input.file').val('');
-    s.children('input.description').val('');
+function removeFileField(el) {  
+  var upload_field_id = $(el).parents('.attachment_field').data('field-id');
+  $("#" + upload_field_id).remove()
+  $(el).parents('.attachment_field').remove();      
+  
+  // if only one file field, show it
+  if($('.bg-upload').length == 1){
+    $('.bg-upload').show();
   }
+  
+  return false;
 }
 
 function checkFileSize(el, maxSize, message) {
@@ -292,9 +314,13 @@ function checkFileSize(el, maxSize, message) {
       if (files[i].size > maxSize) {
         alert(message);
         el.value = "";
+        return false;
       }
     }
   }
+  
+  addFileField(el);
+  return true;
 }
 
 function showTab(name) {
