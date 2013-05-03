@@ -44,9 +44,9 @@ class Mailer < ActionMailer::Base
     @issue = issue
     @issue_url = url_for(:controller => 'issues', :action => 'show', :id => issue)
 
-    recipients = issue.project.users.map(&:mail) - [User.current.mail]
-
-    if recipients
+    recipients = issue.project.users.map(&:mail) - [issue.author.mail]
+    
+    if recipients.present?
       mail :to => recipients,
         :subject => "[#{issue.project.name}] #{issue.subject}"
     end
@@ -67,14 +67,14 @@ class Mailer < ActionMailer::Base
     references issue
     @author = journal.user
 
-    recipients = issue.watcher_users.map(&:mail) - [User.current.mail]
+    recipients = issue.watcher_users.map(&:mail) - [journal.user.mail]
     s = "[#{issue.project.name}] "
     s << issue.subject
     @issue = issue
     @journal = journal
     @issue_url = url_for(:controller => 'issues', :action => 'show', :id => issue, :anchor => "change-#{journal.id}")
 
-    if recipients
+    if recipients.present?
       mail :to => recipients,
         :subject => s
     end
