@@ -151,6 +151,7 @@ GEM
     uglifier (1.3.0)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
+    unicode-display_width (0.1.1)
     yard (0.8.3)
 
 PLATFORMS
@@ -187,4 +188,5 @@ DEPENDENCIES
   test-unit
   therubyracer (~> 0.10.0)
   uglifier (>= 1.2.3)
+  unicode-display_width
   yard
