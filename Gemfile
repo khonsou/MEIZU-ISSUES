@@ -12,7 +12,7 @@ gem "carrierwave", "~> 0.6.1"
 gem "select2-rails", "~> 3.2.1"
 gem 'delayed_job_active_record'
 gem 'daemons'
-gem "unicode-display_width", :path => "vendor/gems/unicode-display_width"
+gem "unicode-display_width", :path => "vendor/gems/unicode-display_width-0.1.1"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.4'
