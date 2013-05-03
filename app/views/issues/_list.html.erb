@@ -48,6 +48,23 @@
               </div>
             <% end -%>
           </div>
+        <% else %>
+          <div class="row-fluid journal"> 
+            <%= link_to issue_path(issue) do %>
+              <div class="span5">
+                <div class="avatar pull-left">
+                  <%= image_tag issue.author.avatar_url(:small), :class => "img-rounded" %>
+                </div>
+                <%= issue.author %><br/>
+                <em><%= time_ago_in_words(issue.created_on) %></em>
+              </div>
+          
+              <div class="span17">
+                <%= truncate(h(issue.description), length: 75) %>
+              </div>
+            
+            <% end %>
+          </div>
         <% end -%>
       </div>
     <% end -%>
