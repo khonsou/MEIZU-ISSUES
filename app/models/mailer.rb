@@ -119,14 +119,14 @@ class Mailer < ActionMailer::Base
     when 'Project'
       added_to_url = url_for(:controller => 'files', :action => 'index', :project_id => container)
       added_to = "#{l(:label_project)}: #{container}"
-      recipients = container.users.map(&:mail) - [User.current.mail]
+      recipients = container.users.map(&:mail) - [@auther.mail]
     end
     redmine_headers 'Project' => container.project.identifier
     @attachments = attachments
     @added_to = added_to
     @added_to_url = added_to_url
 
-    if recipients
+    if recipients.present?
       mail :to => recipients,
         :subject => "[#{container.project.name}] #{l(:label_attachment_new)}"
     end
@@ -224,7 +224,7 @@ class Mailer < ActionMailer::Base
     @wiki_diff_url = url_for(:controller => 'wiki', :action => 'diff',
                                    :project_id => wiki_content.project, :id => wiki_content.page.title,
                                    :version => wiki_content.version)
-    if recipients
+    if recipients.present?
       mail :to => recipients,
         :subject => "[#{wiki_content.project.name}] #{l(:mail_subject_wiki_content_updated, :id => wiki_content.page.pretty_title)}"
     end
