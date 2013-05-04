@@ -6,6 +6,9 @@
   <meta name="description" content="<%= Redmine::Info.app_name %>" />
   <meta name="keywords" content="issue,bug,tracker" />
   <%= stylesheet_link_tag    "application" %>
+  <%= javascript_tag do %>
+    window._rails_env = "<%= Rails.env %>"
+  <% end %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <%= call_hook :view_layouts_base_html_head %>

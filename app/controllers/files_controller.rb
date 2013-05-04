@@ -56,7 +56,7 @@ class FilesController < ApplicationController
     end
     
     if attachments[:files].present?
-      render :json => {:attachment_token => attachments[:files].first.token}  
+      render :json => {:attachment_token => attachments[:files].last.token}  
     else
       render :json => {:error => true}
     end    

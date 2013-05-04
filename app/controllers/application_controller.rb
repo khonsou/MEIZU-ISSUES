@@ -35,7 +35,8 @@ class ApplicationController < ActionController::Base
     cookies.delete(:autologin)
   end
 
-  before_filter :session_expiration, :user_setup, :check_if_login_required, :set_localization
+  before_filter :session_expiration, :user_setup, :check_if_login_required, 
+                :set_localization, :get_agent
 
   rescue_from ActionController::InvalidAuthenticityToken, :with => :invalid_authenticity_token
   rescue_from ::Unauthorized, :with => :deny_access
@@ -83,6 +84,10 @@ class ApplicationController < ActionController::Base
     # Find the current user
     User.current = find_current_user
     logger.info("  Current user: " + (User.current.logged? ? "#{User.current.login} (id=#{User.current.id})" : "anonymous")) if logger
+  end
+  
+  def get_agent
+    @user_agent = UserAgent.parse(request.headers["User-Agent"])
   end
 
   # Returns the current user or nil if no user is logged in

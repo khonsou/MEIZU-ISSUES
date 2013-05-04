@@ -6,6 +6,8 @@ var load_popover_push_notifications = function() {
 };
 
 $(document).ready(function() {
-  load_popover_push_notifications();
-  setInterval(load_popover_push_notifications, 30 * 1000);
+  if(window._rails_env != "development"){
+    load_popover_push_notifications();
+    setInterval(load_popover_push_notifications, 30 * 1000); 
+  }
 });
