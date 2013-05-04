@@ -230,9 +230,13 @@ class Attachment < ActiveRecord::Base
     if token.to_s =~ /^(\d+)\.([0-9a-f]+)$/
       attachment_id, attachment_digest = $1, $2
       attachment = Attachment.where(:id => attachment_id, :digest => attachment_digest).first
-      if attachment && attachment.container.nil?
-        attachment
-      end
+      
+      # Dave add
+      # remove the old redmine logic
+          
+      # if attachment && attachment.container.nil?
+      #   attachment
+      # end
     end
   end
 

@@ -103,12 +103,15 @@ class AttachmentsController < ApplicationController
     end
     # Make sure association callbacks are called
     @attachment.container.attachments.delete(@attachment)
-    redirect_to_referer_or project_path(@project)
+    respond_to do |format|    
+      format.html { redirect_to_referer_or project_path(@project) }
+      format.js { render :text => "success" }
+    end  
   end
 
 private
   def find_project
-    @attachment = Attachment.find(params[:id])
+    @attachment = Attachment.find_by_id(params[:id])
     # Show 404 if the filename in the url is wrong
     raise ActiveRecord::RecordNotFound if params[:filename] && params[:filename] != @attachment.filename
     @project = @attachment.project

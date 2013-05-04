@@ -20,7 +20,7 @@ class FilesController < ApplicationController
   menu_item :files
 
   before_filter :find_project_by_project_id
-  before_filter :authorize
+  before_filter :authorize, :except => :upload
 
   def index
     @attachments = @project.attachments
@@ -41,6 +41,25 @@ class FilesController < ApplicationController
     end
 
     @attachments = @project.attachments    
+    
+  end
+  
+  def upload
+    attachments = Attachment.attach_files(@project, params[:attachments])
+
+    if !attachments.empty? && !attachments[:files].blank?
+      attachments[:files].each do |attachment|
+        PushNotification::AttachmentNotification.notify(attachment, 'upload')
+      end
+
+      Mailer.delay.attachments_added(attachments[:files])
+    end
+    
+    if attachments[:files].present?
+      render :json => {:attachment_token => attachments[:files].first.token}  
+    else
+      render :json => {:error => true}
+    end    
     
   end
   

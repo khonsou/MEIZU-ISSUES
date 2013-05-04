@@ -1,3 +1,43 @@
+<%= javascript_tag do %>
+ jQuery(function($) {
+   // "myAwesomeDropzone" is the camelized version of the HTML element's ID
+   var fileFieldCount = 1;
+   var attachFieldCount = 1;   
+   Dropzone.options.dropzone = {
+     dictDefaultMessage: "添加文件(支持拖拽)",
+     url: "/projects/<%= @issue.project.id %>/files/upload",
+     maxFilesize: <%= Setting.attachment_max_size.to_i / 1024 %>, // MB
+     maxThumbnailFilesize: 5 ,
+     init: function() {
+        this.on("processingfile", function(file) {
+            this.options.paramName = "attachments[" + attachFieldCount + "][file]";               attachFieldCount ++ ;       
+        });
+       
+        this.on("addedfile", function(file) {     
+          var _this = this;     
+          $(file.previewTemplate.querySelector(".error-mark")).on('click', function() {
+             _this.removeFile(file); 
+          });
+        });  
+             
+        this.on("removedfile", function(file) { 
+          var attachment_token = $(file.previewTemplate.querySelector('.details .fileid')).val();
+          $.ajax({
+            url: "/attachments/" + attachment_token,
+            dataType: "script",
+            type: "DELETE"
+          })
+        });     
+        
+        this.on("finished", function(file, responseText, e) {       file.previewTemplate.querySelector(".details").appendChild(Dropzone.createElement("<input  class=\"fileid\" type=\"hidden\"  name=\"attachments[" + fileFieldCount + "][token]\" value=\"" + responseText.attachment_token + "\" >"))
+          fileFieldCount ++ ;               
+        });
+      }
+   };
+ })  
+<% end %>
+
+
 <% content_for :sidebar do %>
   <div class="row-fluid">
     <%= link_to project_issues_path(@issue.project), class: 'btn span24' do %>
@@ -81,10 +121,10 @@
   <% end %>
 
   <% if !@issue.closed? && User.current.allowed_to?(:add_issue_notes, @issue.project) %>
-    <%= labelled_form_for @issue, html: { :multipart => true } do |f| %>
+    <%= labelled_form_for @issue, html: { :multipart => true, :class => "dropzone", :id => "dropzone" } do |f| %>
       <div class="row-fluid">
         <%= text_area_tag 'notes', @notes, :rows => 3, :class => 'wiki-edit span24', :placeholder => '在此添加讨论内容......' %>
-        <%= render :partial => 'attachments/form', :locals => {:container => @issue} %>
+        <%#= render :partial => 'attachments/form', :locals => {:container => @issue} %>
 
         <%= submit_tag l(:button_submit), disable_with: l(:button_submiting), class: 'btn btn-primary pull-right bg-new' %>
       </div>

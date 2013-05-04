@@ -143,6 +143,7 @@ RedmineApp::Application.routes.draw do
     match 'issues/new', :controller => 'issues', :action => 'new', :via => [:put, :post], :as => 'issue_form'
 
     resources :files, :only => [:index, :create]
+    match "files/upload", :controller => 'files', :action => 'upload', :via => [:put, :post]
 
     resources :versions, :except => [:index, :show, :edit, :update, :destroy] do
       collection do

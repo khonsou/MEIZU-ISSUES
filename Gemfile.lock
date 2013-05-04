@@ -1,5 +1,5 @@
 PATH
-  remote: vendor/gems/unicode-display_width
+  remote: vendor/gems/unicode-display_width-0.1.1
   specs:
     unicode-display_width (0.1.1)
 
@@ -62,6 +62,8 @@ GEM
     delayed_job_active_record (0.4.4)
       activerecord (>= 2.1.0, < 4)
       delayed_job (~> 3.0)
+    dropzonejs-rails (0.1.8)
+      rails (> 3.1)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -172,6 +174,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.2)
   daemons
   delayed_job_active_record
+  dropzonejs-rails
   fastercsv (~> 1.5.0)
   i18n (~> 0.6.0)
   jquery-fileupload-rails (~> 0.3.4)
