@@ -1157,6 +1157,11 @@ module ApplicationHelper
     # See: https://github.com/twitter/bootstrap/issues/4550
     "<script>$('body').on('touchstart.dropdown', '.dropdown-menu', function (e) { e.stopPropagation(); });</script>".html_safe
   end
+  
+  def old_browser?(useragent)
+    # version less than ie10
+    useragent.version < UserAgent.parse('Mozilla/4.0 (compatible; MSIE 9.0; Windows NT 6.2; ARM; Trident/6.0; Touch; .NET4.0E; .NET4.0C; Tablet PC 2.0)').version
+  end
 
   private
 

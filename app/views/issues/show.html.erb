@@ -1,4 +1,4 @@
-<% if @user_agent.browser == "Internet Explorer" && @user_agent.version.to_i < 10 %>
+<% if old_browser?(@user_agent) %>
   <% form_class = "" %>
 <% else %>
   <% form_class = "dropzone" %>
@@ -93,7 +93,7 @@
     <%= labelled_form_for @issue, html: { :multipart => true, :class => form_class, :id => form_class } do |f| %>
       <div class="row-fluid">
         <%= text_area_tag 'notes', @notes, :rows => 3, :class => 'wiki-edit span24', :placeholder => '在此添加讨论内容......' %>
-        <% if @user_agent.browser == "Internet Explorer" && @user_agent.version.to_i < 10 %>
+        <% if old_browser?(@user_agent) %>
           <%= render :partial => 'attachments/form', :locals => {:container => @issue} %>
         <% end %>
 
