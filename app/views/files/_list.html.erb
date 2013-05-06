@@ -12,7 +12,10 @@
   <tbody>
     <% attachments.each do |file| %>
       <tr class="file" id="<%= dom_id(file) %>">
-        <td class="filename"><%= link_to_attachment file, :download => true, :title => file.description, target: '_blank' %></td>
+        <td class="filename">
+          <%= link_to_attachment file, :download => true, :title => file.description, target: '_blank' %>
+          <%= thumbnail_tag(file) if file.thumbnailable? %>
+        </td>
         <td class="author"><%= file.author.name %></td>
         <td class="created_on"><%= format_time(file.created_on) %></td>
         <% if User.current.allowed_to?(:manage_files, @project) %>
