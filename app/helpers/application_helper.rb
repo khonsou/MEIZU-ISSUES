@@ -1162,6 +1162,16 @@ module ApplicationHelper
     # version less than ie10
     useragent.version <= UserAgent.parse('Mozilla/4.0 (compatible; MSIE 9.0; Windows NT 6.2; ARM; Trident/6.0; Touch; .NET4.0E; .NET4.0C; Tablet PC 2.0)').version
   end
+  
+  def relative_time(start_time)
+    diff_seconds = Time.now - start_time
+    case diff_seconds
+      when 0 .. (3600*24-1)
+        time_tag(start_time)
+      else
+        start_time.strftime("%m-%d %H:%M")
+    end
+  end
 
   private
 

@@ -34,8 +34,8 @@ $dropdownLinkBackgroundHover: #99a1af;
 
 // Sprite icons path 134
 // -------------------------
-$iconSpritePath: asset-url("icons.png", image);
-$iconWhiteSpritePath: asset-url("icons.png", image);
+$iconSpritePath: url("/assets/icons.png");
+$iconWhiteSpritePath: url("/assets/icons.png");
 
 // Navbar 155
 // -------------------------
@@ -105,4 +105,6 @@ $redBackground: #ffdbdb;
 @import "notification";
 @import "attachments";
 @import "select";
-@import "jstoolbar"
+@import "jstoolbar";
+
+@import "bootstrapSwitch";

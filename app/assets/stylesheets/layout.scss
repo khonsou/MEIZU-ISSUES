@@ -7,11 +7,15 @@ body {
 }
 
 .main {
-  border: $solidBorder;
   @include border-radius($borderRadius);
   padding: 20px $gridGutterWidth;
   background-color: $white;
-  @include box-shadow($boxShadowTwo);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.15);
+  border-top: 1px solid #eee;    
+  border-left: 1px solid #e2e2e9;
+  border-right: 1px solid #e2e2e9;    
+  border-bottom: 2px solid #e2e2e9;    
+  @include gradient-vertical($lightBackgroudOne, $bodyBackground);
 }
 
 .with-title-bar {
@@ -69,10 +73,14 @@ body {
   .issue-info,
   #watchers {
     padding: 0px 10px 10px;
-    border: $solidBorder;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.15);
+    border-top: 1px solid #eee;    
+    border-left: 1px solid #e2e2e9;
+    border-right: 1px solid #e2e2e9;    
+    border-bottom: 2px solid #e2e2e9;    
     @include gradient-vertical($lightBackgroudOne, $bodyBackground);
     @include border-radius($borderRadius);
-    @include box-shadow(#{inset $innerShadowTwo, $boxShadowTwo});
+/*    @include box-shadow(#{inset $innerShadowTwo, $boxShadowTwo});*/
 
     h5 {
       font-weight: normal;
@@ -169,3 +177,10 @@ body {
 
 
 
+.box{
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.15);
+  border-top: 1px solid #eee;    
+  border-left: 1px solid #e2e2e9;
+  border-right: 1px solid #e2e2e9;    
+  border-bottom: 2px solid #e2e2e9;     
+}

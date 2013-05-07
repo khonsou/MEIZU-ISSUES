@@ -9,31 +9,34 @@
 
 <% content_for :sidebar do %>
   <div class="row-fluid">
-    <%= link_to project_issues_path(@issue.project), class: 'btn span24' do %>
+    <%= link_to project_issues_path(@issue.project), class: 'btn span24 box' do %>
       <i class="icon-arrow-left"></i><%= @issue.project.name %>
     <% end -%>
 
     <div class="issue-info">
-      <h5>
-        <i class="icon-summary"></i><%= l(:field_summary) %>
-      </h5>
       <div class="attributes">
-        <div class="issue-status">
-          <i class="<%= @issue.status.is_closed ? 'icon-closed' : 'icon-open' %>"></i>
-          <%= h(@issue.status.name) %>
+        <div class="switch" data-on-label="<i class='icon-open'></i> 开放" data-off-label="<i class='icon-closed'></i> 关闭">
+          <input type="checkbox" checked />
         </div>
-        <% unless @issue.disabled_core_fields.include?('assigned_to_id') %>
-          <div class="assignee">
-            <span><%= l(:field_assigned_to) %>: </span></br>
-            <i class="icon-assignee"></i><%= link_to_user(@issue.assigned_to) %>
+        
+        <% if false %>
+          <div class="issue-status">
+            <i class="<%= @issue.status.is_closed ? 'icon-closed' : 'icon-open' %>"></i>
+            <%= h(@issue.status.name) %>
           </div>
-        <% end -%>
-        <% unless @issue.disabled_core_fields.include?('due_date') %>
-          <div class="due">
-            <span><%= l(:field_due_date) %>: </span></br>
-            <i class="icon-due"></i><span class="date <%= 'overdue' if @issue.overdue? %>"><%= format_date(@issue.due_date) %></span>
-          </div>
-        <% end -%>
+          <% unless @issue.disabled_core_fields.include?('assigned_to_id') %>
+            <div class="assignee">
+              <span><%= l(:field_assigned_to) %>: </span></br>
+              <i class="icon-assignee"></i><%= link_to_user(@issue.assigned_to) %>
+            </div>
+          <% end -%>
+          <% unless @issue.disabled_core_fields.include?('due_date') %>
+            <div class="due">
+              <span><%= l(:field_due_date) %>: </span></br>
+              <i class="icon-due"></i><span class="date <%= 'overdue' if @issue.overdue? %>"><%= format_date(@issue.due_date) %></span>
+            </div>
+          <% end -%>
+        <% end %>
       </div>
     </div>
 
@@ -47,41 +50,60 @@
 <% end -%>
 
 <div class="issue">
+  
+  <div class="issue-header clearfix">
+    <h2>
+      个人中心前段      
+    </h2>
+    <div id="attributes" class="attributes">    
+      <div class="span7 holder">
+        <span class="label">指派人：</span>
+        <select class="span6" id="issue_assigned_to_id" name="issue[assigned_to_id]"><option value=""></option>
+  <option value="3">&lt;&lt; 我 &gt;&gt;</option><option value="3" selected="selected">刘文举</option></select>
+      </div>
 
-  <div class="clearfix">
-    <div class="avatar">
-      <%= link_to_user(@issue.author, :avatar => :small) %>
-    </div>
-    <div class="author">
-      <strong><%= link_to_user(@issue.author) %></strong><br/>
-      <div class="date">
-        <em>
-          发表于<%= time_tag(@issue.created_on) %>前
-          <% if @issue.created_on != @issue.updated_on %>
-            (<%= l(:label_updated_time, time_tag(@issue.updated_on)).html_safe %>)
-          <% end %>
-        </em>
+      <div class="span8 holder">
+        <span class="label">截至日期：</span>
+        <input class="span6" id="issue_due_date_show" name="issue[due_date]" size="10" type="text" value="2013-05-16">
+        <%= calendar_for('issue_due_date_show') %>        
       </div>
     </div>
-    <div class="actions">
+    <div id="edit-btn">
       <%= render 'action_menu', { issue: @issue } %>
+    </div>      
+  </div>
+
+  <div class="row journal">
+    <div class="avatar span2">
+      <%= link_to_user(@issue.author, :avatar => :small) %>
+    </div>    
+    <div class="issue-holder span14">
+      <div class="author-header clearfix">
+        <div class="author">
+          <strong><%= link_to_user(@issue.author) %></strong><br/>
+        </div>
+        <div class="actions">
+          <%= relative_time(@issue.updated_on) %>
+        </div>
+      </div>
+    
+      <div class="issue-content">
+        <% attachments = @issue.attachments - @issue.journals.map(&:own_attachments).flatten %>
+        <% if @issue.description? || attachments.any? -%>
+          <% if @issue.description? %>
+            <div class="wiki description">
+              <%= textilizable @issue, :description, :attachments => attachments %>
+            </div>
+          <% end %>
+          <%= render 'attachments/links', { :attachments => attachments, :options => { deletable: false, author: false }, :thumbnails => true } %>
+        <% end -%>
+      </div>
     </div>
   </div>
 
-  <div class="issue-content">
-    <div class="subject">
-      <%= render_issue_subject_with_tree(@issue) %>
-    </div>
-    <% attachments = @issue.attachments - @issue.journals.map(&:own_attachments).flatten %>
-    <% if @issue.description? || attachments.any? -%>
-      <% if @issue.description? %>
-        <div class="wiki description">
-          <%= textilizable @issue, :description, :attachments => attachments %>
-        </div>
-      <% end %>
-      <%= render 'attachments/links', { :attachments => attachments, :options => { deletable: false, author: false }, :thumbnails => true } %>
-    <% end -%>
-  </div>
+  <ul>
+    <li class="sub-menu-item" ><span>讨论此课题</span></li>
+  </ul>
 
   <% if @journals.present? %>
     <div class="history">

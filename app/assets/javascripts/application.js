@@ -10,6 +10,7 @@
 //= require jquery-fileupload/vendor/tmpl
 //= require select2
 //= require dropzone
+//= require bootstrapSwitch
 
 //= require core
 //= require ./files

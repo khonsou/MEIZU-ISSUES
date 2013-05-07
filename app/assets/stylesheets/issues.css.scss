@@ -121,7 +121,7 @@
   }
 
   .issue-content {
-    margin: 10px 0 30px 40px;
+    margin: 0px 0 30px 0px;
   }
 
   h3 {
@@ -132,7 +132,6 @@
 
   .history {
     padding: 15px 0 0;
-    border-top: $dashedBorder;
 
     .journal {
       padding-bottom: 10px;
@@ -159,6 +158,71 @@
   }
 }
 
+.issue-header{
+  margin:0px 0px 20px 40px;
+  position:relative;
+  
+  h2{
+    font-size:18px;
+    margin-bottom:0px
+  }  
+  
+  span.label{
+    display:inline-block;    
+    font-size:14px;
+    font-weight:normal;
+  }
+  
+  .holder{
+    margin-left:0px;    
+  }
+  
+  select{
+    width:100px;
+  }
+  
+  #edit-btn{
+    position:absolute;
+    right:0px;
+    top: 0px;
+  }
+}
+
+.journal{
+  .span2{
+    width:35px;
+  }
+  
+  .span14{
+    width:600px;
+    margin-left:0px;
+  }
+  
+  .wiki p{
+    margin-bottom:0px;
+  }
+  
+  .content{
+    margin-bottom:30px;
+  }
+}
+
 .overdue {
   color: $red;
+}
+
+.sub-menu-item
+{
+    border-bottom:1px dashed #e3e3e3;
+    height:10px;
+    list-style:none;
+    text-align:center;
+    
+}
+.sub-menu-item > span
+{
+  font-size: 14px;
+  color: #666;
+  background: white;
+  font-weight: 800;
 }

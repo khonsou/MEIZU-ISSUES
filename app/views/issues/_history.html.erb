@@ -2,34 +2,40 @@
 <% thumbnail_count = 0 %>
 <% for journal in journals %>
   <div id="change-<%= journal.id %>" class="<%= journal.css_classes %>">
-    <div id="note-<%= journal.indice %>">
-      <div class="avatar">
+    <div id="note-<%= journal.indice %>" class="row clearfix">
+      <div class="avatar span2">
         <%= link_to_user(journal.user, :avatar => :small) %>
       </div>
-      <div class="content">
-        <div class="basic">
-          <strong><%= link_to_user journal.user %></strong><br>
-          <span class="date"><%= localize(journal.created_on, format: :long) %></span>
+      <div class="issue-holder span14">
+        <div class="author-header clearfix">
+          <div class="author">
+            <strong><%= link_to_user journal.user %></strong>
+          </div>
+          <div class="actions">
+            <%= relative_time(journal.created_on) %>
+          </div>
         </div>
-        <%= render_notes(issue, journal, :reply_links => reply_links) unless journal.notes.blank? %>
-        <% if journal.details.any? %>
-          <ul class="details">
-            <% details_to_strings(journal.details).each do |string| %>
-             <li><%= string %></li>
-            <% end %>
-          </ul>
-        <% end %>
-        <% thumbnails = journal.own_attachments.select(&:thumbnailable?) %>
-        <% if thumbnails.any? %>
-          <div class="row-fluid">
-            <ul class="thumbnails">
-              <% thumbnails.each do |thumbnail| %>
-                <% thumbnail_count += 1 %>
-                <li class="span6"><%= render :partial => "shared/thumbnail", :locals => {:attachment => thumbnail, :count => thumbnail_count} %></li>
+        <div class="issue-content">
+          <%= render_notes(issue, journal, :reply_links => reply_links) unless journal.notes.blank? %>
+          <% if journal.details.any? %>
+            <ul class="details">
+              <% details_to_strings(journal.details).each do |string| %>
+               <li><%= string %></li>
               <% end %>
             </ul>
-          </div>
-        <% end -%>
+          <% end %>
+          <% thumbnails = journal.own_attachments.select(&:thumbnailable?) %>
+          <% if thumbnails.any? %>
+            <div class="row-fluid">
+              <ul class="thumbnails">
+                <% thumbnails.each do |thumbnail| %>
+                  <% thumbnail_count += 1 %>
+                  <li class="span6"><%= render :partial => "shared/thumbnail", :locals => {:attachment => thumbnail, :count => thumbnail_count} %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end -%> 
+        </div>         
       </div>
     </div>
   </div>

@@ -91,6 +91,7 @@ select#sort_by,
 select#issue_project_id,
 select#issue_assigned_to_id,
 input#issue_due_date,
+input#issue_due_date_show,
 input#due_date_start,
 input#due_date_end,
 select#issue_status,
@@ -126,6 +127,7 @@ select#issue_project_id {
 }
 
 input#issue_due_date,
+input#issue_due_date_show,
 input#due_date_start,
 input#due_date_end,
 input#created_on_start,
