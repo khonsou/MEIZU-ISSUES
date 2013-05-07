@@ -16,6 +16,7 @@ gem 'daemons'
 gem "unicode-display_width"
 gem 'dropzonejs-rails'
 gem "useragent"
+gem "jquery-atwho-rails"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.4'

@@ -1,5 +1,6 @@
 //= require select2
 //= require dropzone/basic
+//= require jquery.atwho
 
 // customize bootstrap variables
 
@@ -113,6 +114,7 @@ $baseLineHeight: 18px;
 @import "attachments";
 @import "select";
 @import "jstoolbar";
+
 
 @import "bootstrapSwitch";
 @import "responsive";

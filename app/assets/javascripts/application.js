@@ -10,8 +10,10 @@
 //= require jquery-fileupload/vendor/tmpl
 //= require select2
 //= require dropzone
+
 //= require bootstrapx-clickover
 //= require jquery.pin
+//= require jquery.atwho
 
 //= require core
 //= require ./files
