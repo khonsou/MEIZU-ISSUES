@@ -8,6 +8,6 @@ var load_popover_push_notifications = function() {
 $(document).ready(function() {
   if(window._rails_env != "development"){
     load_popover_push_notifications();
-    setInterval(load_popover_push_notifications, 30 * 1000); 
+    setInterval(load_popover_push_notifications, 60 * 1000); 
   }
 });
