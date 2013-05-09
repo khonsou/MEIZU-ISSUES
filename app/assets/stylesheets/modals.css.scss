@@ -24,6 +24,11 @@
   max-height: 410px;
   background-color: $lightBackgroudThree;
   padding: $gridGutterWidth;
+  
+  .box{
+    border: none;
+    box-shadow: none;
+  }
 }
 
 // Footer (for actions) 77
