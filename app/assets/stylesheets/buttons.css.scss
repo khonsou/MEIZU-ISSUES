@@ -2,6 +2,45 @@
 
 // Base styles 6
 // --------------------------------------------------
+
+.button{
+background-color: #70ac2e;
+background-image: -webkit-gradient(linear,left top,left bottom,color-stop(.5, transparent),color-stop(1, rgba(0,0,0,.1)));
+background-image: -moz-linear-gradient(top, transparent, rgba(0,0,0,.1));
+border: 1px solid transparent;
+border-bottom-color: rgba(0,0,0,.3);
+border-radius: 4px;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+box-shadow: 0 2px 0 rgba(0,0,0,.07), 0 1px 0 rgba(255,255,255,.2) inset;
+-webkit-box-shadow: 0 2px 0 rgba(0,0,0,.07), 0 1px 0 rgba(255,255,255,.2) inset;
+-moz-box-shadow: 0 2px 0 rgba(0,0,0,.07), 0 1px 0 rgba(255,255,255,.2) inset;
+color: #fff;
+display: inline-block;
+padding: 4px 10px;
+text-decoration: none;
+text-shadow: 0 1px 1px rgba(0,0,0,.2);
+}
+.button.full {
+text-align: center;
+width: 100px;
+}
+.button, .button:hover {
+text-decoration: none;
+}
+.button.blue, .button.primary, .button.blue.disabled:hover, .button.blue:disabled:hover {
+background-color: #02aee5;
+}
+.button:hover{
+background-image: -webkit-gradient(linear,left top,left bottom,color-stop(.1, transparent),color-stop(1, rgba(0,0,0,.2)));
+background-image: -moz-linear-gradient(top, transparent, rgba(0,0,0,.2));
+color: #fff;
+cursor: pointer;
+text-decoration: none;
+}
+
+
+
 .btn {
   font-size: $bigFontSize;
   text-shadow: 0 1px 0 rgba(255,255,255,1);

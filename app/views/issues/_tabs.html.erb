@@ -32,7 +32,7 @@
     <%= submit_tag '', class: 'hidden' %>
   <% end -%>
   <% if (@project.nil? && !@projects.blank?) || User.current.allowed_to?(:add_issues, @project) %>
-    <%= link_to l(:label_issue_new), { action: 'new', project_id: @project }, { class: 'btn btn-primary pull-right bg-new', accesskey: Redmine::AccessKeys.key_for(:new_issue), remote: true } %>
+    <%= link_to l(:label_issue_new), { action: 'new', project_id: @project }, { class: 'button blue pull-right bg-new', accesskey: Redmine::AccessKeys.key_for(:new_issue), remote: true } %>
   <% end -%>
 </div>
 

@@ -3,7 +3,8 @@
 <% else %>
   <% form_class = "dropzone" %>
   <%= javascript_tag do %>
-    <%= render(:partial => 'dropzone', :handlers => [:erb], :formats => [:js]) %>
+    <%= render :partial => 'dropzone', :handlers => [:erb], :formats => [:js] %>
+    <%= render :partial => "issue_assign", :handlers => [:erb], :formats => [:js] %>
   <% end %>
 <% end %>
 
@@ -15,27 +16,10 @@
 
     <div class="issue-info">
       <div class="attributes">
-        <div class="switch" data-on-label="<i class='icon-open'></i> 开放" data-off-label="<i class='icon-closed'></i> 关闭">
-          <input type="checkbox" checked />
-        </div>
-        
-        <% if false %>
-          <div class="issue-status">
-            <i class="<%= @issue.status.is_closed ? 'icon-closed' : 'icon-open' %>"></i>
-            <%= h(@issue.status.name) %>
+        <%= form_tag (@issue.closed? ? reopen_issue_path(@issue) : close_issue_path(@issue))  do %>
+          <div id="status-switch" class="switch" data-on-label="<i class='icon-open'></i> 开放" data-off-label="<i class='icon-closed'></i> 关闭">
+            <input type="checkbox" <%= 'checked' if !@issue.closed?  %> />
           </div>
-          <% unless @issue.disabled_core_fields.include?('assigned_to_id') %>
-            <div class="assignee">
-              <span><%= l(:field_assigned_to) %>: </span></br>
-              <i class="icon-assignee"></i><%= link_to_user(@issue.assigned_to) %>
-            </div>
-          <% end -%>
-          <% unless @issue.disabled_core_fields.include?('due_date') %>
-            <div class="due">
-              <span><%= l(:field_due_date) %>: </span></br>
-              <i class="icon-due"></i><span class="date <%= 'overdue' if @issue.overdue? %>"><%= format_date(@issue.due_date) %></span>
-            </div>
-          <% end -%>
         <% end %>
       </div>
     </div>
@@ -53,19 +37,20 @@
   
   <div class="issue-header clearfix">
     <h2>
-      个人中心前段      
+      <%= @issue.subject %>      
     </h2>
-    <div id="attributes" class="attributes">    
+    <div id="attributes" class="attributes">          
       <div class="span7 holder">
-        <span class="label">指派人：</span>
-        <select class="span6" id="issue_assigned_to_id" name="issue[assigned_to_id]"><option value=""></option>
-  <option value="3">&lt;&lt; 我 &gt;&gt;</option><option value="3" selected="selected">刘文举</option></select>
+        <span><%= l(:field_assigned_to) %>：</span>
+        <span  id="status" class=""><strong><%= @issue.assigned_to.try(:name) %></strong></span>
+        <% if !@issue.closed? %>
+          <a href="#" id="pencil" class="popover-link"><i class="icon-pencil"></i></a>               
+        <% end %>  
       </div>
 
-      <div class="span8 holder">
-        <span class="label">截至日期：</span>
-        <input class="span6" id="issue_due_date_show" name="issue[due_date]" size="10" type="text" value="2013-05-16">
-        <%= calendar_for('issue_due_date_show') %>        
+      <div class="span8  holder">
+        <span><%= l(:field_due_date) %>：</span>
+        <input type="text" id="datepicker" readonly="readonly" value="<%= format_date(@issue.due_date) %>" class="<%= 'overdue' if @issue.overdue? %>" />
       </div>
     </div>
     <div id="edit-btn">
@@ -119,7 +104,7 @@
           <%= render :partial => 'attachments/form', :locals => {:container => @issue} %>
         <% end %>
 
-        <%= submit_tag l(:button_submit), disable_with: l(:button_submiting), class: 'btn btn-primary pull-right bg-new', id: "button_submit" %>
+        <%= submit_tag l(:button_submit), disable_with: l(:button_submiting), class: 'button blue full pull-right', id: "button_submit" %>
       </div>
     <% end -%>
   <% end -%>

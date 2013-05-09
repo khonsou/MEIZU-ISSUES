@@ -11,6 +11,7 @@
 //= require select2
 //= require dropzone
 //= require bootstrapSwitch
+//= require bootstrapx-clickover
 
 //= require core
 //= require ./files

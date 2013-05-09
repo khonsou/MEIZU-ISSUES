@@ -4,36 +4,36 @@
 // -----
 [class^="icon-"],
 [class*=" icon-"] {
-  width: 20px;
-  height: 20px;
+  width: 23px;
+  height: 30px;
   line-height: 20px;
-  margin-top: 0px;
+  margin-top: -13px;  
 }
 
 // theme style
 .icon-new {
   background-position: -20px 0;
+  
 }
 
 .icon-home {
-  background-position: -120px 0;
-  margin-top: -2px;
+  margin-right: 5px;  
+  background-position: -125px 0;  
 }
 
 .icon-notify {
   background-position: -40px 0;
-  margin-right: 2px;
-  margin-top: -3px;
+  margin-right: 5px;
+  margin-top: -14px;  
 }
 
 .has_notification .icon-notify {
-  background-position: -60px 0;
-  margin-right: 2px;
-  margin-top: -3px;
+  background-position: -61px 0;
+  margin-right: 5px;
 }
 
 .icon-select {
-  background-position: -80px 0;
+  background-position: -82px 0;
   margin-left: 5px;
 }
 
@@ -43,21 +43,22 @@
 
 .project-info .basic-info .actions .icon-select,
 .issue .actions .icon-select {
-  margin-top: -10px;
+  margin-top: -20px;
 }
 
 .icon-flag {
-  background-position: -220px 0;
-  margin-top: -1px;
+  background-position: -222px 0;
+  width:20px;
+  margin-top: -13px;
 }
 
 .icon-members {
   background-position: -240px 0;
-  margin-top: -2px;
+  margin-top: -14px;
 }
 
 .icon-arrow-left {
-  background-position: -420px 0;
+  background-position: -415px 0;
 }
 
 .icon-summary {
@@ -77,11 +78,13 @@
 }
 
 .icon-due {
-  background-position: -20px -20px;
+  background-position: -21px -31px;
+  margin-top: -5px;
 }
 
 .overdue .icon-due {
-  background-position: -260px -20px;
+  background-position: -265px -29px;
+  margin-top: -5px;
 }
 
 .icon-dot {
@@ -89,4 +92,9 @@
   position: relative;
   top: -27px;
   left: 90px;
+}
+
+.icon-pencil{
+  background-position: -300px 0;  
+  margin-top: -15px;  
 }

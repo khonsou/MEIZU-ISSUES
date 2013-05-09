@@ -8,7 +8,7 @@
           :class => 'wiki-edit span12',
           :rows => (@journal.notes.blank? ? 10 : [[10, @journal.notes.length / 50].max, 100].min) %>
     <%= call_hook(:view_journals_notes_form_after_notes, { :journal => @journal}) %>
-    <%= submit_tag l(:button_save), class: 'btn btn-primary' %>
+    <%= submit_tag l(:button_save), class: 'button blue' %>
     <%= link_to l(:button_cancel), '#', class: 'btn', :onclick => "$('#journal-#{@journal.id}-form').remove(); $('#journal-#{@journal.id}-notes').show(); return false;" %>
   </div>
 <% end %>

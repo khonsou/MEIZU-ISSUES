@@ -185,7 +185,7 @@
 }
 .has-switch span.switch-primary,
 .has-switch span.switch-left {
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  text-shadow: none;
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0044cc', endColorstr='#ff0088cc', GradientType=0);
   border-color: #0088cc #0088cc #005580;
@@ -194,6 +194,7 @@
   /* Darken IE7 buttons by default so they stand out more given they won't have borders */
 
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  color: $btnPrimaryBackground;
 }
 .has-switch span.switch-primary:hover,
 .has-switch span.switch-left:hover,
@@ -207,9 +208,9 @@
 .has-switch span.switch-left.disabled,
 .has-switch span.switch-primary[disabled],
 .has-switch span.switch-left[disabled] {
-  color: #ffffff;
+/*  color: #ffffff;
   background-color: #0088cc;
-  *background-color: #0077b3;
+  *background-color: #0077b3;*/
 }
 .has-switch span.switch-primary:active,
 .has-switch span.switch-left:active,

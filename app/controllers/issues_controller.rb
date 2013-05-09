@@ -106,6 +106,7 @@ class IssuesController < ApplicationController
       format.api
       format.atom { render :template => 'journals/index', :layout => false, :content_type => 'application/atom+xml' }
       format.pdf  { send_data(issue_to_pdf(@issue), :type => 'application/pdf', :filename => "#{@project.identifier}-#{@issue.id}.pdf") }
+      format.js
     end
   end
 
@@ -167,16 +168,20 @@ class IssuesController < ApplicationController
 
     if saved
       render_attachment_warning_if_needed(@issue)
-      flash[:notice] = l(:notice_successful_update) unless @issue.current_journal.new_record?
 
       respond_to do |format|
-        format.html { redirect_back_or_default({:action => 'show', :id => @issue}) }
+        format.html do
+          flash[:notice] = l(:notice_successful_update) unless @issue.current_journal.new_record?          
+          redirect_back_or_default({:action => 'show', :id => @issue})
+        end  
         format.api  { render_api_ok }
+        format.js 
       end
     else
       respond_to do |format|
         format.html { render :action => 'edit' }
         format.api  { render_validation_errors(@issue) }
+        format.js { render :text => "alert('#{@issue.errors.full_messages}');"}
       end
     end
   end

@@ -207,7 +207,7 @@
   }
 }
 
-.overdue {
+.overdue, input.overdue {
   color: $red;
 }
 
@@ -225,4 +225,84 @@
   color: #666;
   background: white;
   font-weight: 800;
+}
+
+
+.select-menu-item {
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  overflow: hidden;
+  color: inherit;
+  
+  .mini-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    font-family: 'Octicons Regular';
+    font-weight: normal;
+    font-style: normal;
+    display: inline-block;
+    text-decoration: inherit;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1;
+    text-decoration: none;
+  }
+  
+  input[type="radio"] {
+    display: none;
+  }
+  
+  .select-menu-item-icon {
+    display: table-cell;
+    color: transparent;
+    vertical-align: top;
+    padding: 0px 0 0px 8px;
+  }
+  
+  .select-menu-item-gravatar {
+    display: table-cell;
+    padding: 0px 0 0px 8px;
+    vertical-align: top;
+    overflow: hidden;
+    line-height: 0;
+    width: 32px;
+  }
+  
+  .select-menu-item-text {
+    display: table-cell;
+    vertical-align: top;
+    padding: 0px 0 0px 8px;
+  
+    h4{
+      margin: 0px;  
+      font-size: 12px;
+    }
+  }
+}
+
+.select-menu-item.selected   .select-menu-item-icon{
+  background: transparent url(icon-members.png) no-repeat;  
+}
+
+
+.select-menu-item:hover {
+  background-color: $buttonBackground;
+  color: #fff;
+}
+
+#datepicker{
+  font-weight: bold;
+  margin-bottom: 0px;
+  width: 70px;
+  cursor: auto;
+  background-color: #fff;
+  border: none;
+}
+
+.ui-datepicker-trigger{
+  cursor:pointer;
 }
