@@ -6,7 +6,7 @@
       <div class="issue-item">
         <div class="row-fluid info">
           <div class="span14">
-            <%= link_to truncate(issue.subject, length: 20), issue_path(issue), class: 'subject' %>
+            <%= link_to truncate(issue.subject, length: 25), issue_path(issue), class: 'subject' %>
             <% if project.blank? %>
               <span class="project">(<%= link_to truncate(issue.project.name, length: 8), project_path(issue.project) %>)</span>
             <% end -%>
