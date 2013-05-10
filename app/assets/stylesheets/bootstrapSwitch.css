@@ -194,7 +194,7 @@
   /* Darken IE7 buttons by default so they stand out more given they won't have borders */
 
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
-  color: $btnPrimaryBackground;
+  color: #00a6ff;
 }
 .has-switch span.switch-primary:hover,
 .has-switch span.switch-left:hover,
