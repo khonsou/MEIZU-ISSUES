@@ -24,7 +24,7 @@ module ActionView
        if text
          l = options[:length] * 2 - options[:omission].display_width
          chars = text
-         (chars.display_width > options[:length] ? slice(chars, 0, l) + options[:omission] : text).to_s
+         (chars.display_width > options[:length] * 1.5 ? slice(chars, 0, l) + options[:omission] : text).to_s
        end
      end
 
