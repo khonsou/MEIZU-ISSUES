@@ -299,10 +299,15 @@
   margin-bottom: 0px;
   width: 70px;
   cursor: auto;
-  background-color: #fff;
+  background-color: transparent;
   border: none;
+  box-shadow:none;  
 }
 
 .ui-datepicker-trigger{
   cursor:pointer;
+}
+
+.issue-info form{
+  margin:0px;
 }

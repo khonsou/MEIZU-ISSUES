@@ -46,7 +46,15 @@ $(function(){
     $( "#datepicker" ).datepicker({
       showOn: "button",
       buttonImage: "/assets/icon-edit.png",
-      buttonImageOnly: true
+      buttonImageOnly: true,
+      onSelect: function(date){
+        $.ajax({
+          url: '<%= issue_path(@issue) %>',
+          dataType: "script",
+          data: "issue[due_date]=" + date ,
+          type: "PUT"
+        });     
+      }
     });
   <% end %>
   
