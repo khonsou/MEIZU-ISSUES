@@ -5,6 +5,8 @@
   <title><%=h html_title %></title>
   <meta name="description" content="<%= Redmine::Info.app_name %>" />
   <meta name="keywords" content="issue,bug,tracker" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_tag do %>
     window._rails_env = "<%= Rails.env %>"
