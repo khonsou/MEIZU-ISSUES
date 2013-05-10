@@ -63,7 +63,7 @@ class SearchController < ApplicationController
     # tokens must be at least 2 characters long
     @tokens = @tokens.uniq.select {|w| w.length > 0 }
 
-    if !@tokens.empty?
+    if !@tokens.empty? || !params[:issue_assigned_to_id].blank?
       # no more than 5 tokens to search for
       @tokens.slice! 5..-1 if @tokens.size > 5
 
