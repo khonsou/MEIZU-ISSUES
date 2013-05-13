@@ -39,7 +39,7 @@
                 <%= journal.user %><br/>
                 <em><%= time_ago_in_words(journal.created_on) %></em>
               </div>
-              <div class="span17">
+              <div class="span17 hidden-phone">
                 <% if journal.notes %>
                   <%= truncate(h(journal.notes), length: 75) %>
                 <% else %>
@@ -59,7 +59,7 @@
                 <em><%= time_ago_in_words(issue.created_on) %></em>
               </div>
           
-              <div class="span17">
+              <div class="span17 hidden-phone">
                 <%= truncate(h(issue.description), length: 75) %>
               </div>
             
