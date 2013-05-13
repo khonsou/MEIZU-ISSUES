@@ -1,0 +1,115 @@
+
+
+@media (min-width: 1200px) { 
+  .container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
+    width: 1170px;
+  }
+  .span5 {
+    width: 270px;
+  }
+  .span19 {
+    width: 870px;
+  } 
+  .span14, .controller-account .container .main{
+    width: 600px;
+  }
+  .span24{
+    width: 600px;
+    margin: 0 auto;
+    float: none;    
+  }
+}
+
+/* Portrait tablet to landscape and desktop */
+@media  (max-width: 979px) { 
+  body{
+    padding-top: 0px;
+  }
+}
+
+@media (max-width: 979px) and (min-width: 768px){
+  .span19 {
+    width: 70%;
+  }
+  .span5 {
+    width: 20%;
+  }
+  [class*="span"] {
+    margin-left: 30px;
+  }
+  .span24{
+    width: 400px;
+    margin: 0 auto;
+    float: none;    
+  }  
+  .span14, .controller-account .container .main{
+    width: 400px;
+  }  
+  .container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container{
+    width: 80%;
+  }
+  
+  .sidebar #watchers h5 a.button, .sidebar .project-info  .member h5 a.button{
+    padding: 1px 3px;
+    font-size:10px;
+  }
+  
+  .row-fluid .span12 {
+    width: 99.3188%;
+  }
+  
+  .row-fluid .span6 {
+    width: 40.9782%;
+  }
+}
+
+@media  (max-width: 768px) { 
+  .member li{
+    float: left;
+    width: 60px;
+  }
+  ul, ol{
+    margin:0 0 10px 20px;
+  }
+  h2{
+    line-height:24px;
+  }
+  .issue-header{
+    margin: 0px 0px 16px 0px; 
+  }
+  
+  .span14, .controller-account .container .main{
+    width: auto;
+  }
+  
+  .issue-list .issue-item [class*="span"]{
+    float:left;
+  }
+
+  .issue-list .issue-item  .span14{
+    width: 90%;
+  }
+  .issue-list .issue-item  .span4{
+    width: 40%;    
+  }
+
+  .issue-list .issue-item  .span5{
+    width: 40%;    
+  }
+  
+  .issue-list .issue-item .journal a .span17{
+    width: 55%;        
+  }
+  
+  .sidebar .project-info .basic-info h5{
+    width: 80%;
+    float:left;
+    font-weight: bold;
+  }
+  
+  .sidebar .project-info .basic-info .actions{
+    width: 10%;
+    float:right;    
+  } 
+
+}

@@ -92,6 +92,10 @@ a:hover{
       font-weight: normal;
       padding-bottom: 5px;
       border-bottom: $dashedBorder;
+      
+      a.button{
+        padding: 1px  10px;
+      }
     }
   }
 
