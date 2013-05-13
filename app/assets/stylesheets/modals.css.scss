@@ -12,8 +12,8 @@
 
 // Base modal 32
 .modal {
-  width: 680px;
-  margin-left: -340px;
+/*  width: 680px;
+  margin-left: -340px;*/
   background-color: $lightBackgroudThree;
   border: $darkSolidBorder;
   @include box-shadow($boxShadowFive);

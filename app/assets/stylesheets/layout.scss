@@ -208,3 +208,15 @@ a:hover{
     padding-top: 0px;
   }
 }
+
+@media (max-width: 979px) and (min-width: 768px){
+  .span19 {
+    width: 570px;
+  }
+  .span5 {
+    width: 160px;
+  }
+  [class*="span"] {
+    margin-left: 30px;
+  }  
+}
