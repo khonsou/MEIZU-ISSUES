@@ -44,13 +44,14 @@
         <span><%= l(:field_assigned_to) %>：</span>
         <span  id="status" class=""><strong><%= @issue.assigned_to.try(:name) %></strong></span>
         <% if !@issue.closed? %>
-          <a href="#" id="pencil" class="popover-link"><i class="icon-pencil"></i></a>               
+          <a href="#" id="pencil" class="popover-link hidden-phone"><i class="icon-pencil"></i></a>               
         <% end %>  
       </div>
 
       <div class="span8  holder">
         <span><%= l(:field_due_date) %>：</span>
-        <input type="text" id="datepicker" readonly="readonly" value="<%= format_date(@issue.due_date) %>" class="<%= 'overdue' if @issue.overdue? %>" />
+        <span  id="assign_date" class=""><strong><%= format_date(@issue.due_date) %></strong></span>        
+        <input type="hidden" id="datepicker" readonly="readonly" value="<%= format_date(@issue.due_date) %>" class="<%= 'overdue' if @issue.overdue? %> " />
       </div>
     </div>
     <div id="edit-btn">

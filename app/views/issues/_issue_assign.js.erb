@@ -21,7 +21,6 @@ function details_in_popup(link, div_id){
     dataType: "script",
     type: "GET",
     complete: function(response){
-      console.log(response.responseText)
       $('#'+div_id).html(response.responseText)
     }
   });
@@ -42,7 +41,7 @@ $(function(){
       
   })
   
-  <% if !@issue.closed? %>        
+  <% if !@issue.closed? && !@user_agent.mobile? %>        
     $( "#datepicker" ).datepicker({
       showOn: "button",
       buttonImage: "/assets/icon-edit.png",

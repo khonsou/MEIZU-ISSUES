@@ -1,1 +1,2 @@
-$('#status strong').text('<%= @issue.assigned_to.name %>')
+$('#status strong').text('<%= @issue.assigned_to.try(:name) %>')
+$('#assign_date strong').text('<%= format_date(@issue.due_date) %>')

@@ -12,9 +12,6 @@
 
 // Base modal 32
 .modal {
-/*  width: 680px;
-  margin-left: -340px;*/
-  position: absolute;
   background-color: $lightBackgroudThree;
   border: $darkSolidBorder;
   @include box-shadow($boxShadowFive);
@@ -22,7 +19,6 @@
 
 // Body (where all modal content resides) 67
 .modal-body {
-  max-height: 410px;
   background-color: $lightBackgroudThree;
   padding: $gridGutterWidth;
   

@@ -2,13 +2,13 @@
 
 @media (min-width: 1200px) { 
   .container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
-    width: 1170px;
+    width: 970px;
   }
   .span5 {
-    width: 270px;
+    width: 170px;
   }
   .span19 {
-    width: 870px;
+    width: 770px;
   } 
   .span14, .controller-account .container .main{
     width: 600px;
@@ -29,13 +29,16 @@
 
 @media (max-width: 979px) and (min-width: 768px){
   .span19 {
-    width: 70%;
+    width: 100%;
   }
   .span5 {
-    width: 20%;
+    width: 100%;
   }
   [class*="span"] {
-    margin-left: 30px;
+    margin-left: 0px;
+  }
+  .row {
+    margin-left: 0px;
   }
   .span24{
     width: 400px;
@@ -46,7 +49,7 @@
     width: 400px;
   }  
   .container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container{
-    width: 80%;
+    width: 724px;
   }
   
   .sidebar #watchers h5 a.button, .sidebar .project-info  .member h5 a.button{
@@ -60,6 +63,10 @@
   
   .row-fluid .span6 {
     width: 40.9782%;
+  }
+  
+  .row-fluid .span4 {
+    width: 100px;
   }
 }
 
@@ -115,5 +122,10 @@
     width: 10%;
     float:right;    
   } 
+  
+  .modal{
+    max-height: 380px;
+    overflow-y: auto;      
+  }
 
 }

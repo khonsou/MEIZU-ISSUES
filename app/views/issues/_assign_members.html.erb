@@ -4,6 +4,9 @@
       <div class="select-menu-item js-navigation-item <%= 'selected' if @issue.assigned_to_id == user.id %>" style="" onclick="changeAssign(this);return false;">
         <%= f.radio_button :assigned_to_id, user.id %>                        
         <span class="select-menu-item-icon mini-icon mini-icon-confirm">
+          <% if @issue.assigned_to_id == user.id %>
+            <i class="icon-assignee"></i>
+          <% end %>
         </span>
         <div class="select-menu-item-gravatar js-select-menu-item-gravatar">
           <span class="avatar"><%= image_tag user.avatar_url(:small), :class => "img-rounded" %></span>

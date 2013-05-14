@@ -266,7 +266,7 @@
   
   .select-menu-item-gravatar {
     display: table-cell;
-    padding: 0px 0 0px 8px;
+    padding: 0px 0 0px 10px;
     vertical-align: top;
     overflow: hidden;
     line-height: 0;
@@ -283,10 +283,6 @@
       font-size: 12px;
     }
   }
-}
-
-.select-menu-item.selected   .select-menu-item-icon{
-  background: transparent url(icon-members.png) no-repeat;  
 }
 
 
@@ -311,4 +307,8 @@
 
 .issue-info form{
   margin:0px;
+}
+
+#notes{
+  margin-bottom: 10px;  
 }
