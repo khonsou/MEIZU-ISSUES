@@ -3,7 +3,7 @@ set :application_servers, %w(issues)
 set :migration_server, "issues"
 set :user, "rails"
 set :rails_env, "production"
-set :branch, "master"
+set :branch, "production"
 set :deploy_via, :remote_cache
 
 load File.dirname(__FILE__) + "/shared_code"

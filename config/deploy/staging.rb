@@ -3,7 +3,7 @@ set :application_servers, %w(ubuntu)
 set :migration_server, "ubuntu"
 set :user, "ubuntu"
 set :rails_env, "staging"
-set :branch, "master"
+set :branch, "staging"
 set :deploy_via, :remote_cache
 
 load File.dirname(__FILE__) + "/shared_code"
