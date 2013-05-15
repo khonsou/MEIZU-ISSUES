@@ -560,7 +560,7 @@ zh:
   label_export_to: 导出
   label_read: 读取...
   label_public_projects: 公开的项目
-  label_open_issues: 所有开放的
+  label_open_issues: 开放的
   label_open_issues_plural: 打开
   label_closed_issues: 已关闭的
   label_closed_issues_plural: 已关闭
