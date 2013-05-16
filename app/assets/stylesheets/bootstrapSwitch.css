@@ -3,6 +3,7 @@
   border: 1px solid #ebebeb;
   border-radius: 14px;
   margin: 16px 0px 0 0;
+  width: 145px;
 }
 .view-switcher a {
   display: inline-block;
