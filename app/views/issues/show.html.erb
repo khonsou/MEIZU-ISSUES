@@ -2,10 +2,6 @@
   <% form_class = "" %>
 <% else %>
   <% form_class = "dropzone" %>
-  <%= javascript_tag do %>
-    <%= render :partial => 'dropzone', :handlers => [:erb], :formats => [:js] %>
-    <%= render :partial => "issue_assign", :handlers => [:erb], :formats => [:js] %>
-  <% end %>
 <% end %>
 
 <% content_for :sidebar do %>
@@ -16,11 +12,25 @@
 
     <div class="issue-info">
       <div class="attributes">
-        <%= form_tag (@issue.closed? ? reopen_issue_path(@issue) : close_issue_path(@issue))  do %>
-          <div id="status-switch" class="switch" data-on-label="<i class='icon-open'></i> 开放" data-off-label="<i class='icon-closed'></i> 关闭">
-            <input type="checkbox" <%= 'checked' if !@issue.closed?  %> />
-          </div>
-        <% end %>
+        
+        <div class="view-switcher">
+          <% if @issue.closed? %>
+            <%= link_to reopen_issue_path(@issue), :method => "post" do  %>
+              <i class='icon-open'></i> 开放
+            <% end %>
+            <%= link_to reopen_issue_path(@issue), :method => "post", :class => "active" do  %>
+              <i class='icon-blue-arrow-left'></i> 关闭
+            <% end %>
+          <% else %>  
+            <%= link_to close_issue_path(@issue), :method => "post", :class => "active" do  %>
+               开放 <i class='icon-blue-arrow-right'></i>
+            <% end %>
+            <%= link_to close_issue_path(@issue), :method => "post" do  %>
+               关闭 <i class='icon-closed'></i>
+            <% end %>
+          <% end %>
+        </div>
+        
       </div>
     </div>
 
@@ -39,19 +49,19 @@
     <h2>
       <%= @issue.subject %>      
     </h2>
-    <div id="attributes" class="attributes">          
-      <div class="span7 holder">
+    <div id="attributes" class="attributes clearfix">          
+      <div class="span8 holder">
         <span><%= l(:field_assigned_to) %>：</span>
         <span  id="status" class=""><strong><%= @issue.assigned_to.try(:name) %></strong></span>
         <% if !@issue.closed? %>
-          <a href="#" id="pencil" class="popover-link hidden-phone"><i class="icon-pencil"></i></a>               
+          <a href="<%= issue_path(@issue) %>" id="pencil" class="popover-link hidden-phone"><i class="icon-pencil"></i></a>               
         <% end %>  
       </div>
 
       <div class="span8  holder">
         <span><%= l(:field_due_date) %>：</span>
         <span  id="assign_date" class=""><strong><%= format_date(@issue.due_date) %></strong></span>        
-        <input type="hidden" id="datepicker" readonly="readonly" value="<%= format_date(@issue.due_date) %>" class="<%= 'overdue' if @issue.overdue? %> " />
+        <input type="hidden" data-picker="<%= true if !@issue.closed? && !@user_agent.mobile? %>" data-url="<%= issue_path(@issue) %>"  id="datepicker" readonly="readonly" value="<%= format_date(@issue.due_date) %>" class="<%= 'overdue' if @issue.overdue? %> " />
       </div>
     </div>
     <div id="edit-btn">
@@ -59,7 +69,7 @@
     </div>      
   </div>
 
-  <div class="row journal">
+  <div class="row journal issue-body">
     <div class="avatar span2">
       <%= link_to_user(@issue.author, :avatar => :small) %>
     </div>    
@@ -98,7 +108,7 @@
   <% end %>
 
   <% if !@issue.closed? && User.current.allowed_to?(:add_issue_notes, @issue.project) %>
-    <%= labelled_form_for @issue, html: { :multipart => true, :class => form_class, :id => form_class } do |f| %>
+    <%= labelled_form_for @issue, html: { :multipart => true, :class => form_class, :id => form_class, :"data-url" => "/projects/#{@issue.project.id}/files/upload" } do |f| %>
       <div class="row-fluid">
         <%= text_area_tag 'notes', @notes, :rows => 3, :class => 'wiki-edit span24', :placeholder => '在此添加讨论内容......' %>
         <% if old_browser?(@user_agent) %>

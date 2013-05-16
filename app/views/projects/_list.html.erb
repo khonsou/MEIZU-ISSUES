@@ -1,11 +1,13 @@
 <div id="project-list">
-  <ul class="nav nav-tabs nav-stacked span24">
+  <ul class="nav nav-tabs nav-stacked span24 media-list">
     <% find_visible_projects.each do |project| %>
-      <li>
-        <%= link_to project_issues_path(project) do %>
+      <li class="media">
+        <%= link_to project_issues_path(project), :class => "pull-left" do %>
           <%= image_tag(project.icon_url(:small)) %>
-          <span><%= truncate(project.name, length: 19) %> (<%= project.issues.open.count %>)</span>
         <% end -%>
+        <div class="media-body">
+          <a href="<%= project_issues_path(project) %>"  class="<%= 'one-line' if project.name.display_width < 12  %>"><%= truncate(project.name, length: 19) %> (<%= project.issues.open.count %>)</a>       
+        </div>
       </li>
     <% end -%>
   </ul>

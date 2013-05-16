@@ -25,9 +25,14 @@
         font-weight: bold;
       }
 
-      .project,
-      .project a {
+      .project{
         color: $lightTextColor;
+        display:inline-block;
+        margin-left:5px;        
+        
+        a{
+          color: $lightTextColor;          
+        }
       }
 
       .due {
@@ -46,8 +51,11 @@
       }
       
       .avatar {
-        margin-top: 4px;
-        margin-right: 10px;
+        margin-top: 4px;        
+      }
+      
+      .name{
+        font-weight:bold;
       }
 
       .span17 {
@@ -163,8 +171,10 @@
   position:relative;
   
   h2{
-    font-size:18px;
-    margin-bottom:0px
+    font-size:16px;
+    margin-bottom:15px;
+    margin-top:0px;
+    line-height: 30px;
   }  
   
   span.label{
@@ -218,12 +228,11 @@
     height:10px;
     list-style:none;
     text-align:center;
-    
+    margin: 20px 0px ;   
 }
 .sub-menu-item > span
 {
   font-size: 14px;
-  color: #666;
   background: white;
   font-weight: 800;
 }
@@ -311,4 +320,26 @@
 
 #notes{
   margin-bottom: 10px;  
+}
+
+
+.dropzone {
+position: relative;
+border: none;
+background: #fff;
+padding: 0px;
+}
+
+.issue-body  .wiki p{
+  line-height: 25px;
+}
+
+h2.title{
+  margin-bottom: 13px;
+  padding-bottom: 10px;
+  line-height: 23px;
+  margin-top: 0px;
+  margin-left: 29px;
+  font-size: 16px;
+  border-bottom: 1px dashed #e3e3e3;
 }

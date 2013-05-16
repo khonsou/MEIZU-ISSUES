@@ -308,7 +308,7 @@ zh:
   field_parent_title: 上级页面
   field_editable: 可编辑
   field_watched: 已关注
-  field_watcher: 关注者
+  field_watcher: 参与者
   field_identity_url: OpenID URL
   field_content: 内容
   field_group_by: 根据此条件分组
@@ -377,7 +377,7 @@ zh:
   setting_commit_logtime_activity_id: 记录的活动
   setting_gantt_items_limit: 在甘特图上显示的最大记录数
 
-  permission_add_project: 新建项目
+  permission_add_project: 新建一个项目
   permission_add_subprojects: 新建子项目
   permission_edit_project: 编辑项目
   permission_select_project_modules: 选择项目模块
@@ -449,7 +449,7 @@ zh:
   label_user_new: 新建用户
   label_user_anonymous: 匿名用户
   label_project: 项目
-  label_project_new: 新建项目
+  label_project_new: 新建一个项目
   label_project_plural: 项目
   label_x_projects:
     zero:  无项目
@@ -779,7 +779,7 @@ zh:
   label_planning: 计划
   label_incoming_emails: 接收邮件
   label_generate_key: 生成一个key
-  label_issue_watchers: 关注者
+  label_issue_watchers: 参与者
   label_example: 示例
   label_display: 显示
   label_sort: 排序

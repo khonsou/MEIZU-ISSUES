@@ -1,10 +1,13 @@
-jQuery(function($) {
+$(document).ready( function(){
   var fileFieldCount = 1;
-  var attachFieldCount = 1;   
+  var attachFieldCount = 1; 
+  
+  var url = $('.dropzone').data('url')
+    
   Dropzone.options.dropzone = {
     dictDefaultMessage: "<i class='icon-asset'></i> 添加附件",
-    url: "/projects/<%= @issue.project.id %>/files/upload",
-    maxFilesize: <%= Setting.attachment_max_size.to_i / 1024 %>, // MB
+    url: url,
+    maxFilesize: 5, // MB
     maxThumbnailFilesize: 5 ,
   
     init: function() {

@@ -6,9 +6,9 @@
       <div class="issue-item">
         <div class="row-fluid info">
           <div class="span14">
-            <%= link_to truncate(issue.subject, length: 25), issue_path(issue), class: 'subject' %>
+            <%= link_to truncate(issue.subject, length: 22), issue_path(issue), class: 'subject' %>
             <% if project.blank? %>
-              <span class="project">(<%= link_to truncate(issue.project.name, length: 8), project_path(issue.project) %>)</span>
+              <span class="project">[<%= link_to truncate(issue.project.name, length: 8), project_path(issue.project) %>]</span>
             <% end -%>
           </div>
           <div class="span4 due">
@@ -32,37 +32,43 @@
           <div class="row-fluid journal">
             <% journal = issue.journals.order('created_on').last %>
             <%= link_to issue_path(issue, anchor: "change-#{journal.id}") do %>
-              <div class="span5">
+              <div class="span25">
                 <div class="avatar pull-left">
                   <%= image_tag journal.user.avatar_url(:small), :class => "img-rounded" %>
                 </div>
-                <%= journal.user %><br/>
-                <em><%= time_ago_in_words(journal.created_on) %></em>
-              </div>
-              <div class="span17 hidden-phone">
-                <% if journal.notes %>
-                  <%= truncate(h(journal.notes), length: 75) %>
-                <% else %>
-                  <%= details_to_strings(journal.details, true).join %>
-                <% end -%>
+                <div class="pull-left span22">
+                  <div class="clearfix">
+                    <div class="pull-left name"><%= journal.user %></div>
+                    <div class="pull-right"><%= time_ago_in_words(journal.created_on) %></div>
+                  </div>
+                  <div class="">
+                    <% if journal.notes %>
+                      <%= truncate(h(journal.notes), length: 75) %>
+                    <% else %>
+                      <%= details_to_strings(journal.details, true).join %>
+                    <% end -%>
+                  </div>
+                </div>
               </div>
             <% end -%>
           </div>
         <% else %>
           <div class="row-fluid journal"> 
             <%= link_to issue_path(issue) do %>
-              <div class="span5">
+              <div class="span25">
                 <div class="avatar pull-left">
                   <%= image_tag issue.author.avatar_url(:small), :class => "img-rounded" %>
                 </div>
-                <%= issue.author %><br/>
-                <em><%= time_ago_in_words(issue.created_on) %></em>
+                <div class="pull-left span22">
+                  <div class="clearfix">
+                    <div class="pull-left name"><%= issue.author %></div>
+                    <div class="pull-right"><%= time_ago_in_words(issue.created_on) %></div>
+                  </div>
+                  <div>
+                    <%= truncate(h(issue.description), length: 75) %>
+                  </div>
+                </div>
               </div>
-          
-              <div class="span17 hidden-phone">
-                <%= truncate(h(issue.description), length: 75) %>
-              </div>
-            
             <% end %>
           </div>
         <% end -%>

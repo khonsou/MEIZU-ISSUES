@@ -18,6 +18,7 @@ $linkColor: #737883;
 // -------------------------
 $baseFontSize: 12px;
 
+
 // Buttons 69
 // -------------------------
 $buttonBackground: #02aee5;
@@ -25,7 +26,7 @@ $btnBackground: #f1f2f4;
 $btnBackgroundHighlight: #e4e7eb;
 $btnBorder: #c2c7cf;
 
-$btnPrimaryBackground: #00a6ff;
+$btnPrimaryBackground: #01b8e5;
 $btnPrimaryBackgroundHighlight: #0073ff;
 $btnPrimaryBorder: #235a9a;
 
@@ -67,12 +68,13 @@ $boxShadowThree: 0 -1px 0px rgba(193,194,196,1);
 $boxShadowFour: 0 1px 0 rgba(167,170,173,0.2);
 $boxShadowFive: 0 5px 30px rgba(0,0,0,0.6);
 
-$innerShadowOne: 0 1px 1px rgba(0,0,0,0.1);
+//$innerShadowOne: 0 1px 1px rgba(0,0,0,0.1);
+$innerShadowOne: rgba(255, 255, 255, 0.2);
 $innerShadowTwo: 0 1px 0 rgba(255,255,255,1);
 
 $lightTextColor: #b1b8c3;
 $darkTextColor: darken(#737883, 15%);
-$btnTextColor: #99a1af;
+$btnTextColor: #7f8c94;
 
 $bigFontSize: $baseFontSize + 2px;
 
@@ -85,6 +87,9 @@ $lightBackgroudSix: #ededed;
 
 $greenBackground: #e2ffce;
 $redBackground: #ffdbdb;
+$red: #f8000e;
+
+$baseLineHeight: 18px;
 
 @import "bootstrap-responsive";
 @import "datepicker";

@@ -9,19 +9,19 @@
 .nav-pills > li > a {
   padding-top: 6px;
   // font-weight: bold;
-  color: $lightTextColor;
+/*  color: $lightTextColor;*/
 
   &:hover {
-    color: $linkColorHover;
+    color: $btnPrimaryBackground;
   }
 }
 
 // Active state 145
 .nav-pills > .active > a,
 .nav-pills > .active > a:hover {
-  color: $textColor;
-  background-color: #eee;
-  
+  color: #fff;
+  background-color: $btnPrimaryBackground;
+  font-weight: normal;  
 }
 
 // theme style

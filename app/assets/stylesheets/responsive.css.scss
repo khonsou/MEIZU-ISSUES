@@ -1,4 +1,7 @@
-
+.row-fluid .span22 {
+  margin-left: 10px;
+  width: 93.5%;
+}
 
 @media (min-width: 1200px) { 
   .container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
@@ -18,6 +21,14 @@
     margin: 0 auto;
     float: none;    
   }
+  .span8 {
+    width: 150px;
+  }
+  
+  .row-fluid .span22{
+    width: 93.56118%;  
+  }
+  
 }
 
 /* Portrait tablet to landscape and desktop */
@@ -68,6 +79,7 @@
   .row-fluid .span4 {
     width: 100px;
   }
+
 }
 
 @media  (max-width: 768px) { 
@@ -126,6 +138,14 @@
   .modal{
     max-height: 380px;
     overflow-y: auto;      
+  }
+  
+  .row-fluid .span22{
+    width: 90%;  
+  }
+  
+  .issue-list .issue-item .journal a .avatar{
+    margin-right: 10px;
   }
 
 }

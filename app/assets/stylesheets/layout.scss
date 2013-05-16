@@ -1,5 +1,8 @@
 body {
   padding-top: 110px;
+  background: #eff3f3 url('/assets/bg.png') repeat ; 
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 18px;  
 }
 
 a:hover{
@@ -16,12 +19,9 @@ a:hover{
   @include border-radius($borderRadius);
   padding: 20px $gridGutterWidth;
   background-color: $white;
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.15);
-  border-top: 1px solid #eee;    
-  border-left: 1px solid #e2e2e9;
-  border-right: 1px solid #e2e2e9;    
-  border-bottom: 2px solid #e2e2e9;    
-  @include gradient-vertical($lightBackgroudOne, $bodyBackground);
+  
+  @extend .box;
+  
 }
 
 .with-title-bar {
@@ -73,21 +73,16 @@ a:hover{
 
 //  sidebar
 .sidebar {
-  #project-list .nav li a,
+  #project-list .nav li,
   .project-info .basic-info,
   .project-info .member,
   .issue-info,
   #watchers {
     margin-bottom: 20px;    
     padding: 0px 10px 10px;
-    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.15);
-    border-top: 1px solid #eee;    
-    border-left: 1px solid #e2e2e9;
-    border-right: 1px solid #e2e2e9;    
-    border-bottom: 2px solid #e2e2e9;    
-    @include gradient-vertical($lightBackgroudOne, $bodyBackground);
     @include border-radius($borderRadius);
-/*    @include box-shadow(#{inset $innerShadowTwo, $boxShadowTwo});*/
+    @extend .box;    
+    background-color: #f1f1f1;
 
     h5 {
       font-weight: normal;
@@ -99,14 +94,25 @@ a:hover{
       }
     }
   }
+  
+  #project-list .nav li{
+    padding: 3px;
+    margin-bottom:10px;
+  }
 
   #project-list .nav li a {
     padding: 5px 6px;
+    border: none;
 
     span {
       padding-left: 5px;
       line-height: 32px;
     }
+  }
+  
+  #project-list .nav li a.one-line{
+    margin-top: 7px;
+    display: inline-block;
   }
 
   .project-info .basic-info {
@@ -164,9 +170,16 @@ a:hover{
       width: 100%;
 
       a {
-        @extend .btn;
+        background-color: #f1f1f1;
+        background-image: linear-gradient(#f5f5f5, #e9e9e9);
+        background-repeat: repeat-x;
+        border-top: 1px solid #ecedf0;
+        border-bottom: 1px solid #d3d3d3;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 3px 2px rgba(0, 0, 0, 0.05);
+
         width: 140px;
         background: transparent url('icon-arrow-left.png') no-repeat 15px 5px;
+        
 
         &:hover {
           font-weight: normal;
@@ -187,11 +200,13 @@ a:hover{
 }
 
 .box{
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.15);
-  border-top: 1px solid #eee;    
-  border-left: 1px solid #e2e2e9;
-  border-right: 1px solid #e2e2e9;    
-  border-bottom: 2px solid #e2e2e9;     
+  background-image: linear-gradient(#f5f5f5, #f2f2f2);
+  background-repeat: repeat-x;
+  border: 1px solid #ecedf0;
+  border-left: 1px solid #dfdfe1;   
+  border-bottom: 1px solid #d3d3d3;
+  border-right: 1px solid #ebebeb;    
+  box-shadow:  1px 1px rgba(0, 0, 0, 0.05);
 }
 
 
