@@ -287,7 +287,7 @@ zh:
   field_hide_mail: 隐藏我的邮件地址
   field_comments: 注释
   field_url: URL
-  field_start_page: 起始页
+  field_start_page: 首页
   field_subproject: 子项目
   field_hours: 小时
   field_activity: 活动
@@ -673,7 +673,7 @@ zh:
   label_wiki_page: Wiki 页面
   label_wiki_page_new: 新建页面
   label_wiki_page_plural: Wiki 页面
-  label_index_by_title: 按标题索引
+  label_index_by_title: 全部页面
   label_index_by_date: 按日期索引
   label_current_version: 当前版本
   label_preview: 预览
