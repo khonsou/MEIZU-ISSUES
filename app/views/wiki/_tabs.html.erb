@@ -9,6 +9,6 @@
   </ul>
 
   <% if User.current.allowed_to?(:edit_wiki_pages, @project) %>
-    <%= link_to l(:label_wiki_page_new), new_project_wiki_path(@project), { class: 'btn pull-right btn-primary bg-new', remote: true } %>
+    <%= link_to l(:label_wiki_page_new), new_project_wiki_path(@project), { class: 'button pull-right primary blue bg-new', remote: true } %>
   <% end -%>
 </div>
