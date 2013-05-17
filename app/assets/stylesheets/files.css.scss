@@ -42,11 +42,13 @@
   cursor: pointer;    
 }
 
-.modal-body .btn.bg-files{
-  margin-top: 10px;  
+
+.btn.bg-files, .modal-body .btn.bg-files{
+  margin-top:0px;
 }
 
-.modal-body .btn.bg-files .icon-asset{
+
+.btn.bg-files .icon-asset{
   height: 21px;
   margin-top: -4px;
 }
