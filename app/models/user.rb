@@ -614,6 +614,10 @@ class User < Principal
       end
     end
   end
+  
+  def from_ldap?
+    self.auth_source_id == 1
+  end
 
   protected
 

@@ -119,7 +119,7 @@ module Redmine
             end
             content = proto + url
             href = "#{proto=="www."?"http://www.":proto}#{url}"
-            %(#{leading}<a class="external" href="#{ERB::Util.html_escape href}">#{ERB::Util.html_escape content}</a>#{post}).html_safe
+            %(#{leading}<a class="external" target="_blank" href="#{ERB::Util.html_escape href}">#{ERB::Util.html_escape content}</a>#{post}).html_safe
           end
         end
       end
