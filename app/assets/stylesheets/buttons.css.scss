@@ -35,6 +35,9 @@ opacity: .5;
 .button.blue, .button.primary, .button.blue.disabled:hover, .button.blue:disabled:hover {
 background-color: #02aee5;
 }
+.button.gray{
+background-color: #ebedf0;  
+}
 .button:hover{
 background-image: -webkit-gradient(linear,left top,left bottom,color-stop(.1, transparent),color-stop(1, rgba(0,0,0,.2)));
 background-image: -moz-linear-gradient(top, transparent, rgba(0,0,0,.2));
@@ -67,7 +70,10 @@ text-decoration: none;
     background-position: 0 0;
   }
 }
-
+span.btn:hover{
+ background-image: linear-gradient(#f5f5f5, #ebebeb);
+ cursor: default;
+}
 .btn-primary {
   color: $white;
   text-shadow: 0 -1px 0 rgba(0,0,0,0.49);
@@ -120,4 +126,52 @@ text-decoration: none;
     padding-left: 100px;
     padding-right: 100px;
   }
+}
+
+
+.select-menu-button.minibutton {
+  padding-right: 60px;
+}
+.minibutton {
+  padding: 0 10px;
+  line-height: 24px;
+  box-shadow: none;
+}
+.minibutton i {
+  font-weight: 500;
+  font-style: normal;
+  opacity: .6;
+  font-size:12px;
+}
+.js-select{
+  display: inline;
+  position: relative;
+}
+.js-select-button{
+  font-size: 13px;
+}
+.select-menu-button:before {
+content: " ";
+display: block;
+position: absolute;
+background: url("/assets/icon-edit.png") no-repeat 0px 1px;
+top: -3px;
+right: 6px;
+width: 20px;
+height: 20px;
+}
+.select-menu-button:after {
+content: "";
+display: block;
+position: absolute;
+top: -6px;
+bottom: 0;
+right: 29px;
+width: 1px;
+height: 27px;
+background-color: #ddd;
+box-shadow: 1px 0 0 #f9f9f9;
+}
+.ui-datepicker-trigger{
+  display:none;
 }

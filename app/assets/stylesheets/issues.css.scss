@@ -240,6 +240,7 @@
 
 
 .select-menu-item {
+  padding: 5px;
   cursor: pointer;
   border-bottom: 1px solid #eee;
   display: table;
@@ -286,7 +287,7 @@
   .select-menu-item-text {
     display: table-cell;
     vertical-align: top;
-    padding: 0px 0 0px 8px;
+    padding: 0px;
   
     h4{
       margin: 0px;  
@@ -299,16 +300,6 @@
 .select-menu-item:hover {
   background-color: $buttonBackground;
   color: #fff;
-}
-
-#datepicker{
-  font-weight: bold;
-  margin-bottom: 0px;
-  width: 70px;
-  cursor: auto;
-  background-color: transparent;
-  border: none;
-  box-shadow:none;  
 }
 
 .ui-datepicker-trigger{
@@ -325,10 +316,10 @@
 
 
 .dropzone {
-position: relative;
-border: none;
-background: #fff;
-padding: 0px;
+  position: relative;
+  border: none;
+  background: transparent;
+  padding: 0px;
 }
 
 .issue-body  .wiki p{

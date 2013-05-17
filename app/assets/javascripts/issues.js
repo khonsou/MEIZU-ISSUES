@@ -28,30 +28,13 @@ function details_in_popup(link, div_id){
 }
 
 $(document).ready( function(){
-  $('#pencil').clickover({
+  $('.select-menu-button').clickover({
       html: true,
       trigger: 'click',
       placement: 'right',
-      title: "选择指派人",
       content: function(){
         var div_id =  "div-id-" + $.now();
         return details_in_popup($(this).attr('href'), div_id)
       }      
-  })  
-  
-
-  $("input[data-picker=true]").datepicker({
-    showOn: "button",
-    buttonImage: "/assets/icon-edit.png",
-    buttonImageOnly: true,
-    onSelect: function(date){
-      $.ajax({
-        url: $(this).data('url'),
-        dataType: "script",
-        data: "issue[due_date]=" + date ,
-        type: "PUT"
-      });     
-    }
-  });
-    
+  })      
 })

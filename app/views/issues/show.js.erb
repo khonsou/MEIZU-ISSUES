@@ -1,1 +1,18 @@
-<%= (render('assign_members')) %>
+<% if params[:date].present? %>
+  <script>
+    $( "#datepicker-div" ).datepicker({
+      onSelect: function(date){
+        $.ajax({
+          url: $(this).data('url'),
+          dataType: "script",
+          data: "issue[due_date]=" + date ,
+          type: "PUT"
+        });     
+      }
+    });
+  </script>
+  <div id="datepicker-div"></div>
+<% else %>  
+  <%= (render('assign_members')) %>
+<% end %> 
+

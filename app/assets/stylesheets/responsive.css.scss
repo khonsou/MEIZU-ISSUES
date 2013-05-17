@@ -83,6 +83,10 @@
   .row-fluid .span4 {
     width: 100px;
   }
+  
+  .issue-header .span8{
+    width: 250px;
+  }
 
 }
 
@@ -154,6 +158,14 @@
   
   .journal .span14{
     width: 86%;
+  }
+  
+  .main{
+    padding: 10px;
+  }
+  
+  .issue-header h2 {
+    margin-right: 20px;
   }
 
 }

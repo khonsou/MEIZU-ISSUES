@@ -1,7 +1,8 @@
-#ui-datepicker-div {
+#ui-datepicker-div, .ui-datepicker-inline {
   background: #FFF;
 
   .ui-datepicker-header {
+    position: relative;
     height: 35px;
     border: 1px solid #3980ad;
     @include border-top-left-radius($borderRadius);

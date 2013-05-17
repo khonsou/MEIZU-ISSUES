@@ -19,9 +19,13 @@ a:hover{
   @include border-radius($borderRadius);
   padding: 20px $gridGutterWidth;
   background-color: $white;
-  
-  @extend .box;
-  
+
+  background-repeat: repeat-x;
+  border: 1px solid #ecedf0;
+  border-left: 1px solid #dfdfe1;   
+  border-bottom: 1px solid #d3d3d3;
+  border-right: 1px solid #ebebeb;    
+  box-shadow:  1px 1px rgba(0, 0, 0, 0.05);
 }
 
 .with-title-bar {
