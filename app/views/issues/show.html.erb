@@ -2,14 +2,13 @@
   <% form_class = "" %>
 <% else %>
   <% form_class = "dropzone" %>
-  <%= javascript_tag do %>
-    <%= render(:partial => 'dropzone', :handlers => [:erb], :formats => [:js]) %>
-    
+  <%= javascript_tag do %>    
     $(document).ready(function(){
       data = new Array();
       <% @issue.project.member_principals.map(&:user).map(&:name).each do |name| %>
-        data.push('<%= name %>')
+        data.push('<%= name %>');
       <% end %>
+      
       $('.hasAt').atwho({at:"@", 'data':data});
     })
     
@@ -113,7 +112,7 @@
         <% if @issue.description? || attachments.any? -%>
           <% if @issue.description? %>
             <div class="wiki description">
-              <%= textilizable @issue, :description, :attachments => attachments %>
+              <%= textilizable(@issue, :description, :attachments => attachments) %>
             </div>
           <% end %>
           <%= render 'attachments/links', { :attachments => attachments, :options => { deletable: false, author: false }, :thumbnails => true } %>

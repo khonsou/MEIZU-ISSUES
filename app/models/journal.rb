@@ -16,6 +16,8 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 class Journal < ActiveRecord::Base
+  include Concerns::Mentionable
+  
   belongs_to :journalized, :polymorphic => true
   # added as a quick fix to allow eager loading of the polymorphic association
   # since always associated to an issue, for now

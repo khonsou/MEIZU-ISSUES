@@ -547,6 +547,8 @@ module ApplicationHelper
     if @parsed_headings.any?
       replace_toc(text, @parsed_headings)
     end
+    
+    text = parse_mention_to_link(text)
 
     text.html_safe
   end
@@ -602,6 +604,17 @@ module ApplicationHelper
           m
         end
       end
+    end
+  end
+  
+  
+  # Returns a String replaced with the return of the block.
+  def parse_mention_to_link(text)
+    text.gsub /@(\w+|\p{Han}+)/u do |match|
+      login = $1
+      "<a href='/users/#{login}' class='user-mention'>" +
+      "@#{login}" +
+      "</a>"
     end
   end
 
