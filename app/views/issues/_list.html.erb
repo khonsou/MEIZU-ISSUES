@@ -39,7 +39,7 @@
                 <div class="pull-left span22">
                   <div class="clearfix">
                     <div class="pull-left name"><%= journal.user %></div>
-                    <div class="pull-right"><%= time_ago_in_words(journal.created_on) %></div>
+                    <div class="pull-right"><%= relative_time(journal.created_on) %></div>
                   </div>
                   <div class="">
                     <% if journal.notes %>
