@@ -1,0 +1,31 @@
+<%= labelled_form_for :user, @user,
+                   :url => { :action => "account" },
+                   :html => { :id => 'my_account_form',
+                              :method => :post } do |f| %>
+  <div class="modal-body">
+    <div class="row-fluid">
+      <div class="span19">
+        <p class="mini">从LDAP登录的用户不能修改姓名和邮箱</p>        
+        <label><%= l(:field_firstname) %></label>
+        <%= f.text_field :firstname, :required => true, :readonly => true %>
+        <label><%= l(:field_mail) %></label>
+        <%= f.text_field :mail, :required => true, :readonly => true %>
+      </div>
+      <div class="span5">
+        <div class="image-selector-container">
+          <div class="image-selector">
+            <%= image_tag(@user.avatar_url(:medium)) %>
+            <span class="upload-image">
+              <%= f.file_field :avatar %>
+            </span>
+            <%= f.hidden_field :avatar_cache %>
+          </div>
+        </div>
+      </div>  
+    </div>
+  </div>
+  <div class="modal-footer">
+    <%= link_to l(:button_close), '#', class: 'btn', data: { dismiss: 'modal' } %>
+    <%= submit_tag l(:button_save), disable_with: l(:button_submiting), class: 'button blue' %>
+  </div>
+<% end %>

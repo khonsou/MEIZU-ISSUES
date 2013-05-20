@@ -1,41 +1,27 @@
-<% if !User.current.from_ldap? %>
-  <div class="modal" id="container-modal">
-    <div class="tabbable"> <!-- Only required for left/right tabs -->
-      <div class="tab-title">
-        <ul class="nav nav-tabs">
-          <li class="active"><%= link_to l(:label_my_account), '#account-tab-content', data: { toggle: 'tab' }, class: 'account' %></li>
-        </ul>
-      </div>
-      <div class="tab-content">
-        <div class="tab-pane active" id="account-tab-content">
-          <div class="modal-body">
-            您是从LDAP登录，不能修改帐号
-          </div>      
-          <div class="modal-footer">
-            <%= link_to l(:button_close), '#', class: 'btn', data: { dismiss: 'modal' } %>
-            <%= submit_tag l(:button_save), disable_with: l(:button_submiting), class: 'button blue' %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-<% else %>
-  <div class="modal" id="container-modal">
-    <div class="tabbable"> <!-- Only required for left/right tabs -->
-      <div class="tab-title">
-        <ul class="nav nav-tabs">
-          <li class="active"><%= link_to l(:label_my_account), '#account-tab-content', data: { toggle: 'tab' }, class: 'account' %></li>
+<div class="modal" id="container-modal">
+  <div class="tabbable"> <!-- Only required for left/right tabs -->
+    <div class="tab-title">
+      <ul class="nav nav-tabs">
+        <li class="active"><%= link_to l(:label_my_account), '#account-tab-content', data: { toggle: 'tab' }, class: 'account' %></li>
+        <% if !User.current.from_ldap? %>              
           <li><%= link_to l(:button_change_password), '#password-tab-content', data: { toggle: 'tab' }, class: 'password' %></li>
-        </ul>
-      </div>
-      <div class="tab-content">
+        <% end %>  
+      </ul>
+    </div>
+    <div class="tab-content">
+      <% if User.current.from_ldap? %>      
+        <div class="tab-pane active" id="account-tab-content">
+          <%= render 'account_form_ldap' %>
+        </div>
+      <% else %>  
         <div class="tab-pane active" id="account-tab-content">
           <%= render 'account_form' %>
-        </div>
+        </div>      
         <div class="tab-pane" id="password-tab-content">
           <%= render 'password_form' %>
         </div>
-      </div>
+      <% end %>  
     </div>
   </div>
-<% end %>
+</div>
+
