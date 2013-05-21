@@ -37,4 +37,9 @@ $(document).ready( function(){
         return details_in_popup($(this).attr('href'), div_id)
       }      
   })      
+  
+  $(".pinned").pin({
+    containerSelector: ".container" ,
+    minHeight: 100
+  })
 })

@@ -87,13 +87,20 @@
     }
 
     .assignee {
-      margin-bottom: 5px;
+      margin-bottom: 15px;
     }
 
     .assignee a,
     .due .date {
-      font-weight: bold;
+      font-weight: normal;
     }
+    
+    div.info{
+      font-weight: normal;
+      padding-bottom: 5px;
+      font-size:12px;
+    }    
+
   }
 }
 
@@ -172,7 +179,7 @@
   
   h2{
     font-size:16px;
-    margin-bottom:15px;
+    margin-bottom:0px;
     margin-top:0px;
     line-height: 30px;
   }  
@@ -272,7 +279,11 @@
     display: table-cell;
     color: transparent;
     vertical-align: top;
-    padding: 0px 0 0px 8px;
+    padding: 0px 0 0px 0px;
+    
+    .icon-assignee{
+      margin-top: -5px;
+    }
   }
   
   .select-menu-item-gravatar {
@@ -281,7 +292,7 @@
     vertical-align: top;
     overflow: hidden;
     line-height: 0;
-    width: 32px;
+    width: 45px;
   }
   
   .select-menu-item-text {
@@ -290,7 +301,7 @@
     padding: 0px;
   
     h4{
-      margin: 0px;  
+      margin-top: 5px;  
       font-size: 12px;
     }
   }

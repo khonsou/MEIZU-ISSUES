@@ -1,18 +1,18 @@
 .view-switcher {
   background: #fff;
-  border: 1px solid #ebebeb;
+  border: 1px solid #ddd;
   border-radius: 14px;
-  margin: 16px 0px 0 0;
+  margin: 16px 0px 16px 0;
   width: 145px;
 }
 .view-switcher a {
   display: inline-block;
   color: #999;
   font-size: 12px;
-  padding: 6px 10px;
+  padding: 4px 10px;
 }
 
-.view-switcher a.active {
+.view-switcher a.active, .view-switcher a.active-right {
   background-image: linear-gradient(whitesmoke, #ebebeb);
   border: 1px solid #ebebeb;
   background-repeat: repeat-x;  
@@ -20,5 +20,9 @@
   box-shadow: inset 1px 1px 0 0 rgba(255,255,255,0.2),1px 1px 0 0 #ccc,5px 4px 5px -4px #ccc;
   position: relative;
   top: -1px;
-  left: 1px;
+  left: -1px;
+}
+
+.view-switcher a.active-right{
+  left: 2px;
 }

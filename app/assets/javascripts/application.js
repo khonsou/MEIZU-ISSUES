@@ -11,6 +11,7 @@
 //= require select2
 //= require dropzone
 //= require bootstrapx-clickover
+//= require jquery.pin
 
 //= require core
 //= require ./files

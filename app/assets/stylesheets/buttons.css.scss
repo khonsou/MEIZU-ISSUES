@@ -70,7 +70,8 @@ text-decoration: none;
     background-position: 0 0;
   }
 }
-span.btn:hover{
+span.btn:hover, span.btn:active{
+ box-shadow:none;
  background-image: linear-gradient(#f5f5f5, #ebebeb);
  cursor: default;
 }
@@ -130,8 +131,20 @@ span.btn:hover{
 
 
 .select-menu-button.minibutton {
-  padding-right: 60px;
+  padding-right: 59px;
+  width: 75px;
 }
+
+span.minibutton{
+  width: 123px;
+}
+
+
+a.minibutton, a.minibutton:hover,  a.minibutton:visited{
+  color: $btnTextColor;
+  font-weight:normal;
+}
+  
 .minibutton {
   padding: 0 10px;
   line-height: 24px;
@@ -144,7 +157,7 @@ span.btn:hover{
   font-size:12px;
 }
 .js-select{
-  display: inline;
+  display: inline-block;
   position: relative;
 }
 .js-select-button{
@@ -155,7 +168,7 @@ content: " ";
 display: block;
 position: absolute;
 background: url("/assets/icon-edit.png") no-repeat 0px 1px;
-top: -3px;
+top: 25px;
 right: 6px;
 width: 20px;
 height: 20px;
@@ -164,9 +177,9 @@ height: 20px;
 content: "";
 display: block;
 position: absolute;
-top: -6px;
+top: 23px;
 bottom: 0;
-right: 29px;
+right: 28px;
 width: 1px;
 height: 27px;
 background-color: #ddd;
