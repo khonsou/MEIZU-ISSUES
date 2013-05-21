@@ -6,7 +6,7 @@
           <%= image_tag(project.icon_url(:small)) %>
         <% end -%>
         <div class="media-body">
-          <a href="<%= project_issues_path(project) %>"  class="<%= 'one-line' if project.name.display_width < 12  %>"><%= truncate(project.name, length: 19) %> (<%= project.issues.open.count %>)</a>       
+          <a href="<%= project_issues_path(project) %>"  class="<%= 'one-line' if project.name.display_width < 14  %>"><%= truncate(project.name, length: 19) %> (<%= project.issues.open.count %>)</a>       
         </div>
       </li>
     <% end -%>
