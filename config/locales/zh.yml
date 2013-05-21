@@ -37,22 +37,22 @@ zh:
 
   datetime:
     distance_in_words:
-      half_a_minute: "半分钟"
+      half_a_minute: "1 分钟"
       less_than_x_seconds:
-        one: "一秒内"
-        other: "少于 %{count} 秒"
+        one: "1 秒钟"
+        other: "%{count} 秒钟"
       x_seconds:
-        one: "一秒"
-        other: "%{count} 秒"
+        one: "1 秒钟"
+        other: "%{count} 秒钟"
       less_than_x_minutes:
-        one: "一分钟内"
-        other: "少于 %{count} 分钟"
+        one: "1 分钟"
+        other: "%{count} 分钟"
       x_minutes:
-        one: "一分钟"
+        one: "1 分钟"
         other: "%{count} 分钟"
       about_x_hours:
-        one: "大约一小时"
-        other: "大约 %{count} 小时"
+        one: "1 小时"
+        other: " %{count} 小时"
       x_hours:
         one:   "1 小时"
         other: "%{count} 小时"

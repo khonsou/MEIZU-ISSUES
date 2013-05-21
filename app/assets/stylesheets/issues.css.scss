@@ -66,6 +66,10 @@
   }
 }
 
+.issue .actions{
+  color: $lightTextColor; 
+}
+
 .issue-info .attributes .issue-status,
 #watchers ul {
   border-bottom: $dashedBorder;

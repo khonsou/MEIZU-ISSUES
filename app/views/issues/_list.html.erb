@@ -62,7 +62,7 @@
                 <div class="pull-left span22">
                   <div class="clearfix">
                     <div class="pull-left name"><%= issue.author %></div>
-                    <div class="pull-right"><%= time_ago_in_words(issue.created_on) %></div>
+                    <div class="pull-right"><%= relative_time(issue.created_on) %></div>
                   </div>
                   <div>
                     <%= truncate(h(issue.description), length: 75) %>
