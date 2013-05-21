@@ -73,7 +73,9 @@
         // close on global request, exclude clicks inside clickover
         this.options.global_close &&
           $('body').on( this.attr.click_event_ns, function(e) {
-            if ( !that.tip().has(e.target).length ) { that.clickery(); }
+            // hack for click datepicker in popover
+            var isDatepicker = $(e.target).hasClass('ui-datepicker-prev') || $(e.target).hasClass('ui-datepicker-next') ;           
+            if ( !that.tip().has(e.target).length && !isDatepicker ) { that.clickery(); }
           });
 
         this.options.esc_close && $(document).bind('keyup.clickery', function(e) {

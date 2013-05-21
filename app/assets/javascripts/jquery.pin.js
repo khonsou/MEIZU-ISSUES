@@ -30,10 +30,11 @@
 
                 $this.data("pin", {
                     from: options.containerSelector ? containerOffset.top : offset.top,
-                    to: containerOffset.top + $container.height() - $this.outerHeight() ,
+                    to: containerOffset.top + $container.height() - $this.outerHeight(),
                     end: containerOffset.top + $container.height(),
                     parentTop: parentOffset.top
                 });
+                          
 
                 $this.css({width: $this.outerWidth()});
                 $this.parent().css("height", $this.outerHeight());
@@ -44,7 +45,7 @@
             if (disabled) { return; }
 
             scrollY = $window.scrollTop();
-   
+      
             for (var i=0, len=elements.length; i<len; i++) {          
                 var $this = $(elements[i]),
                     data  = $this.data("pin"),
@@ -55,26 +56,27 @@
                     $this.css('position', '');
                     continue;
                 }
-              
-                if (from < scrollY && to > scrollY) {
-                    if(options.minHeight){
-                      var minHeight = options.minHeight;
-                    }else{
-                      var minHeight = 0;                      
-                    }                    
+
+                if(options.minHeight){
+                  var minHeight = options.minHeight;
+                }else{
+                  var minHeight = 0;                      
+                }           
+                
+                if (from < scrollY + minHeight && to > scrollY ) {         
                   
                     !($this.css("position") == "fixed") && $this.css({
                         left: $this.offset().left,
                         top: minHeight
                     }).css("position", "fixed");
                     if (options.activeClass) { $this.addClass(options.activeClass); }
-                } else if (scrollY >= to) {
+                } else if (scrollY >= to) {           
                     $this.css({
                         left: "auto",
                         top: to - data.parentTop
                     }).css("position", "absolute");
                     if (options.activeClass) { $this.addClass(options.activeClass); }
-                } else {
+                } else {           
                     $this.css({position: "", top: "", left: ""});
                     if (options.activeClass) { $this.removeClass(options.activeClass); }
                 }

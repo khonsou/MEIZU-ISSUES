@@ -10,11 +10,7 @@ background-image: -moz-linear-gradient(top, transparent, rgba(0,0,0,.1));
 border: 1px solid transparent;
 border-bottom-color: rgba(0,0,0,.3);
 border-radius: 4px;
--webkit-border-radius: 4px;
--moz-border-radius: 4px;
 box-shadow: 0 2px 0 rgba(0,0,0,.07), 0 1px 0 rgba(255,255,255,.2) inset;
--webkit-box-shadow: 0 2px 0 rgba(0,0,0,.07), 0 1px 0 rgba(255,255,255,.2) inset;
--moz-box-shadow: 0 2px 0 rgba(0,0,0,.07), 0 1px 0 rgba(255,255,255,.2) inset;
 color: #fff;
 display: inline-block;
 padding: 4px 10px;
@@ -131,8 +127,9 @@ span.btn:hover, span.btn:active{
 
 
 .select-menu-button.minibutton {
-  padding-right: 59px;
-  width: 75px;
+  padding-left: 0px;
+  padding-right: 27px;
+  width: 116px;
   height: 25px;
 }
 
@@ -141,10 +138,12 @@ span.minibutton{
   height: 25px;  
 }
 
+.minibutton{
+  font-weight:bold;
+}
 
 a.minibutton, a.minibutton:hover,  a.minibutton:visited{
   color: $btnTextColor;
-  font-weight:normal;
 }
   
 .minibutton {
