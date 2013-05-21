@@ -75,42 +75,6 @@
     <h2>
       <%= @issue.subject %>      
     </h2>
-
-<% if false %>          
-    <div id="attributes" class="attributes clearfix hidden-phone">          
-      <div class="span8 holder">        
-        <div class="js-select">
-          <% if @issue.closed? %>
-            <span class="btn minibutton js-menu-target" data-title="选择指派人" class="popover-link">
-              <i><%= l(:field_assigned_to) %>:</i>
-              <span class="js-select-button" data-assign="name"><%= @issue.assigned_to.try(:name) %></span>
-            </span>
-          <% else %>  
-            <a class="btn minibutton select-menu-button js-menu-target"  href="<%= issue_path(@issue) %>" data-title="选择指派人" class="popover-link">
-              <i><%= l(:field_assigned_to) %>:</i>
-              <span class="js-select-button" data-assign="name"><%= @issue.assigned_to.try(:name) %></span>
-            </a> 
-          <% end %> 
-        </div>        
-      </div>
-
-      <div class="span8  holder">        
-        <div class="js-select date-select">
-          <% if @issue.closed? %>          
-            <span class="btn minibutton js-menu-target">
-              <i>截止日期:</i>
-              <span class="js-select-button" data-assign="date"><%= format_date(@issue.due_date) %></span>            
-            </span> 
-          <% else %>
-            <a class="btn minibutton select-menu-button js-menu-target" data-title="选择日期" href="<%= issue_path(@issue, :date => true) %>">
-              <i>截止日期:</i>
-              <span class="js-select-button" data-assign="date"><%= format_date(@issue.due_date) %></span>            
-            </a>                   
-          <% end %>    
-        </div>              
-      </div>
-    </div>
-<% end %>    
     
     <div id="edit-btn">
       <%= render 'action_menu', { issue: @issue } %>
