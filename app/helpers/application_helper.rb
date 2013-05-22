@@ -612,19 +612,20 @@ module ApplicationHelper
   def parse_mention_to_link(text, object)
     text.gsub /@(\w+|\p{Han}+)/u do |match|
       login = $1
+      link_html = ""
+      
       if object.present?
         object.mentioned_users.each do |user|
           if user.name == login
-            return "<a href='#{user_path(user)}' data-remote='true' class='user-mention'>" +
+             link_html = "<a href='#{user_path(user)}' data-remote='true' class='user-mention'>" +
             "@#{login}" +
             "</a>" 
           end           
         end  
       end  
       
-      "<a href='javascript:void(0)' class='user-mention'>" +
-      "@#{login}" +
-      "</a>"      
+      link_html.blank? ? "<a href='javascript:void(0)' class='user-mention'>@#{login}</a>" :  link_html    
+        
     end
   end
 
