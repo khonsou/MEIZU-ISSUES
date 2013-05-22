@@ -261,6 +261,20 @@ class Attachment < ActiveRecord::Base
     Attachment.where("created_on < ? AND (container_type IS NULL OR container_type = '')", Time.now - age).destroy_all
   end
 
+  def container_name
+    # pusher_type is assumed to be 'Attachment'
+    case  container_type
+    when 'Project'
+      container.name
+    when 'Issue'
+      container.subject
+    else
+      Rails.logger.warn("container_type #{container_type} is used in pusher Attachment")
+      raise("container_type #{container_type} is used in pusher Attachment")
+      container_type
+    end
+  end
+
   private
 
   # Physically deletes the file from the file system

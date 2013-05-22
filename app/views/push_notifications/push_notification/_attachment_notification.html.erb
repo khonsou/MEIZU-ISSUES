@@ -10,9 +10,9 @@
     <div class="span14">
       <% case push_notification.event_name %>
       <% when 'upload' %>
-        上传了<%= link_to push_notification.pusher.filename, read_push_notification_path(push_notification, pusher_path: project_files_path(project_id: push_notification.project.id, anchor: dom_id(push_notification.pusher))) %>
+        上传了<%= link_to push_notification.pusher.filename, read_push_notification_path(push_notification, pusher_path: get_pusher_path(push_notification)) %>
       <% end -%>
-      <span class="project">(<%= link_to_project push_notification.project %>)</span>
+      <span class="project">(<%= link_to_pusher_container(push_notification) %>)</span>
     </div>
     <div class="span4">
       <% if push_notification.unread? %>
@@ -22,7 +22,7 @@
   </li>
 <% else %>
   <li class="item row-fluid">
-    <%= link_to read_push_notification_path(push_notification, pusher_path: project_files_path(project_id: push_notification.project.id, anchor: dom_id(push_notification.pusher))) do %>
+    <%= link_to read_push_notification_path(push_notification, pusher_path: get_pusher_path(push_notification)) do %>
       <div class="span7">
         <div class="user-image pull-left">
           <%= image_tag push_notification.author.avatar_url(:small) %>
@@ -35,7 +35,7 @@
         <% when 'upload' %>
           上传了<%= push_notification.pusher.filename %>
         <% end -%>
-        <span class="project">(<%= push_notification.project.name %>)</span>
+        <span class="project">(<%= push_notification.pusher.container_name %>)</span>
       </div>
     <% end -%>
   </li>
