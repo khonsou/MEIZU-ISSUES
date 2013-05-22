@@ -10,6 +10,12 @@
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_tag do %>
     window._rails_env = "<%= Rails.env %>"
+    window._project_watchers = new Array();
+    <% if @project.present? %>
+      <% @project.member_principals.map(&:user).map(&:name).each do |name| %>
+        window._project_watchers.push('<%= name %>');
+      <% end %>    
+    <% end %>  
   <% end %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>

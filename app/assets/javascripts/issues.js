@@ -42,4 +42,6 @@ $(document).ready( function(){
     containerSelector: ".container" ,
     minHeight: 100
   })
+  
+  $('.hasAt').atwho({at:"@", 'data':window._project_watchers});
 })

@@ -17,6 +17,7 @@
 
 class Issue < ActiveRecord::Base
   include Redmine::SafeAttributes
+  include Concerns::Mentionable
 
   belongs_to :project
   belongs_to :tracker
@@ -306,7 +307,22 @@ class Issue < ActiveRecord::Base
     end
     write_attribute(:description, arg)
   end
+  
+  # for mentionable use
+  def notes
+    self.description
+  end
 
+  def user
+    self.author
+  end
+  
+  # use in mention notification display
+  def journalized
+    self
+  end
+  
+   
   # Overrides assign_attributes so that project and tracker get assigned first
   def assign_attributes_with_project_and_tracker_first(new_attributes, *args)
     return if new_attributes.nil?

@@ -2,17 +2,6 @@
   <% form_class = "" %>
 <% else %>
   <% form_class = "dropzone" %>
-  <%= javascript_tag do %>    
-    $(document).ready(function(){
-      data = new Array();
-      <% @issue.project.member_principals.map(&:user).map(&:name).each do |name| %>
-        data.push('<%= name %>');
-      <% end %>
-    
-      $('.hasAt').atwho({at:"@", 'data':data});
-    })  
-  <% end %>
-
 <% end %>
 
 <% content_for :sidebar do %>
