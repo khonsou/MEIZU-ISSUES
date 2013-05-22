@@ -8,10 +8,9 @@
       <% @issue.project.member_principals.map(&:user).map(&:name).each do |name| %>
         data.push('<%= name %>');
       <% end %>
-      
-      $('.hasAt').atwho({at:"@", 'data':data});
-    })
     
+      $('.hasAt').atwho({at:"@", 'data':data});
+    })  
   <% end %>
 
 <% end %>

@@ -7,7 +7,10 @@ module Concerns
   
     def mentioned_users
       logins = self.notes.scan(/@(\w+|\p{Han}+)/u).flatten
-      User.where("login in (?)", logins)
+                  
+      self.project.member_principals.map(&:user).select do |user|
+        logins.include?(user.name)
+      end  
     end
 
     def send_mention_notification

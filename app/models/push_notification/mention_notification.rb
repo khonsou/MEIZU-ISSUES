@@ -1,6 +1,6 @@
 class PushNotification::MentionNotification < PushNotification
   def self.notify(journal, event_name = '')
-    journal.mention_users.map do |user|
+    journal.mentioned_users.map do |user|
       unless user == User.current
         create(event_name: event_name, pusher: journal, author: journal.user, recipient: user)
       end
