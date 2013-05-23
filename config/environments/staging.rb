@@ -62,4 +62,6 @@ RedmineApp::Application.configure do
   config.action_mailer.logger = nil
 
   config.action_mailer.default_url_options = { :host => '125.89.61.122:4567' }
+
+  config.force_ssl = true
 end
