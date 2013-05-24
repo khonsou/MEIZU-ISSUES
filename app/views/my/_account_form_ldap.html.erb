@@ -5,7 +5,7 @@
   <div class="modal-body">
     <div class="row-fluid">
       <div class="span19">
-        <p class="mini">从LDAP登录的用户不能修改姓名和邮箱</p>        
+        <p class="mini alert">从LDAP登录的用户不能修改姓名和邮箱</p>        
         <label><%= l(:field_firstname) %></label>
         <%= f.text_field :firstname, :required => true, :readonly => true %>
         <label><%= l(:field_mail) %></label>
