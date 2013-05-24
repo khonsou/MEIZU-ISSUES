@@ -331,6 +331,11 @@
   border: none;
   background: transparent;
   padding: 0px;
+  
+  a.blue{
+    margin-right:10px;
+    cursor:pointer;
+  }
 }
 
 .issue-body  .wiki p{
@@ -362,3 +367,45 @@ h2.title{
 .atwho-view{
   z-index: 2000;
 } 
+
+.showmebox.inline-help {
+  padding: 10px;
+  margin: 0 -20px;
+  width: 160px;
+  position: fixed;
+  top: 250px;
+  left: 170px;
+  z-index: 10000;
+  -moz-border-image: none;
+  -webkit-border-image: none;
+  border: 7px solid #fff;
+  -webkit-box-shadow: 0px 0px 21px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 0px 21px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 21px rgba(0, 0, 0, 0.3);
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  background-color:#FEFAE2;
+  padding:10px 0px 10px 20px;
+  display:none;
+}
+
+.showmebox.popup {
+  -webkit-animation: popin 300ms;
+  -moz-animation: popin 300ms;
+  -webkit-transform-origin: center bottom;
+  -moz-transform-origin: center bottom;
+  -ms-transform-origin: center bottom;
+  -o-transform-origin: center bottom;
+  transform-origin: center bottom;
+}
+
+.showmebox.inline-help a.close {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  opacity: 0.5;  
+}
+.showmebox.inline-help a.close:hover{
+   opacity: 1;   
+}

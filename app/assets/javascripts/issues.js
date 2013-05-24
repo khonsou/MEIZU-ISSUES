@@ -24,7 +24,7 @@ function details_in_popup(link, div_id){
       $('#'+div_id).html(response.responseText)
     }
   });
-  return '<div id="'+ div_id +'">Loading...</div>'    ;  
+  return '<div id="'+ div_id +'">Loading...</div>' ;  
 }
 
 $(document).ready( function(){
@@ -44,4 +44,14 @@ $(document).ready( function(){
   })
   
   $('.hasAt').atwho({at:"@", 'data':window._project_watchers});
+  
+  $('a[data-format=true]').click(function(){
+    $('#formatting-help').show();
+    return false;
+  })
+  
+  $("a.close").click(function(){
+    $(this).parent().hide();  
+    return false;
+  })
 })

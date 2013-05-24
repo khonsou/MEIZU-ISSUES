@@ -127,11 +127,16 @@
           <%= render :partial => 'attachments/form', :locals => {:container => @issue} %>
         <% end %>
 
-        <%= submit_tag l(:button_submit), disable_with: l(:button_submiting), class: 'button blue full pull-right', id: "button_submit" %>
+        <div class="pull-right">
+          <a href="" data-format='true' class="blue">Textile语法</a>
+          <%= submit_tag l(:button_submit), disable_with: l(:button_submiting), class: 'button blue full', id: "button_submit" %>
+        </div>
       </div>
     <% end -%>
   <% end -%>
   
 </div>
+
+<%= render :partial => "shared/textile" %>
 
 <% html_title "#{@issue.tracker.name} ##{@issue.id}: #{@issue.subject}" %>

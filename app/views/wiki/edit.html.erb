@@ -23,14 +23,22 @@
                       :class => 'wiki-edit span24', :accesskey => accesskey(:edit) %>
 
     <p><%= f.text_field :comments, class: 'span24', placeholder: l(:field_comments) %></p>
-
-    <div class="pull-right">
-      <%= preview_link({:controller => 'wiki', :action => 'preview', :project_id => @project, :id => @page.title }, 'wiki_form') %>
-      <%= submit_tag l(:button_save), class: 'button blue' %>
+    
+    <div class="clearfix">
+      <div class="pull-left">
+        <a href="" data-format='true' class="blue">Textile语法</a>
+      </div>  
+      <div class="pull-right">
+        <%= preview_link({:controller => 'wiki', :action => 'preview', :project_id => @project, :id => @page.title }, 'wiki_form') %>
+        <%= submit_tag l(:button_save), class: 'button blue' %>
+      </div>
     </div>
   </div>
 <% end %>
 
 <div id="preview" class="wiki"></div>
+
+
+<%= render :partial => "shared/textile" %>
 
 <% html_title @page.pretty_title %>
