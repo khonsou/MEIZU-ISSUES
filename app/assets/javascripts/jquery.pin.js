@@ -36,7 +36,7 @@
                 });
                           
 
-                $this.css({width: $this.outerWidth()});
+//                $this.css({width: $this.outerWidth()});
                 $this.parent().css("height", $this.outerHeight());
             }
         };
@@ -66,7 +66,7 @@
                 if (from < scrollY + minHeight && to > scrollY ) {         
                   
                     !($this.css("position") == "fixed") && $this.css({
-                        left: $this.offset().left,
+//                        left: $this.offset().left,
                         top: minHeight
                     }).css("position", "fixed");
                     if (options.activeClass) { $this.addClass(options.activeClass); }

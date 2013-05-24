@@ -40,7 +40,8 @@ $(document).ready( function(){
   
   $(".pinned").pin({
     containerSelector: ".container" ,
-    minHeight: 100
+    minHeight: 100,
+    minWidth: 940
   })
   
   $('.hasAt').atwho({at:"@", 'data':window._project_watchers});
