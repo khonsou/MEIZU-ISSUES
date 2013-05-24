@@ -25,7 +25,9 @@
     <div class="row-fluid">
       <ul class="thumbnails">
         <% images.each do |attachment| %>
-          <li class="span6"><%= thumbnail_tag(attachment) %></li>
+          <li class="span6">
+            <%= render :partial => "shared/thumbnail", :locals => {:attachment => attachment, :count => 1} %>
+          </li>
         <% end %>
       </ul>
     </div>
