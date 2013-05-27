@@ -195,7 +195,7 @@ class Mailer < ActionMailer::Base
                     'Wiki-Page-Id' => wiki_content.page.id
     @author = wiki_content.author
     message_id wiki_content
-    recipients = wiki_content.project.users.map(&:mail) - [User.current.mail]
+    recipients = wiki_content.project.users.map(&:mail) - [@author.mail]
     @wiki_content = wiki_content
     @wiki_content_url = url_for(:controller => 'wiki', :action => 'show',
                                       :project_id => wiki_content.project,
@@ -216,7 +216,7 @@ class Mailer < ActionMailer::Base
                     'Wiki-Page-Id' => wiki_content.page.id
     @author = wiki_content.author
     message_id wiki_content
-    recipients = wiki_content.project.users.map(&:mail) - [User.current.mail]
+    recipients = wiki_content.project.users.map(&:mail) - [@author.mail]
     @wiki_content = wiki_content
     @wiki_content_url = url_for(:controller => 'wiki', :action => 'show',
                                       :project_id => wiki_content.project,
