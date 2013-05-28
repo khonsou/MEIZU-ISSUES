@@ -6,11 +6,15 @@ module Concerns
     end    
   
     def mentioned_users
-      logins = self.notes.scan(/@(\w+|\p{Han}+)/u).flatten
+      if self.notes.present?
+        logins = self.notes.scan(/@(\w+|\p{Han}+)/u).flatten
                   
-      self.project.member_principals.map(&:user).select do |user|
-        logins.include?(user.name)
-      end  
+        self.project.member_principals.map(&:user).select do |user|
+          logins.include?(user.name)
+        end  
+      else
+        []
+      end    
     end
 
     def send_mention_notification

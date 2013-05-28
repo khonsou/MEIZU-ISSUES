@@ -12,7 +12,7 @@
       <% end %>
     </div>
     <div class="modal-footer">
-      <%= link_to l(:button_cancel), '#', class: 'btn', data: { dismiss: 'modal' } %>
+       <button class="btn" data-dismiss="modal" aria-hidden="true"><%= l(:button_cancel) %></button>
       <%= submit_tag l(:button_submit), class: 'button blue' %>
     </div>
   <% end -%>
