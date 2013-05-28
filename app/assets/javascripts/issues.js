@@ -47,12 +47,17 @@ $(document).ready( function(){
   $('.hasAt').atwho({at:"@", 'data':window._project_watchers});
   
   $('a[data-format=true]').click(function(){
-    $('#formatting-help').show();
+    $('#formatting-help').fadeIn();
     return false;
   })
   
   $("a.close").click(function(){
     $(this).parent().hide();  
     return false;
+  })
+  
+  $('.tabnav li a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
   })
 })

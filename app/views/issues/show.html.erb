@@ -1,5 +1,5 @@
 <% if old_browser?(@user_agent) %>
-  <% form_class = "" %>
+  <% form_class = "journal_form" %>
 <% else %>
   <% form_class = "dropzone" %>
 <% end %>
@@ -7,7 +7,7 @@
 <% content_for :sidebar do %>
   <div class="row-fluid">
     <div class="<%= 'pinned' if !@user_agent.mobile? %>">
-      <%= link_to project_issues_path(@issue.project), class: 'btn span24 box' do %>
+      <%= link_to project_issues_path(@issue.project), class: 'btn span24 box project-name' do %>
         <i class="icon-arrow-left"></i><%= @issue.project.name %>
       <% end -%>
 
@@ -68,7 +68,7 @@
         </div>
       <% end %>
     </div>
-  </div>
+  </div>  
 <% end -%>
 
 <div class="issue">
@@ -122,23 +122,45 @@
   <% end %>
 
   <% if !@issue.closed? && User.current.allowed_to?(:add_issue_notes, @issue.project) %>
-    <%= labelled_form_for @issue, html: { :multipart => true, :class => form_class, :id => form_class, :"data-url" => "/projects/#{@issue.project.id}/files/upload" } do |f| %>
-      <div class="row-fluid">
-        <%= text_area_tag 'notes', @notes, :rows => 3, :class => 'wiki-edit span24 hasAt', :placeholder => '在此添加讨论内容......' %>
-        <% if old_browser?(@user_agent) %>
-          <%= render :partial => 'attachments/form', :locals => {:container => @issue} %>
-        <% end %>
 
-        <div class="pull-right">
-          <a href="" data-format='true' class="light">Textile语法</a>
-          <%= submit_tag l(:button_submit), disable_with: l(:button_submiting), class: 'button blue full', id: "button_submit" %>
-        </div>
+    
+      <div class="clearfix tabnav">
+        <ul class="nav nav-tabs">
+          <li class="active">
+            <a href="#home">回复</a>
+          </li>
+          <li>
+            <%= preview_link("/issues/preview?project_id=#{@issue.project.id}&id=#{@issue.id}", form_class, 'preview', {:href => "#preview"} ) %>
+          </li>
+        </ul>
+        <a href="" data-format='true' class="light pull-right">Textile语法</a>   
       </div>
-    <% end -%>
+      
+      <div class="tab-content overflow">
+        <div class="tab-pane active" id="home">
+              <%= labelled_form_for @issue, html: { :multipart => true, :class => form_class, :id => form_class, :"data-url" => "/projects/#{@issue.project.id}/files/upload" } do |f| %>
+          <div class="row-fluid">
+            <%= text_area_tag 'notes', @notes, :rows => 3, :class => 'wiki-edit span24 hasAt', :placeholder => '在此添加讨论内容......' %>
+            <% if old_browser?(@user_agent) %>
+              <%= render :partial => 'attachments/form', :locals => {:container => @issue} %>
+            <% end %>
+
+            <div class="pull-right">
+              <%= submit_tag l(:button_submit), disable_with: l(:button_submiting), class: 'button blue full', id: "button_submit" %>
+            </div>
+          </div>
+          <% end -%>          
+        </div>
+        <div class="tab-pane" id="preview">
+          
+        </div>          
+      </div>  
+  
+
   <% end -%>
   
 </div>
 
-<%= render :partial => "shared/textile" %>
+<%= render :partial => "shared/textile" %>  
 
 <% html_title "#{@issue.tracker.name} ##{@issue.id}: #{@issue.subject}" %>

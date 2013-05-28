@@ -50,3 +50,30 @@
      -moz-box-shadow: none;
           box-shadow: none;
 }
+
+.tabnav{
+  border-bottom: 1px solid #ddd;
+  height: 35px;
+    
+  ul{
+    float: left;
+    margin-bottom: 10px;
+    display: inline-block;
+    border-bottom:none;
+    
+    li > a {
+      line-height: 18px;
+    }
+  }
+  
+  a.pull-right{
+   margin-top:10px;
+   display:block;
+ }
+    
+}
+
+.tab-content.overflow {
+  overflow: visible;
+}
+
