@@ -41,7 +41,7 @@ $(document).ready( function(){
   $(".pinned").pin({
     containerSelector: ".container" ,
     minHeight: 100,
-    minWidth: 940
+    minWidth: 1200
   })
   
   $('.hasAt').atwho({at:"@", 'data':window._project_watchers});

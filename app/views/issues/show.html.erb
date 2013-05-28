@@ -32,7 +32,7 @@
             <% end %>
           </div>
         
-          <div class="assignee js-select">
+          <div class="assignee js-select hidden-phone hidden-tablet">
             <div class="info">指派给: </div>
             <% if @issue.closed? %>
               <span class="btn minibutton js-menu-target" data-title="选择指派人" class="popover-link">
@@ -45,7 +45,7 @@
             <% end %>  
           </div>
         
-          <div class="due  js-select">
+          <div class="due  js-select hidden-phone hidden-tablet">
             <div class="info">计划完成日期: </div>
             <% if @issue.closed? %>
               <span class="btn minibutton js-menu-target">
