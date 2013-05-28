@@ -48,9 +48,13 @@
   
   .nav-tabs > li:first-of-type {
     z-index: 4;
-    box-shadow: 2px 0 2px rgba(0,0,0,0.1);
-    border-left: 1px solid #dfdfe1; 
+    box-shadow: 2px 0 2px rgba(0,0,0,0.1), 0px 0 2px rgba(0,0,0,0.1);
+    border-left: 1px solid #dfdfe1;     
   }
+  
+  .nav-tabs > li:first-of-type.active {
+    border-left:none;
+  }  
 
   .nav-tabs > li > a {
     display: block;

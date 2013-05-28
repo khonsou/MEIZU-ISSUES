@@ -22,6 +22,8 @@ module Redmine
   module WikiFormatting
     module Textile
       class Formatter < RedCloth3
+              
+        
         include ActionView::Helpers::TagHelper
         include Redmine::WikiFormatting::LinksHelper
 
@@ -41,6 +43,22 @@ module Redmine
         def to_html(*rules)
           @toc = []
           super(*RULES).to_s
+        end
+        
+        #change code parse for use @
+        CODE_RE = /(\W)
+            &
+            (?:\|(\w+?)\|)?
+            (.+?)
+            &
+            (?=\W)/x
+            
+        def inline_textile_code( text ) 
+          text.gsub!( CODE_RE ) do |m|
+            before,lang,code,after = $~[1..4]
+            lang = " lang=\"#{ lang }\"" if lang
+            rip_offtags( "#{ before }<code#{ lang }>#{ code }</code>#{ after }", false )
+          end
         end
 
         def get_section(index)
