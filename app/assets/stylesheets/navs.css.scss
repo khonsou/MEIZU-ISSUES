@@ -38,15 +38,27 @@
   .nav-tabs {
     border-bottom: 0 none;
   }
+  
+  .nav-tabs > li{
+    background-image: linear-gradient(#fdfdfd, #ebebeb);
+    background-repeat: repeat-x;    
+    border-radius: 3px 3px 0 0;
+    box-shadow: 2px 0 2px rgba(0,0,0,0.1), -2px 0 2px rgba(0,0,0,0.1);
+  }
+  
+  .nav-tabs > li:first-of-type {
+    z-index: 4;
+    box-shadow: 2px 0 2px rgba(0,0,0,0.1);
+    border-left: 1px solid #dfdfe1; 
+  }
 
   .nav-tabs > li > a {
-    width: 50px;
+    display: block;
+    width: 40px;
     padding: 5px 30px 5px 50px;
     margin-right: 0px;
-    background-color: $lightBackgroudTwo;
-    border-color: #dedede;
+
     font-size: $bigFontSize;
-    color: $lightTextColor;
 
     &:hover {
       border-color: #cbcbcb;
