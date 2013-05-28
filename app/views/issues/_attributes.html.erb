@@ -2,8 +2,11 @@
   <% if @issue.safe_attribute? 'assigned_to_id' %>
     <div class="span9">
       <span><%= l(:field_assigned_to) %></span>
-      <%= f.select :assigned_to_id, principals_options_for_select(@issue.assignable_users, @issue.assigned_to), { :include_blank => true, :required => @issue.required_attribute?('assigned_to_id') }, { class: 'span6' } %>
+      <%= f.hidden_field :assigned_to_id, style: "width:50%" %>
     </div>
+    <script>
+      <%= render :partial => "auto_completes/select2_script_for_assigned_to", :locals => {:dom_id => 'issue_assigned_to_id', :project_id => @issue.project.id, :user => @issue.assigned_to} %>
+    </script>
   <% end %>
   
   <% if @issue.safe_attribute? 'due_date' %>

@@ -17,6 +17,7 @@ gem "unicode-display_width"
 gem 'dropzonejs-rails'
 gem "useragent"
 gem "jquery-atwho-rails"
+gem 'ruby-pinyin'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.4'

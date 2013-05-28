@@ -1,0 +1,21 @@
+$('#<%= dom_id %>').select2({
+  <% if user %>
+    initSelection: function(element, callback) {
+         var data = {id: "<%= user.id %>", text: "<%= user.name %>"};
+         callback(data);
+    }, 
+  <% end %>
+  ajax: {
+    url: "<%= auto_complete_assigned_to_path(project_id: project_id) %>",
+    dataType: 'json',
+    data: function (term, page) {
+        return {
+            q: term, // search term
+            page_limit: 20
+        };
+    },
+    results: function (data, page) {
+        return {results: data};
+    }
+  }
+});

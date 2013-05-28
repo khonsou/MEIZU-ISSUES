@@ -362,6 +362,8 @@ RedmineApp::Application.routes.draw do
 
   match 'uploads', :to => 'attachments#upload', :via => :post
 
+  match '/auto_complete/assigned_to', :to => 'auto_completes#assigned_to', :via => :get, :as => 'auto_complete_assigned_to'
+
   get 'robots.txt', :to => 'welcome#robots'
 
   Dir.glob File.expand_path("plugins/*", Rails.root) do |plugin_dir|

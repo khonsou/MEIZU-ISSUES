@@ -130,6 +130,7 @@ GEM
       json (~> 1.4)
     rmagick (2.13.2)
     ruby-openid (2.1.8)
+    ruby-pinyin (0.2.1)
     sass (3.2.5)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -189,6 +190,7 @@ DEPENDENCIES
   rdoc (>= 2.4.2)
   rmagick (>= 2.0.0)
   ruby-openid (~> 2.1.4)
+  ruby-pinyin
   sass-rails (~> 3.2.4)
   select2-rails (~> 3.2.1)
   shoulda (~> 2.11)
