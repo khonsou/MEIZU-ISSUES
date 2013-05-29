@@ -222,6 +222,9 @@ a:hover{
   box-shadow:  1px 1px rgba(0, 0, 0, 0.05);
 }
 
+.row-fluid .marleft0{
+  margin-left: 0px;
+}
 
 @media (min-width: 1200px) { 
   .container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
