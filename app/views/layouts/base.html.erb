@@ -12,8 +12,8 @@
     window._rails_env = "<%= Rails.env %>"
     window._project_watchers = new Array();
     <% if @project.present? %>
-      <% @project.member_principals.map(&:user).map(&:name).each do |name| %>
-        window._project_watchers.push('<%= name %>');
+      <% @project.member_principals.map(&:user).each do |user| %>
+        window._project_watchers.push( {name: '<%= user.name %>', pinyin: '<%= PinYin.of_string(user.name).join %>' } );
       <% end %>    
     <% end %>  
   <% end %>

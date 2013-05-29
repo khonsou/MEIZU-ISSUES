@@ -44,7 +44,44 @@ $(document).ready( function(){
     minWidth: 960
   })
   
-  $('.hasAt').atwho({at:"@", 'data':window._project_watchers});
+  $('.hasAt').atwho({
+    at: "@", 
+    data: window._project_watchers,
+    tpl: "<li data-pinyin='${pinyin}'> ${name} </li>"  ,
+    callbacks: {
+      filter: function(query, data, search_key) {
+        var item, _i, _len, _results;
+        _results = [];
+        for (_i = 0, _len = data.length; _i < _len; _i++) {
+          item = data[_i];
+          if (~item[search_key].toLowerCase().indexOf(query) || ~item['pinyin'].toLowerCase().indexOf(query )) {
+            _results.push(item);
+          }
+        }
+        console.log(_results);        
+        return _results;
+      },
+      sorter: function(query, items, search_key) {
+         var item, _i, _len, _results;
+         if (!query) {
+           return items;
+         }
+         _results = [];
+         for (_i = 0, _len = items.length; _i < _len; _i++) {
+           item = items[_i];
+           var name_order = item[search_key].toLowerCase().indexOf(query);
+           var pinyin_order = item['pinyin'].toLowerCase().indexOf(query);           
+           item.atwho_order = name_order > pinyin_order ? name_order : pinyin_order ;
+           if (item.atwho_order > -1) {
+             _results.push(item);
+           }
+         }
+         return _results.sort(function(a, b) {
+           return a.atwho_order - b.atwho_order;
+         })
+      }   
+    }  
+  });
   
   $('a[data-format=true]').click(function(){
     $('#formatting-help').fadeIn();
