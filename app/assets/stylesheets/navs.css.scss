@@ -42,13 +42,13 @@
   .nav-tabs > li{
     background-image: linear-gradient(#fdfdfd, #ebebeb);
     background-repeat: repeat-x;    
-    border-radius: 3px 3px 0 0;
-    box-shadow: 2px 0 2px rgba(0,0,0,0.1), -2px 0 2px rgba(0,0,0,0.1);
+    border-radius: 1px 1px 0 0;
+/*    box-shadow: 2px 0 2px rgba(0,0,0,0.1), -2px 0 2px rgba(0,0,0,0.1);*/
   }
   
   .nav-tabs > li:first-of-type {
     z-index: 4;
-    box-shadow: 2px 0 2px rgba(0,0,0,0.1), 0px 0 2px rgba(0,0,0,0.1);
+/*    box-shadow: 2px 0 2px rgba(0,0,0,0.1), 0px 0 2px rgba(0,0,0,0.1);*/
     border-left: 1px solid #dfdfe1;     
   }
   
@@ -61,11 +61,15 @@
     width: 40px;
     padding: 5px 30px 5px 50px;
     margin-right: 0px;
-
+    border-left: 1px solid #dfdfe1;   
+    border-bottom: 1px solid #ebebeb;
+    border-right: 1px solid #ebebeb;    
+    border-top: 1px solid #ebebeb;
     font-size: $bigFontSize;
 
     &:hover {
-      border-color: #cbcbcb;
+      border-color: #dfdfe1;
+      border-bottom: 1px solid #ebebeb;      
       background-color: $white;
       color: $textColor;
     }
@@ -73,7 +77,7 @@
 
   .nav-tabs > .active > a,
   .nav-tabs > .active > a:hover {
-    border-color: #cbcbcb;
+    border-color: #dfdfe1;
     border-bottom-color: transparent;
     background-color: $white;
     color: $textColor;

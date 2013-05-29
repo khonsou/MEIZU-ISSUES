@@ -28,6 +28,7 @@ a:hover{
   border-left: 1px solid #dfdfe1;   
   border-bottom: 1px solid #d3d3d3;
   border-right: 1px solid #ebebeb;    
+  border-top: none;
   box-shadow:  1px 1px rgba(0, 0, 0, 0.05);
   position:relative;
 }
@@ -38,6 +39,7 @@ a:hover{
 
 .title-bar {
   @include clearfix();
+  border-bottom: 1px solid #ebebeb;
 
   .nav {
     margin-bottom: 0;
