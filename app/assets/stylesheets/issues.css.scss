@@ -365,7 +365,7 @@ h2.title{
 
 .select-assign{
   overflow-x: hidden;
-  height: 250px;
+  max-height: 250px;
   overflow-y: auto;  
 }
 
@@ -423,4 +423,8 @@ h2.title{
 .atwho-view {
   overflow-y: auto;
   max-height: 250px;
+}
+
+.filterinput{
+  width: 188px;
 }

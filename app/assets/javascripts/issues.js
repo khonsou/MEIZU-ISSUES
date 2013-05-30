@@ -27,6 +27,39 @@ function details_in_popup(link, div_id){
   return '<div id="'+ div_id +'">Loading...</div>' ;  
 }
 
+function listFilter(header, list) { 
+  // header is any element, list is an unordered list
+  // create and add the filter form to the header
+  var form = $("<form>").attr({"class":"filterform","action":"#"}),
+      input = $("<input>").attr({"class":"filterinput","type":"text","placeholder":"筛选" });
+  $(form).append(input).prependTo(header);
+
+  $(input)
+    .change( function () {
+      var filter = $(this).val();
+      if(filter) {
+        // this finds all links in a list that contain the input,
+        // and hide the ones not containing the input while showing the ones that do
+                
+        $(list).find("h4").each(function(index){
+          var name_order = $(this).text().toLowerCase().indexOf(filter);
+          var pinyin_order = $(this).data('pinyin').toLowerCase().indexOf(filter);           
+          var order = name_order > pinyin_order ? name_order : pinyin_order ;  
+          if (order <= -1) {
+            $(this).parents('.select-menu-item').hide()
+          }            
+        })
+      } else {
+        $(list).find("div.select-menu-item").show();
+      }
+      return false;
+    })
+  .keyup( function () {
+      // fire the above change event after every letter
+      $(this).change();
+  });
+}
+
 $(document).ready( function(){
   $('.select-menu-button').clickover({
       html: true,
@@ -74,7 +107,7 @@ $(document).ready( function(){
            item.atwho_order = name_order > pinyin_order ? name_order : pinyin_order ;
            if (item.atwho_order > -1) {
              _results.push(item);
-           }
+           }  
          }
          return _results.sort(function(a, b) {
            return a.atwho_order - b.atwho_order;
@@ -87,7 +120,7 @@ $(document).ready( function(){
     $('#formatting-help').fadeIn();
     return false;
   })
-  
+    
   $("a.close").click(function(){
     $(this).parent().hide();  
     return false;
@@ -97,4 +130,5 @@ $(document).ready( function(){
     e.preventDefault();
     $(this).tab('show');
   })
+  
 })

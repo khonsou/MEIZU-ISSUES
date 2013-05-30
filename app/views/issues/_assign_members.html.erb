@@ -13,7 +13,7 @@
         </div>
 
         <div class="select-menu-item-text">
-          <h4><%= user.name %></h4>
+          <h4 data-pinyin="<%= PinYin.of_string(user.name).join %>"><%= user.name %></h4>
         </div>
       </div>
     <% end %>
