@@ -60,9 +60,27 @@
     margin-bottom: 10px;
     display: inline-block;
     border-bottom:none;
+    padding-left:10px;
     
-    li > a {
-      line-height: 18px;
+    li {
+      background-image: linear-gradient(#fdfdfd, #eaeaea);
+      
+      a {
+        line-height: 18px;
+        border-left: 1px solid #dfdfe1;   
+        border-bottom: 1px solid #ebebeb;
+        border-right: 1px solid #ebebeb;    
+        border-top: 1px solid #ebebeb;
+      }
+      
+      a:hover{
+        border-left: 1px solid #dfdfe1;   
+        border-bottom: 1px solid #ebebeb;
+        border-right: 1px solid #ebebeb;    
+        border-top: 1px solid #ebebeb;
+        color:inherit;
+        background-color:#fff;
+      }
     }
   }
   
@@ -72,8 +90,3 @@
  }
     
 }
-
-.tab-content.overflow {
-  overflow: visible;
-}
-

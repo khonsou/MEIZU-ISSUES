@@ -47,6 +47,8 @@ function listFilter(header, list) {
           var order = name_order > pinyin_order ? name_order : pinyin_order ;  
           if (order <= -1) {
             $(this).parents('.select-menu-item').hide()
+          }else{
+            $(this).parents('.select-menu-item').show()
           }            
         })
       } else {
@@ -57,7 +59,12 @@ function listFilter(header, list) {
   .keyup( function () {
       // fire the above change event after every letter
       $(this).change();
-  });
+  })
+  .keydown( function () {
+      // fire the above change event after every letter
+      $(this).change();
+  })
+  ;
 }
 
 $(document).ready( function(){

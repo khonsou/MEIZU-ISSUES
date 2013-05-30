@@ -428,3 +428,12 @@ h2.title{
 .filterinput{
   width: 188px;
 }
+
+.tab-pane{
+  min-height: 50px; 
+}
+
+.tab-content.overflow {
+  overflow: visible;
+}
+
