@@ -18,9 +18,7 @@ module Concerns
     end
 
     def send_mention_notification
-      mentioned_users.each do |user|
-        PushNotification::MentionNotification.notify(self)
-      end
+      PushNotification::MentionNotification.notify(self)
     end
   end
 end
