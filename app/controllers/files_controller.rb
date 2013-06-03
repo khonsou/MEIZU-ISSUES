@@ -44,17 +44,10 @@ class FilesController < ApplicationController
     
   end
   
+  # this action is for upload assets from issue
   def upload
     attachments = Attachment.attach_files(@project, params[:attachments])
 
-    if !attachments.empty? && !attachments[:files].blank?
-      attachments[:files].each do |attachment|
-        PushNotification::AttachmentNotification.notify(attachment, 'upload')
-      end
-
-      Mailer.delay.attachments_added(attachments[:files])
-    end
-    
     if attachments[:files].present?
       render :json => {:attachment_token => attachments[:files].last.token}  
     else
