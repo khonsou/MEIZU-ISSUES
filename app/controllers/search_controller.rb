@@ -99,6 +99,7 @@ class SearchController < ApplicationController
       end
       unless params[:issue_assigned_to_id].blank?
         @extra_conditions['issues'] << "#{Issue.table_name}.assigned_to_id = #{params[:issue_assigned_to_id]}"
+        @user = User.find(params[:issue_assigned_to_id])
       end
 
       watched_issues = Issue.watched_by(User.current)

@@ -33,17 +33,18 @@ class AutoCompletesController < ApplicationController
   end
 
   def assigned_to
-    @users = @project.users
+    @users = @project ? @project.users : User.where("id > 2")
+
     has_me = @users.include?(User.current)
     @users = @users.map{|u| [u.name, PinYin.of_string(u.name).join, u.id] }
 
     q = (params[:q] || params[:term]).to_s.strip.gsub(/\s/, '')
     if q.present?
-      debugger
-      @users = @users.select {|u| u[1].include?(q)}
+      @users = @users.select {|u| u[1].include?(q) or u[0].include?(q)}
     end
     @users = @users.sort{|a, b| a[1] <=> b[1]}.map{|u| {id: u[2], text: u[0]}}
     @users.unshift({id: User.current.id, text: "<< #{l(:label_me)} >>"}) if has_me
+    @users.unshift({id: "", text: ""}) unless q.present?
 
     respond_to do |format|
       format.json { render :json => @users.to_json }
