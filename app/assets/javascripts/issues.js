@@ -87,7 +87,7 @@ $(document).ready( function(){
   $('.hasAt').atwho({
     at: "@", 
     data: window._project_watchers,
-    tpl: "<li data-pinyin='${pinyin}'> ${name} </li>"  ,
+    tpl: "<li data-pinyin='${pinyin}' data-value='${name}'> ${name} </li>"  ,
     callbacks: {
       filter: function(query, data, search_key) {
         var item, _i, _len, _results;

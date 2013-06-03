@@ -70,7 +70,7 @@
         border-left: 1px solid #dfdfe1;   
         border-bottom: 1px solid #ebebeb;
         border-right: 1px solid #ebebeb;    
-        border-top: 1px solid #ebebeb;
+        border-top: 1px solid #ebebeb;        
       }
       
       a:hover{
@@ -82,11 +82,17 @@
         background-color:#fff;
       }
     }
+    
   }
   
   a.pull-right{
    margin-top:10px;
    display:block;
+ }
+ 
+ .nav-tabs > .active > a,
+ .nav-tabs > .active > a:hover {
+   background-color: $white;
  }
     
 }
