@@ -419,6 +419,12 @@ h2.title{
 .preview-content{
   margin:10px 10px 80px 10px;
 }
+#preview-content{
+  min-height:40px;
+}
+#preview-content .preview-content{
+  margin-bottom:20px;
+}
 
 .atwho-view {
   overflow-y: auto;

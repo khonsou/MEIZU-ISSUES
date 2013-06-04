@@ -51,6 +51,21 @@
           box-shadow: none;
 }
 
+.issue {
+  .tabnav{
+    height: 27px;
+    
+    ul{
+      margin-bottom:0px;
+      padding-left:0px;
+    }
+    
+    .nav-tabs > li > a{
+      padding: 4px 12px;
+    }
+  }
+}
+
 .tabnav{
   border-bottom: 1px solid #ddd;
   height: 35px;
