@@ -23,6 +23,10 @@
   background-color: $lightBackgroudThree;
   padding: $gridGutterWidth;
   
+  img{
+    max-height:380px;
+  }
+  
   .box{
     border: none;
     box-shadow: none;
