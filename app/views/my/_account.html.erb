@@ -6,6 +6,7 @@
         <% if !User.current.from_ldap? %>              
           <li><%= link_to l(:button_change_password), '#password-tab-content', data: { toggle: 'tab' }, class: 'password' %></li>
         <% end %>  
+          <li><%= link_to "通知设置", '#notify-tab-content', data: { toggle: 'tab' }, class: 'password' %></li>        
       </ul>
     </div>
     <div class="tab-content">
@@ -21,6 +22,9 @@
           <%= render 'password_form' %>
         </div>
       <% end %>  
+      <div class="tab-pane" id="notify-tab-content">
+        <%= render 'notify_form' %>
+      </div>      
     </div>
   </div>
 </div>
