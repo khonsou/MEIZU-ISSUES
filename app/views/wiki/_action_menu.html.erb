@@ -8,7 +8,7 @@
         <%= link_to_if_authorized(l(:button_edit), {:action => 'edit', :id => @page.title}, :accesskey => accesskey(:edit)) if @content.current_version? %>
       </li>
       <li>
-        <%= link_to_if_authorized(l(:button_delete), {:action => 'destroy', :id => @page.title}, :method => :delete, :data => {:confirm => l(:text_are_you_sure)}) %>
+        <%= link_to_if_authorized(l(:button_delete), {:action => 'destroy', :id => @page.title}, :method => :delete, :data => {:confirm => l(:text_are_you_sure_without_recovery)}) %>
       </li>
     <% end -%>
     <li>
