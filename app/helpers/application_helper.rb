@@ -614,7 +614,7 @@ module ApplicationHelper
       login = $1
       link_html = ""
       
-      if object.present?
+      if object.present? && object.respond_to?(:mentioned_users)
         object.mentioned_users.each do |user|
           if user.name == login
              link_html = "<a href='#{user_path(user)}' data-remote='true' class='user-mention'>" +
