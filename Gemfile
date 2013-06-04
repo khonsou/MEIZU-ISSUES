@@ -18,6 +18,7 @@ gem 'dropzonejs-rails'
 gem "useragent"
 gem "jquery-atwho-rails"
 gem 'ruby-pinyin'
+gem 'acts-as-taggable-on'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.4'
