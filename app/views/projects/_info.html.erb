@@ -15,23 +15,23 @@
           </a>
           <ul class="dropdown-menu pull-right">
             <% if User.current.allowed_to?(:edit_project, project) && project.creator == User.current %>
-              <li>
+              <li class="action-edit">
                 <%= link_to l(:button_edit), edit_project_path(project), remote: true %>
               </li>
             <% end -%>
             <% if User.current.allowed_to?(:close_project, project) && project.creator == User.current %>
               <% if project.active? %>
-                <li>
+                <li class="action-close">
                   <%= link_to l(:button_close), close_project_path(project), :data => {:confirm => l(:text_are_you_sure)}, :method => :post %>
                 </li>
               <% else %>
-                <li>
+                <li class="action-reopen">
                   <%= link_to l(:button_reopen), reopen_project_path(project), :data => {:confirm => l(:text_are_you_sure)}, :method => :post %>
                 </li>
               <% end %>
             <% end %>
             <% if project.users.include?(User.current) && project.creator != User.current %>
-              <li>
+              <li class="action-watch">
                 <%= link_to l(:button_quit), quit_project_path(project), method: :post, confirm: l(:text_are_you_sure) %>
               </li>
             <% end -%>
