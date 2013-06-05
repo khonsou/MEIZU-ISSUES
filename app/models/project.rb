@@ -36,7 +36,7 @@ class Project < ActiveRecord::Base
                                :include => :principal,
                                :conditions => "#{Principal.table_name}.type='Group' OR (#{Principal.table_name}.type='User' AND #{Principal.table_name}.status=#{User::STATUS_ACTIVE})"
   has_many :users, :through => :members
-  has_many :watched_users, :through => :watched_members , :source => :user 
+  has_many :watch_users, :through => :watched_members , :source => :user 
   belongs_to :creator, class_name: 'User'
   has_many :principals, :through => :member_principals, :source => :principal
 

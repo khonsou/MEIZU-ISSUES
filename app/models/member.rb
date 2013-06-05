@@ -28,6 +28,8 @@ class Member < ActiveRecord::Base
 
   before_destroy :set_issue_category_nil
   after_destroy :unwatch_from_permission_change
+  
+  before_save :mute_by_project
 
   def role
   end
@@ -112,4 +114,12 @@ class Member < ActiveRecord::Base
       Watcher.prune(:user => user, :project => project)
     end
   end
+  
+  def mute_by_project
+    if self.project.mute?
+      self.mute = true
+    end  
+  end
+  
+  
 end

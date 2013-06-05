@@ -19,6 +19,16 @@
                 <%= link_to l(:button_edit), edit_project_path(project), remote: true %>
               </li>
             <% end -%>
+            <% if project.users.include?(User.current)  %>       
+              <li class="action-mute">
+                <%= mute_link(project, User.current)  %>
+              </li>                   
+              <% if  project.creator != User.current %>
+                <li class="action-watch">
+                  <%= link_to l(:button_quit), quit_project_path(project), method: 'post', confirm: l(:text_are_you_sure) %>
+                </li>
+              <% end %>                
+            <% end -%>            
             <% if User.current.allowed_to?(:close_project, project) && project.creator == User.current %>
               <% if project.active? %>
                 <li class="action-close">
@@ -30,16 +40,6 @@
                 </li>
               <% end %>
             <% end %>
-            <% if project.users.include?(User.current)  %>       
-              <li class="action-mute">
-                <%= mute_link(project, User.current)  %>
-              </li>                   
-              <% if  project.creator != User.current %>
-                <li class="action-watch">
-                  <%= link_to l(:button_quit), quit_project_path(project), method: 'post', confirm: l(:text_are_you_sure) %>
-                </li>
-              <% end %>                
-            <% end -%>
           </ul>
         </div>
       </div>
