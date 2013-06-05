@@ -68,7 +68,7 @@
     <div class="span12">
       <% issue_assigned_user = User.find(params[:issue_assigned_to_id]) rescue nil %>
       <%= label_tag l(:field_assigned_to) %>
-      <%= hidden_field_tag :issue_assigned_to_id, {}, style: "width:140px" %>
+      <%= hidden_field_tag :issue_assigned_to_id, issue_assigned_user.try(:id), style: "width:140px" %>
     </div>
     <script>
       <%= render :partial => "auto_completes/select2_script_for_assigned_to", :locals => {:dom_id => 'issue_assigned_to_id', :project_id => nil, :user => @user } %>
