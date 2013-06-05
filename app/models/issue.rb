@@ -665,6 +665,11 @@ class Issue < ActiveRecord::Base
     users << assigned_to if assigned_to
     users.uniq.sort
   end
+  
+  # Users should receive notification and email
+  def should_notify_users
+    self.watcher_users & self.project.watch_users
+  end
 
   # Versions that the issue can be assigned to
   def assignable_versions

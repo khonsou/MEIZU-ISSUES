@@ -115,6 +115,7 @@ RedmineApp::Application.routes.draw do
       post 'reopen'
       match 'copy', :via => [:get, :post]
       post 'quit'
+      post 'mute'      
     end
 
     resources :memberships, :shallow => true, :controller => 'members', :only => [:index, :show, :create, :update, :destroy] do

@@ -77,7 +77,7 @@
 
   <%= select_tag 'sort_by', options_for_select(@sort_types.inject({}) { |types, value| types[l("sort_by_#{value}")] = value; types }, @selected_sort_type) %>
 
-  <%= submit_tag l(:button_submit), :name => 'submit', class: 'button blue pull-right' %>
+  <%= submit_tag "搜索", :name => 'submit', class: 'button blue pull-right' %>
 <% end %>
 
 <%= render 'list', { results_by_type: @results_by_type, results: @results, tokens: @tokens, project: @project, limit: @limit, max_limit: @max_limit } %>

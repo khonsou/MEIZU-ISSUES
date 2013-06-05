@@ -96,6 +96,7 @@ class Member < ActiveRecord::Base
     @membership.attributes = new_attributes
     @membership
   end
+  
 
   protected
 

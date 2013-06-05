@@ -143,5 +143,8 @@ $(document).ready( function(){
     $(this).tab('show');
   })
   
+
+  $('.tip').tooltip()
+
   
 })

@@ -6,6 +6,7 @@ class PushNotification < ActiveRecord::Base
   default_scope order: "#{self.table_name}.created_at DESC"
   scope :unread, lambda { where("#{table_name}.read IS FALSE OR #{table_name}.read IS NULL") }
 
+
   def read?
     !!read
   end
@@ -27,6 +28,7 @@ class PushNotification < ActiveRecord::Base
       push_notification.mark_as_read
     end
   end
+  
 end
 
 Dir["#{File.dirname(__FILE__)}/#{File.basename(__FILE__, '.*')}/**/*.rb"].each { |f| require_dependency f }

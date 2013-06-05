@@ -2,7 +2,15 @@ class PushNotification::AttachmentNotification < PushNotification
   def self.notify(attachment, event_name = '')
     case event_name
     when 'upload'
-      attachment.container.users.map do |user|
+      users = case  attachment.container.class.name
+      when 'Project'
+         attachment.container.watch_users
+      when 'Issue'
+        attachment.container.should_notify_users          
+      else
+        []  
+      end  
+      users.map do |user|
         unless user == User.current
           create(event_name: event_name, pusher: attachment, author: attachment.author, recipient: user)
         end

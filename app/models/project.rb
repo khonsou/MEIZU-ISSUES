@@ -30,11 +30,13 @@ class Project < ActiveRecord::Base
   # Specific overidden Activities
   has_many :time_entry_activities
   has_many :members, :include => [:user, :roles], :conditions => "#{User.table_name}.type='User' AND #{User.table_name}.status=#{User::STATUS_ACTIVE}"
+  has_many :watched_members, :class_name => 'Member', :foreign_key => "project_id", :include => [:user, :roles], :conditions => "#{User.table_name}.type='User' AND #{User.table_name}.status=#{User::STATUS_ACTIVE} AND members.mute = false"  
   has_many :memberships, :class_name => 'Member'
   has_many :member_principals, :class_name => 'Member',
                                :include => :principal,
                                :conditions => "#{Principal.table_name}.type='Group' OR (#{Principal.table_name}.type='User' AND #{Principal.table_name}.status=#{User::STATUS_ACTIVE})"
   has_many :users, :through => :members
+  has_many :watched_users, :through => :watched_members , :source => :user 
   belongs_to :creator, class_name: 'User'
   has_many :principals, :through => :member_principals, :source => :principal
 
@@ -734,6 +736,11 @@ class Project < ActiveRecord::Base
     member_user_emails = member_users.map{|u|u.mail}
     pendings.reject {|invitation| invitation.user_id ? member_user_ids.include?(invitation.user_id) : member_user_emails.include?(invitation.mail)}
   end
+  
+  def mute_by?(user)
+    member = Member.find_by_project_id_and_user_id(self, user)    
+    member.present? && member.mute?
+  end
 
   private
 
@@ -989,4 +996,5 @@ class Project < ActiveRecord::Base
   def add_current_user_as_creator
     self.creator = User.current
   end
+  
 end

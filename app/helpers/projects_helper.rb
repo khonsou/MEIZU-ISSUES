@@ -92,4 +92,14 @@ module ProjectsHelper
       end
     end
   end
+  
+  def mute_link(project, user)
+    if project.mute_by?(user)
+      link_to "取消屏蔽", mute_project_path(project), :remote => true, :method => 'post'
+    else
+      link_to "屏蔽", mute_project_path(project), :class => "tip", :remote => true, :method => 'post',  "title" =>  "关闭通知后你将不再收到任何来自本项目的通知和邮件",  "data-title" => "关闭通知后你将不再收到<br>任何来自本项目的通知和邮件", "data-toggle" => "tooltip", "data-html" => true
+    end          
+
+  end
+  
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130604013532) do
+ActiveRecord::Schema.define(:version => 20130605024102) do
 
   create_table "attachments", :force => true do |t|
     t.integer  "container_id"
@@ -345,6 +345,7 @@ ActiveRecord::Schema.define(:version => 20130604013532) do
     t.integer  "project_id",        :default => 0,     :null => false
     t.datetime "created_on"
     t.boolean  "mail_notification", :default => false, :null => false
+    t.boolean  "mute",              :default => false, :null => false
   end
 
   add_index "members", ["project_id"], :name => "index_members_on_project_id"

@@ -30,10 +30,15 @@
                 </li>
               <% end %>
             <% end %>
-            <% if project.users.include?(User.current) && project.creator != User.current %>
-              <li class="action-watch">
-                <%= link_to l(:button_quit), quit_project_path(project), method: :post, confirm: l(:text_are_you_sure) %>
-              </li>
+            <% if project.users.include?(User.current)  %>       
+              <li class="action-mute">
+                <%= mute_link(project, User.current)  %>
+              </li>                   
+              <% if  project.creator != User.current %>
+                <li class="action-watch">
+                  <%= link_to l(:button_quit), quit_project_path(project), method: 'post', confirm: l(:text_are_you_sure) %>
+                </li>
+              <% end %>                
             <% end -%>
           </ul>
         </div>

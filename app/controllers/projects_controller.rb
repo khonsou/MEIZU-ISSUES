@@ -21,7 +21,7 @@ class ProjectsController < ApplicationController
   menu_item :settings, :only => :settings
 
   before_filter :find_project, :except => [ :index, :list, :new, :create, :copy ]
-  before_filter :authorize, :except => [ :index, :list, :new, :create, :copy, :archive, :unarchive, :destroy, :quit]
+  before_filter :authorize, :except => [ :index, :list, :new, :create, :copy, :archive, :unarchive, :destroy, :quit, :mute]
   before_filter :authorize_global, :only => [:new, :create]
   before_filter :require_admin, :only => [ :copy, :archive, :unarchive, :destroy ]
   accept_rss_auth :index
@@ -210,6 +210,20 @@ class ProjectsController < ApplicationController
     @member.destroy
 
     redirect_to home_path, notice: l(:notice_quit_project)
+  end
+  
+  def mute
+    @member = Member.find_by_project_id_and_user_id(@project, User.current)
+    if @member.mute?
+      @member.update_attributes({:mute => false})
+    else
+      @member.update_attributes({:mute => true})      
+    end    
+
+    respond_to do |format|
+      format.js
+    end
+
   end
 
   private
