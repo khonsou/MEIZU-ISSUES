@@ -1,6 +1,6 @@
-<a href="#myThumbnailModal_<%= count %>" data-toggle="modal"><%= image_tag(url_for(:controller => 'attachments', :action => 'thumbnail', :id => attachment)) %></a>
+<a href="#myThumbnailModal_<%= attachment.id %>" data-toggle="modal"><%= image_tag(url_for(:controller => 'attachments', :action => 'thumbnail', :id => attachment)) %></a>
 
-<div id="myThumbnailModal_<%= count %>" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="myThumbnailModal_<%= attachment.id %>" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal" id="container-modal">
     <div class="modal-body">
        <%= link_to image_tag(url_for(:controller => 'attachments', :action => 'show', :id => attachment, :filename => attachment.filename)),
