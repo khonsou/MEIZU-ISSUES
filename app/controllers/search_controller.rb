@@ -63,9 +63,12 @@ class SearchController < ApplicationController
     # tokens must be at least 2 characters long
     @tokens = @tokens.uniq.select {|w| w.length > 0 }
 
-    if !@tokens.empty? || !params[:issue_assigned_to_id].blank?
+    if !@tokens.empty? || still_try_to_search_when_query_is_empty?
       # no more than 5 tokens to search for
       @tokens.slice! 5..-1 if @tokens.size > 5
+
+      # Not to show wiki or files when query is empty
+      @scope = ['issues'] if @tokens.empty?
 
       @results = []
       @results_by_type = Hash.new {|h,k| h[k] = 0}
@@ -130,6 +133,14 @@ class SearchController < ApplicationController
   end
 
 private
+  def still_try_to_search_when_query_is_empty?
+    !( params[:due_date_start].blank? &&
+       params[:due_date_end].blank? &&
+       params[:created_on_start].blank? &&
+       params[:created_on_end].blank? &&
+       params[:issue_assigned_to_id].blank? )
+  end
+
   def find_optional_project
     return true unless (params[:project_id] || params[:id])
     unless params[:project_id].blank?
