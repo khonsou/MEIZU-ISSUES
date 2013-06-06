@@ -145,7 +145,7 @@ $(document).ready( function(){
   
 
   $('body').tooltip({
-      selector: '.tip'
+    selector: '.tip'
   });
 
   
