@@ -635,7 +635,8 @@ class Project < ActiveRecord::Base
     'tracker_ids',
     'issue_custom_field_ids',
     'icon',
-    'icon_cache'
+    'icon_cache',
+    'mute'
 
 
   safe_attributes 'enabled_module_names',

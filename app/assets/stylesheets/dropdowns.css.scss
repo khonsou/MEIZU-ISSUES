@@ -72,6 +72,14 @@
       background-image: url('icon-edit-hover.png');
     }
   }
+  
+  .action-mute a {
+    background-image: url('icon-mute.png');
+
+    &:hover {
+      background-image: url('icon-mute-hover.png');
+    }
+  }
 
   .action-delete a {
     background-image: url('icon-delete.png');

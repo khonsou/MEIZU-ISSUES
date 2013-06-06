@@ -44,7 +44,7 @@ class Mailer < ActionMailer::Base
     @issue = issue
     @issue_url = url_for(:controller => 'issues', :action => 'show', :id => issue)
 
-    recipients = issue.project.watched_users.map(&:mail) - [issue.author.mail]
+    recipients = issue.project.watch_users.map(&:mail) - [issue.author.mail]
     
     if recipients.present?
       mail :to => recipients,
@@ -119,7 +119,7 @@ class Mailer < ActionMailer::Base
     when 'Project'
       added_to_url = url_for(:controller => 'files', :action => 'index', :project_id => container)
       added_to = "#{l(:label_project)}: #{container}"
-      recipients = container.watched_users.map(&:mail) - [@auther.mail]
+      recipients = container.watch_users.map(&:mail) - [@auther.mail]
     end
     redmine_headers 'Project' => container.project.identifier
     @attachments = attachments
@@ -195,7 +195,7 @@ class Mailer < ActionMailer::Base
                     'Wiki-Page-Id' => wiki_content.page.id
     @author = wiki_content.author
     message_id wiki_content
-    recipients = wiki_content.project.watched_users.map(&:mail) - [@author.mail]
+    recipients = wiki_content.project.watch_users.map(&:mail) - [@author.mail]
     @wiki_content = wiki_content
     @wiki_content_url = url_for(:controller => 'wiki', :action => 'show',
                                       :project_id => wiki_content.project,
@@ -216,7 +216,7 @@ class Mailer < ActionMailer::Base
                     'Wiki-Page-Id' => wiki_content.page.id
     @author = wiki_content.author
     message_id wiki_content
-    recipients = wiki_content.project.watched_users.map(&:mail) - [@author.mail]
+    recipients = wiki_content.project.watch_users.map(&:mail) - [@author.mail]
     @wiki_content = wiki_content
     @wiki_content_url = url_for(:controller => 'wiki', :action => 'show',
                                       :project_id => wiki_content.project,
