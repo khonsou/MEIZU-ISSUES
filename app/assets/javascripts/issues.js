@@ -67,23 +67,7 @@ function listFilter(header, list) {
   ;
 }
 
-$(document).ready( function(){
-  $('.select-menu-button').clickover({
-      html: true,
-      trigger: 'click',
-      placement: 'right',
-      content: function(){
-        var div_id =  "div-id-" + $.now();
-        return details_in_popup($(this).attr('href'), div_id)
-      }      
-  })      
-  
-  $(".pinned").pin({
-    containerSelector: ".container" ,
-    minHeight: 100,
-    minWidth: 960
-  })
-  
+function initAt(){
   $('.hasAt').atwho({
     at: "@", 
     data: window._project_watchers,
@@ -122,7 +106,27 @@ $(document).ready( function(){
          })
       }   
     }  
-  });
+  });    
+}
+
+$(document).ready( function(){
+  $('.select-menu-button').clickover({
+      html: true,
+      trigger: 'click',
+      placement: 'right',
+      content: function(){
+        var div_id =  "div-id-" + $.now();
+        return details_in_popup($(this).attr('href'), div_id)
+      }      
+  })      
+  
+  $(".pinned").pin({
+    containerSelector: ".container" ,
+    minHeight: 100,
+    minWidth: 960
+  })
+  
+  initAt();  
   
   $('a[data-format=true]').click(function(){
     $('#formatting-help').fadeIn();
