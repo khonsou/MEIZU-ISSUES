@@ -1,0 +1,12 @@
+<div id="container-modal" class="modal hide" tabindex="-1" role="dialog"  aria-hidden="true">
+  <div class="modal" id="container-modal">
+    <div class="modal-body">
+       <%= link_to image_tag(url_for(:controller => 'attachments', :action => 'show', :id => @attachment, :filename => @attachment.filename)),
+      { :controller => 'attachments', :action => 'show', :id => @attachment, :filename => @attachment.filename },
+      { :title => '点击查看大图', :target => '_blank' } %>
+    </div>  
+    <div class="modal-footer">
+      <%= submit_tag "关闭",  class: 'button blue', data: { dismiss: 'modal' } %>    
+    </div>      
+  </div>
+</div>

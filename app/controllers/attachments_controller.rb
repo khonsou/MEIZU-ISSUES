@@ -44,6 +44,7 @@ class AttachmentsController < ApplicationController
         end
       }
       format.api
+      format.js
     end
   end
 

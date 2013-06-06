@@ -1,4 +1,4 @@
-<div id="container-modal" class="modal hide user-info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="container-modal" class="modal user-info" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-body">
     <div class="row-fluid">
       <div class="span5">
@@ -14,6 +14,6 @@
     </div>
   </div>
   <div class="modal-footer">
-    <%= link_to l(:button_close), '#', class: 'btn', data: { dismiss: 'modal' } %>
+    <%= link_to l(:button_close), '#', class: 'button blue', data: { dismiss: 'modal' }, "aria-hidden" => true %>
   </div>
 </div>
