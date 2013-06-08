@@ -27,39 +27,38 @@ class JournalObserver < ActiveRecord::Observer
           PushNotification::JournalNotification.notify(journal, 'comment')
         end
       else
-        journal.details.each do |detail|
-          case detail.prop_key
-          when 'due_date'
-            unless detail.value.blank?
-              PushNotification::JournalDetailNotification.notify(detail, 'add_due_date')
-            else
-              PushNotification::JournalDetailNotification.notify(detail, 'remove_due_date')
-            end
-          when 'assigned_to_id'
-            unless detail.value.blank?
-              begin
-                assignee = User.find(detail.value)
-                unless journal.issue.watched_by?(assignee)
-                  journal.issue.add_watcher(assignee)
-                end
-              rescue
-              end
-
-              PushNotification::JournalDetailNotification.notify(detail, 'add_assignee')
-            else
-              PushNotification::JournalDetailNotification.notify(detail, 'remove_assignee')
-            end
-          when 'status_id'
-            if IssueStatus.find(detail.value).is_closed?
-              PushNotification::JournalDetailNotification.notify(detail, 'close')
-            else
-              PushNotification::JournalDetailNotification.notify(detail, 'reopen')
-            end
-          when 'description'
-            PushNotification::JournalDetailNotification.notify(detail, 'description')
+        detail = journal.details.first  
+        case detail.prop_key
+        when 'due_date'
+          unless detail.value.blank?
+            PushNotification::JournalDetailNotification.notify(detail, 'add_due_date')
           else
-            PushNotification::JournalDetailNotification.notify(detail, 'update')
+            PushNotification::JournalDetailNotification.notify(detail, 'remove_due_date')
           end
+        when 'assigned_to_id'
+          unless detail.value.blank?
+            begin
+              assignee = User.find(detail.value)
+              unless journal.issue.watched_by?(assignee)
+                journal.issue.add_watcher(assignee)
+              end
+            rescue
+            end
+
+            PushNotification::JournalDetailNotification.notify(detail, 'add_assignee')
+          else
+            PushNotification::JournalDetailNotification.notify(detail, 'remove_assignee')
+          end
+        when 'status_id'
+          if IssueStatus.find(detail.value).is_closed?
+            PushNotification::JournalDetailNotification.notify(detail, 'close')
+          else
+            PushNotification::JournalDetailNotification.notify(detail, 'reopen')
+          end
+        when 'description'
+          PushNotification::JournalDetailNotification.notify(detail, 'description')
+        else
+          PushNotification::JournalDetailNotification.notify(detail, 'update')
         end
       end
     end

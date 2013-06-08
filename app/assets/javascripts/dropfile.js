@@ -33,7 +33,8 @@ $(document).ready( function(){
          })
        });     
      
-       this.on("finished", function(file, responseText, e) {       file.previewTemplate.querySelector(".details").appendChild(Dropzone.createElement("<input  class=\"fileid\" type=\"hidden\"  name=\"attachments[" + fileFieldCount + "][token]\" value=\"" + responseText.attachment_token + "\" >"))
+       this.on("finished", function(file, responseText, e) {       
+         file.previewTemplate.querySelector(".details").appendChild(Dropzone.createElement("<input  class=\"fileid\" type=\"hidden\"  name=\"attachments[" + fileFieldCount + "][token]\" value=\"" + responseText.attachment_token + "\" >"))
          fileFieldCount ++ ;               
        });
      
