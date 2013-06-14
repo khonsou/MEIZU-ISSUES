@@ -105,6 +105,17 @@ class SearchController < ApplicationController
         @user = User.find(params[:issue_assigned_to_id])
       end
 
+      @tags_list = []
+      unless params["hidden-tag_list"].blank?
+        issue_ids = Tag.get_issue_ids_for_tag_list(params["hidden-tag_list"])
+        if issue_ids.empty?
+          @extra_conditions['issues'] << "#{Issue.table_name}.id is null"
+        else
+          @extra_conditions['issues'] << "#{Issue.table_name}.id IN (#{issue_ids.join(', ')})"
+        end
+        @tags_list = params["hidden-tag_list"].split(/,\s*/)
+      end
+
       watched_issues = Issue.watched_by(User.current)
       case params[:issue_watched]
       when 'yes'
@@ -138,7 +149,8 @@ private
        params[:due_date_end].blank? &&
        params[:created_on_start].blank? &&
        params[:created_on_end].blank? &&
-       params[:issue_assigned_to_id].blank? )
+       params[:issue_assigned_to_id].blank? &&
+       params["hidden-tag_list"].blank? )
   end
 
   def find_optional_project

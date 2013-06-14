@@ -70,8 +70,21 @@
       <%= label_tag l(:field_assigned_to) %>
       <%= hidden_field_tag :issue_assigned_to_id, issue_assigned_user.try(:id), style: "width:140px" %>
     </div>
+    <div class="span12">
+      <%= label_tag "标签" %>
+      <input type="text" id="tag_list" name="tag_list", placeholder="标签", class="span6 tm-input" />
+    </div>
     <script>
       <%= render :partial => "auto_completes/select2_script_for_assigned_to", :locals => {:dom_id => 'issue_assigned_to_id', :project_id => nil, :user => @user } %>
+
+      $('#tag_list').tagsManager({
+         prefilled: [<%= @tags_list && @tags_list.map{|t| "\"#{t}\""}.join(",").html_safe %>],
+         typeahead: true,
+         typeaheadSource: [<%= Tag.order("name").all.map{|t| "\"#{t.name}\""}.join(',').html_safe %>],
+         blinkBGColor_1: '#FFFF9C',
+         blinkBGColor_2: '#CDE69C'
+      });
+
     </script>
   </div>
 
