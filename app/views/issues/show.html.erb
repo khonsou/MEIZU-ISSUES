@@ -82,6 +82,20 @@
       <%= render 'action_menu', { issue: @issue } %>
     </div>      
   </div>
+  <div class="pullleft issue-tag-div">
+    <i class="icon-tag"></i>&nbsp;<input type="text" id="tag_list" name="tag_list", placeholder="标签", class="span2 tm-input" />
+    <script>
+      $('#tag_list').tagsManager({
+         AjaxPushAllTags: '/issues/tagging/<%= @issue.id %>',
+         prefilled: [<%= @issue.tag_list.map{|t| "\"#{t}\""}.join(',').html_safe %>],
+         typeahead: true,
+         typeaheadSource: [<%= Tag.order("name").all.map{|t| "\"#{t.name}\""}.join(',').html_safe %>],
+         blinkBGColor_1: '#FFFF9C',
+         blinkBGColor_2: '#CDE69C'
+      });
+    </script>
+  </div>
+  <div class="clearfix" />
 
   <div class="row journal issue-body">
     <div class="avatar span2">

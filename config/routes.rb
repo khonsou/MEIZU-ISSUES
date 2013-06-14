@@ -35,6 +35,8 @@ RedmineApp::Application.routes.draw do
   match 'account/lost_password', :to => 'account#lost_password', :via => [:get, :post], :as => 'lost_password'
   match 'account/activate', :to => 'account#activate', :via => :get
 
+  match 'issues/tagging/:issue_id', :to => 'taggings#issue', :as => 'tagging_issue', :via => [:put, :post]
+
   match '/news/preview', :controller => 'previews', :action => 'news', :as => 'preview_news'
   match '/issues/preview/new/:project_id', :to => 'previews#issue', :as => 'preview_new_issue'
   match '/issues/preview/edit/:id', :to => 'previews#issue', :as => 'preview_edit_issue'

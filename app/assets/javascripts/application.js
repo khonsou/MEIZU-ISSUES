@@ -20,3 +20,4 @@
 //= require ./notifications
 //= require ./issues
 //= require ./dropfile
+//= require ./bootstrap-tagmanager

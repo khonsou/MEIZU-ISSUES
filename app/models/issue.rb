@@ -39,6 +39,7 @@ class Issue < ActiveRecord::Base
   acts_as_nested_set :scope => 'root_id', :dependent => :destroy
   acts_as_attachable :after_add => :attachment_added, :after_remove => :attachment_removed
   acts_as_customizable
+  acts_as_taggable
   acts_as_watchable
   acts_as_searchable :columns => ['subject', "#{table_name}.description", "#{Journal.table_name}.notes"],
                      :include => [:project, :journals, :status],
