@@ -83,7 +83,6 @@ function initAt(){
             _results.push(item);
           }
         }
-        console.log(_results);        
         return _results;
       },
       sorter: function(query, items, search_key) {
