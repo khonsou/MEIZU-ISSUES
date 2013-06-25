@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title><%=h html_title %></title>
+  <meta name="description" content="<%= Redmine::Info.app_name %>" />
+  <meta name="keywords" content="issue,bug,tracker" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_tag do %>
+    window._rails_env = "<%= Rails.env %>"
+    window._project_watchers = new Array();
+    <% if @project.present? %>
+      <% @project.member_principals.map(&:user).each do |user| %>
+        window._project_watchers.push( {name: '<%= user.name %>', pinyin: '<%= PinYin.of_string(user.name).join %>' } );
+      <% end %>    
+    <% end %>  
+  <% end %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <%= call_hook :view_layouts_base_html_head %>
+  <!-- page specific tags -->
+  <%= yield :header_tags -%>
+</head>
+<body class="<%=h body_css_classes %>">
+  <%= render '/shared/topnav' %>
+  <div class="container">    
+    
+    <div class="row">
+      <% if content_for?(:sidebar) %>
+        <div class="span5 sidebar">
+          <%= yield :sidebar %>
+          <%= view_layouts_base_sidebar_hook_response %>
+        </div>
+      <% end -%>
+
+      <div class="<%= content_for?(:sidebar) ? 'span19' : 'span24' %>">
+        <% if content_for?(:title_bar) %>
+          <div class="title-bar">
+            <%= yield :title_bar %>
+          </div>
+        <% end -%>
+        <div class="main<%= ' with-title-bar' if content_for?(:title_bar) %>">
+          <%= render_flash_messages %>
+          <%= yield %>
+          <%= call_hook :view_layouts_base_content %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="ajax-indicator" style="display:none;"><span><%= l(:label_loading) %></span></div>
+  <div id="ajax-modal" style="display:none;"></div>
+
+  <%= call_hook :view_layouts_base_body_bottom %>
+  <%= fix_for_bootstrap_dropdown %>
+</body>
+</html>
