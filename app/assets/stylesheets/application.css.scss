@@ -1,0 +1,121 @@
+//= require select2
+//= require dropzone/basic
+//= require jquery.atwho
+//= require bootstrap-tagmanager
+
+// customize bootstrap variables
+
+$sansFontFamily: "Helvetica Neue", Helvetica, "Heiti SC", "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+
+// Scaffolding 33
+// -------------------------
+$bodyBackground: #f7f7f7;
+$textColor: #737883;
+
+// Links 39
+// -------------------------
+$linkColor: #737883;
+
+// Typography 45
+// -------------------------
+$baseFontSize: 12px;
+
+
+// Buttons 69
+// -------------------------
+$buttonBackground: #02aee5;
+$btnBackground: #f1f2f4;
+$btnBackgroundHighlight: #e4e7eb;
+$btnBorder: #c2c7cf;
+
+$btnPrimaryBackground: #01b8e5;
+$btnPrimaryBackgroundHighlight: #0073ff;
+$btnPrimaryBorder: #235a9a;
+
+// Dropdowns 102
+// -------------------------
+$dropdownLinkBackgroundHover: #99a1af;
+
+// Sprite icons path 134
+// -------------------------
+$iconSpritePath: "/assets/icons.png";
+$iconWhiteSpritePath: "/assets/icons.png";
+
+// Navbar 155
+// -------------------------
+$navbarHeight: 75px;
+$navbarBackground: #ffffff;
+
+$navbarLinkBackgroundActive: #ffffff;
+
+// Default 940px grid 248
+// -------------------------
+$gridColumns: 24;
+$gridColumnWidth: 10px;
+$gridGutterWidth: 30px;
+
+@import "bootstrap";
+
+// theme variables
+$solidBorder: 1px solid #cbcbcb;
+$darkSolidBorder: 1px solid #737373;
+$dashedBorder: 1px dashed #e3e3e3;
+
+$borderRadius: 3px;
+
+$noShadow: 0 0 0 rgba(0,0,0,0);
+$boxShadowOne: 0 1px 2px rgba(0,0,0,0.08);
+$boxShadowTwo: 0 1px 0 rgba(167,170,173,0.3);
+$boxShadowThree: 0 -1px 0px rgba(193,194,196,1);
+$boxShadowFour: 0 1px 0 rgba(167,170,173,0.2);
+$boxShadowFive: 0 5px 30px rgba(0,0,0,0.6);
+
+//$innerShadowOne: 0 1px 1px rgba(0,0,0,0.1);
+$innerShadowOne: rgba(255, 255, 255, 0.2);
+$innerShadowTwo: 0 1px 0 rgba(255,255,255,1);
+
+$lightTextColor: #b1b8c3;
+$darkTextColor: darken(#737883, 15%);
+$btnTextColor: #7f8c94;
+
+$bigFontSize: $baseFontSize + 2px;
+
+$lightBackgroudOne: #fdfdfd;
+$lightBackgroudTwo: #fcfcfc;
+$lightBackgroudThree: #fefefe;
+$lightBackgroudFour: #f6f6f6;
+$lightBackgroudFive: #fbfbfb;
+$lightBackgroudSix: #ededed;
+
+$greenBackground: #e2ffce;
+$redBackground: #ffdbdb;
+$red: #f8000e;
+
+$baseLineHeight: 18px;
+
+@import "bootstrap-responsive";
+@import "datepicker";
+@import "layout";
+@import "form";
+@import "modals";
+@import "navbar";
+@import "navs";
+@import "buttons";
+@import "icons";
+@import "labels";
+@import "dropdowns";
+@import "table";
+@import "issues";
+@import "projects";
+@import "files";
+@import "wiki";
+@import "account";
+@import "search";
+@import "notification";
+@import "attachments";
+@import "select";
+@import "jstoolbar";
+
+
+@import "bootstrapSwitch";
+@import "responsive";
