@@ -1,0 +1,28 @@
+body {
+  min-width: 900px;
+  background-color: #f7f7f7;  
+}
+
+body>#wrap {
+  height: auto;
+  min-height: 100%;
+  position: relative;  
+}
+
+#sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 230px;
+  padding: 30px 0 40px 35px;
+  color: #a7abb1;
+  z-index: 999;
+}
+
+#main {
+  padding: 35px 35px 40px 0;
+  margin-left: 250px;
+  position: relative;
+  min-height: 600px;
+  border-left: 1px solid #ccc;  
+}
