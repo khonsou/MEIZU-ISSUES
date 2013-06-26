@@ -106,9 +106,14 @@
         <div class="author">
           <strong><%= link_to_user(@issue.author) %></strong><br/>
         </div>
+
+
+
         <div class="actions">
-          <%= relative_time(@issue.updated_on) %>
+          <%= relative_time(@issue.created_on) %>
         </div>
+
+
       </div>
     
       <div class="issue-content">
