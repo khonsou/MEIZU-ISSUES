@@ -147,6 +147,8 @@ $(document).ready( function(){
   $('body').tooltip({
     selector: '.tip'
   });
+  
+  $('textarea.autosize').autosize({append: "\n"});   
 
   
 })

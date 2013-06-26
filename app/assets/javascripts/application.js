@@ -10,6 +10,7 @@
 //= require jquery-fileupload/vendor/tmpl
 //= require select2
 //= require dropzone
+//= require jquery.autosize-min
 
 //= require bootstrapx-clickover
 //= require jquery.pin
