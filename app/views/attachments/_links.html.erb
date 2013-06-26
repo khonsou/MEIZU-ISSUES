@@ -1,10 +1,8 @@
 <div class="attachments">
 <% for attachment in attachments %>
   <p>
-    <%= link_to_attachment attachment, :download => true, target: '_blank' -%>
-    <% if attachment.is_text? %>
-      <%= link_to(image_tag('magnifier.png'), attachment_path(id: attachment, filename: attachment.filename), target: '_blank') %>
-    <% end %>
+    <%= link_to_attachment attachment, :download => true, target: '_blank', class: 'blue' -%>
+    <%= link_to(image_tag('magnifier.png'), attachment_path(id: attachment, filename: attachment.filename), target: '_blank') %>
     <%= h(" - #{attachment.description}") unless attachment.description.blank? %>
     <span class="size">(<%= number_to_human_size attachment.filesize %>)</span>
     <% if options[:deletable] %>
