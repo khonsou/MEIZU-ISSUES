@@ -19,42 +19,39 @@
   
 
   <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a href="#" class="navbar-link" style="display:block;text-align:right">logout</a>
-          
-          <a class="brand" href="#" id="mz-top-link-logo">&nbsp;</a>
-          <div class="nav-collapse collapse">  
-            <form class="form-search pull-right">
-              <div class="input-prepend">
-                <button type="submit" class="btn">
-                  <img src="/assets/project_header/search.png">
-                </button>
-                <input type="text" class="span2 search-query">
-              </div>
-            </form>
-            <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">All Projects</a></li>
-              <li><a href="#contact">All Members</a></li>
-              <li><a href="#contact">Me</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        <a href="#" class="navbar-link" style="display:block;text-align:right">logout</a>
+        
+        <a class="brand" href="#" id="mz-top-link-logo">&nbsp;</a>
+        <div class="nav-collapse collapse">  
+          <form class="form-search pull-right">
+            <div class="input-prepend">
+              <button type="submit" class="btn">
+                <img src="/assets/project_header/search.png">
+              </button>
+              <input type="text" class="span2 search-query">
+            </div>
+          </form>
+          <ul class="nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">All Projects</a></li>
+            <li><a href="#contact">All Members</a></li>
+            <li><a href="#contact">Me</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
       </div>
     </div>
-    <div id="wrap" ng-controller="CalendarCtrl"> 
+  </div>
+  
+  <div id="wrap" ng-controller="CalendarCtrl"> 
     <div id="sidebar">
-         <%= yield :sidebar%>
+         <%= yield :sidebar %>
     </div> 
     <div id="main">
-        <%= yield :main%>
+        <%= yield %>
     </div>
-</div>
-
-
-<div id="calendar_item_editor_singleton">
-</div>  
+  </div>
       
   <div id="ajax-indicator" style="display:none;"><span><%= l(:label_loading) %></span></div>
   <div id="ajax-modal" style="display:none;"></div>

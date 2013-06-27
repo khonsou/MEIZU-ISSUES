@@ -1,6 +1,65 @@
 <% content_for:sidebar do%>
-  <div>sidebar</div>
+  <div id="external-events" ng-controller="TagCtrl">
+    <h4>Draggable Tags</h4>
+    <div ginkgo-draggable="{{!tag.done}}" class="external-event dragged-{{tag.done}}" ng-repeat="tag in tags" data-tag-id="{{tag.id}}">{{tag.text}}</div>
+    <form ng-submit="addTag()">
+      <input type="text" ng-model="tagText"  size="10" class="span2"
+             placeholder="add new tag here">
+      <input class="btn-primary" type="submit" value="add">
+    </form>
+  </div>
+  <div id="members" ng-controller="MemberCtrl">
+    <h4>Draggable Members</h4>
+    <div ng-repeat="member in members" ginkgo-draggable="true" class="member" data-member-id="{{member.id}}">{{member.text}}</div>
+  </div>
 <% end -%>
-<% content_for:main do%>
-  <div>main-part</div>
-<% end -%>
+
+  <div id='calendar'>
+  
+  <div class="header">
+    <nav>  
+      <button data-behavior="navigate calendar_event_drag_area" data-direction="backward" class="action_button" ng-click="prevMonth();">◀</button>
+      <button data-behavior="navigate calendar_event_drag_area" data-direction="forward" class="action_button" ng-click="nextMonth();">▶</button>
+    </nav>  
+    <h1>
+      <a href="#"> {{ currentMonth.getFullYear()}} - {{ currentMonth.getMonth() }} </a></h1>          
+  </div>      
+  
+  <div class="month-row" ng-repeat="event in eventsInMonth = (events | filterByMonth:currentMonth | orderBy:'order' ) ">
+    <div class="events holdable" style="width:100%;">                          
+      <div >
+        <div  class="event-row tag" >
+          <div  class="event  width_2 wraps_next  {{event.type}}" style="left:{{event.left}};width:{{event.width}};" ginkgo-draggable="true" ginkgo-resizeable="true" data-event-id="{{event.id}}" ginkgo-popover="true">
+            <span class="event">
+              <span class="title">{{ event.text }}</span>
+            </span>
+          </div>      
+        </div>
+        <div class="spacer"></div>
+      </div>            
+    </div> 
+                  
+    <div class="days" ginkgo-droppable="true">            
+      <div class="dates" style="display:table-row;">
+        <div class="day" ng-repeat="day in days" data-date="{{day.year}}-{{day.month}}-{{day.day}}">
+        </div>
+      </div>
+    </div>   
+    
+  </div>
+  
+  <div class="month-row no-events">
+    <div class="days" ginkgo-droppable="true"  style="min-height:{{  500 - (eventsInMonth.length * 30)}}px;">            
+      <div class="day" ng-repeat="day in days" data-date="{{day.year}}-{{day.month}}-{{day.day}}" style="height:{{  500 - (eventsInMonth.length * 30)}}px;">
+      </div>
+    </div>   
+  </div>       
+  
+  <div class="days-of-month">
+    <div class="day-header" ng-repeat="day in days">{{ day.day }}</div>          
+  </div>
+  
+</div>      
+
+<div id="calendar_item_editor_singleton">
+</div> 
