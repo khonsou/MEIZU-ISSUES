@@ -21,7 +21,7 @@ class ProjectsController < ApplicationController
   menu_item :settings, :only => :settings
 
   before_filter :find_project, :except => [ :index, :list, :new, :create, :copy ]
-  before_filter :authorize, :except => [ :index, :list, :new, :create, :copy, :archive, :unarchive, :destroy, :quit, :mute]
+  before_filter :authorize, :except => [ :index, :list, :new, :create, :copy, :archive, :unarchive, :destroy, :quit, :mute, :change_creator]
   before_filter :authorize_global, :only => [:new, :create]
   before_filter :require_admin, :only => [ :copy, :archive, :unarchive, :destroy ]
   accept_rss_auth :index
@@ -151,6 +151,12 @@ class ProjectsController < ApplicationController
   end
 
   def update
+    if params[:project][:creator_id]
+      unless @project.creator == User.current && @project.users.include?(User.find(params[:project][:creator_id]))
+        redirect_to project_issues_path(@project) and return
+      end
+    end
+
     @trackers = Tracker.sorted.all
     @project.safe_attributes = params[:project]
     @project.trackers = @trackers
@@ -224,6 +230,11 @@ class ProjectsController < ApplicationController
       format.js
     end
 
+  end
+
+  def change_creator
+    @project = Project.find(@project.id) 
+    @user = false
   end
 
   private

@@ -19,6 +19,11 @@
                 <%= link_to l(:button_edit), edit_project_path(project), remote: true %>
               </li>
             <% end -%>
+            <% if project.creator == User.current %>
+              <li>
+                <%= link_to l(:button_change_project_creator), change_creator_project_path(project), remote: true %>
+              </li>
+            <% end -%>
             <% if project.users.include?(User.current)  %>       
               <li class="action-mute">
                 <%= mute_link(project, User.current)  %>

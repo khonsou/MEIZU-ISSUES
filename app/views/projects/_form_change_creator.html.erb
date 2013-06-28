@@ -1,0 +1,16 @@
+<%= error_messages_for 'project' %>
+<div class="row-fluid form-content">
+  <div>
+    <span><%= l(:field_project) %></span>
+    <%= f.text_field :name, :required => true, class: 'span24', placeholder: l(:field_name), readonly: true %>
+    <%= f.hidden_field :id %>
+  </div>
+
+  <span><%= l(:role_project_creator) %></span>
+  <div>
+    <%= text_field_tag 'project[creator_id]', nil, id: "member-invitation-recipients", :required => true, class: 'span24', placeholder: l(:field_change_creator) %>
+  </div>
+</div>
+<script>
+  <%= render :partial => "auto_completes/select2_script_for_assigned_to", :locals => {:dom_id => 'member-invitation-recipients', :project_id => @project.id, :user => @user } %>
+</script>

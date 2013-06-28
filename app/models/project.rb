@@ -635,6 +635,7 @@ class Project < ActiveRecord::Base
     'issue_custom_field_ids',
     'icon',
     'icon_cache',
+    'creator_id',
     'mute'
 
 

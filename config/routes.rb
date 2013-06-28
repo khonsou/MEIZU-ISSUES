@@ -125,6 +125,7 @@ RedmineApp::Application.routes.draw do
       match 'copy', :via => [:get, :post]
       post 'quit'
       post 'mute'      
+      get 'change_creator'  
     end
 
     resources :memberships, :shallow => true, :controller => 'members', :only => [:index, :show, :create, :update, :destroy] do

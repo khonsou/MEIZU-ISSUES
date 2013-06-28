@@ -1104,4 +1104,5 @@ zh:
   all_members: 所有成员
   issues_of_all_projects: 所有项目课题
   return_to_main_page: 返回主页
-
+  button_change_project_creator: 更改创建人
+  field_change_creator: 更改创建人

@@ -1,0 +1,13 @@
+
+<div class="modal" id="container-modal">
+  <%= labelled_form_for @project, multipart: true do |f| %>
+    <div class="modal-body">
+      <%= render :partial => 'form_change_creator', :locals => { :f => f } %>
+    </div>
+    <div class="modal-footer">
+      <%= link_to l(:button_close), '#', class: 'btn', data: { dismiss: 'modal' } %>
+      <%= submit_tag l(:button_save), class: 'button blue' %>
+    </div>
+
+  <% end %>
+</div>
