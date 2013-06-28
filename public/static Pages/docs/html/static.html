@@ -519,6 +519,11 @@ body {
         height: 100%!important;
 
       }
+
+      /*task*/
+      #task1{
+        background: url("image/person.png") no-repeat scroll left top  #a6c6d3;
+      }
     </style>
     <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -535,423 +540,249 @@ body {
                                    <link rel="shortcut icon" href="../assets/ico/favicon.png">
 
   <body>
-
     <div class="navbar navbar-inverse navbar-fixed-top">
-
       <div class="navbar-inner">
-
         <div class="container-fluid">
-
           <a href="#" class="navbar-link" style="display:block;text-align:right">logout</a>
-
           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse" style="background-image: url(image/LOGO.png);">
-
             <span class="icon-bar"></span>
-
             <span class="icon-bar"></span>
-
             <span class="icon-bar"></span>
-
           </button>
-
           <a class="brand" href="#" id="mz-top-link-logo">&nbsp;</a>
-
           <div class="nav-collapse collapse">  
-
             <form class="form-search pull-right">
-
               <div class="input-prepend">
-
                 <button type="submit" class="btn">
-
                   <img src="image/search.png">
-
                 </button>
-
                 <input type="text" class="span2 search-query">
-
               </div>
-
             </form>
-
             <ul class="nav">
-
               <li class="active"><a href="#">Home</a></li>
-
               <li><a href="#about">All Projects</a></li>
-
               <li><a href="#contact">All Members</a></li>
-
               <li><a href="#contact">Me</a></li>
-
             </ul>
-
-          </div><!--/.nav-collapse -->
-
+          </div>
         </div>
-
       </div>
-
     </div>
-
     <div id="wrap" ng-controller="CalendarCtrl">
 
-  
-
   <div id="sidebar">
-
         <div class="well sidebar-nav">
-
             <ul class="nav nav-list" id="slideRight">
-
               <li class="form-horizontal head">
-
                   <h5 style="display:inline-block;">Project</h5>
-
                   <div style="display:inline-block;padding:10px;" class="pull-right"><img src="image/down.png" alt="down"/></div>
-
               </li>
-
               <li>
-
                 <a href="#">
-
                   <img src="image/person.png" class="img-polaroid" style="height:135px;width:95%;">
-
                 </a>
-
-                <div id="descriptionToPro">
-
-                  description
-
-                </div>
-
+                <div id="descriptionToPro">description</div>
               </li>
-
               <li class="head">
-
                 <h5 style="display:inline-block;">Members</h5>
-
                 <div class="pull-right" style="display:inline-block;"><h5 style="float:right;padding-left:15px;">邀请</h5></div>
-
-                <!--<h5 style="float:right;">邀请</h5>-->
-
               </li>
-
               <li class="head">
-
-              </li>
-
-              <li class="head">
-
-                <div>全部</div>
-
-                <div>
-
-                  <a style="float:right;" href="#"><img src="image/add-black.png" alt="add_Person"></a>
-
-                  <span class="name">Tags</span>
-
-                </div>
-
-              </li>
-
-              <li class="classify">
-
-                <ul>
-
-                  <li class="design"><span>设计</span></li>
-
-                  <li class="code"><span>开发</span></li>
-
-                  <li class="test"><span>测试</span></li>
-
-                  <li class="product"><span>产品</span></li>
-
+                <ul class="partner">
+                  <li>
+                    <div>
+                      <a class="photo">
+                        <img class="img-circle" src="image/person.png">
+                      </a>
+                      <div style="margin-left:5px;">
+                        <span class="name">Suya Chen</span>
+                        <div class="role">master</div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <a class="photo">
+                        <img class="img-circle" src="image/person.png">
+                      </a>
+                      <div style="float:left;margin-left:5px;">
+                        <span class="name">Leo Lee</span>
+                        <div class="role">members</div>
+                      </div>
+                      <a style="float:right;" href="#"><img src="image/delete.png"></a>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <a class="photo">
+                        <img class="img-circle" src="image/person.png">
+                      </a>
+                      <div style="float:left;margin-left:5px;">
+                        <span class="name">Leo Lee</span>
+                        <div class="role">members</div>
+                      </div>
+                      <a style="float:right;" href="#"><img src="image/delete.png"></a>
+                    </div>
+                  </li>
                 </ul>
-
               </li>
-
+              <li class="head">
+                <div>全部</div>
+                <div>
+                  <a style="float:right;" href="#"><img src="image/add-black.png" alt="add_Person"></a>
+                  <span class="name">Tags</span>
+                </div>
+              </li>
+              <li class="classify">
+                <ul>
+                  <li class="design"><span>设计</span></li>
+                  <li class="code"><span>开发</span></li>
+                  <li class="test"><span>测试</span></li>
+                  <li class="product"><span>产品</span></li>
+                </ul>
+              </li>
             </ul>
-
           </div><!--/.well -->
-
   </div>
 
-  
-
   <div id="main">
-
     <div id='calendar'>
-
-    <div class="row-fluid grid img-polaroid">
-
-            <div class="span12">
-
-              <div class="row-fluid pagination-centered">
-
-                <span>SNS</span>
-
-                <span>开始：</span>
-
-                <span class="text-error" style="color:red;font-weight:bold;">2013.6.01</span>
-
-                <span>-</span>
-
-                <span>结束：</span>
-
-                <span class="text-error" style="color:red;font-weight:bold;">2013.6.30</span>
-
+      <div class="row-fluid grid img-polaroid">
+        <di    v class="span12">
+          <div class="row-fluid pagination-centered">
+            <span>SNS</span>
+            <span>开始：</span>
+            <span class="text-error" style="color:red;font-weight:bold;">2013.6.01</span>
+            <span>-</span>
+            <span>结束：</span>
+            <span class="text-error" style="color:red;font-weight:bold;">2013.6.30</span>
+          </div>
+          <div class="row-fluid">
+            <div class="span4" >今天：<span>6</span>月<span>7</span>日&nbsp;&nbsp;星期<span>五</span></div>
+            <div class="span3 offset5">
+              <div class="pull-right">
+                <h6 class="close">All</h6>
               </div>
-
-              <div class="row-fluid">
-
-                <div class="span4" >今天：<span>6</span>月<span>7</span>日&nbsp;&nbsp;星期<span>五</span></div>
-
-                <div class="span3 offset5">
-
-                  <div class="pull-right">
-
-                    <h6 class="close">All</h6>
-
-                  </div>
-
-                  <div class="pull-right">
-
-                    <h6 class="close">Mes</h6>
-
-                  </div>
-
-                  <div class="pull-right active">
-
-                    <h6 class="close">Tags<h6>
-
-                  </div>  
-
-                </div>
-
+              <div class="pull-right">
+                <h6 class="close">Mes</h6>
               </div>
-
-            </div><!--/span-->
-
-          </div><!--/row-->
-
+              <div class="pull-right active">
+                <h6 class="close">Tags<h6>
+              </div>  
+            </div>
+          </div>  
+        </div>
           <div class="row-fluid date img-polaroid">
-
                 <div style="width:1.75%;display:inline-block;float:left;border-right:1px dotted black;visibility:hidden">1</div>
-
                 <div class="span00">1</div>
-
                 <div class="span00">2</div>
-
                 <div class="span00">3</div>
-
                 <div class="span00">4</div>
-
                 <div class="span00">5</div>
-
                 <div class="span00 ">6</div>
-
                 <div class="span00 sun-color-date">7</div>
-
                 <div class="span00">8</div>
-
                 <div class="span00">9</div>
-
                 <div class="span00">10</div>
-
                 <div class="span00">11</div>
-
                 <div class="span00">12</div>
-
                 <div class="span00 ">13</div>
-
                 <div class="span00 sun-color-date">14</div>
-
                 <div class="span00">15</div>
-
                 <div class="span00">16</div>
-
                 <div class="span00">17</div>
-
                 <div class="span00">18</div>
-
                 <div class="span00">19</div>
-
                 <div class="span00 ">20</div>
-
                 <div class="span00 sun-color-date">21</div>
-
                 <div class="span00">22</div>
-
                 <div class="span00">23</div>
-
                 <div class="span00">24</div>
-
                 <div class="span00">25</div>
-
                 <div class="span00">26</div>
-
                 <div class="span00 ">27</div>
-
                 <div class="span00 sun-color-date">28</div>
-
-          </div><!--/row-->
-
+          </div>
           <div class="row-fluid img-polaroid">
-
-
-
                 <div class="span0"></div>
-
                 <div class="span0"></div>
-
                 <div class="span0"></div>
-
                 <div class="span0"></div>
-
                 <div class="span0"></div>
-
                 <div class="span0 sat"></div>
-
                 <div class="span0 sun"></div>
-
                 <div class="span0"></div>
-
                 <div class="span0"></div>
-
                 <div class="span0"></div>
-
                 <div class="span0"></div>
-
                 <div class="span0"></div>
-
                 <div class="span0 sat"></div>
-
                 <div class="span0 sun"></div>
-
                 <div class="span0"></div>
-
                 <div class="span0"></div>
-
                 <div class="span0"></div>
-
                 <div class="span0"></div>
-
                 <div class="span0"></div>
-
                 <div class="span0 sat"></div>
-
                 <div class="span0 sun"></div>
-
                 <div class="span0"></div>
-
                 <div class="span0"></div>
-
                 <div class="span0"></div>
-
                 <div class="span0"></div>
-
                 <div class="span0"></div>
-
                 <div class="span0 sat"></div>
-
                 <div class="span0 sun"></div>
-
-            </div><!--/span-->
-
+            </div>
             <div class="row-fluid date gray-background">
-
                 <div style="width:1.75%;display:inline-block;float:left;border-right:1px dotted black;visibility:hidden">1</div>
-
                 <div class="span00">1</div>
-
                 <div class="span00">2</div>
-
                 <div class="span00">3</div>
-
                 <div class="span00">4</div>
-
                 <div class="span00">5</div>
-
                 <div class="span00 ">6</div>
-
                 <div class="span00 sun-color-date">7</div>
-
                 <div class="span00">8</div>
-
                 <div class="span00">9</div>
-
                 <div class="span00">10</div>
-
                 <div class="span00">11</div>
-
                 <div class="span00">12</div>
-
                 <div class="span00 ">13</div>
-
                 <div class="span00 sun-color-date">14</div>
-
                 <div class="span00">15</div>
-
                 <div class="span00">16</div>
-
                 <div class="span00">17</div>
-
                 <div class="span00">18</div>
-
                 <div class="span00">19</div>
-
                 <div class="span00 ">20</div>
-
                 <div class="span00 sun-color-date">21</div>
-
                 <div class="span00">22</div>
-
                 <div class="span00">23</div>
-
                 <div class="span00">24</div>
-
                 <div class="span00">25</div>
-
                 <div class="span00">26</div>
-
                 <div class="span00 ">27</div>
-
                 <div class="span00 sun-color-date">28</div>
-
-            </div><!--/row-->
-
+            </div>
             <div class="row-fluid gray-background">
-
                 <div class="span12">
-
                   <div class="span1 pre-month">上个月</div>
-
                   <div class="span3 offset4">
-
                     <div class="row-fluid">
-
                       <div class="span4 disable pagination-centered">周</div>
-
                       <div class="span4 able pagination-centered">月</div>
-
                       <div class="span4 disable pagination-centered">年</div>
-
                     </div>
-
                   </div>
-
                   <div class="span1 offset3 text-right next-month">下个月</div>
-
-                </div><!--/row-->
-
-            </div><!--/row-->
-
-            
-
-        </div><!--/span-->
-
+                </div>
+            </div>
+    </div><!--/span-->
+    <div style="width:200px;height:30px;background-color:#0000ff;text-align:center;position:absolute;left:30px;top:100px;color:#ffffff;vertial:middle;">design</div>
+    <div id="task1" style="width:300px;height:30px;text-align:center;position:absolute;left:50px;top:200px;color:#ffffff;vertial:middle;">
+      design
+    </div>
   </div>
 
 </div>
