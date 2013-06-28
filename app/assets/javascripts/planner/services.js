@@ -2,59 +2,55 @@
 
 /* Services */
 
+angular.module('ginkgo.resources', ['ngResource']).
+  factory('Task', function($resource) {
+    var Task = $resource('/planners/projects/:project_id/tasks/:id', 
+                         {project_id: '@project_id'});
+                         
+     // Tag.prototype.query = function(cb) {
+     //   return Tag.query({},
+     //       angular.extend({}, this, {isArray: true}), cb);
+     // };                         
+
+    // Tag.prototype.update = function(cb) {
+    //   return Tag.update({id: this._id.$oid},
+    //       angular.extend({}, this, {_id:undefined}), cb);
+    // };
+    // 
+    // Tag.prototype.destroy = function(cb) {
+    //   return Tag.remove({id: this._id.$oid}, cb);
+    // };
+
+    return Task;
+  });
+
 angular.module('ginkgo.services', []).
     value('version', '0.1').
     value('localStorage', window.localStorage).
-    service('tags', function (localStorage, $rootScope) {
-        var self = this;
-
-        self.save = function (tag) {
-            if (!tag.hasOwnProperty('id')) {
-                var highest = 1;
-                for (var i = 0; i < self.tags.length; i++) {
-                    if (self.tags[i].id > highest) highest = self.tags[i].id;
-                }
-                tag.id = ++highest;
-            }
-            self.tags.push(tag);
-
-            return tag.id;
-        };
-        self.get = function (id) {
-            for (var i = 0; i < self.tags.length; i++) {
-                if (self.tags[i].id == id)
-                    return self.tags[i];
-            }
-        };
-
-
-        function createPersistentProperty(localName, storageName, Type) {
-            var json = localStorage[storageName];
-
-            self[localName] = json ? JSON.parse(json) : new Type;
-
-            $rootScope.$watch(
-                function () {
-                    return self[localName];
-                },
-                function (value) {
-                    if (value) {
-                        localStorage[storageName] = JSON.stringify(value);
-                    }
-                },
-                true);
-
-        }
-        
-        createPersistentProperty('tags', 'ginkgoTags', Array);
-
-        if (self.tags.length === 0) {
-            self.save({id:1, text:'设计', done:true});
-            self.save({id:2, text:'开发', done:true});            
-            self.save({id:3, text:'测试', done:false});
-            self.save({id:4, text:'部署', done:false});                        
-        }
-    }).service('members', function (localStorage, $rootScope) {
+    // service('tags', function (localStorage, $rootScope) {
+    //     var self = this;
+    // 
+    //     self.save = function (tag) {
+    //         if (!tag.hasOwnProperty('id')) {
+    //             var highest = 1;
+    //             for (var i = 0; i < self.tags.length; i++) {
+    //                 if (self.tags[i].id > highest) highest = self.tags[i].id;
+    //             }
+    //             tag.id = ++highest;
+    //         }
+    //         self.tags.push(tag);
+    // 
+    //         return tag.id;
+    //     };
+    //     self.get = function (id) {
+    //         for (var i = 0; i < self.tags.length; i++) {
+    //             if (self.tags[i].id == id)
+    //                 return self.tags[i];
+    //         }
+    //     };
+    //     
+    // }).
+    service('members', function (localStorage, $rootScope) {
         var self = this;
 
         self.save = function (member) {

@@ -1,5 +1,7 @@
 'use strict';
-var Ginkgo = angular.module('Ginkgo', ['ginkgo.services', 'ginkgo.directives', 'ginkgo.filters']);
+var Ginkgo = angular.module('Ginkgo', ['ginkgo.services', 'ginkgo.directives', 
+                                      'ginkgo.filters', 'ginkgo.resources', 'ng-rails-csrf', 'ngResource']);
+
 
 var CalendarCtrl = function ($scope, events) {
   $scope.daysPerMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -133,12 +135,45 @@ var CalendarCtrl = function ($scope, events) {
 }
 
 
-var TagCtrl = function ($scope, tags) {
-  $scope.tags = tags.tags;
-    
-  $scope.addTag = function () {
-    var id = tags.save({text: $scope.tagText, done: false});
-    $scope.tagText = '';    
+var TaskCtrl = function ($scope, $resource, Task) {
+
+
+  //$scope.tags = Tag.query({project_id: $scope.projectId});
+  var r = $resource('/planners/projects/:project_id/tasks/:id', 
+                         {project_id: $scope.projectId},
+                         {'query':{method:'GET',isArray:true}});
+   r.query(function(data){
+     $scope.tasks = data;
+   });
+
+        
+  $scope.addTask = function () {
+//    var id = tags.save({text: $scope.tagText, done: false});
+    var r =  $resource('/planners/projects/:project_id/tasks/:id', 
+                       {project_id: $scope.projectId},
+                       {'save':{method:'POST',isArray:true}});
+    r.save({project_id: $scope.projectId}, $scope.task, function(data){
+       $scope.tasks = data;      
+    });
+    $scope.task.text = '';    
+  }
+  
+  $scope.destroyTask = function (task) {
+    var r =  $resource('/planners/tasks/:id', 
+                       {},
+                       {'remove':{method:'DELETE',isArray:true}});
+    r.remove({id: task.id}, function(data){
+       $scope.tasks = data;      
+    });
+  }
+  
+  $scope.updateTask = function (task) {
+    var r =  $resource('/planners/tasks/:id', 
+                       {},
+                       {'update':{method:'PUT',isArray:true}});
+    r.update({id: task.id}, task, function(data){
+       $scope.tasks = data;      
+    });
   }
 }
 

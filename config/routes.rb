@@ -85,7 +85,12 @@ RedmineApp::Application.routes.draw do
   match 'my/remove_block', :controller => 'my', :action => 'remove_block', :via => :post
   match 'my/order_blocks', :controller => 'my', :action => 'order_blocks', :via => :post
 
-  resources :planners
+  match 'planners' => "planners#index"
+  namespace :planners do
+    resources :projects do
+      resources :tasks, shallow: true
+    end      
+  end  
 
   resources :users
   match 'users/:id/memberships/:membership_id', :to => 'users#edit_membership', :via => :put, :as => 'user_membership'

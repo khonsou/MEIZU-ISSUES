@@ -39,7 +39,7 @@ class Project < ActiveRecord::Base
   has_many :watch_users, :through => :watched_members , :source => :user 
   belongs_to :creator, class_name: 'User'
   has_many :principals, :through => :member_principals, :source => :principal
-
+  has_many :tasks
   has_many :enabled_modules, :dependent => :delete_all
   has_and_belongs_to_many :trackers, :order => "#{Tracker.table_name}.position"
   has_many :issues, :dependent => :destroy, :include => [:status, :tracker]
@@ -65,7 +65,6 @@ class Project < ActiveRecord::Base
   acts_as_nested_set :order => 'name', :dependent => :destroy
   acts_as_attachable :view_permission => :view_files,
                      :delete_permission => :manage_files
-
   acts_as_customizable
   acts_as_searchable :columns => ['name', 'identifier', 'description'], :project_key => 'id', :permission => nil
   acts_as_event :title => Proc.new {|o| "#{l(:label_project)}: #{o.name}"},

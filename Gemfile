@@ -19,6 +19,8 @@ gem "useragent"
 gem "jquery-atwho-rails"
 gem 'ruby-pinyin'
 gem 'acts-as-taggable-on'
+gem 'jbuilder'
+gem 'ng-rails-csrf'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.4'

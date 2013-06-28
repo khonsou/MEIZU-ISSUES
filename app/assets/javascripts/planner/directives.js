@@ -166,14 +166,71 @@ angular.module('ginkgo.directives', []).
                 })
                 e.stopPropagation();                                                                                    
              })
-
          }
        });
     
 
      }
   }
+}).directive('ginkgoTaskPopover', function ($rootScope, $http, $compile) {
+  return {
+     link: function(scope, element, attrs) {
+       attrs.$observe('taskId', function(value) {            
+           var task = _.find(scope.tasks, function(e){ return e.id == parseInt(value); })        
+
+           var template = 
+           '<div class="popover-content balloon right_side">' +
+             '<span class="arrow"></span>' +
+             '<form name="eventForm" class="form-horizontal">' +              
+               '<div class="control-group">' + 
+                 '<label class="control-label">Name</label>' + 
+                 '<div class="controls"><input name="text" value="{{ task.text }}"></input></div>' +
+               '</div>' +
+             	'<p class="submit">' + 
+             		'<input type="submit" value="Save changes" class="btn btn-small btn-success" ng-click="save()">' + 
+             		' or <a href="#" class="cancel" data-role="cancel" data-behavior="cancel">Close</a>' + 
+                 '<a href="#" class="image delete pull-right" data-behavior="delete">Delete</a>'
+             	'</p>' +
+             '</form>' +
+            '</div>'              
+             
+             var compile =  $compile(template)(scope);
+             element.on('click', function(e){
+               var targetOffset = element.offset();
+               $('#calendar_item_editor_singleton').html(compile);
+               $('#calendar_item_editor_singleton').show()
+                                                   .css('top', targetOffset.top).
+                                                    css('left', targetOffset.left + 50);
+                $('#calendar_item_editor_singleton').find('.cancel').on('click', function(){
+                  $('#calendar_item_editor_singleton').hide();
+                })                                            
+                $('#calendar_item_editor_singleton').find('.delete').on('click', function(){
+                  if(confirm('Are you sure delete this?')){
+                    $('#calendar_item_editor_singleton').hide();                    
+                    scope.$apply(function(){
+                      scope.destroyTask(task);
+                    });  
+                  }
+                }) 
+                $('#calendar_item_editor_singleton').find('input[type=submit]').on('click', function(){
+                    console.log('fsd')                                                                     
+                  scope.$apply(function(){         
+                    var eventFormData = $('#calendar_item_editor_singleton').find('form').serializeObject() ;                                     
+                    scope.updateTask({
+                      id: task.id,
+                      task: {name: eventFormData.text}
+                    })
+                  });                    
+                  $('#calendar_item_editor_singleton').hide();                                      
+                })
+                e.stopPropagation();                                                                                    
+             })
+    
+        });
+     }
+  }
 });      
+
 
 
 

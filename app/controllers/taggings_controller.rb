@@ -1,6 +1,6 @@
 class TaggingsController < ApplicationController
 
-  before_filter :find_issue
+  before_filter :find_issue, :only => [:issue]
 
   def issue
     @issue.tag_list = params[:tags]
@@ -10,7 +10,7 @@ class TaggingsController < ApplicationController
       format.html { render :nothing => true }
     end
   end
-
+  
   private
 
   def find_issue
