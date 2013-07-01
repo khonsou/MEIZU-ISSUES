@@ -178,6 +178,7 @@ end
 Redmine::MenuManager.map :admin_menu do |menu|
   menu.push :projects, {:controller => 'admin', :action => 'projects'}, :caption => :label_project_plural
   menu.push :users, {:controller => 'users'}, :caption => :label_user_plural
+  menu.push :index, {:controller => 'newfeatures', :action => 'index'}, :caption => :label_newfeatures_plural 
   menu.push :groups, {:controller => 'groups'}, :caption => :label_group_plural
   menu.push :roles, {:controller => 'roles'}, :caption => :label_role_and_permissions
   menu.push :trackers, {:controller => 'trackers'}, :caption => :label_tracker_plural

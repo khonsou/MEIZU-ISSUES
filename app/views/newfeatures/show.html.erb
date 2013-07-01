@@ -1,0 +1,10 @@
+<table class = "showfeatures">
+  <tr class = "featureshead">
+    <th class = "first">标题</th>
+    <th>描述</th>
+  </tr>
+  <tr>
+    <td class = "title"><%= @newfeature.title %></td>
+    <td ><%= @newfeature.description %><span class = "featuresedit"> <%= link_to '编辑', url_for(:controller => "newfeatures", :id => @newfeature.id,:action => "edit")%></span></td>
+  </tr>
+</table>

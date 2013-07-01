@@ -1208,4 +1208,38 @@ module ApplicationHelper
   def link_to_content_update(text, url_params = {}, html_options = {})
     link_to(text, url_params, html_options)
   end
+
+  #whether table newfeatures is empty or not
+  def has_newfeatures?
+    if Newfeature.count > 0
+      true
+    else
+      false
+    end
+  end 
+
+  #show the newest newfeature title
+  def latest_newfeatures_title
+    Newfeature.last.title
+  end
+
+  #show the newest newfeature description
+  def latest_newfeatures_description
+    Newfeature.last.description
+  end
+
+  #compare clicktime and created time of newest feature 
+  def show_notification?
+    click_time = ClickTime.find(:first, :conditions => [ "user_id = ?", User.current.id]) 
+    if click_time.nil?
+      return true
+    end
+
+    feature_time = Newfeature.last.created_at
+    if feature_time < click_time.click_time
+      false
+    else
+      true
+    end
+  end
 end

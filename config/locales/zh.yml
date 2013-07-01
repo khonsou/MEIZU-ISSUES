@@ -444,6 +444,9 @@ zh:
   project_module_calendar: 日历
   project_module_gantt: 甘特图
 
+  label_newfeatures: 添加新功能
+  label_newfeatures_plural: 添加新功能
+
   label_user: 用户
   label_user_plural: 用户
   label_user_new: 新建用户

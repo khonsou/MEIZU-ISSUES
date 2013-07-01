@@ -606,3 +606,19 @@ function addFormObserversForDoubleSubmit() {
 
 $(document).ready(hideOnLoad);
 $(document).ready(addFormObserversForDoubleSubmit);
+
+/*global notification slidedown*/
+$(document).ready(function(){
+  if($(".newFeatures .row").children().length){
+    $("#newfeature-background").slideDown(1500);
+
+    $(".newFeatures .span10 span").mouseover(function(){
+      $(".newFeatures .msg-details").slideDown(1000);
+      $(".newFeatures .row .span10").css({"background-image":"url(/assets/light_one.png)"});
+    })
+    $(".newFeatures .span10 span").mouseout(function(){
+      $(".newFeatures .msg-details").slideUp(1000);
+      $(".newFeatures .row .span10").css({"background-image":"url(/assets/default_trumpet.png)"});
+    })
+  }
+});

@@ -16,6 +16,15 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 RedmineApp::Application.routes.draw do
+  # match '/newfeatures/show_admin/:id', :controller => 'newfeatures', :action => 'show_admin'
+  #match '/newfeatures/cancel', :controller => 'newfeatures', :action => 'cancel', :via => [:get]
+
+  resources :newfeatures do
+    collection do
+      get 'cancel' 
+    end
+  end
+
   root :to => 'welcome#index', :as => 'home'
 
   resources :push_notifications, only: [:index] do

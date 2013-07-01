@@ -261,3 +261,62 @@ a.bluelink{
     margin-left: 30px;
   }  
 }
+
+.newFeatures{
+  width:200%;
+  margin-bottom:-5px;
+  
+}
+
+.newFeatures .row .span1{
+  margin-left:0px;
+  background-color:#ffffe0;
+}
+
+.newFeatures .row .span10{
+  background:url(/assets/light_one.png) no-repeat scroll left -5px transparent;
+  padding-left:30px;
+}
+
+#newfeature-background a{
+  float:right;
+}
+
+.msg-details{
+  -webkit-box-shadow:5px 2px 6px #000;
+  -moz-box-shadow:2px 2px 2px #111111;
+  box-shadow:3px 2px rgba(0, 0, 0, 0.05);
+  font-family:Arial,'宋体',Helvetica,sans-serif;
+  font-size:14px;
+}
+
+#newfeature-background{
+  width:100%;
+  position:relative;top:-35px;
+  background-color:#e4f7f4;
+  height:25px;
+  display:none;
+}
+
+.newFeatures{
+  .span10{
+    margin:5px;
+    cursor:pointer;
+  }
+  .link{
+    position:absolute;
+    right:0;
+  }
+  .lines{
+    text-decoration:underline;
+    height:100%;
+  }
+}
+
+#description{
+  position:absolute; 
+  top:30px;z-index:1000;
+  background:#ffffff;
+  padding:10px 2px;
+  display:none;
+}

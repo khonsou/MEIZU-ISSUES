@@ -23,10 +23,36 @@
   <!-- page specific tags -->
   <%= yield :header_tags -%>
 </head>
-<body class="<%=h body_css_classes %>">
-  <%= render '/shared/topnav' %>
-  <div class="container">    
+<body class="<%=h body_css_classes %>" style = "position:relative;">
+  
+<%= render '/shared/topnav' %>
+<% if User.current.logged? %>
+  <% if has_newfeatures? %>
+    <% if show_notification? %>
+        <div id = "newfeature-background">             
+          <div class="container newFeatures">
+            <div class="row">
+              <div class="span10">
+                <span class = "lines">
+                  <%= latest_newfeatures_title %></span>
+                    <a href="/newfeatures/cancel" data-remote = true ><img src="/assets/icon-delete.png" class = "link"></a>
+              </div>
+    <% end %>
+  <% end %>
+<%end%>
+            </div>
+
+<% if User.current.logged? %>
+  <% if has_newfeatures? %>
+    <% if show_notification? %>
+          <div class="container msg-details" id = "description"><%= latest_newfeatures_description %></div>
+    <% end %>
+  <% end %>
+<%end%>
+          </div>
+        </div>
     
+<div class="container" style = "position:relative;">    
     <div class="row">
       <% if content_for?(:sidebar) %>
         <div class="span5 sidebar">

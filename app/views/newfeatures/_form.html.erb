@@ -1,0 +1,25 @@
+<%= form_for(@newfeature) do |f| %>
+  <% if @newfeature.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@newfeature.errors.count, "error") %> prohibited this newfeature from being saved:</h2>
+
+      <ul>
+      <% @newfeature.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description, :rows => 8%>
+  </div>
+  <div class="actions">
+    <%= f.submit '提交' %>
+  </div>
+<% end %>

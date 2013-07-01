@@ -476,6 +476,9 @@ en:
   project_module_calendar: Calendar
   project_module_gantt: Gantt
 
+  label_newfeatures: New Features
+  label_newfeatures_plural: New Features
+
   label_user: User
   label_user_plural: Users
   label_user_new: New user

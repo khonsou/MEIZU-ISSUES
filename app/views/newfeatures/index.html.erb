@@ -1,0 +1,17 @@
+<a href = "/newfeatures/new">添加新功能</a>
+<h4 class = "newfeatures">新功能列表</h4>
+
+<table class = "wholetable">
+  <tr class = "tablerows">
+    <th class = "tableth">标题</th>
+    <th>描述</th>
+  </tr>
+<% @newfeature.each do |n| %>
+  <tr class = "showtr">
+    <td class = "showtd"><%= n.title %></td>
+    <td ><%= n.description %><span class = "showspan"><%= link_to "查看", n %></span></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to '返回', admin_path %>

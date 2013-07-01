@@ -109,6 +109,13 @@ ActiveRecord::Schema.define(:version => 20130628084326) do
 
   add_index "changesets_issues", ["changeset_id", "issue_id"], :name => "changesets_issues_ids", :unique => true
 
+  create_table "click_times", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "click_time"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "comments", :force => true do |t|
     t.string   "commented_type", :limit => 30, :default => "", :null => false
     t.integer  "commented_id",                 :default => 0,  :null => false
@@ -371,6 +378,13 @@ ActiveRecord::Schema.define(:version => 20130628084326) do
   add_index "messages", ["created_on"], :name => "index_messages_on_created_on"
   add_index "messages", ["last_reply_id"], :name => "index_messages_on_last_reply_id"
   add_index "messages", ["parent_id"], :name => "messages_parent_id"
+
+  create_table "newfeatures", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "news", :force => true do |t|
     t.integer  "project_id"
