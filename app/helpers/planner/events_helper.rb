@@ -1,0 +1,2 @@
+module Planner::EventsHelper
+end
