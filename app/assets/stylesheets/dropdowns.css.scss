@@ -41,6 +41,7 @@
   .action-watch,
   .action-mute,  
   .action-edit,
+  .action-change_creator,
   .action-delete {
     a, a:hover {
       background-repeat: no-repeat;
@@ -72,7 +73,15 @@
       background-image: url('icon-edit-hover.png');
     }
   }
-  
+
+  .action-change_creator a {
+    background-image: url('icon-change_creator.png');
+
+    &:hover {
+      background-image: url('icon-change_creator-hover.png');
+    }
+  }
+
   .action-mute a {
     background-image: url('icon-mute.png');
 

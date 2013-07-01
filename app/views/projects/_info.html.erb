@@ -20,7 +20,7 @@
               </li>
             <% end -%>
             <% if project.creator == User.current %>
-              <li>
+              <li class="action-change_creator">
                 <%= link_to l(:button_change_project_creator), change_creator_project_path(project), remote: true %>
               </li>
             <% end -%>
