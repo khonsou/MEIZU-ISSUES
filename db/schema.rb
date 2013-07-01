@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130628084326) do
+ActiveRecord::Schema.define(:version => 20130701061217) do
 
   create_table "attachments", :force => true do |t|
     t.integer  "container_id"
@@ -220,6 +220,18 @@ ActiveRecord::Schema.define(:version => 20130628084326) do
 
   add_index "enumerations", ["id", "type"], :name => "index_enumerations_on_id_and_type"
   add_index "enumerations", ["project_id"], :name => "index_enumerations_on_project_id"
+
+  create_table "events", :force => true do |t|
+    t.integer  "project_id"
+    t.string   "eventable_type"
+    t.integer  "eventable_id"
+    t.string   "title"
+    t.integer  "position"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
   create_table "groups_users", :id => false, :force => true do |t|
     t.integer "group_id", :null => false

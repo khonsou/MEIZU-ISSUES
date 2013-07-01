@@ -21,6 +21,7 @@ gem 'ruby-pinyin'
 gem 'acts-as-taggable-on'
 gem 'jbuilder'
 gem 'ng-rails-csrf'
+gem 'acts_as_list'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.4'

@@ -3,7 +3,7 @@ var Ginkgo = angular.module('Ginkgo', ['ginkgo.services', 'ginkgo.directives',
                                       'ginkgo.filters', 'ginkgo.resources', 'ng-rails-csrf', 'ngResource']);
 
 
-var CalendarCtrl = function ($scope, events) {
+var CalendarCtrl = function ($scope, $resource, events) {
   $scope.daysPerMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
        
   $scope.getNumberOfDaysInMonth = function (dateObject) {
@@ -35,7 +35,17 @@ var CalendarCtrl = function ($scope, events) {
   $scope.rows = [0,1,2];    
   $scope.currentMonth = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1);  
   $scope.days = $scope.getDadysInMonth($scope.currentMonth);  
-  $scope.events = events.events;
+  
+  $scope.events = [];
+  var r = $resource('/planners/projects/:project_id/events/:id', 
+                         {project_id: $scope.projectId},
+                         {'query':{method:'GET',isArray:true}});
+   r.query(function(data){
+     $scope.events = data;
+       console.log( $scope.events)     
+   });
+   
+//  $scope.events = events.events;
   
   $scope.nextMonth = function(){
     $scope.currentMonth = new Date($scope.currentMonth.getFullYear(), $scope.currentMonth.getMonth() + 1, 1);    
@@ -55,10 +65,6 @@ var CalendarCtrl = function ($scope, events) {
   var dateWidth = (1 / totalDates) * 100;
   
   $scope.getEventStyle = function(event){        
-    // var startMonth = parseInt(event.startTime.split("-")[1]);   
-    // if () {
-    //   
-    // }
     var startDay = parseInt(event.startTime.split("-").pop()) - 1;
     var endDay = parseInt(event.endTime.split("-").pop()) - 1;        
     return {left: dateWidth * startDay + "%", width: (endDay - startDay) * dateWidth + "%"};
@@ -83,46 +89,40 @@ var CalendarCtrl = function ($scope, events) {
       
         var eventStyle = $scope.getEventStyle($scope.events[i]);
         $scope.events[i].left = eventStyle.left;
-        $scope.events[i].width = eventStyle.width;     
-
-        if(event.timeFrames != undefined){
-          for (var j = 0; j < event.timeFrames.length; j++) {
-              var timeFrameStyle = $scope.getEventStyle(event.timeFrames[j]);  
-              $scope.events[i].timeFrames[j].left = timeFrameStyle.left;
-              $scope.events[i].timeFrames[j].width = timeFrameStyle.width;                     
-          }             
-        }
-        
+        $scope.events[i].width = eventStyle.width;             
     }  
   }     
   
   $scope.addEvent = function (event) {
-    var id = events.save(event);
+//    events.save(event);
+    var r =  $resource('/planners/projects/:project_id/events/:id', 
+                       {project_id: $scope.projectId},
+                       {'save':{method:'POST',isArray:true}});
+    r.save({project_id: $scope.projectId}, event, function(data){
+       $scope.events = data;      
+    });
   }
   
   $scope.destroyEvent = function (event) {
-    events.destroy(event);
+    var r =  $resource('/planners/events/:id', 
+                       {},
+                       {'remove':{method:'DELETE',isArray:true}});
+    r.remove({id: event.id}, function(data){
+       $scope.events = data;      
+    });
+
   }
+
     
-  $scope.updateEvent = function (event) {
-    console.log(event)
-    var id = events.update(event);
-  }
-  
-  $scope.addTimeFrame = function (timeFrame) {
-    events.saveTimeFrame(timeFrame)
-  }
-    
-  $scope.updateTimeFrame = function (timeFrame) {
-    events.updateTimeFrame(timeFrame)
-  }
-  
-  $scope.hasTimeFrame = function(event, memberId){    
-    if(_.findWhere(event.timeFrames, {memberId: memberId}) == undefined){
-      return false;      
-    }else{
-      return true
-    }    
+  $scope.updateEvent = function (params) {
+    //params is event: {id: xxx}
+    var r =  $resource('/planners/events/:id', 
+                       {},
+                       {'update':{method:'PUT',isArray:true}});
+    r.update({id: params.event.id}, params, function(data){
+       $scope.events = data;      
+    });
+
   }
   
   $scope.hasEventByTagId = function(tagId){
@@ -136,8 +136,6 @@ var CalendarCtrl = function ($scope, events) {
 
 
 var TaskCtrl = function ($scope, $resource, Task) {
-
-
   //$scope.tags = Tag.query({project_id: $scope.projectId});
   var r = $resource('/planners/projects/:project_id/tasks/:id', 
                          {project_id: $scope.projectId},
@@ -183,6 +181,8 @@ var MemberCtrl = function ($scope, members) {
     
 }
 
+
+//-------------------begin of jquery------------------
 $.fn.serializeObject = function()
 {
     var o = {};

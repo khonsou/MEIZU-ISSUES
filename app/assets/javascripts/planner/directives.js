@@ -12,8 +12,6 @@ angular.module('ginkgo.directives', []).
             var range = scope.calculateHoverIndex(ui.helper);
             var allDays = $(this).parents('.month-row').find('.days .day') ;        
             var hoverColumns = $(allDays).slice(range.start, range.end);
-            // $('.ui-state-highlight').removeClass('ui-state-highlight');          
-            // $(hoverColumns).addClass('ui-state-highlight');         
           }
         });
       };              
@@ -23,8 +21,6 @@ angular.module('ginkgo.directives', []).
           
       element.droppable({
         drop: function(event, ui ){
-          // $('.ui-state-highlight').removeClass('ui-state-highlight');          
-                      
           var rowIndex = $('.month-row').index($(this).parents(".month-row"));                                
           var text = $.trim($(ui.draggable).text());
           var allDays = $(this).find('.day') ;                            
@@ -35,12 +31,14 @@ angular.module('ginkgo.directives', []).
             var hoverColumns = $(allDays).slice(range.start, range.end);          
 
             scope.$apply(function(){
-              scope.updateEvent({id: $(ui.helper).data('event-id'), 
-                                 text: $(ui.helper).text(), 
-                                 startTime: $(hoverColumns).first().data('date'), 
-                                 endTime: $(hoverColumns).last().data('date'),
-                                 order: rowIndex + 2
-                               })
+              scope.updateEvent({
+                event: {id: $(ui.helper).data('event-id'), 
+                      // text: $(ui.helper).text(), 
+                       start_at: $(hoverColumns).first().data('date'), 
+                       end_at: $(hoverColumns).last().data('date'),
+                       position: rowIndex + 2
+                     }
+              })
             });  
 
           }else{
@@ -52,21 +50,24 @@ angular.module('ginkgo.directives', []).
             // }
             
             var eventableId, type;
-            if($(ui.draggable).data('tag-id') != undefined){
-              eventableId = $(ui.draggable).data('tag-id');
-              type = 'tag';
+            if($(ui.draggable).data('task-id') != undefined){
+              eventableId = $(ui.draggable).data('task-id');
+              type = 'Task';
             }else{
               eventableId = $(ui.draggable).data('member-id');              
-              type = 'member';              
+              type = 'Member';              
             }  
             
             scope.$apply(function(){
-              scope.addEvent({text: text, 
-                startTime: $(hoverColumns).first().data('date'), 
-                endTime: $(hoverColumns).last().data('date'),
-                eventableId: eventableId,
-                type: type,
-                order: rowIndex + 2 // + 2 because index start from 0
+              scope.addEvent({event: 
+                {
+                //  text: text, 
+                 start_at: $(hoverColumns).first().data('date'), 
+                 end_at: $(hoverColumns).last().data('date'),
+                 eventable_id: eventableId,
+                 eventable_type: type,
+                 position: rowIndex + 2 // + 2 because index start from 0
+               }
               })          
             });          
        
@@ -89,10 +90,13 @@ angular.module('ginkgo.directives', []).
           var hoverColumns = $(allDays).slice(range.start - 1, range.end);  
           
           scope.$apply(function(){
-            scope.updateEvent({id: $(ui.helper).data('event-id'), 
-              text: $.trim($(ui.helper).text()), 
-              startTime: $(hoverColumns).first().data('date'), 
-              endTime: $(hoverColumns).last().data('date')})
+            scope.updateEvent({
+              event: {              
+                id: $(ui.helper).data('event-id'), 
+                start_at: $(hoverColumns).first().data('date'), 
+                end_at: $(hoverColumns).last().data('date')
+               }  
+            })
           });  
         }
       });        
@@ -115,10 +119,10 @@ angular.module('ginkgo.directives', []).
            '<div class="popover-content balloon right_side">' +
              '<span class="arrow"></span>' +
              '<form name="eventForm" class="form-horizontal">' +              
-               '<div class="control-group">' + 
-                 '<label class="control-label">Name</label>' + 
-                 '<div class="controls"><input name="text" value="{{ event.text }}"></input></div>' +
-               '</div>' +
+               // '<div class="control-group">' + 
+               //   '<label class="control-label">Name</label>' + 
+               //   '<div class="controls"><input name="text" value="{{ event.text }}"></input></div>' +
+               // '</div>' +
                '<div class="control-group">' + 
                  '<label class="control-label">Start</label>' + 
                  '<div class="controls"><input name="start" value="{{event.startTime}}"></input></div>' +
@@ -156,10 +160,12 @@ angular.module('ginkgo.directives', []).
                 $('#calendar_item_editor_singleton').find('input[type=submit]').on('click', function(){
                   scope.$apply(function(){                                                            
                     var eventFormData = $('#calendar_item_editor_singleton').find('form').serializeObject() ;                                     
-                    scope.updateEvent({id: event.id,
-                      text: eventFormData.text,
-                      startTime: eventFormData.start, 
-                      endTime: eventFormData.end
+                    scope.updateEvent({
+                      event: {                  
+                        id: event.id,
+                        start_at: eventFormData.start, 
+                        end_at: eventFormData.end
+                      }
                     })
                   });                    
                   $('#calendar_item_editor_singleton').hide();                                      
@@ -212,8 +218,7 @@ angular.module('ginkgo.directives', []).
                     });  
                   }
                 }) 
-                $('#calendar_item_editor_singleton').find('input[type=submit]').on('click', function(){
-                    console.log('fsd')                                                                     
+                $('#calendar_item_editor_singleton').find('input[type=submit]').on('click', function(){                                                                  
                   scope.$apply(function(){         
                     var eventFormData = $('#calendar_item_editor_singleton').find('form').serializeObject() ;                                     
                     scope.updateTask({

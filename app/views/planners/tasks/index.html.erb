@@ -27,11 +27,11 @@
       <a href="#"> {{ currentMonth.getFullYear()}} - {{ currentMonth.getMonth() }} </a></h1>         
   </div>      
   
-  <div class="month-row" ng-repeat="event in eventsInMonth = (events | filterByMonth:currentMonth | orderBy:'order' ) ">
+  <div class="month-row" ng-repeat="event in eventsInMonth = (events | filterByMonth:currentMonth | orderBy:'position' ) ">
     <div class="events holdable" style="width:100%;">                          
       <div >
         <div  class="event-row task" >
-          <div  class="event  width_2 wraps_next  {{event.type}}" style="left:{{event.left}};width:{{event.width}};" ginkgo-draggable="true" ginkgo-resizeable="true" data-event-id="{{event.id}}" ginkgo-popover="true">
+          <div  class="event  width_2 wraps_next  {{event.eventableType}}" style="left:{{event.left}};width:{{event.width}};" ginkgo-draggable="true" ginkgo-resizeable="true" data-event-id="{{event.id}}" ginkgo-popover="true">
             <span class="event">
               <span class="title">{{ event.text }}</span>
             </span>

@@ -139,10 +139,10 @@ width: 100%;
 float: left;
 clear: left;
 }
-div.events.holdable div.event-row .event.tag{
+div.events.holdable div.event-row .event.Task{
   background-color: #3366CC;
 }
-div.events.holdable div.event-row .event.member{
+div.events.holdable div.event-row .event.Member{
   background-color: #650606;
 }
 

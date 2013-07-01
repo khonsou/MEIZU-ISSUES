@@ -14,7 +14,7 @@
   <!-- page specific tags -->
   <%= yield :header_tags -%>
 </head>
-<body class="<%=h body_css_classes %>">
+<body class="<%=h body_css_classes %>" ng-init="projectId = <%= Project.last.id %>">
 
   
 

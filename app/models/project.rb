@@ -40,6 +40,7 @@ class Project < ActiveRecord::Base
   belongs_to :creator, class_name: 'User'
   has_many :principals, :through => :member_principals, :source => :principal
   has_many :tasks
+  has_many :events, :order => :position
   has_many :enabled_modules, :dependent => :delete_all
   has_and_belongs_to_many :trackers, :order => "#{Tracker.table_name}.position"
   has_many :issues, :dependent => :destroy, :include => [:status, :tracker]
