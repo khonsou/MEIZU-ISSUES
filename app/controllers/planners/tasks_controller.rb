@@ -5,6 +5,7 @@ class Planners::TasksController < ApplicationController
     @project = Project.find_by_id(params[:project_id]) || Project.last
     @tasks = @project.tasks
     respond_to do |format|
+      format.html 
       format.json
     end  
   end
