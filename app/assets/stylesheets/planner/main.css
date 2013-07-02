@@ -142,7 +142,7 @@ clear: left;
 div.events.holdable div.event-row .event.Task{
   background-color: #3366CC;
 }
-div.events.holdable div.event-row .event.Member{
+div.events.holdable div.event-row .event.User{
   background-color: #650606;
 }
 
@@ -155,7 +155,6 @@ clear: left;
 div.events.holdable div.event{
   position: absolute;  
   cursor: pointer;
-  padding-left: 5px;
 }
 div.events.holdable div.event.width_2 {
 width: 18.57143%;
@@ -171,7 +170,8 @@ left: 11.42857%;
 }
 
 div.events.holdable span.event {
-color: #fff;
+  color: #fff;
+  padding-left: 5px;
 }
 
 .ui-state-highlight{
@@ -201,20 +201,46 @@ color: #fff;
   box-shadow: 0 1px 12px rgba(0,0,0,0.3);
 }
 .balloon.right_side .arrow {
-border-color: transparent #ccc transparent transparent;
-left: -24px;
+top: 30px;
+}
+.balloon.right_side .arrow {
+top: 35px;
+left: -11px;
+margin-top: -11px;
+border-left-width: 0;
+border-right-color: #999;
+border-right-color: rgba(0,0,0,0.25);
 }
 .balloon .arrow {
+border-width: 11px;
+}
+.balloon .arrow, .balloon .arrow:after {
 position: absolute;
-top: 24px;
-}
-.arrow {
-font-size: 0;
-line-height: 0;
+display: block;
 width: 0;
+height: 0;
+border-color: transparent;
 border-style: solid;
-border-width: 12px;
 }
+.balloon.right_side .arrow:after {
+left: 1px;
+bottom: -10px;
+border-left-width: 0;
+border-right-color: #fff;
+}
+.balloon .arrow:after {
+border-width: 10px;
+content: "";
+}
+.popover .arrow, .popover .arrow:after {
+position: absolute;
+display: block;
+width: 0;
+height: 0;
+border-color: transparent;
+border-style: solid;
+}
+
 .popover-title{
   color: #000;
 }

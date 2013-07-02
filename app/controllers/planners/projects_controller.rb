@@ -69,5 +69,13 @@ class Planners::ProjectsController < ApplicationController
     end
     true
   end
+  
+  def show
+    @project = Project.find params[:id]
+    respond_to do |format|
+      format.json 
+    end      
+  end
+  
 end
 

@@ -37,24 +37,27 @@ var CalendarCtrl = function ($scope, $resource, events) {
   $scope.days = $scope.getDadysInMonth($scope.currentMonth);  
   
   $scope.events = [];
-  var r = $resource('/planners/projects/:project_id/events/:id', 
-                         {project_id: $scope.projectId},
-                         {'query':{method:'GET',isArray:true}});
-   r.query(function(data){
-     $scope.events = data;
-       console.log( $scope.events)     
-   });
-   
-//  $scope.events = events.events;
+  $scope.tasks  = [];
+  $scope.members  = [];  
+  var r = $resource('/planners/projects/:id', 
+                         {id: $scope.projectId},
+                         {'query':{method:'GET'}});
+  r.query(function(data){
+    $scope.events = data.events;
+    $scope.tasks = data.tasks;
+    $scope.members = data.members;    
+  });   
   
   $scope.nextMonth = function(){
     $scope.currentMonth = new Date($scope.currentMonth.getFullYear(), $scope.currentMonth.getMonth() + 1, 1);    
     $scope.days = $scope.getDadysInMonth($scope.currentMonth);      
+    $scope.getEventLength();      
   };
   
   $scope.prevMonth = function(){
     $scope.currentMonth =  new Date($scope.currentMonth.getFullYear(), $scope.currentMonth.getMonth() - 1, 1);
     $scope.days = $scope.getDadysInMonth($scope.currentMonth);      
+    $scope.getEventLength();      
   };
     
   $scope.$watch('events', function(newVal) {
@@ -64,9 +67,33 @@ var CalendarCtrl = function ($scope, $resource, events) {
   var totalDates = $scope.getNumberOfDaysInMonth($scope.currentMonth);
   var dateWidth = (1 / totalDates) * 100;
   
-  $scope.getEventStyle = function(event){        
-    var startDay = parseInt(event.startTime.split("-").pop()) - 1;
-    var endDay = parseInt(event.endTime.split("-").pop()) - 1;        
+  $scope.getEventStyle = function(event){   
+    date1 = new Date($scope.currentMonth.getFullYear(), $scope.currentMonth.getMonth() - 1, 1);          
+    date2 = new Date($scope.currentMonth.getFullYear(), $scope.currentMonth.getMonth() - 1, totalDates);                  
+    
+    var startDate = Date.parse(event.startTime);
+    var endDate = Date.parse(event.endTime) ;
+    
+    var startDay, endDay;
+    
+    if (startDate < date1) {
+      if (endDate < date2) {
+        startDay = 1;
+        endDay = parseInt(event.endTime.split("-").pop()) - 1;                
+      }else{
+        startDay = 1;
+        endDay = 31;                
+      }
+    }else{
+      if (endDate < date2) {
+        startDay = parseInt(event.startTime.split("-").pop()) - 1;
+        endDay = parseInt(event.endTime.split("-").pop()) - 1;                
+      }else{
+        startDay = parseInt(event.startTime.split("-").pop()) - 1;
+        endDay = 31;                
+      }
+    }
+         
     return {left: dateWidth * startDay + "%", width: (endDay - startDay) * dateWidth + "%"};
   }  
   
@@ -137,12 +164,12 @@ var CalendarCtrl = function ($scope, $resource, events) {
 
 var TaskCtrl = function ($scope, $resource, Task) {
   //$scope.tags = Tag.query({project_id: $scope.projectId});
-  var r = $resource('/planners/projects/:project_id/tasks/:id', 
-                         {project_id: $scope.projectId},
-                         {'query':{method:'GET',isArray:true}});
-   r.query(function(data){
-     $scope.tasks = data;
-   });
+  // var r = $resource('/planners/projects/:project_id/tasks/:id', 
+  //                        {project_id: $scope.projectId},
+  //                        {'query':{method:'GET',isArray:true}});
+  //  r.query(function(data){
+  //    $scope.tasks = data;
+  //  });
 
         
   $scope.addTask = function () {
@@ -177,7 +204,7 @@ var TaskCtrl = function ($scope, $resource, Task) {
 
 
 var MemberCtrl = function ($scope, members) {
-  $scope.members = members.members;
+
     
 }
 

@@ -54,7 +54,8 @@ class User < Principal
   belongs_to :auth_source
   has_many :push_notifications, foreign_key: 'recipient_id'
   has_many :member_invitations
-
+  has_many :events, :as => :eventable
+  
   scope :logged, :conditions => "#{User.table_name}.status <> #{STATUS_ANONYMOUS}"
   scope :status, lambda {|arg| arg.blank? ? {} : {:conditions => {:status => arg.to_i}} }
 

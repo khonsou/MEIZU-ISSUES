@@ -55,7 +55,7 @@ angular.module('ginkgo.directives', []).
               type = 'Task';
             }else{
               eventableId = $(ui.draggable).data('member-id');              
-              type = 'Member';              
+              type = 'User';              
             }  
             
             scope.$apply(function(){
