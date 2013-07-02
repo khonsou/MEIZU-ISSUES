@@ -888,6 +888,7 @@ en:
   label_notification_plural: "Notifications"
   label_invite: Invite
   label_invited_member: Invited Member
+  label_planner_new: New project
 
   button_login: Login
   button_submit: Submit
@@ -945,6 +946,8 @@ en:
   button_mark_as_read: Mark as read
   button_mark_all_as_read: Mark all as read
   button_see_all_notifications: See all notifications
+  button_confirm: Ok
+  button_upload_image: Upload image
 
   status_active: active
   status_registered: registered
@@ -1102,3 +1105,4 @@ en:
   return_to_main_page: Returen to Main Page
   button_change_project_creator: Change Project Creator
   field_change_creator: Change Project Creator
+  return_to_main_page: Returen to Main Page

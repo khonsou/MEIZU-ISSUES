@@ -94,10 +94,11 @@ RedmineApp::Application.routes.draw do
   match 'my/remove_block', :controller => 'my', :action => 'remove_block', :via => :post
   match 'my/order_blocks', :controller => 'my', :action => 'order_blocks', :via => :post
 
-  match 'planners' => "planners#index"
+  match 'planners' => "planners/projects#index"
   namespace :planners do
     resources :projects do
       resources :tasks, shallow: true
+      post 'create'
     end      
   end  
 

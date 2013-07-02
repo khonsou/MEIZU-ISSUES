@@ -1,0 +1,12 @@
+.button{
+  width: 1000px;
+  color: #FFFFFF;
+  padding: 4px 10px;
+  font-size: 13px;
+}
+
+.button.gray, .button.primary, .button.gray.disabled:hover, .button.gray:disabled:hover {
+  width: 80px;
+  border: 1px solid #424242;
+  background-color: #424242;
+}

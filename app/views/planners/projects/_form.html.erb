@@ -1,0 +1,30 @@
+<%= error_messages_for 'project' %>
+
+<div class="row-fluid form-content">
+  
+  <div class="form-span3">
+    <div class="img-polaroid">
+      <%= image_tag("fallback/planner/default.png") %>
+    </div>
+    <span class="upload-button">
+      <%= f.file_field :icon %>
+        <%= l(:button_upload_image) %>
+    </span>
+      <%= f.hidden_field :icon_cache %>
+  </div> 
+
+  <div class="span9">
+    <div class="nomargin">
+      <div><%= l(:field_name) %> </div>
+      <div>
+        <%= f.text_field :name, :required => true, class: 'span24' %>
+      </div>
+
+      <div><%= l(:field_description) %> </div>
+      <div>
+        <%= f.text_area :description, :rows => 6, :class => 'wiki-edit span24' %>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,6 +1,32 @@
 @import "bootstrap";
 
+// Typography 45
+// -------------------------
+$baseFontSize: 12px;
+
+$bigFontSize: $baseFontSize + 2px;
+
+// theme variables
+$solidBorder: 1px solid #cbcbcb;
+$darkSolidBorder: 1px solid #737373;
+$dashedBorder: 1px dashed #e3e3e3;
+
+$borderRadius: 3px;
+
+$boxShadowThree: 0 -1px 0px rgba(193,194,196,1);
+$boxShadowFour: 0 1px 0 rgba(167,170,173,0.2);
+$boxShadowFive: 0 5px 30px rgba(0,0,0,0.6);
+
+$lightTextColor: #b1b8c3;
+$darkTextColor: darken(#737883, 15%);
+
+$lightBackgroudThree: #fefefe;
+$lightBackgroudFive: #fbfbfb;
+$lightBackgroudSix: #ededed;
 
 @import "planner/main";
 @import "planner/layout";
 @import "planner/calendar";
+@import "planner/form";
+@import "planner/modals";
+@import "planner/buttons";

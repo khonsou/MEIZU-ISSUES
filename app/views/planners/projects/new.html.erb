@@ -1,0 +1,7 @@
+<h2><%=l(:label_planner_new)%></h2>
+
+<%= labelled_form_for @project, :url => {:controller => 'projects', :action => 'create'} do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+  <%= submit_tag l(:button_create) %>
+  <%= javascript_tag "$('#project_name').focus();" %>
+<% end %>

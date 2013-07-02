@@ -1,0 +1,15 @@
+<div class="modal" id="container-modal" >
+<%= labelled_form_for @project, :url => {:controller => 'projects', :action => 'create'} do |f| %>
+	<div class="modal-header">
+		<%=l(:label_planner_new)%>
+	</div>
+
+    <div class="modal-body">
+      <%= render :partial => 'form', :locals => { :f => f } %>
+    </div>
+
+    <div class="footer">
+      <%= submit_tag l(:button_confirm), disable_with: l(:button_submiting), class: 'button gray' %>
+    </div>
+  <% end %>
+</div>

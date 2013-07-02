@@ -817,7 +817,8 @@ zh:
   label_notification_plural: "通知"
   label_invite: 项目邀请
   label_invited_member: 邀请中
-
+  label_planner_new: 创建项目
+  
   button_login: 登录
   button_submit: 发表
   button_save: 保存
@@ -867,7 +868,9 @@ zh:
   button_mark_as_read: 标记为已读
   button_mark_all_as_read: 全部标记为已读
   button_see_all_notifications: 查看全部通知
-
+  button_confirm: 确定
+  button_upload_image: 上传照片
+  
   status_active: 活动的
   status_registered: 已注册
   status_locked: 已锁定

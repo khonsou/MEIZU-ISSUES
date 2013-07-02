@@ -72,6 +72,15 @@
               </li>
             </ul>
           </div><!--/.well -->
+ 
+    
+    <div class="actions">
+      <%= link_to new_planners_project_path, class: 'btn span24', remote: true do %>
+       <i class="icon-new"></i>
+         <%= l(:label_project_new) %>
+      <% end -%>
+    </div>
+
   </div>
 <% end -%>
 
@@ -212,4 +221,5 @@
       design
     </div>     
 
-
+<div id="calendar_item_editor_singleton">
+</div> 

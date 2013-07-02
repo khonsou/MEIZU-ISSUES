@@ -1,0 +1,54 @@
+// customize bootstrap _modals.scss
+
+// Background 14
+.modal-backdrop {
+  background-color: #2e3338;
+}
+
+.modal-backdrop,
+.modal-backdrop.fade.in {
+  @include opacity(0.3);
+}
+
+.modal-header {
+  padding: 15px 10px 5px 20px;
+  border-bottom: 0px;
+  font-size: 18px;
+}
+
+// Body (where all modal content resides) 67
+.modal-body {
+  background-color: $lightBackgroudThree;
+  padding: $gridGutterWidth;
+  
+  img{
+    max-height:380px;
+  }
+  
+  .box{
+    border: none;
+    box-shadow: none;
+    background-image: linear-gradient(#fff, #fff);    
+  }
+}
+
+// Footer (for actions) 77
+.modal-footer {
+  padding: 25px $gridGutterWidth 10px;
+  background-color: $lightBackgroudThree;
+  border-top: $dashedBorder;
+}
+
+.footer {
+  padding-right: $gridGutterWidth;
+  text-align: right;
+}
+
+.modal{
+  -webkit-border-radius: 0px;
+     -moz-border-radius: 0px;
+          border-radius: 0px;
+  -webkit-box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+     -moz-box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+          box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+}
