@@ -228,13 +228,22 @@ $.fn.serializeObject = function()
 };
 
 $(document).ready(function () {
-  $('body').click(function(){
+  $('#wrap').click(function(){
     $('#calendar_item_editor_singleton').hide();
+    $('input[rel=date]').datepicker('destroy');                      
   })
 
   $('#calendar_item_editor_singleton').on('click', function(e){
     e.stopPropagation();
   })    
+  
+//   $('input[rel=date]').on('click', function(e){
+//     console.log('d')
+//     $(this).datepicker('show');
+//     
+// //    $(this).datepicker('show');    
+// //    e.stopPropagation();    
+//   });
 
 })
 

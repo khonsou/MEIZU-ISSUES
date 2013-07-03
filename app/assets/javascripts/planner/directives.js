@@ -125,11 +125,11 @@ angular.module('ginkgo.directives', []).
                // '</div>' +
                '<div class="control-group">' + 
                  '<label class="control-label">Start</label>' + 
-                 '<div class="controls"><input name="start" value="{{event.startTime}}"></input></div>' +
+                 '<div class="controls"><input name="start" rel="date" value="{{event.startTime}}"></input></div>' +
                '</div>' +
                '<div class="control-group">' + 
                  '<label class="control-label">End</label>' + 
-               '<div class="controls"><input name="end" value="{{event.endTime}}"></input></div>' +
+               '<div class="controls"><input name="end" rel="date" value="{{event.endTime}}"></input></div>' +
                '</div>' +
              	'<p class="submit">' + 
              		'<input type="submit" value="Save changes" class="btn btn-small btn-success" ng-click="save()">' + 
@@ -146,12 +146,25 @@ angular.module('ginkgo.directives', []).
                $('#calendar_item_editor_singleton').show()
                                                    .css('top', targetOffset.top).
                                                     css('left', targetOffset.left + 50);
+                                                    
+                // $('input[rel=date]').on('click', function(e){
+                //   console.log('d')
+                //   $(this).datepicker();
+
+              //    $(this).datepicker('show');    
+              //    e.stopPropagation();    
+                // });
+            
+                $('input[rel=date]').datepicker({});
+                                                                    
                 $('#calendar_item_editor_singleton').find('.cancel').on('click', function(){
                   $('#calendar_item_editor_singleton').hide();
+                  $('input[rel=date]').datepicker('destroy');                      
                 })                                            
                 $('#calendar_item_editor_singleton').find('.delete').on('click', function(){
                   if(confirm('Are you sure delete this?')){
                     $('#calendar_item_editor_singleton').hide();                    
+                    $('input[rel=date]').datepicker('destroy');                                    
                     scope.$apply(function(){
                       scope.destroyEvent(event);
                     });  
