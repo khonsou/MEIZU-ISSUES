@@ -26,7 +26,8 @@ var CalendarCtrl = function ($scope, $resource, events) {
          result.push({
              year: dateObject.getFullYear(),
              month: dateObject.getMonth(),              
-             day: (i + 1 < 10) ? "0" + (i + 1) : (i + 1)
+             day: (i + 1 < 10) ? "0" + (i + 1) : (i + 1),
+             dateOjbect: new Date(dateObject.getFullYear(), dateObject.getMonth() - 1, i + 1)
          });
     }
     return result;     
@@ -163,16 +164,8 @@ var CalendarCtrl = function ($scope, $resource, events) {
 
 
 var TaskCtrl = function ($scope, $resource, Task) {
-  //$scope.tags = Tag.query({project_id: $scope.projectId});
-  // var r = $resource('/planners/projects/:project_id/tasks/:id', 
-  //                        {project_id: $scope.projectId},
-  //                        {'query':{method:'GET',isArray:true}});
-  //  r.query(function(data){
-  //    $scope.tasks = data;
-  //  });
 
-        
-  $scope.addTask = function () {
+    $scope.addTask = function () {
 //    var id = tags.save({text: $scope.tagText, done: false});
     var r =  $resource('/planners/projects/:project_id/tasks/:id', 
                        {project_id: $scope.projectId},
@@ -186,18 +179,20 @@ var TaskCtrl = function ($scope, $resource, Task) {
   $scope.destroyTask = function (task) {
     var r =  $resource('/planners/tasks/:id', 
                        {},
-                       {'remove':{method:'DELETE',isArray:true}});
+                       {'remove':{method:'DELETE'}});
     r.remove({id: task.id}, function(data){
-       $scope.tasks = data;      
+      $scope.$parent.events = data.events;
+      $scope.tasks = data.tasks;
     });
   }
   
   $scope.updateTask = function (task) {
     var r =  $resource('/planners/tasks/:id', 
                        {},
-                       {'update':{method:'PUT',isArray:true}});
+                       {'update':{method:'PUT'}});
     r.update({id: task.id}, task, function(data){
-       $scope.tasks = data;      
+      $scope.$parent.events = data.events;
+      $scope.tasks = data.tasks;
     });
   }
 }

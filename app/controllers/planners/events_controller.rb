@@ -12,6 +12,7 @@ class Planners::EventsController < ApplicationController
     @project = Project.find_by_id(params[:project_id]) || Project.last
     @event = @project.events.build(params[:event])
     @event.save
+    @event.insert_at(params[:event][:order])    
     @events = @project.events        
     respond_to do |format|
       format.json 
@@ -21,6 +22,7 @@ class Planners::EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])    
     @event.update_attributes params[:event]
+    @event.insert_at(params[:event][:order])
     @events = @event.project.events        
     respond_to do |format|
       format.json 

@@ -33,10 +33,9 @@ angular.module('ginkgo.directives', []).
             scope.$apply(function(){
               scope.updateEvent({
                 event: {id: $(ui.helper).data('event-id'), 
-                      // text: $(ui.helper).text(), 
                        start_at: $(hoverColumns).first().data('date'), 
                        end_at: $(hoverColumns).last().data('date'),
-                       position: rowIndex + 2
+                       order: rowIndex
                      }
               })
             });  
@@ -66,7 +65,7 @@ angular.module('ginkgo.directives', []).
                  end_at: $(hoverColumns).last().data('date'),
                  eventable_id: eventableId,
                  eventable_type: type,
-                 position: rowIndex + 2 // + 2 because index start from 0
+                 order: rowIndex 
                }
               })          
             });          

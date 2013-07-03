@@ -23,7 +23,7 @@ class Planners::TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])    
     @task.update_attributes params[:task]
-    @tasks = @task.project.tasks        
+    @project = @task.project
     respond_to do |format|
       format.json 
     end  
@@ -31,8 +31,8 @@ class Planners::TasksController < ApplicationController
   
   def destroy
     @task = Task.find(params[:id])
-    @tasks = @task.project.tasks
     @task.destroy
+    @project = Project.find(@task.project_id)        
     respond_to do |format|
       format.json 
     end  

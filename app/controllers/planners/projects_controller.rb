@@ -30,6 +30,13 @@ class Planners::ProjectsController < ApplicationController
     end
     redirect_to planners_path
   end
+  
+  def show
+    @project = Project.find params[:id]
+    respond_to do |format|
+      format.json 
+    end      
+  end
 
   def new_member
     @all_users=User.status(User::STATUS_ACTIVE)
@@ -69,13 +76,7 @@ class Planners::ProjectsController < ApplicationController
     end
     true
   end
-  
-  def show
-    @project = Project.find params[:id]
-    respond_to do |format|
-      format.json 
-    end      
-  end
+
   
 end
 

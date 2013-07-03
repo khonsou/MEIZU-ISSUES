@@ -8,6 +8,10 @@ class Event < ActiveRecord::Base
   
   acts_as_list :scope => :project
   
+  default_scope order('position asc')
+  
+  attr_accessor :order
+  
   def text
     if eventable_type == "Task"
       eventable.name

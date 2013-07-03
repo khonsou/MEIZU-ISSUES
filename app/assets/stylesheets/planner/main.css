@@ -3,15 +3,6 @@ html, body
     height: 100%;
     min-height: 100%;
 }
-
-#external-events, #members {
-margin-top:20px;
-width: 150px;
-padding: 0 10px;
-border: 1px solid #ccc;
-background: #eee;
-text-align: left;
-}
 	
 #external-events h4, #members h4 {
 font-size: 16px;
@@ -33,7 +24,8 @@ z-index:1000;
   cursor:default;
 }
 #members .member{
-  background: #650606;  
+  background: transparent;  
+  color: #666;
 }
 
 
@@ -155,6 +147,7 @@ clear: left;
 div.events.holdable div.event{
   position: absolute;  
   cursor: pointer;
+  margin-top:10px;
 }
 div.events.holdable div.event.width_2 {
 width: 18.57143%;
