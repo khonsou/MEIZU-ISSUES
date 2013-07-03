@@ -145,15 +145,7 @@ angular.module('ginkgo.directives', []).
                $('#calendar_item_editor_singleton').html(compile);
                $('#calendar_item_editor_singleton').show()
                                                    .css('top', targetOffset.top).
-                                                    css('left', targetOffset.left + 50);
-                                                    
-                // $('input[rel=date]').on('click', function(e){
-                //   console.log('d')
-                //   $(this).datepicker();
-
-              //    $(this).datepicker('show');    
-              //    e.stopPropagation();    
-                // });
+                                                    css('left', targetOffset.left + 50);                                                    
             
                 $('input[rel=date]').datepicker({});
                                                                     
