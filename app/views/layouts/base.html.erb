@@ -45,7 +45,7 @@
 <% if User.current.logged? %>
   <% if has_newfeatures? %>
     <% if show_notification? %>
-          <div class="container msg-details" id = "description"><%= latest_newfeatures_description %></div>
+          <div class="container msg-details" id = "newfeatures-msg-description"><%= latest_newfeatures_description %></div>
     <% end %>
   <% end %>
 <%end%>
