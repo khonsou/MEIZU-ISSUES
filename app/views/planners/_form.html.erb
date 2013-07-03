@@ -1,0 +1,23 @@
+<div class="row-fluid form-content" id="invitations">
+  <div class="title">
+    <span><%= l(:field_project) %></span>
+    <%= select_tag 'project_id', project_tree_options_for_select(find_visible_projects, :selected => @project), class: 'span24' %>
+  </div>
+
+  <div>
+    <%= text_field_tag 'recipients', nil, id: "member-invitation-recipients", class: 'span24' %>
+  </div>
+
+  <div>
+    <label><%= l(:field_description) %></label>
+    <%= text_area_tag 'description', nil, :rows => 6, :class => 'span24' %>
+  </div>
+</div>
+
+<%= javascript_tag do %>
+  $(document).ready(function() {
+    $('#member-invitation-recipients').val(<%== @recipients.map { |u| u.mail ? u.to_s(true) : nil }.compact %>).select2({
+      tags:<%== @all_recipients.map { |u| u.mail ? u.to_s(true) : nil }.compact %>,
+    });
+  });
+<% end -%>

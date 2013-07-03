@@ -1,5 +1,6 @@
 class Planners::ProjectsController < ApplicationController
   layout 'planner'
+  before_filter :find_optional_project, :only => [:new_member, :add_member]
 
   def index
 
@@ -30,13 +31,34 @@ class Planners::ProjectsController < ApplicationController
     redirect_to planners_path
   end
 
+  def new_member
+    @all_users=User.status(User::STATUS_ACTIVE)
+    @recipients=[]
+    if params[:user_id]
+       user=User.find(params[:user_id])
+       @recipients << user
+    end
+  end
+   
+  def add_member
+    if @project
+      mails = params[:recipients].split(',').map{|m| User.parse_mail(m)}.compact.uniq
+      if mails
+         members=[]
+         mails.each do |m|
+           members << User.find_by_login(m)
+         end
+         Member.add_member(@project.id,members,params[:description])
+      end
+    end
+  end
+
   private
 
   # Validates parent_id param according to user's permissions
   # TODO: move it to Project model in a validation that depends on User.current
   def validate_parent_id
     return true if User.current.admin?
-debugger
     parent_id = params[:project] && params[:project][:parent_id]
     if parent_id || @project.new_record?
       parent = parent_id.blank? ? nil : Project.find_by_id(parent_id.to_i)

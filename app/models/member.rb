@@ -40,7 +40,7 @@ class Member < ActiveRecord::Base
   def name
     self.user.name
   end
-
+  
   alias :base_role_ids= :role_ids=
   def role_ids=(arg)
     ids = (arg || []).collect(&:to_i) - [0]
@@ -99,12 +99,31 @@ class Member < ActiveRecord::Base
     @membership
   end
   
+  
+  def self.add_member(project_id=nil,members=nil,description=nil)#add member to planners
+    return if project_id.nil? || members.nil?
+    exist_members=[]
+    Member.find_by_sql("select user_id from members where project_id=#{project_id}").each{|r| exist_members<< r.user_id}
+    members.each do |m|
+      unless exist_members.include?(m.id)
+        member=Member.new(:role_ids => [Role.default.id],:user_id => m.id, :project_id => project_id)
+        member.save!
+        send_mail(m,project_id,description)
+      end
+    end
+  end
+  
 
   protected
 
   def validate_role
     errors.add_on_empty :role if member_roles.empty? && roles.empty?
   end
+  
+  def self.send_mail(member_id,project_id,description)
+    Mailer.delay.mail_to_new_member(member_id,project_id,description)
+  end
+  
 
   private
 
@@ -119,7 +138,7 @@ class Member < ActiveRecord::Base
     if self.project.mute?
       self.mute = true
     end  
-  end
-  
+  end 
+     
   
 end

@@ -3,6 +3,7 @@
 //= require jquery-ui
 //= require i18n/jquery.ui.datepicker-zh-CN
 //= require bootstrap
+//= require select2
 
 //= require planner/vendor/angular.min.js
 //= require planner/vendor/angular-resource.min.js

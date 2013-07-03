@@ -1,3 +1,5 @@
+//= require select2
+
 @import "bootstrap";
 
 // Typography 45
@@ -30,3 +32,4 @@ $lightBackgroudSix: #ededed;
 @import "planner/form";
 @import "planner/modals";
 @import "planner/buttons";
+@import "planner/button";

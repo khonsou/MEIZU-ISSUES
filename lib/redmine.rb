@@ -152,7 +152,7 @@ Redmine::AccessControl.map do |map|
   end
 
   map.project_module :member_invitations do |map|
-    map.permission :manage_member_invitations, {:member_invitations => [:new, :create, :accept, :reject]}
+    map.permission :manage_member_invitations, {:member_invitations => [:new, :create, :accept, :reject], :'planners/projects' => [:add_member,:new_member]}
   end
 end
 

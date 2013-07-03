@@ -816,6 +816,7 @@ zh:
   label_notification: "通知"
   label_notification_plural: "通知"
   label_invite: 项目邀请
+  label_planner_invite: 邀请
   label_invited_member: 邀请中
   label_planner_new: 创建项目
   

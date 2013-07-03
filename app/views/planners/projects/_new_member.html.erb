@@ -1,0 +1,11 @@
+<div class="modal" id="container-modal">
+  <%= form_tag(planners_project_add_member_path, method: :post, remote: true) do %>
+    <div class="modal-body">
+      <%= render :partial => 'form_add_member' %>
+    </div>
+    <div class="modal-footer">
+      <%= link_to l(:button_close), '#', class: 'Label close_invite', data: { dismiss: 'modal' } %>
+      <%= submit_tag l(:button_send), disable_with: l(:button_submiting), class: 'Label commit-invite' %>
+    </div>
+  <% end %>
+</div>

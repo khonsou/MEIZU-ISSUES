@@ -50,3 +50,37 @@
 .nomargin {
   margin-left: 25px;
 }
+ .commit-invite{
+   background-color:#378ee1;
+   color:#ffffff;
+   border: 0;
+   font-size: 16px;
+   padding: 2px 6px;
+ }
+ .close_invite{
+   background-color:#000000;
+   color:#ffffff;
+   opacity: 0.7;
+   filter: alpha(opacity=70);
+   padding: 2px 6px 4px 6px;
+   font-size: 16px;
+ }
+.textarea-backgroundcolor{
+   background-color: rgb(128, 124, 126);
+}
+div.textarea-backgroundcolor{
+  background-color:#e1e1e1;
+}
+#project_id{
+  width: 50%;
+  margin-bottom: 5px;
+  margin-left: 15px;
+}
+#recipients{
+  background: url("/assets/icon-members.png") no-repeat scroll 30% 50% #378ee1;
+}
+
+ul{
+  opacity: 0.8;
+  color: rgb(10, 9, 9);
+}

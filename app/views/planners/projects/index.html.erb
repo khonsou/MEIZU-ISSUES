@@ -14,7 +14,10 @@
               </li>
               <li class="head">
                 <h5 style="display:inline-block;">Members</h5>
-                <div class="pull-right" style="display:inline-block;"><h5 style="float:right;padding-left:15px;">邀请</h5></div>
+                <div class="pull-right" style="display:inline-block;">
+                   <% # we suppose the controller will assign the current project into @project %>
+                   <%= link_to l(:label_planner_invite),planners_project_new_member_path(project_id: @project), remote: true, class:'invite-member'%>
+                </div>
               </li>
               <li class="head">
                 <ul class="partner">

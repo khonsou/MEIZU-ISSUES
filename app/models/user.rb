@@ -479,8 +479,7 @@ class User < Principal
       return false unless context.allows_to?(action)
       # Admin users are authorized for anything else
       return true if admin?
-
-      roles = roles_for_project(context)
+      roles = roles_for_project(contet)
       return false unless roles
       roles.detect {|role|
         (context.is_public? || role.member?) &&

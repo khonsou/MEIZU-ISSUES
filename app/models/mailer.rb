@@ -146,7 +146,15 @@ class Mailer < ActionMailer::Base
     mail :to => news.recipients,
       :subject => "[#{news.project.name}] #{l(:label_news)}: #{news.title}"
   end
-
+  
+  def mail_to_new_member(member_id,project_id,description)
+    @project=Project.find(project_id)
+    @recipient=User.find(member_id)
+    @description=description
+    @inviter=User.current
+    mail to: @recipient.login, subject: l(:mail_subject_member_add, project: @project.name)
+  end  
+  
   # Builds a Mail::Message object used to email recipients of a news' project when a news comment is added.
   #
   # Example:
