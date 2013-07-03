@@ -1,8 +1,5 @@
 //= require select2
 
-@import "bootstrap";
-@import "planner/jquery-ui-1.10.3.custom.min";
-@import "datepicker";
 
 // Typography 45
 // -------------------------
@@ -27,6 +24,10 @@ $darkTextColor: darken(#737883, 15%);
 $lightBackgroudThree: #fefefe;
 $lightBackgroudFive: #fbfbfb;
 $lightBackgroudSix: #ededed;
+
+@import "bootstrap";
+@import "planner/jquery-ui-1.10.3.custom.min";
+@import "datepicker";
 
 @import "planner/main";
 @import "planner/layout";
