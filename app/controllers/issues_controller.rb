@@ -168,14 +168,17 @@ class IssuesController < ApplicationController
 
     if saved
       render_attachment_warning_if_needed(@issue)
-
-      respond_to do |format|
-        format.html do
-          flash[:notice] = l(:notice_successful_update) unless @issue.current_journal.new_record?          
-          redirect_back_or_default({:action => 'show', :id => @issue})
-        end  
-        format.api  { render_api_ok }
-        format.js 
+      if(params[:commit] == l(:button_submit))
+        respond_to do |format|
+          format.html do
+            flash[:notice] = l(:notice_successful_update) unless @issue.current_journal.new_record?          
+            redirect_back_or_default({:action => 'show', :id => @issue})
+          end  
+          format.api  { render_api_ok }
+          format.js 
+        end
+      else
+        close
       end
     else
       respond_to do |format|

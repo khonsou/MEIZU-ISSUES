@@ -871,7 +871,8 @@ zh:
   button_see_all_notifications: 查看全部通知
   button_confirm: 确定
   button_upload_image: 上传照片
-  
+  button_close_submit: 关闭 & 发表
+
   status_active: 活动的
   status_registered: 已注册
   status_locked: 已锁定

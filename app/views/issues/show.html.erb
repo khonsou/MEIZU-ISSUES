@@ -169,9 +169,13 @@
         </div>
         
         <div class="row-fluid">        
-          <div class="pull-right">
+          <div class="pull-right" id="close-button">
+            <%= link_to close_issue_path(@issue), class: 'btn', :method => "post" do  %>
+              <%= l(:button_close) %>
+            <% end %>
+            <%= submit_tag l(:button_close_submit), disable_with: l(:button_submiting), class: 'btn', id: "button_close_submit" %>
             <%= submit_tag l(:button_submit), disable_with: l(:button_submiting), class: 'button blue full', id: "button_submit" %>
-          </div>  
+          </div>
         </div>  
       <% end %>
 
@@ -182,3 +186,28 @@
 <%= render :partial => "shared/textile" %>  
 
 <% html_title "#{@issue.tracker.name} ##{@issue.id}: #{@issue.subject}" %>
+
+<%= javascript_tag do %>
+  $(document).ready(function(){
+    $("#close-button").find("input:first").hide();
+
+    $(document).bind("keyup",function(event){
+      var srcEle = event.target;
+
+      if(srcEle.id == "notes" && srcEle.value){
+        $("#close-button").find("a").hide();
+        $("#close-button").find("input:first").show();
+      }else{
+        $("#close-button").find("input:first").hide();
+        $("#close-button").find("a").show();
+      }
+    })
+
+    $("#button_close_submit").click(function(){
+      $("#button_submit").removeAttr('data-disable-with');
+    })
+    $("#button_submit").click(function(){
+      $("#button_close_submit").removeAttr('data-disable-with');
+    })
+  })
+<% end -%>
