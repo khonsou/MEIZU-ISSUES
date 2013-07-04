@@ -3,7 +3,7 @@ class Planners::ProjectsController < ApplicationController
   before_filter :find_optional_project, :only => [:new_member, :add_member]
 
   def index
-
+    @projects = Project.limit(10)
   end
 
   def new
@@ -34,6 +34,7 @@ class Planners::ProjectsController < ApplicationController
   def show
     @project = Project.find params[:id]
     respond_to do |format|
+      format.html      
       format.json 
     end      
   end

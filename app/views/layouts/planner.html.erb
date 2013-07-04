@@ -14,10 +14,8 @@
   <!-- page specific tags -->
   <%= yield :header_tags -%>
 </head>
-<body class="<%=h body_css_classes %>" ng-init="projectId = <%= Project.last.id %>">
-
+<body class="<%=h body_css_classes %>" ng-init="projectId = <%= @project.try(:id) %>">
   
-
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container-fluid">
@@ -45,11 +43,13 @@
   </div>
   
   <div id="wrap" ng-controller="CalendarCtrl"> 
-    <div id="sidebar">
-         <%= yield :sidebar %>
-    </div> 
+    <% if content_for?(:sidebar) %>
+      <div id="sidebar">
+        <%= yield :sidebar %>
+      </div> 
+    <% end %>
     <div id="main">
-        <%= yield %>
+      <%= yield %>
     </div>
   </div>
       

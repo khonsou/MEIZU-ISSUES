@@ -1,5 +1,7 @@
 //= require select2
 
+@import "bootstrap";
+@import "planner/jquery-ui-1.10.3.custom.min";
 
 // Typography 45
 // -------------------------
@@ -25,14 +27,14 @@ $lightBackgroudThree: #fefefe;
 $lightBackgroudFive: #fbfbfb;
 $lightBackgroudSix: #ededed;
 
-@import "bootstrap";
-@import "planners/jquery-ui-1.10.3.custom.min";
+
+
+@import "planner/main";
+@import "planner/layout";
+@import "planner/calendar";
+@import "planner/form";
+@import "planner/modals";
+@import "planner/buttons";
+@import "planner/button";
 @import "datepicker";
 
-@import "planners/main";
-@import "planners/layout";
-@import "planners/calendar";
-@import "planners/form";
-@import "planners/modals";
-@import "planners/buttons";
-@import "planners/button";

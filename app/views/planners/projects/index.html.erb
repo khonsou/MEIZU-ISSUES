@@ -1,3 +1,24 @@
+<% content_for:sidebar do %>
+ 
+<% end %>
+<h4 class="title">所有项目:</h4>
+<div class="row-fluid">
+  <ul class="thumbnails">
+    <% @projects.each do |p| %>      
+      <li class="span2">
+        <div>
+          <%= link_to image_tag(p.icon_url(:large)), "/planners/projects/#{p.id}", :class => "thumbnail" %>
+          <div class="caption">
+            <h5><%= p.name %></h5>
+            <p class="small">6月20号 - 6月30号</p>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<% if false %>
 <% content_for:sidebar do%>
   <div id="sidebar">
         <div class="well sidebar-nav">
@@ -16,9 +37,11 @@
                 <h5 style="display:inline-block;">Members</h5>
                 <div class="pull-right" style="display:inline-block;">
                    <% # we suppose the controller will assign the current project into @project %>
+
                    <% if @project %>
                      <%= link_to l(:label_planner_invite),planners_project_new_member_path(project_id: @project), remote: true, class:'invite-member'%>
                    <% end %>
+
                 </div>
               </li>
               <li class="head">
@@ -228,3 +251,4 @@
 
 <div id="calendar_item_editor_singleton">
 </div> 
+<% end %>

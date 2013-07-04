@@ -97,11 +97,12 @@ RedmineApp::Application.routes.draw do
   match 'planners' => "planners/projects#index"
   namespace :planners do
     resources :projects do
-      get 'new_member'
-      post 'add_member'
+      collection do
+        get 'new_member'
+        post 'add_member'
+      end  
       resources :tasks, shallow: true
       resources :events, shallow: true            
-      post 'create'
     end      
 
   end  
