@@ -5,14 +5,14 @@
 //= require bootstrap
 //= require select2
 
-//= require planner/vendor/angular.min.js
-//= require planner/vendor/angular-resource.min.js
-//= require planner/vendor/underscore-min.js
-//= require planner/vendor/jquery.ui.touch-punch.min.js
+//= require planners/vendor/angular.min.js
+//= require planners/vendor/angular-resource.min.js
+//= require planners/vendor/underscore-min.js
+//= require planners/vendor/jquery.ui.touch-punch.min.js
 
-//= require planner/app.js
-//= require planner/directives.js
-//= require planner/filters.js
-//= require planner/services.js
+//= require planners/app.js
+//= require planners/directives.js
+//= require planners/filters.js
+//= require planners/services.js
 
 //= require ng-rails-csrf
