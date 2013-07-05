@@ -10,3 +10,14 @@
   border: 1px solid #424242;
   background-color: #424242;
 }
+
+.load-more {
+  margin: 20px 0 10px;
+  text-align: center; 
+
+  .btn-load-more {
+    font-size: 12px;
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+}

@@ -3,13 +3,13 @@ html, body
     height: 100%;
     min-height: 100%;
 }
-	
+     
 #external-events h4, #members h4 {
 font-size: 16px;
 margin-top: 0;
 padding-top: 1em;
 }
-
+ 
 #external-events .external-event, #members .member { /* try to mimick the look of a real event */
 margin: 10px 0;
 padding: 2px 4px;
@@ -27,8 +27,8 @@ z-index:1000;
   background: transparent;  
   color: #666;
 }
-
-
+ 
+ 
 #calendar{
   background:#fff;
 }
@@ -50,7 +50,7 @@ text-decoration: none;
 border-radius: 5px;
 box-shadow: 0px 1px 0px #ddd;
 }
-
+ 
 #calendar div.header button[data-behavior~=navigate]:nth-of-type(2) {
 border-radius: 0 5px 5px 0;
 margin-right: 10px;
@@ -67,19 +67,19 @@ font-weight: normal;
 -webkit-font-smoothing: antialiased;
 text-align: center;
 }
-
+ 
 .month-row{
   position:relative;
 /*  z-index:100;*/
 }
-
+ 
 div.days {
   display: table;
   table-layout: fixed;
   width: 100%;
   min-height:30px;
 }
-
+ 
 div.day {
 display: table-cell;
 height:30px;
@@ -90,7 +90,7 @@ margin: 0;
 padding: 0 0 10px 0;
 line-height: normal;
 }
-
+ 
 div.day div.event-row {
 position: relative;
 top: auto;
@@ -103,13 +103,13 @@ width: 0;
 float: left;
 clear: left;
 }
-
+ 
 div.days-of-month {
   display: table;
   table-layout: fixed;
   width: 100%;
 }
-
+ 
 div.day-header {
   text-align:right;
 display: table-cell;
@@ -119,7 +119,7 @@ margin: 0;
 padding: 0 0 10px 0;
 line-height: normal;
 }
-
+ 
 div.events.holdable {
 position: absolute;
 height: 0;
@@ -135,9 +135,28 @@ div.events.holdable div.event-row .event.Task{
   background-color: #3366CC;
 }
 div.events.holdable div.event-row .event.User{
-  background-color: #650606;
+  
+  background-color: #a6c6d3;
+   
+  .img-circle{
+    height:24px;
+    width:24px;
+    z-index:10;
+    position:absolute;
+    border: 1px solid #a6c6d3;
+    padding: 1px; 
+    background-color: #FFFFFF;
+  }  
+   
+  span.title{
+    display:inline-block;
+    margin-left:15px;
+    padding-top: 2px;
+    padding-left: 20px;
+    color:#fff;
+  }
 }
-
+ 
 div.events.holdable div.spacer {
 height: 25px;
 width: 0;
@@ -161,17 +180,17 @@ left: 31.42857%;
 div.events.holdable div.event.slot_1 {
 left: 11.42857%;
 }
-
+ 
 div.events.holdable span.event {
   color: #fff;
   padding-left: 5px;
 }
-
+ 
 .ui-state-highlight{
   background-color:#FEFAE2;
 }
-
-
+ 
+ 
 #calendar_item_editor_singleton {
   position: absolute;
   width: 1px;
@@ -233,7 +252,7 @@ height: 0;
 border-color: transparent;
 border-style: solid;
 }
-
+ 
 .popover-title{
   color: #000;
 }
