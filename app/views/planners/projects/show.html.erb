@@ -2,14 +2,14 @@
   <div class="well sidebar-nav">
     <ul class="nav nav-list" id="slideRight">
       <li class="form-horizontal head">
-          <h5 style="display:inline-block;">Project</h5>
+          <h5 style="display:inline-block;"><%= @project.name %></h5>
           <div style="display:inline-block;padding:10px;" class="pull-right"><img src="/assets/project_header/down.png" alt="down"/></div>
       </li>
       <li>
         <a href="#">
-          <img src="/assets/project_header/person.png" class="img-polaroid" style="height:135px;width:95%;">
+          <img src="/assets/planners/project-default.png" class="img-polaroid" style="height:135px;width:95%;">
         </a>
-        <div id="descriptionToPro">description</div>
+        <div id="descriptionToPro"><%= @project.description %></div>
       </li>
       <li class="head">
         <h5 style="display:inline-block;">Members</h5>
@@ -25,6 +25,7 @@
               <span class="name">{{member.name}}</span>
               <div class="role">master</div>
             </div>
+            <a class="pull-right" href="#"><img src="/assets/planners/delete.png"></a>                   
           </div>
         </div>
       </li>
@@ -32,7 +33,7 @@
         <div>全部</div>
         <div>
           <a style="float:right;" href="#"><img src="/assets/project_header/add-black.png" alt="add_Person"></a>
-          <span class="name">Tags</span>
+          <span class="name">Tasks</span>
         </div>
       </li>
       <li class="classify">
@@ -61,7 +62,7 @@
         </p>         
       </div>
       <div class="row-fluid">
-        <div class="span4">今天：<span>6</span>月<span>7</span>日&nbsp;&nbsp;星期<span>五</span></div>
+        <div class="span4">今天：<span> <%=  Date.today.strftime("%m月%d日") %> &nbsp;&nbsp;</span></div>
         <div class="span3 offset5">
           <div class="header">
             <nav>  
@@ -82,11 +83,17 @@
     <div class="events holdable" style="width:100%;">                          
       <div >
         <div  class="event-row task" >
-          <div  class="event  width_2 wraps_next  {{event.eventableType}}" style="left:{{event.left}};width:{{event.width}};" ginkgo-draggable="true" ginkgo-resizeable="true" data-event-id="{{event.id}}" ginkgo-popover="true">
-            <span class="event">
+          <div  class="event  width_2 wraps_next  {{event.eventableType}}" style="left:{{event.left}};width:{{event.width}};" ginkgo-draggable="true" ginkgo-resizeable="true" data-event-id="{{event.id}}" ginkgo-popover="true" ng-switch on="event.eventableType">
+            
+            <span ng-switch-when="Task" class="event">
               <span class="title">{{ event.text }}</span>
             </span>
-          </div>      
+            
+            <span ng-switch-default>
+              <a><img class="img-circle" src="/assets/planners/person.png" style=""></a>
+              <span style="" class="title">{{ event.text }}</span>
+            </span>
+          </div>                        
         </div>
         <div class="spacer"></div>
       </div>            
@@ -94,7 +101,7 @@
                   
     <div class="days" ginkgo-droppable="true">            
       <div class="dates" style="display:table-row;">
-        <div class="day" ng-repeat="day in days" data-date="{{day.year}}-{{day.month}}-{{day.day}}">
+        <div class="day {{ day.dateOjbect.getDay()%6==0  && 'sat' || '' }}" ng-repeat="day in days" data-date="{{day.year}}-{{day.month}}-{{day.day}}" >
         </div>
       </div>
     </div>   
@@ -103,7 +110,7 @@
   
   <div class="month-row no-events">
     <div class="days" ginkgo-droppable="true"  style="min-height:{{  500 - (eventsInMonth.length * 30)}}px;">            
-      <div class="day" ng-repeat="day in days" data-date="{{day.year}}-{{day.month}}-{{day.day}}" style="height:{{  500 - (eventsInMonth.length * 30)}}px;">
+      <div class="day {{ day.dateOjbect.getDay()%6==0  && 'sat' || '' }}" ng-repeat="day in days" data-date="{{day.year}}-{{day.month}}-{{day.day}}" style="height:{{  500 - (eventsInMonth.length * 30)}}px;">
       </div>
     </div>   
   </div>       

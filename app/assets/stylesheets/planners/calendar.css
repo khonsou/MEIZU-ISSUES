@@ -40,9 +40,9 @@
 #slideRight li.head>div{
   padding: 5px 0 5px 0;
 }
-.form-horizontal .control-group{
+/*.form-horizontal .control-group{
   margin-bottom: 0;
-}
+}*/
 .partner .name{
   font-size: 14px;
   font-weight: bold;
@@ -87,7 +87,7 @@ ul{
   display: inline-block;
   width:60%;
 }
-.head .pull-right h5{
+.head .pull-right h5, .head .pull-right h5 a{
   background: url("/assets/project_header/add-white.png") no-repeat scroll 0  black;
   color:#ffffff;
 }
@@ -156,9 +156,7 @@ ul{
   text-align: center;
 }
 .sat{
-  background: #FFB7DD;
-  opacity: 0.2;
-  filter: alpha(opacity=20);
+  background: #fff1f8;
 }
 .sun{
   background: #99FF99;

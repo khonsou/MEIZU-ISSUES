@@ -22,6 +22,7 @@ gem 'acts-as-taggable-on'
 gem 'jbuilder'
 gem 'ng-rails-csrf'
 gem 'acts_as_list'
+gem 'kaminari'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.4'

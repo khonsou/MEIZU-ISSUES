@@ -68,9 +68,16 @@ body>#wrap {
         background-color: #c3dae4;
       }  
       
+      .navbar-inverse  .search-query {
+        margin-top: 0px;
+        background: #fff;
+      }
+      
       .head .pull-right h5{
         background: url("/assets/project_header/add-white.png") no-repeat scroll 0  black;
         color:#ffffff;
+        float:right;
+        padding-left:15px;
       }
       /*reset css zsn*/
       .row-fluid .main-part{
@@ -98,6 +105,11 @@ h4.title{
   margin-left:2.12766%;;
   margin-bottom:20px;
 }
+
+h4.title h5{
+  margin:0px;
+}
+        
 
 .caption h5{
   height:22px;

@@ -3,7 +3,11 @@ class Planners::ProjectsController < ApplicationController
   before_filter :find_optional_project, :only => [:new_member, :add_member]
 
   def index
-    @projects = Project.limit(10)
+    @projects = Project.order('created_on desc').page(params[:page]).per(10)
+    respond_to do |format|
+      format.html      
+      format.js
+    end          
   end
 
   def new

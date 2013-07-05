@@ -1,21 +1,16 @@
 <% content_for:sidebar do %>
  
 <% end %>
-<h4 class="title">所有项目:</h4>
+<h4 class="title head clearfix">
+  所有项目:
+  <div class="pull-right" style="display:inline-block;"><h5>
+    <%= link_to new_planners_project_path, remote: true do %>
+       <%= l(:label_project_new) %>
+    <% end -%>
+  </h5></div>
+</h4>
 <div class="row-fluid">
-  <ul class="thumbnails">
-    <% @projects.each do |p| %>      
-      <li class="span2">
-        <div>
-          <%= link_to image_tag(p.icon_url(:large)), "/planners/projects/#{p.id}", :class => "thumbnail" %>
-          <div class="caption">
-            <h5><%= p.name %></h5>
-            <p class="small">6月20号 - 6月30号</p>
-          </div>
-        </div>
-      </li>
-    <% end %>
-  </ul>
+  <%= render :partial => "list" %>
 </div>
 
 <% if false %>
