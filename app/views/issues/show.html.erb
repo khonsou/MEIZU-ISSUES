@@ -91,7 +91,8 @@
          typeahead: true,
          typeaheadSource: [<%= Tag.order("name").all.map{|t| "\"#{t.name}\""}.join(',').html_safe %>],
          blinkBGColor_1: '#FFFF9C',
-         blinkBGColor_2: '#CDE69C'
+         blinkBGColor_2: '#CDE69C',
+         deleteTagsOnBackspace: false
       });
     </script>
   </div>
