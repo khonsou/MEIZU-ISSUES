@@ -57,19 +57,19 @@
 <div id='calendar'>
   
   <div class="row-fluid grid img-polaroid">
-    <di v="" class="span12">
-      <div class="row-fluid pagination-centered">
-        <p>
-          <a href="#"> {{ currentMonth.getFullYear()}} - {{ currentMonth.getMonth() }} </a>
-        </p>         
-      </div>
+    <div  class="span12">
       <div class="row-fluid">
-        <div class="span4">今天：<span> <%=  Date.today.strftime("%m月%d日") %> &nbsp;&nbsp;</span></div>
+        <div class="span4">
+          <h3>{{ currentMonth.getFullYear()}} - {{ currentMonth.getMonth() }}</h3>
+        </div>
         <div class="span3 offset5">
           <div class="header">
             <nav>  
-              <button data-behavior="navigate calendar_event_drag_area" data-direction="backward" class="action_button" ng-click="prevMonth();">◀</button>
-              <button data-behavior="navigate calendar_event_drag_area" data-direction="forward" class="action_button" ng-click="nextMonth();">▶</button>
+              <div class="btn-group">
+                <button class=" btn" ng-click="prevMonth();">◀</button>
+                <button class="btn" ng-click="today();">今天</button>                
+                <button class=" btn" ng-click="nextMonth();">▶</button>                
+              </div>
             </nav>      
           </div>  
         </div>
@@ -91,7 +91,7 @@
               <span class="title">{{ event.text }}</span>
             </span>
             
-            <span ng-switch-default>
+            <span ng-switch-default class="event">
               <a><img class="img-circle" src="/assets/planners/person.png" style=""></a>
               <span style="" class="title">{{ event.text }}</span>
             </span>

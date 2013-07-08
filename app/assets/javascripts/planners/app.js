@@ -60,6 +60,12 @@ var CalendarCtrl = function ($scope, $resource, events) {
     $scope.days = $scope.getDadysInMonth($scope.currentMonth);      
     $scope.getEventLength();      
   };
+  
+  $scope.today = function(){
+    $scope.currentMonth = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1);  
+    $scope.days = $scope.getDadysInMonth($scope.currentMonth);      
+    $scope.getEventLength();      
+  };
     
   $scope.$watch('events', function(newVal) {
     $scope.getEventLength();        

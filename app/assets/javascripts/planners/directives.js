@@ -140,10 +140,11 @@ angular.module('ginkgo.directives', []).
              var compile =  $compile(template)(scope);
              element.on('click', function(e){
                var targetOffset = element.find('.title').offset();
+               console.log(targetOffset.top)
                $('#calendar_item_editor_singleton').html(compile);
                $('#calendar_item_editor_singleton').show()
-                                                   .css('top', targetOffset.top).
-                                                    css('left', targetOffset.left + 50);                                                    
+                                                   .css('top', targetOffset.top - 55).
+                                                    css('left', targetOffset.left + 10 + element.find('.event').width());                                                    
             
                 $('input[rel=date]').datepicker({});
                                                                     
@@ -208,7 +209,7 @@ angular.module('ginkgo.directives', []).
                var targetOffset = element.offset();
                $('#calendar_item_editor_singleton').html(compile);
                $('#calendar_item_editor_singleton').show()
-                                                   .css('top', targetOffset.top).
+                                                   .css('top', targetOffset.top - 55).
                                                     css('left', targetOffset.left + 50);
                 $('#calendar_item_editor_singleton').find('.cancel').on('click', function(){
                   $('#calendar_item_editor_singleton').hide();
