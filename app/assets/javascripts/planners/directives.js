@@ -86,7 +86,7 @@ angular.module('ginkgo.directives', []).
         stop: function(event, ui) {
           var range = scope.calculateHoverIndex(ui.helper);
           var allDays = $(this).parents('.month-row').find('.days .day') ;        
-          var hoverColumns = $(allDays).slice(range.start - 1, range.end);  
+          var hoverColumns = $(allDays).slice(range.start - 1, range.end - 1);  
           
           scope.$apply(function(){
             scope.updateEvent({

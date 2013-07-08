@@ -105,16 +105,16 @@ clear: left;
 }
  
 div.days-of-month {
+  padding:0px;
   display: table;
   table-layout: fixed;
   width: 100%;
 }
  
 div.day-header {
-  text-align:right;
+text-align:center;
 display: table-cell;
 overflow: hidden;
-width: 3.3%;
 margin: 0;
 padding: 0 0 10px 0;
 line-height: normal;
@@ -167,6 +167,7 @@ div.events.holdable div.event{
   position: absolute;  
   cursor: pointer;
   margin-top:10px;
+//  margin-left:-5px;
 }
 div.events.holdable div.event.width_2 {
 width: 18.57143%;

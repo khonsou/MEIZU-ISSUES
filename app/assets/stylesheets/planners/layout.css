@@ -112,6 +112,7 @@ h4.title h5{
         
 
 .caption h5{
+  margin-bottom: 5px;
   height:22px;
   overflow:hidden;
 }

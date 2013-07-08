@@ -22,7 +22,9 @@ class Planners::EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])    
     @event.update_attributes params[:event]
-    @event.insert_at(params[:event][:order]) if params[:event][:order].present?
+    puts "-------------------#{@event.position}"
+    @event.insert_at(params[:event][:order]) if(params[:event][:order].present? &&  params[:event][:order].to_i != @event.position)
+       
     @events = @event.project.events        
     respond_to do |format|
       format.json 
