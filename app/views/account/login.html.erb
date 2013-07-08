@@ -13,9 +13,9 @@
 
         <div class="body clearfix">
           <label for="username"><%= l(:field_mail) %></label>
-          <%= text_field_tag 'username', nil, :tabindex => '1', class: 'span24' %>
+          <%= text_field_tag 'username',nil,placeholder:'请输入公司邮箱地址', :tabindex => '1', class: 'span24'%>
           <label for="password"><%=l(:field_password)%></label>
-          <%= password_field_tag 'password', nil, :tabindex => '2', class: 'span24' %>
+          <%= password_field_tag 'password',nil,placeholder:'公司邮箱密码', :tabindex => '2', class: 'span24' %>
         </div>
 
         <div class="footer">
@@ -28,3 +28,23 @@
   </div>
   <%= call_hook :view_account_login_bottom %>
 </div>
+
+<%= javascript_tag do %>
+  $(document).ready(function() {
+    $("#password").click(function(){
+      $("#password").attr("placeholder","");
+    });
+    
+    $("#password").blur(function(){
+      $("#password").attr("placeholder","公司邮箱密码");
+    });
+    
+    $("#username").click(function(){
+      $("#username").attr("placeholder","");
+    });
+         
+    $("#username").blur(function(){
+      $("#username").attr("placeholder","请输入公司邮箱地址");
+    }); 
+  });
+<% end -%>
