@@ -123,17 +123,16 @@ angular.module('ginkgo.directives', []).
                //   '<div class="controls"><input name="text" value="{{ event.text }}"></input></div>' +
                // '</div>' +
                '<div class="control-group">' + 
-                 '<label class="control-label">Start</label>' + 
+                 '<label class="control-label">开始</label>' + 
                  '<div class="controls"><input name="start" rel="date" value="{{event.startTime}}"></input></div>' +
                '</div>' +
                '<div class="control-group">' + 
-                 '<label class="control-label">End</label>' + 
+                 '<label class="control-label">结束</label>' + 
                '<div class="controls"><input name="end" rel="date" value="{{event.endTime}}"></input></div>' +
                '</div>' +
              	'<p class="submit">' + 
-             		'<input type="submit" value="Save changes" class="btn btn-small btn-success" ng-click="save()">' + 
-             		' or <a href="#" class="cancel" data-role="cancel" data-behavior="cancel">Close</a>' + 
-                 '<a href="#" class="image delete pull-right" data-behavior="delete">Delete</a>'
+             		'<input type="submit" value="保存" class="btn btn-small btn-success" ng-click="save()">' + 
+                 '<a href="#" class="image delete pull-right" data-behavior="delete">删除</a>'
              	'</p>' +
              '</form>' +
              '</div>'              
@@ -150,7 +149,8 @@ angular.module('ginkgo.directives', []).
                                                                     
                 $('#calendar_item_editor_singleton').find('.cancel').on('click', function(){
                   $('#calendar_item_editor_singleton').hide();
-                  $('input[rel=date]').datepicker('destroy');                      
+                  $('input[rel=date]').datepicker('destroy');     
+                  return false;                                   
                 })                                            
                 $('#calendar_item_editor_singleton').find('.delete').on('click', function(){
                   if(confirm('Are you sure delete this?')){
@@ -193,13 +193,12 @@ angular.module('ginkgo.directives', []).
              '<span class="arrow"></span>' +
              '<form name="eventForm" class="form-horizontal">' +              
                '<div class="control-group">' + 
-                 '<label class="control-label">Name</label>' + 
+                 '<label class="control-label">名字</label>' + 
                  '<div class="controls"><input name="text" value="{{ task.text }}"></input></div>' +
                '</div>' +
              	'<p class="submit">' + 
-             		'<input type="submit" value="Save changes" class="btn btn-small btn-success" ng-click="save()">' + 
-             		' or <a href="#" class="cancel" data-role="cancel" data-behavior="cancel">Close</a>' + 
-                 '<a href="#" class="image delete pull-right" data-behavior="delete">Delete</a>'
+             		'<input type="submit" value="保存" class="btn btn-small btn-success" ng-click="save()">' + 
+                 '<a href="#" class="image delete pull-right" data-behavior="delete">删除</a>'
              	'</p>' +
              '</form>' +
             '</div>'              
@@ -213,6 +212,7 @@ angular.module('ginkgo.directives', []).
                                                     css('left', targetOffset.left + 50);
                 $('#calendar_item_editor_singleton').find('.cancel').on('click', function(){
                   $('#calendar_item_editor_singleton').hide();
+                  return false;
                 })                                            
                 $('#calendar_item_editor_singleton').find('.delete').on('click', function(){
                   if(confirm('Are you sure delete this?')){
