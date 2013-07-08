@@ -13,6 +13,7 @@ class MemberInvitationsController < ApplicationController
   def create
     mails = params[:recipients].split(',').map { |m| User.parse_mail(m) }.compact.uniq
     member_invitations = MemberInvitation.invite(@project, mails, params[:description])
+    @project = Project.find(@project.id)
   end
 
   def show

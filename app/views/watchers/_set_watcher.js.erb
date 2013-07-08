@@ -1,2 +1,5 @@
 <% selector = ".#{watcher_css(watched)}" %>
-$("<%= selector %>").each(function(){$(this).html("<%= escape_javascript watcher_link(watched, user) %>")});
+$("<%= selector %>").each(function(){
+  $(this).html("<%= escape_javascript watcher_link(watched, user) %>");
+  $('#watchers').html("<%= j(render :partial => 'watchers/watchers', :locals => {:watched => @watched}) %>");
+});

@@ -2,3 +2,5 @@ if ($('#container-modal').length > 0) {
   $('#container-modal').modal('hide');
   $('#container-modal').remove();
 }
+
+$('.sidebar').html("<%= j(render '/projects/info', { project: @project }) %>")
