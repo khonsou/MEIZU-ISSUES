@@ -33,7 +33,10 @@ class Event < ActiveRecord::Base
   end
   
   def check_conflict_in_project
-    conflict_start = conflict_end = nil        
+    conflict_start = conflict_end = nil 
+    
+    return [conflict_start, conflict_end] if self.eventable_type != "User"
+           
     ary = self.project.events.where("eventable_type = ? AND eventable_id = ?", 'User', self.eventable_id) - [self]
     ary.each do |event|
       if(!(self.start_at > event.end_at || self.end_at < event.start_at))

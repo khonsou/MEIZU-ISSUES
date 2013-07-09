@@ -69,7 +69,6 @@ var CalendarCtrl = function ($scope, $resource, events) {
     
   $scope.$watch('events', function(newVal) {
     $scope.getEventLength();        
-    console.log($scope.events);
    }, true);
         
   $scope.calculateDate = function(startDate, endDate){
@@ -80,12 +79,16 @@ var CalendarCtrl = function ($scope, $resource, events) {
     var startDateInt = Date.parse(startDate);
     var endDateInt = Date.parse(endDate) ;
 
-    var startDay, endDay;    
+    var startDay, endDay;        
+              
+    if( (endDateInt < date1.getTime()) || (startDateInt > date2.getTime()) ){
+      return {startDay: 0, endDay: 0};
+    }
     
     if (startDateInt < date1) {
       if (endDateInt < date2) {
         startDay = 0;
-        endDay = parseInt(startDate.split("-").pop()) ;                
+        endDay = parseInt(endDate.split("-").pop()) ;                
       }else{
         startDay = 1;
         endDay = 31;                
@@ -108,10 +111,8 @@ var CalendarCtrl = function ($scope, $resource, events) {
     var dateWidth = (1 / totalDates) * 100;
           
     var eventRange =  $scope.calculateDate(event.startTime, event.endTime);
-    
-    console.log(eventRange)
-    
-    if (event.conflictStart == null || event.conflictEnd == null) {
+        
+    if (event.conflictStart == null || event.conflictEnd == null ) {
       return {left: dateWidth * eventRange.startDay + "%", 
               width: (eventRange.endDay - eventRange.startDay) * dateWidth + "%",
               conflictLeft: "0%",
