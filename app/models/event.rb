@@ -6,6 +6,8 @@ class Event < ActiveRecord::Base
   
   validate :check_time
   
+#  attr_accessor :conflict_start, :conflict_end
+  
   acts_as_list :scope => :project
   
   default_scope order('position asc')
@@ -18,6 +20,43 @@ class Event < ActiveRecord::Base
     else
       eventable.name
     end    
+  end
+  
+  def conflict_start
+    @conflict ||= check_conflict_in_project
+    @conflict.first
+  end
+  
+  def conflict_end
+    @conflict ||= check_conflict_in_project
+    @conflict.last
+  end
+  
+  def check_conflict_in_project
+    conflict_start = conflict_end = nil        
+    ary = self.project.events.where("eventable_type = ? AND eventable_id = ?", 'User', self.eventable_id) - [self]
+    ary.each do |event|
+      if(!(self.start_at > event.end_at || self.end_at < event.start_at))
+        if (self.start_at < event.start_at) 
+          if (self.end_at < event.end_at) 
+            conflict_start = event.start_at;
+            conflict_end = self.end_at ;                
+          else
+            conflict_start = event.start_at;
+            conflict_end = event.end_at ;                
+          end
+        else 
+          if (self.end_at < event.end_at) 
+            conflict_start = self.start_at;
+            conflict_end = self.end_at ;                
+          else
+            conflict_start = self.start_at;
+            conflict_end = event.end_at ;                
+          end
+        end          
+      end 
+    end  
+    [conflict_start, conflict_end]     
   end
   
   private

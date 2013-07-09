@@ -69,39 +69,64 @@ var CalendarCtrl = function ($scope, $resource, events) {
     
   $scope.$watch('events', function(newVal) {
     $scope.getEventLength();        
+    console.log($scope.events);
    }, true);
         
-  $scope.getEventStyle = function(event){   
-    var totalDates = $scope.getNumberOfDaysInMonth($scope.currentMonth);
-    var dateWidth = (1 / totalDates) * 100;
+  $scope.calculateDate = function(startDate, endDate){
+    var totalDates = $scope.getNumberOfDaysInMonth($scope.currentMonth);    
+    var date1 = new Date($scope.currentMonth.getFullYear(), $scope.currentMonth.getMonth() - 1, 1);          
+    var date2 = new Date($scope.currentMonth.getFullYear(), $scope.currentMonth.getMonth() - 1, totalDates);                  
     
-    date1 = new Date($scope.currentMonth.getFullYear(), $scope.currentMonth.getMonth() - 1, 1);          
-    date2 = new Date($scope.currentMonth.getFullYear(), $scope.currentMonth.getMonth() - 1, totalDates);                  
+    var startDateInt = Date.parse(startDate);
+    var endDateInt = Date.parse(endDate) ;
+
+    var startDay, endDay;    
     
-    var startDate = Date.parse(event.startTime);
-    var endDate = Date.parse(event.endTime) ;
-    
-    var startDay, endDay;
-    
-    if (startDate < date1) {
-      if (endDate < date2) {
+    if (startDateInt < date1) {
+      if (endDateInt < date2) {
         startDay = 0;
-        endDay = parseInt(event.endTime.split("-").pop()) ;                
+        endDay = parseInt(startDate.split("-").pop()) ;                
       }else{
         startDay = 1;
         endDay = 31;                
       }
     }else{
-      if (endDate < date2) {
-        startDay = parseInt(event.startTime.split("-").pop()) - 1;
-        endDay = parseInt(event.endTime.split("-").pop());                
+      if (endDateInt < date2) {
+        startDay = parseInt(startDate.split("-").pop()) - 1;
+        endDay = parseInt(endDate.split("-").pop());                
       }else{
-        startDay = parseInt(event.startTime.split("-").pop()) - 1;
+        startDay = parseInt(startDate.split("-").pop()) - 1;
         endDay = 31;                
       }
     }
-         
-    return {left: dateWidth * startDay + "%", width: (endDay - startDay) * dateWidth + "%"};
+    
+    return {startDay: startDay, endDay: endDay};
+  }      
+        
+  $scope.getEventStyle = function(event){   
+    var totalDates = $scope.getNumberOfDaysInMonth($scope.currentMonth);
+    var dateWidth = (1 / totalDates) * 100;
+          
+    var eventRange =  $scope.calculateDate(event.startTime, event.endTime);
+    
+    console.log(eventRange)
+    
+    if (event.conflictStart == null || event.conflictEnd == null) {
+      return {left: dateWidth * eventRange.startDay + "%", 
+              width: (eventRange.endDay - eventRange.startDay) * dateWidth + "%",
+              conflictLeft: "0%",
+              conflictWidth: "0%"
+            };
+    }else{
+
+      var conflictRange =  $scope.calculateDate(event.conflictStart, event.conflictEnd);    
+                 
+      return {left: dateWidth * eventRange.startDay + "%", 
+              width: (eventRange.endDay - eventRange.startDay) * dateWidth + "%",
+              conflictLeft: dateWidth * conflictRange.startDay + "%",
+              conflictWidth: (conflictRange.endDay - conflictRange.startDay) * dateWidth + "%"
+            };
+    }
   }  
   
   $scope.calculateHoverIndex =  function(ui){
@@ -124,7 +149,10 @@ var CalendarCtrl = function ($scope, $resource, events) {
       
         var eventStyle = $scope.getEventStyle($scope.events[i]);
         $scope.events[i].left = eventStyle.left;
-        $scope.events[i].width = eventStyle.width;             
+        $scope.events[i].width = eventStyle.width;   
+        
+        $scope.events[i].conflictLeft = eventStyle.conflictLeft;
+        $scope.events[i].conflictWidth = eventStyle.conflictWidth;             
     }  
   }     
   

@@ -22,11 +22,10 @@ angular.module('ginkgo.directives', []).
       element.droppable({
         drop: function(event, ui ){
           var rowIndex = $('.month-row').index($(this).parents(".month-row"));                                
-          var text = $.trim($(ui.draggable).text());
           var allDays = $(this).find('.day') ;                            
           var range = scope.calculateHoverIndex(ui.helper);
           
-          if($(ui.draggable).hasClass('event')){
+          if($(ui.draggable).data('event-id') != undefined){
             // drag from inner calendar
             var hoverColumns = $(allDays).slice(range.start, range.end);          
 
@@ -139,12 +138,11 @@ angular.module('ginkgo.directives', []).
              
              var compile =  $compile(template)(scope);
              element.on('click', function(e){
-               var targetOffset = element.find('.title').offset();
-               console.log(targetOffset.top)
+               var targetOffset = element.parents('.month-row').find('.title').offset();
                $('#calendar_item_editor_singleton').html(compile);
                $('#calendar_item_editor_singleton').show()
                                                    .css('top', targetOffset.top - 55).
-                                                    css('left', targetOffset.left + 10 + element.find('.event').width());                                                    
+                                                    css('left', targetOffset.left + 10 + element.parents('.month-row').find('span.event').width());                                                    
             
                 $('input[rel=date]').datepicker({});
                                                                     

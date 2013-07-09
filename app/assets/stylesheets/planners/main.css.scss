@@ -166,7 +166,7 @@ clear: left;
 div.events.holdable div.event{
   position: absolute;  
   cursor: pointer;
-  margin-top:10px;
+  margin-top:10px;  
 //  margin-left:-5px;
 }
 div.events.holdable div.event.width_2 {
@@ -185,6 +185,8 @@ left: 11.42857%;
 div.events.holdable span.event {
   color: #fff;
   padding-left: 5px;
+  position:relative;
+  z-index:110;
 }
  
 .ui-state-highlight{
