@@ -168,7 +168,10 @@ class IssuesController < ApplicationController
 
     if saved
       render_attachment_warning_if_needed(@issue)
-      if(params[:commit] == l(:button_submit))
+
+      @journals = @issue.journals.find(:all, :include => [:user, :details], :order => "#{Journal.table_name}.created_on ASC")
+      @issue.push_notifications.each { |pn| pn.mark_as_read(User.current) }
+      if(params[:commit] != l(:button_close_submit))
         respond_to do |format|
           format.html do
             flash[:notice] = l(:notice_successful_update) unless @issue.current_journal.new_record?          
@@ -179,6 +182,7 @@ class IssuesController < ApplicationController
         end
       else
         close
+
       end
     else
       respond_to do |format|
