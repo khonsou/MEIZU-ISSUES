@@ -29,17 +29,6 @@
                 <div id="descriptionToPro">description</div>
               </li>
               <li class="head">
-                <h5 style="display:inline-block;">Members</h5>
-                <div class="pull-right" style="display:inline-block;">
-                   <% # we suppose the controller will assign the current project into @project %>
-
-                   <% if @project %>
-                     <%= link_to l(:label_planner_invite),planners_project_new_member_path(project_id: @project), remote: true, class:'invite-member'%>
-                   <% end %>
-
-                </div>
-              </li>
-              <li class="head">
                 <ul class="partner">
                   <li>
                     <div>

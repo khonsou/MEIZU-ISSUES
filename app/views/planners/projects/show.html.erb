@@ -13,7 +13,9 @@
       </li>
       <li class="head">
         <h5 style="display:inline-block;">Members</h5>
-        <div class="pull-right" style="display:inline-block;"><h5 style="float:right;padding-left:15px;">邀请</h5></div>
+        <div class="pull-right" style="display:inline-block;"> 
+          <%= link_to l(:label_planner_invite),new_member_planners_projects_path(project: @project), remote: true, class:'invite-member'%>
+        </div>
       </li>
       <li class="head">        
         <div id="members" ng-controller="MemberCtrl">
