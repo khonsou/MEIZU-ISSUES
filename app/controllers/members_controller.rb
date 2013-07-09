@@ -17,11 +17,14 @@
 
 class MembersController < ApplicationController
   model_object Member
-  before_filter :find_model_object, :except => [:index, :create, :autocomplete]
-  before_filter :find_project_from_association, :except => [:index, :create, :autocomplete]
+  before_filter :find_model_object, :except => [:index, :create, :autocomplete, :sort]
+  before_filter :find_project_from_association, :except => [:index, :create, :autocomplete, :sort]
   before_filter :find_project_by_project_id, :only => [:index, :create, :autocomplete]
-  before_filter :authorize
-  accept_api_auth :index, :show, :create, :update, :destroy
+  before_filter :authorize, :except => [ :sort]
+  accept_api_auth :index, :show, :create, :update, :destroy, :sort
+
+
+
 
   def index
     @offset, @limit = api_offset_and_limit
@@ -114,5 +117,18 @@ class MembersController < ApplicationController
   def autocomplete
     @principals = Principal.active.not_member_of(@project).like(params[:q]).all(:limit => 100)
     render :layout => false
+  end
+
+
+  def sort
+    if params[:prjId]
+      @project_id = params[:prjId].to_i
+    end
+    if params[:currentPosition]
+      @current_position = params[:currentPosition].to_i
+    end
+    user_project = Member.where(user_id: User.current.id, project_id: @project_id).first
+    user_project.insert_at(@current_position)
+    render :text => '', :status => :ok, :layout => nil
   end
 end

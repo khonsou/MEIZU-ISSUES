@@ -1,7 +1,7 @@
 <div id="project-list">
   <ul class="nav nav-tabs nav-stacked span24 media-list">
     <% find_visible_projects.each do |project| %>
-      <li class="media">
+      <li class="media" id="<%= project.id %>">
         <%= link_to project_issues_path(project), :class => "pull-left hidden-phone" do %>
           <%= image_tag(project.icon_url(:small)) %>
         <% end -%>

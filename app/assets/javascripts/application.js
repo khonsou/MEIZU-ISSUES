@@ -22,3 +22,5 @@
 //= require ./issues
 //= require ./dropfile
 //= require ./bootstrap-tagmanager
+
+//= require project.sortable

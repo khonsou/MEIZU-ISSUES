@@ -88,7 +88,7 @@ module ProjectsHelper
       elsif b.joined_on.blank?
         -1
       else
-        b.joined_on <=> a.joined_on
+        a.joined_on <=> b.joined_on
       end
     end
   end

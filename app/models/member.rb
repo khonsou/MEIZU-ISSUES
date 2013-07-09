@@ -17,6 +17,7 @@
 
 class Member < ActiveRecord::Base
   belongs_to :user
+  acts_as_list :scope => :user
   belongs_to :principal, :foreign_key => 'user_id'
   has_many :member_roles, :dependent => :destroy
   has_many :roles, :through => :member_roles  
@@ -142,3 +143,4 @@ class Member < ActiveRecord::Base
      
   
 end
+

@@ -21,7 +21,6 @@ class MemberInvitationsController < ApplicationController
 
     if @member_invitation.user == User.current || @member_invitation.mail == User.current.mail
       @member_invitation.push_notifications.each { |pn| pn.mark_as_read(User.current) }
-
       if @member_invitation.accepted?
         redirect_to project_path(@member_invitation.project), notice: l(:notice_member_invitation_accepted)
       elsif @member_invitation.rejected?
@@ -36,6 +35,8 @@ class MemberInvitationsController < ApplicationController
     @member_invitation = MemberInvitation.find(params[:id])
 
     if @member_invitation.accept!(params[:token])
+      #make user's latest project position to top
+      Member.where(:user_id => User.current.id).order("created_on desc").first.move_to_top
       redirect_to project_path(@member_invitation.project), notice: l(:notice_member_invitation_accepted)
     else
       redirect_to home_path, alert: l(:error_member_invitation)

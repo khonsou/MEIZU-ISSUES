@@ -18,6 +18,9 @@
 require "digest/sha1"
 
 class User < Principal
+
+  has_many :member, :foreign_key => 'user_id',:order => 'position'
+
   include Redmine::SafeAttributes
   mount_uploader :avatar, AvatarUploader
 
@@ -27,7 +30,7 @@ class User < Principal
   STATUS_REGISTERED = 2
   STATUS_LOCKED     = 3
 
-  # Different ways of displaying/sorting users
+  # Different ways of displaying/sorting users 
   USER_FORMATS = {
     :firstname_lastname => {:string => '#{firstname} #{lastname}', :order => %w(firstname lastname id)},
     :firstname => {:string => '#{firstname}', :order => %w(firstname id)},

@@ -637,8 +637,8 @@ class Project < ActiveRecord::Base
     'icon',
     'icon_cache',
     'creator_id',
-    'mute'
-
+    'mute',
+    'position'
 
   safe_attributes 'enabled_module_names',
     :if => lambda {|project, user| project.new_record? || user.allowed_to?(:select_project_modules, project) }
@@ -653,7 +653,7 @@ class Project < ActiveRecord::Base
   end
 
   def joined_on(user = User.current)
-    members.where(user_id: user.id).first.try(:created_on)
+    members.where(user_id: user.id).first.try(:position)
   end
 
   # Returns an auto-generated project identifier based on the last identifier used

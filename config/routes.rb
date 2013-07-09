@@ -146,6 +146,7 @@ RedmineApp::Application.routes.draw do
     resources :memberships, :shallow => true, :controller => 'members', :only => [:index, :show, :create, :update, :destroy] do
       collection do
         get 'autocomplete'
+        post 'sort'
       end
     end
 
