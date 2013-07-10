@@ -109,9 +109,10 @@ var CalendarCtrl = function ($scope, $resource, events) {
   $scope.getEventStyle = function(event){   
     var totalDates = $scope.getNumberOfDaysInMonth($scope.currentMonth);
     var dateWidth = (1 / totalDates) * 100;
-          
+      console.log(event)    
     var eventRange =  $scope.calculateDate(event.startTime, event.endTime);
-        
+      console.log(2)      
+              
     if (event.conflictStart == null || event.conflictEnd == null ) {
       return {left: dateWidth * eventRange.startDay + "%", 
               width: (eventRange.endDay - eventRange.startDay) * dateWidth + "%",
@@ -121,7 +122,6 @@ var CalendarCtrl = function ($scope, $resource, events) {
     }else{
 
       var conflictRange =  $scope.calculateDate(event.conflictStart, event.conflictEnd);    
-                 
       return {left: dateWidth * eventRange.startDay + "%", 
               width: (eventRange.endDay - eventRange.startDay) * dateWidth + "%",
               conflictLeft: dateWidth * conflictRange.startDay + "%",
@@ -196,6 +196,22 @@ var CalendarCtrl = function ($scope, $resource, events) {
       return true
     }    
   }
+  
+  $scope.eventsGroups = [];
+  $scope.selectMember = function(memberId){
+    var r = $resource('/planners/members/:id', 
+                           {id: memberId},
+                           {'query':{method:'GET'}});
+    $scope.events  = [];                          
+    r.query(function(data){
+//      $scope.eventsGroups = data.events_groups; 
+      _.each(data.events_groups, function(iterator){
+        $scope.events = _.union($scope.events, iterator.events);
+      })
+      console.log($scope.events)
+    });   
+    
+  }
 }
 
 
@@ -236,9 +252,9 @@ var TaskCtrl = function ($scope, $resource, Task) {
 }
 
 
-var MemberCtrl = function ($scope, members) {
+var MemberCtrl = function ($scope, $resource) {
 
-    
+
 }
 
 

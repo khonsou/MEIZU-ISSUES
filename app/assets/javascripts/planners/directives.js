@@ -53,7 +53,7 @@ angular.module('ginkgo.directives', []).
               type = 'Task';
             }else{
               eventableId = $(ui.draggable).data('member-id');              
-              type = 'User';              
+              type = 'Member';              
             }  
             
             scope.$apply(function(){
@@ -74,7 +74,8 @@ angular.module('ginkgo.directives', []).
         }
       });       
     };
-}).directive('ginkgoResizeable', function () {
+  }).
+  directive('ginkgoResizeable', function () {
     return function(scope, element, attrs) {
       element.resizable({
         handles: "e",
@@ -99,8 +100,9 @@ angular.module('ginkgo.directives', []).
         }
       });        
     }
-}).directive('ginkgoPopover', function ($rootScope, $http, $compile) {
-  return {
+  })
+  .directive('ginkgoPopover', function ($rootScope, $http, $compile) {
+    return {
      link: function(scope, element, attrs) {
 
        // $http.get('partials/calendar_body.html', {cache: true}).then(function onSuccess(template) {
@@ -178,11 +180,11 @@ angular.module('ginkgo.directives', []).
          }
        });
     
-
      }
   }
-}).directive('ginkgoTaskPopover', function ($rootScope, $http, $compile) {
-  return {
+}).
+  directive('ginkgoTaskPopover', function ($rootScope, $http, $compile) {
+    return {
      link: function(scope, element, attrs) {
        attrs.$observe('taskId', function(value) {            
            var task = _.find(scope.tasks, function(e){ return e.id == parseInt(value); })        

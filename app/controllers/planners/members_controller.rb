@@ -8,6 +8,16 @@ class Planners::MembersController < ApplicationController
     end  
   end
   
+  def show
+    @member = Member.find(params[:id])
+    @events_groups = @member.user.members.inject([]) {| ary, member | ary << member.events }
+    @events_groups.reject! { |c| c.empty? }
+        
+    respond_to do |format|
+      format.json  #{render :json => @events_groups.to_json}
+    end  
+  end
+  
   def create
     @project = Project.find_by_id(params[:project_id]) || Project.last
     @membet = @project.membets.build(params[:membet])

@@ -21,6 +21,8 @@ class Member < ActiveRecord::Base
   belongs_to :principal, :foreign_key => 'user_id'
   has_many :member_roles, :dependent => :destroy
   has_many :roles, :through => :member_roles  
+  has_many :events, :as => :eventable, :dependent => :destroy
+    
   belongs_to :project
 
   validates_presence_of :principal, :project

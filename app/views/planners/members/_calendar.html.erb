@@ -1,0 +1,38 @@
+<div class="month-row" ng-repeat="projectEvents in eventsGroups">
+  <div class="events holdable" style="width:100%;" ng-repeat="event in projectEvents.events ">                          
+    <div >
+      <div  class="event-row task" >
+        <div style="background-color:#000;width:{{ event.conflictWidth }};left:{{ event.conflictLeft }};position:absolute;z-index:100;top:11px;"  data-event-id="{{event.id}}" ginkgo-popover="true">
+          <span style="visibility:hidden;">conflict</span>
+        </div>
+        
+        <div  class="event  tip wraps_next  {{event.eventableType}}" style="left:{{event.left}};width:{{event.width}};" ginkgo-draggable="true" ginkgo-resizeable="true" data-event-id="{{event.id}}" ginkgo-popover="true" ng-switch on="event.eventableType" data-toggle="tooltip" title="{{ event.startTime }} - {{event.endTime }}">          
+          <span ng-switch-when="Task" class="event">
+            <span class="title">{{ event.text }}</span>
+          </span>
+        
+          <span ng-switch-default class="event">
+            <a><img class="img-circle" src="/assets/planners/person.png" style=""></a>
+            <span style="" class="title">{{ event.text }}</span>
+          </span>
+        </div>  
+      </div>
+      <div class="spacer"></div>
+    </div>            
+  </div> 
+                
+  <div class="days" ginkgo-droppable="true">            
+    <div class="dates" style="display:table-row;">
+      <div class="day {{ day.dateOjbect.getDay()%6==0  && 'sat' || '' }}" ng-repeat="day in days" data-date="{{day.year}}-{{day.month}}-{{day.day}}" >
+      </div>
+    </div>
+  </div>   
+  
+</div>
+
+<div class="month-row no-events">
+  <div class="days" ginkgo-droppable="true"  style="min-height:{{  500 - (eventsGroups.length * 30)}}px;">            
+    <div class="day {{ day.dateOjbect.getDay()%6==0  && 'sat' || '' }}" ng-repeat="day in days" data-date="{{day.year}}-{{day.month}}-{{day.day}}" style="height:{{  500 - (eventsGroups.length * 30)}}px;">
+    </div>
+  </div>   
+</div>     

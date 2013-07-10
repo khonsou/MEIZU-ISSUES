@@ -3,8 +3,8 @@ json.tasks @project.tasks do |json, task|
   json.id task.id
 end  
 
-json.members @project.users do |json, member|
-  json.name member.name
+json.members @project.members do |json, member|
+  json.name member.user.name
   json.id member.id
 end  
 
