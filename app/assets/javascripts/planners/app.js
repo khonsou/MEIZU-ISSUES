@@ -3,7 +3,7 @@ var Ginkgo = angular.module('Ginkgo', ['ginkgo.services', 'ginkgo.directives',
                                       'ginkgo.filters', 'ginkgo.resources', 'ng-rails-csrf', 'ngResource']);
 
 
-var CalendarCtrl = ['$scope', '$resource', 'events' , function ($scope, $resource, events) {
+var CalendarCtrl = ['$scope', '$resource',  function ($scope, $resource) {
   $scope.daysPerMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
        
   $scope.getNumberOfDaysInMonth = function (dateObject) {
