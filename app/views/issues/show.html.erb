@@ -133,12 +133,10 @@
     <li class="sub-menu-item" ><span>讨论此课题</span></li>
   </ul>
 
-  <% if @journals.present? %>
-    <div class="history">
-      <%= render :partial => 'history', :locals => { :issue => @issue, :journals => @journals } %>
-    </div>
-  <% end %>
-
+  <div class="history">
+    <%= render :partial => 'history', :locals => { :issue => @issue, :journals => @journals } %>
+  </div>
+ 
   <% if !@issue.closed? && User.current.allowed_to?(:add_issue_notes, @issue.project) %>    
       <div class="clearfix tabnav">
         <ul class="nav nav-tabs">
