@@ -1,7 +1,1 @@
-if ($('#container-modal').length > 0) {
-  $('#container-modal').modal('hide');
-  $('#container-modal').remove();
-}
-
-$("body").append("<%= j(render('new_member')) %>");
-$('#container-modal').modal('show');
+<%= render('new_member') %>

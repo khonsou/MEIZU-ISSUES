@@ -1,6 +1,8 @@
 <% content_for:sidebar do %>
+
   <div class="sidebar-nav">
-    <ul class="nav nav-list" id="slideRight">
+    <ul class="nav nav-list" id="slideRight" ng-controller="MemberCtrl">
+
       <li class="form-horizontal head">
         <h5><%= @project.name %></h5>
         <div class="pull-right dropdown-icon">
@@ -31,11 +33,11 @@
       <li class="head">
         <h5>Members</h5>
         <div class="pull-right"> 
-          <%= link_to l(:label_planner_invite),new_member_planners_projects_path(project: @project), remote: true, class:'invite-member'%>
+          <%= link_to l(:label_planner_invite),new_member_planners_projects_path(project: @project), class:'invite-member', "ginkgo-invite-member" => "" %>
         </div>
       </li>
       <li class="head">        
-        <div id="members" ng-controller="MemberCtrl">
+        <div id="members">
           <div ng-repeat="member in members" ginkgo-draggable="true" class="member" data-member-id="{{member.id}}" ng-click="selectMember(member.id );">
             <a class="photo">
               <img class="img-circle" src="/assets/project_header/person.png">

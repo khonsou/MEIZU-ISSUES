@@ -90,6 +90,10 @@ class Planners::ProjectsController < ApplicationController
          Member.add_member(@project.id,members,params[:description])
       end
     end
+    @members = @project.members
+    respond_to do |format|     
+      format.json 
+    end      
   end
 
   private

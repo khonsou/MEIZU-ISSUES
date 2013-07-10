@@ -250,8 +250,20 @@ var TaskCtrl = ['$scope', '$resource', function ($scope, $resource) {
 
 
 var MemberCtrl = function ($scope, $resource) {
-
-
+  $scope.submitInvite = function(){
+    var params =  $('#container-modal').find('form').serializeObject();
+    var r =  $resource('/planners/projects/add_member', 
+                       {},
+                       {'save':{method:'POST',isArray:true}});
+    r.save(params, function(data){
+      $scope.members = data;
+      if ($('#container-modal').length > 0) {
+        $('#container-modal').modal('hide');
+        $('#container-modal').remove();
+      }
+    });
+  }
+ 
 }
 
 

@@ -239,7 +239,27 @@ angular.module('ginkgo.directives', []).
         });
      }
   }
-}]);      
+}]).directive('ginkgoInviteMember', ['$rootScope', '$http', '$compile', function ($rootScope, $http, $compile) {
+    return {
+      
+      link: function(scope, element, attrs) {
+        element.on('click', function(e){        
+          $.get(element.attr('href'), function(data){
+          }).always(function(data) { 
+            if ($('#container-modal').length > 0) {
+              $('#container-modal').modal('hide');
+              $('#container-modal').remove();
+            }
+            var html = $compile(data.responseText)(scope);
+            $("body").append(html)
+            $('#container-modal').modal('show');          
+          })
+          
+          return false;
+        })  
+      }
+    } 
+}])       
 
 
 
