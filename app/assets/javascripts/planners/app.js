@@ -3,7 +3,7 @@ var Ginkgo = angular.module('Ginkgo', ['ginkgo.services', 'ginkgo.directives',
                                       'ginkgo.filters', 'ginkgo.resources', 'ng-rails-csrf', 'ngResource']);
 
 
-var CalendarCtrl = function ($scope, $resource, events) {
+var CalendarCtrl = ['$scope', '$resource', 'events' , function ($scope, $resource, events) {
   $scope.daysPerMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
        
   $scope.getNumberOfDaysInMonth = function (dateObject) {
@@ -109,9 +109,7 @@ var CalendarCtrl = function ($scope, $resource, events) {
   $scope.getEventStyle = function(event){   
     var totalDates = $scope.getNumberOfDaysInMonth($scope.currentMonth);
     var dateWidth = (1 / totalDates) * 100;
-      console.log(event)    
     var eventRange =  $scope.calculateDate(event.startTime, event.endTime);
-      console.log(2)      
               
     if (event.conflictStart == null || event.conflictEnd == null ) {
       return {left: dateWidth * eventRange.startDay + "%", 
@@ -208,14 +206,13 @@ var CalendarCtrl = function ($scope, $resource, events) {
       _.each(data.events_groups, function(iterator){
         $scope.events = _.union($scope.events, iterator.events);
       })
-      console.log($scope.events)
     });   
     
   }
-}
+}];
 
 
-var TaskCtrl = function ($scope, $resource, Task) {
+var TaskCtrl = ['$scope', '$resource', function ($scope, $resource) {
 
   $scope.addTask = function () {
     if($scope.task == undefined){
@@ -249,7 +246,7 @@ var TaskCtrl = function ($scope, $resource, Task) {
       $scope.tasks = data.tasks;
     });
   }
-}
+}];
 
 
 var MemberCtrl = function ($scope, $resource) {

@@ -75,7 +75,7 @@ angular.module('ginkgo.directives', []).
       });       
     };
   }).
-  directive('ginkgoResizeable', function () {
+  directive('ginkgoResizeable',  function () {
     return function(scope, element, attrs) {
       element.resizable({
         handles: "e",
@@ -100,8 +100,8 @@ angular.module('ginkgo.directives', []).
         }
       });        
     }
-  })
-  .directive('ginkgoPopover', function ($rootScope, $http, $compile) {
+  }).
+  directive('ginkgoPopover', ['$rootScope', '$http', '$compile', function ($rootScope, $http, $compile) {
     return {
      link: function(scope, element, attrs) {
 
@@ -182,8 +182,8 @@ angular.module('ginkgo.directives', []).
     
      }
   }
-}).
-  directive('ginkgoTaskPopover', function ($rootScope, $http, $compile) {
+}]).
+  directive('ginkgoTaskPopover', ['$rootScope', '$http', '$compile', function ($rootScope, $http, $compile) {
     return {
      link: function(scope, element, attrs) {
        attrs.$observe('taskId', function(value) {            
@@ -239,7 +239,7 @@ angular.module('ginkgo.directives', []).
         });
      }
   }
-});      
+}]);      
 
 
 
