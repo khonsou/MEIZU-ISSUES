@@ -216,7 +216,7 @@ var TaskCtrl = ['$scope', '$resource', function ($scope, $resource) {
   $scope.addTask = function () {
     if($scope.task == undefined){
     }else{
-      var r =  $resource('/planners/projects/:project_id/tasks/:id.json', 
+      var r =  $resource('/planners/projects/:project_id/tasks.json', 
                          {project_id: $scope.projectId},
                          {'save':{method:'POST',isArray:true}});
       r.save({project_id: $scope.projectId}, $scope.task, function(data){
