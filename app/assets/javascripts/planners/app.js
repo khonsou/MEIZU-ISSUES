@@ -248,7 +248,7 @@ var TaskCtrl = ['$scope', '$resource', function ($scope, $resource) {
 }];
 
 
-var MemberCtrl = function ($scope, $resource) {
+var MemberCtrl = ['$scope', '$resource', function($scope, $resource) {
   $scope.submitInvite = function(){
     var params =  $('#container-modal').find('form').serializeObject();
     var r =  $resource('/planners/projects/add_member.json', 
@@ -262,8 +262,7 @@ var MemberCtrl = function ($scope, $resource) {
       }
     });
   }
- 
-}
+}];
 
 
 //-------------------begin of jquery------------------
