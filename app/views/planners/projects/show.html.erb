@@ -1,8 +1,7 @@
 <% content_for:sidebar do %>
 
-  <div class="sidebar-nav">
+  <div class="well sidebar-nav">
     <ul class="nav nav-list" id="slideRight" ng-controller="MemberCtrl">
-
       <li class="form-horizontal head">
         <h5><%= @project.name %></h5>
         <div class="pull-right dropdown-icon">
@@ -38,12 +37,12 @@
       </li>
       <li class="head">        
         <div id="members">
-          <div ng-repeat="member in members" ginkgo-draggable="true" class="member" data-member-id="{{member.id}}" ng-click="selectMember(member.id );">
-            <a class="photo">
+          <div ng-repeat="member in members" ginkgo-draggable="true" class="member" data-member-id="{{member.id}}">
+            <a class="photo" href="/planners/members/{{member.id}}">
               <img class="img-circle" src="/assets/project_header/person.png">
             </a>            
             <div class="member-infor">
-              <span class="name">{{member.name}}</span>
+              <a class="name" href="/planners/members/{{member.id}}">{{member.name}}</span>
               <div class="role">master</div>
             </div>
             <a class="pull-right" href="/memberships/{{member.id}}" data-method="delete" data-remote="true" data-confirm="你确定要删除该成员么？" rel="nofollow"><img src="/assets/planners/delete.png"></a>                       
@@ -100,25 +99,14 @@
     <div class="day-header {{ day.dateOjbect.getDay()%6==0  && 'sun-color-date' || '' }}" ng-repeat="day in days">{{ day.day }}</div>          
   </div>
   
-  <div ng-switch on="eventsGroups.length">
-    <div ng-switch-when="0">
-      <%= render :partial => "calendar" %>
-      
-      <div class="month-row no-events">
-        <div class="days" ginkgo-droppable="true"  style="min-height:{{  500 - (eventsInMonth.length * 30)}}px;">            
-          <div class="day {{ day.dateOjbect.getDay()%6==0  && 'sat' || '' }}" ng-repeat="day in days" data-date="{{day.year}}-{{day.month}}-{{day.day}}" style="height:{{  500 - (eventsInMonth.length * 30)}}px;">
-          </div>
-        </div>   
-      </div>             
-    </div>
-    
-    <div ng-switch-default>
-      <%= render :partial => "planners/members/calendar" %>            
-    </div>
-    
-
-  </div>
+  <%= render :partial => "calendar" %>
   
+  <div class="month-row no-events">
+    <div class="days" ginkgo-droppable="true"  style="min-height:{{  500 - (eventsInMonth.length * 30)}}px;">            
+      <div class="day {{ day.dateOjbect.getDay()%6==0  && 'sat' || '' }}" ng-repeat="day in days" data-date="{{day.year}}-{{day.month}}-{{day.day}}" style="height:{{  500 - (eventsInMonth.length * 30)}}px;">
+      </div>
+    </div>   
+  </div>             
   
   <div class="days-of-month date img-polaroid">
     <div class="day-header {{ day.dateOjbect.getDay()%6==0  && 'sun-color-date' || '' }}" ng-repeat="day in days">{{ day.day }}</div>          

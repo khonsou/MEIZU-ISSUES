@@ -8,5 +8,6 @@ json.events_groups @events_groups do |json, events|
     je.eventableType event.eventable_type
     je.eventableId  event.eventable_id  
     je.id event.id
+    je.projectName event.project.name
   end  
 end  

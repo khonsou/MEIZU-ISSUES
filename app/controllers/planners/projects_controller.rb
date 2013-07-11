@@ -36,6 +36,7 @@ class Planners::ProjectsController < ApplicationController
   end
   
   def show
+    @load_angular = true    
     @project = Project.find params[:id]
     respond_to do |format|
       format.html      

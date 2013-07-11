@@ -104,7 +104,7 @@ RedmineApp::Application.routes.draw do
       resources :tasks, shallow: true
       resources :events, shallow: true            
     end      
-    resources :members
+    resources :members    
   end  
 
   resources :users

@@ -40,15 +40,30 @@ var CalendarCtrl = ['$scope', '$resource',  function ($scope, $resource) {
   $scope.events = [];
   $scope.tasks  = [];
   $scope.members  = [];  
-  var r = $resource('/planners/projects/:id', 
-                         {id: $scope.projectId},
-                         {'query':{method:'GET'}});
-  r.query(function(data){
-    $scope.events = data.events;
-    $scope.tasks = data.tasks;
-    $scope.members = data.members;    
-  });   
-  
+          console.log($scope.projectId)
+  if ($scope.projectId != 0 ) {
+    var r = $resource('/planners/projects/:id.json', 
+                           {id: $scope.projectId},
+                           {'query':{method:'GET'}});
+    r.query(function(data){
+      $scope.events = data.events;
+      $scope.tasks = data.tasks;
+      $scope.members = data.members;    
+    });       
+  }else if($scope.memberId){
+
+    console.log($scope.memberId)
+    var r = $resource('/planners/members/:id.json', 
+                           {id: $scope.memberId},
+                           {'query':{method:'GET'}});
+    $scope.events  = [];                          
+    r.query(function(data){
+      _.each(data.events_groups, function(iterator){
+        $scope.events = _.union($scope.events, iterator.events);
+      })
+    });       
+  }
+    
   $scope.nextMonth = function(){
     $scope.currentMonth = new Date($scope.currentMonth.getFullYear(), $scope.currentMonth.getMonth() + 1, 1);    
     $scope.days = $scope.getDadysInMonth($scope.currentMonth);      
@@ -157,7 +172,7 @@ var CalendarCtrl = ['$scope', '$resource',  function ($scope, $resource) {
   
   $scope.addEvent = function (event) {
 //    events.save(event);
-    var r =  $resource('/planners/projects/:project_id/events/:id', 
+    var r =  $resource('/planners/projects/:project_id/events/:id.json', 
                        {project_id: $scope.projectId},
                        {'save':{method:'POST',isArray:true}});
     r.save({project_id: $scope.projectId}, event, function(data){
@@ -166,7 +181,7 @@ var CalendarCtrl = ['$scope', '$resource',  function ($scope, $resource) {
   }
   
   $scope.destroyEvent = function (event) {
-    var r =  $resource('/planners/events/:id', 
+    var r =  $resource('/planners/events/:id.json', 
                        {},
                        {'remove':{method:'DELETE',isArray:true}});
     r.remove({id: event.id}, function(data){
@@ -178,7 +193,7 @@ var CalendarCtrl = ['$scope', '$resource',  function ($scope, $resource) {
     
   $scope.updateEvent = function (params) {
     //params is event: {id: xxx}
-    var r =  $resource('/planners/events/:id', 
+    var r =  $resource('/planners/events/:id.json', 
                        {},
                        {'update':{method:'PUT',isArray:true}});
     r.update({id: params.event.id}, params, function(data){
@@ -195,20 +210,6 @@ var CalendarCtrl = ['$scope', '$resource',  function ($scope, $resource) {
     }    
   }
   
-  $scope.eventsGroups = [];
-  $scope.selectMember = function(memberId){
-    var r = $resource('/planners/members/:id', 
-                           {id: memberId},
-                           {'query':{method:'GET'}});
-    $scope.events  = [];                          
-    r.query(function(data){
-//      $scope.eventsGroups = data.events_groups; 
-      _.each(data.events_groups, function(iterator){
-        $scope.events = _.union($scope.events, iterator.events);
-      })
-    });   
-    
-  }
 }];
 
 
@@ -217,7 +218,7 @@ var TaskCtrl = ['$scope', '$resource', function ($scope, $resource) {
   $scope.addTask = function () {
     if($scope.task == undefined){
     }else{
-      var r =  $resource('/planners/projects/:project_id/tasks/:id', 
+      var r =  $resource('/planners/projects/:project_id/tasks/:id.json', 
                          {project_id: $scope.projectId},
                          {'save':{method:'POST',isArray:true}});
       r.save({project_id: $scope.projectId}, $scope.task, function(data){
@@ -228,7 +229,7 @@ var TaskCtrl = ['$scope', '$resource', function ($scope, $resource) {
   }
   
   $scope.destroyTask = function (task) {
-    var r =  $resource('/planners/tasks/:id', 
+    var r =  $resource('/planners/tasks/:id.json', 
                        {},
                        {'remove':{method:'DELETE'}});
     r.remove({id: task.id}, function(data){
@@ -238,7 +239,7 @@ var TaskCtrl = ['$scope', '$resource', function ($scope, $resource) {
   }
   
   $scope.updateTask = function (task) {
-    var r =  $resource('/planners/tasks/:id', 
+    var r =  $resource('/planners/tasks/:id.json', 
                        {},
                        {'update':{method:'PUT'}});
     r.update({id: task.id}, task, function(data){
@@ -252,7 +253,7 @@ var TaskCtrl = ['$scope', '$resource', function ($scope, $resource) {
 var MemberCtrl = function ($scope, $resource) {
   $scope.submitInvite = function(){
     var params =  $('#container-modal').find('form').serializeObject();
-    var r =  $resource('/planners/projects/add_member', 
+    var r =  $resource('/planners/projects/add_member.json', 
                        {},
                        {'save':{method:'POST',isArray:true}});
     r.save(params, function(data){
