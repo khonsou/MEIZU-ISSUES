@@ -1,0 +1,5 @@
+<%= labelled_form_for @project, :url => {:controller => 'projects', :action => 'update'} do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+  <%= submit_tag l(:button_save) %>
+  <%= javascript_tag "$('#project_name').focus();" %>
+<% end %>

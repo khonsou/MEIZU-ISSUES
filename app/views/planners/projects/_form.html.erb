@@ -4,7 +4,7 @@
   
   <div class="form-span3">
     <div class="img-polaroid">
-      <%= image_tag("fallback/planner/default.png") %>
+      <%= image_tag(@project.icon_url(:medium)) %>
     </div>
     <span class="upload-button">
       <%= f.file_field :icon %>
@@ -12,7 +12,7 @@
     </span>
       <%= f.hidden_field :icon_cache %>
   </div> 
-
+  
   <div class="span9">
     <div class="nomargin">
       <div><%= l(:field_name) %> </div>

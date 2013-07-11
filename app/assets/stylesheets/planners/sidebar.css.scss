@@ -1,0 +1,42 @@
+.nav-list{
+  li.head{
+    h5,div.pull-right{
+      display:inline-block;
+    }
+
+    h5{
+      font-size:20px;
+      color: #000000;
+    }
+
+    #members{
+      .member-infor{
+        margin-left:5px;
+      }
+    }
+
+    .dropdown-icon{
+      display:inline-block;
+      padding:10px 0 10px 10px!important;
+      text-align:right;
+    }
+  }
+
+  >li{
+    margin-top:13px;
+    margin-bottom:3px;
+		
+    .img-polaroid{
+      height:185px;
+      width:185px;
+    }
+  }
+	
+  .form-span3{
+    margin-left:3px;
+  }
+
+  #descriptionToPro{
+    color:#000000;
+  }
+}

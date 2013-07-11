@@ -35,7 +35,7 @@
   text-align: left;
 }
 #slideRight li.head{
-  border-bottom: 1px #000000 dotted;
+  border-bottom: 1px #a7abb1 dashed;
 }
 #slideRight li.head>div{
   padding: 5px 0 5px 0;

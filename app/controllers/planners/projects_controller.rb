@@ -43,6 +43,33 @@ class Planners::ProjectsController < ApplicationController
     end      
   end
 
+  def edit
+    @project = Project.find params[:id]
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def update
+    @project = Project.find params[:id]
+    
+    if params[:project][:creator_id]
+      unless @project.creator == User.current && @project.users.include?(User.find(params[:project][:creator_id]))
+        redirect_to planners_project_path(@project) and return
+      end
+    end
+
+    @trackers = Tracker.sorted.all
+    @project.safe_attributes = params[:project]
+    @project.trackers = @trackers
+
+    if validate_parent_id && @project.save
+      @project.set_allowed_parent!(params[:project]['parent_id']) if params[:project].has_key?('parent_id')
+    end
+    redirect_to planners_project_path(@project)
+  end
+
   def new_member
     @all_users=User.status(User::STATUS_ACTIVE)
     @recipients=[]

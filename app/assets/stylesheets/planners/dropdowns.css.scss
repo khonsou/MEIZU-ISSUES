@@ -1,0 +1,60 @@
+// customize bootstrap _dropdowns.scss
+
+// The dropdown menu (ul) 39
+// ----------------------
+.dropdown-menu {
+  min-width: 100px;
+  padding: 0;
+  border: $solidBorder;
+  @include border-radius($borderRadius);
+  @include box-shadow($boxShadowFour);
+
+  a {
+    padding: 5px 10px;
+    color: $textColor;
+    border-bottom: $dashedBorder;
+  }
+
+  li:last-child a {
+    border-bottom: 0 none;
+  }
+}
+
+// Hover state 86
+// -----------
+.dropdown-menu li > a:hover,
+.dropdown-menu li > a:focus,
+.dropdown-submenu:hover > a {
+  @include gradient-vertical($dropdownLinkBackgroundHover, $dropdownLinkBackgroundHover);
+  border-color: $dropdownLinkBackgroundHover;
+}
+
+// theme style
+.account .dropdown-menu {
+  width: 110px;
+  right: 5px !important;
+  margin-top: 0;
+}
+
+.dropdown-menu {
+  .action-close,
+  .action-watch,
+  .action-mute,  
+  .action-edit,
+  .action-change_creator,
+  .action-delete {
+    a, a:hover {
+      background-repeat: no-repeat;
+      background-position: 5px 5px;
+      padding-left: 30px;
+    }
+  }
+
+  .action-edit a {
+    background-image: url('icon-edit.png');
+
+    &:hover {
+      background-image: url('icon-edit-hover.png');
+    }
+  }
+}
