@@ -27,7 +27,7 @@ angular.module('ginkgo.directives', []).
           
           if($(ui.draggable).data('event-id') != undefined){
             // drag from inner calendar
-            var hoverColumns = $(allDays).slice(range.start, range.end);          
+            var hoverColumns = $(allDays).slice(range.start - 1, range.end - 2);          
 
             scope.$apply(function(){
               scope.updateEvent({
@@ -59,7 +59,6 @@ angular.module('ginkgo.directives', []).
             scope.$apply(function(){
               scope.addEvent({event: 
                 {
-                //  text: text, 
                  start_at: $(hoverColumns).first().data('date'), 
                  end_at: $(hoverColumns).last().data('date'),
                  eventable_id: eventableId,
@@ -86,7 +85,7 @@ angular.module('ginkgo.directives', []).
         stop: function(event, ui) {
           var range = scope.calculateHoverIndex(ui.helper);
           var allDays = $(this).parents('.month-row').find('.days .day') ;        
-          var hoverColumns = $(allDays).slice(range.start - 1, range.end - 1);  
+          var hoverColumns = $(allDays).slice(range.start - 1, range.end - 2);  
           
           scope.$apply(function(){
             scope.updateEvent({
@@ -119,10 +118,6 @@ angular.module('ginkgo.directives', []).
            '<div class="popover-content balloon right_side">' +
              '<span class="arrow"></span>' +
              '<form name="eventForm" class="form-horizontal">' +              
-               // '<div class="control-group">' + 
-               //   '<label class="control-label">Name</label>' + 
-               //   '<div class="controls"><input name="text" value="{{ event.text }}"></input></div>' +
-               // '</div>' +
                '<div class="control-group">' + 
                  '<label class="control-label">开始</label>' + 
                  '<div class="controls"><input name="start" rel="date" value="{{event.startTime}}"></input></div>' +

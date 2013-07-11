@@ -40,7 +40,7 @@ var CalendarCtrl = ['$scope', '$resource',  function ($scope, $resource) {
   $scope.events = [];
   $scope.tasks  = [];
   $scope.members  = [];  
-          console.log($scope.projectId)
+
   if ($scope.projectId != 0 ) {
     var r = $resource('/planners/projects/:id.json', 
                            {id: $scope.projectId},
@@ -52,7 +52,6 @@ var CalendarCtrl = ['$scope', '$resource',  function ($scope, $resource) {
     });       
   }else if($scope.memberId){
 
-    console.log($scope.memberId)
     var r = $resource('/planners/members/:id.json', 
                            {id: $scope.memberId},
                            {'query':{method:'GET'}});
@@ -171,8 +170,7 @@ var CalendarCtrl = ['$scope', '$resource',  function ($scope, $resource) {
   }     
   
   $scope.addEvent = function (event) {
-//    events.save(event);
-    var r =  $resource('/planners/projects/:project_id/events/:id.json', 
+    var r =  $resource('/planners/projects/:project_id/events.json', 
                        {project_id: $scope.projectId},
                        {'save':{method:'POST',isArray:true}});
     r.save({project_id: $scope.projectId}, event, function(data){
