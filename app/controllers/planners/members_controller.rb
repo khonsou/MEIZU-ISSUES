@@ -43,9 +43,8 @@ class Planners::MembersController < ApplicationController
   end
   
   def destroy
-    @membet = Membet.find(params[:id])
-    @membets = @membet.project.membets
-    @membet.destroy
+    @member = Member.find(params[:id])
+    @member.destroy
     respond_to do |format|
       format.json 
     end  
