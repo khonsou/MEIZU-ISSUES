@@ -2,11 +2,12 @@ class Planners::MembersController < ApplicationController
   layout 'planner'
   
   def index    
-    @project = Project.find_by_id(params[:project_id]) || Project.last
-    @membets = @project.membets
+    @users = User.active.where(admin: false).order('created_on desc').page(params[:page]).per(49)
+
     respond_to do |format|
-      format.json
-    end  
+      format.html      
+      format.js
+    end
   end
   
   def show
