@@ -32,7 +32,7 @@
             </div>
           </form>
           <ul class="nav">
-            <li class="active"><a href="#">Home</a></li>
+            <li class="<%= 'active' if action_name == 'index' and controller_name == 'projects' %>"><a href="/planners">Home</a></li>
             <li><a href="#about">All Projects</a></li>
             <li><a href="#contact">All Members</a></li>
             <li><a href="#contact">Me</a></li>
