@@ -65,11 +65,12 @@ class UsersController < ApplicationController
     # show projects based on current user visibility
     @memberships = @user.memberships.all(:conditions => Project.visible_condition(User.current))
 
-    events = Redmine::Activity::Fetcher.new(User.current, :author => @user).events(nil, nil, :limit => 10)
-    @events_by_day = events.group_by(&:event_date)
+    # events = Redmine::Activity::Fetcher.new(User.current, :author => @user).events(nil, nil, :limit => 10)
+    # @events_by_day = events.group_by(&:event_date)
 
     unless User.current.admin?
-      if !@user.active? || (@user != User.current  && @memberships.empty? && events.empty?)
+      # if !@user.active? || (@user != User.current  && @memberships.empty? && events.empty?)
+      if !@user.active?
         render_404
         return
       end
