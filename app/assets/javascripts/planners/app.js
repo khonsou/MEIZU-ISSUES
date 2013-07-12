@@ -262,6 +262,16 @@ var MemberCtrl =  ['$scope', '$resource', function($scope, $resource) {
       }
     });
   }
+  
+  $scope.destroyMember = function (member) {
+    var r =  $resource('/planners/members/:id.json', 
+                       {},
+                       {'remove':{method:'DELETE'}});
+    r.remove({id: member.id}, function(data){
+      $scope.$parent.events = data.events;
+      $scope.members = data.members;
+    });
+  }
 }];
 
 

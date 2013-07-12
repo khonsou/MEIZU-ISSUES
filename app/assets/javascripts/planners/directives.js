@@ -254,7 +254,25 @@ angular.module('ginkgo.directives', []).
         })  
       }
     } 
+}]).directive('ginkgoDestroyMember', ['$rootScope', '$http', '$compile', function ($rootScope, $http, $compile) {
+    return {
+      
+      link: function(scope, element, attrs) {
+        attrs.$observe('memberId', function(value) {                    
+          var member = _.find(scope.members, function(e){ return e.id == parseInt(value); })        
+                   
+          element.on('click', function(e){  
+            if (confirm('你确定要删除该成员么？')) {
+              scope.destroyMember(member);            
+            }
+          
+            return false;
+          })  
+        }) 
+      }
+    } 
 }])       
+
 
 
 

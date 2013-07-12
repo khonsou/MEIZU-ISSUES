@@ -45,7 +45,7 @@
               <a class="name" href="/planners/members/{{member.id}}">{{member.name}}</span>
               <div class="role">master</div>
             </div>
-            <a class="pull-right" href="/planners/members/{{member.id}}" data-method="delete" data-remote="true" data-confirm="你确定要删除该成员么？" rel="nofollow"><img src="/assets/planners/delete.png"></a>                       
+            <a class="pull-right" href="/planners/members/{{member.id}}" data-member-id="{{member.id}}" rel="nofollow" ginkgo-destroy-member=""><img src="/assets/planners/delete.png"></a>                       
           </div>
         </div>
       </li>
