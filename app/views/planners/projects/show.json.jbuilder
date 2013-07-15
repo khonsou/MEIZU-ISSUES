@@ -1,5 +1,6 @@
 json.tasks @project.tasks do |json, task|
   json.text task.name
+  json.color task.color  
   json.id task.id
 end  
 
@@ -16,5 +17,6 @@ json.events @project.events do |json, event|
   json.conflictEnd event.conflict_end.try(:strftime, "%Y-%m-%d")
   json.eventableType event.eventable_type
   json.eventableId  event.eventable_id  
+  json.color event.color  
   json.id event.id
 end  

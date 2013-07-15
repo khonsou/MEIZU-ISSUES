@@ -85,7 +85,6 @@ display: table-cell;
 height:30px;
 overflow: hidden;
 border-right: 1px dotted #dcd9d3;
-/*border-top: 1px dotted #dcd9d3;*/
 margin: 0;
 padding: 0 0 10px 0;
 line-height: normal;
@@ -268,4 +267,39 @@ border-style: solid;
 }
 .popover-content .form-horizontal .controls input{
   width:160px;
+}
+
+.popover-content  div.swatches input[type=radio] {
+  width: 0px;
+  height: 0px;
+  display: none;
+}
+.popover-content  div.swatches label{
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  margin: 2px 2px 0 1px;
+  height: 12px;
+  width: 14px;
+}  
+.popover-content  div.swatches input[type=radio]:checked+label {
+  background-image: url(https://basecamp.global.ssl.fastly.net/assets/calendar/swatch_x@2x-d7a15590e8b85ecff70390a9ecf92024.png);
+  background-size: 10px 10px;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.popover-content  div.swatches label.swatch:hover {
+box-shadow: 0 0 5px rgba(0,0,0,0.7);
+}
+
+.popover-content  div.swatches label.swatch {
+display: inline-block;
+border: 2px solid #fff;
+vertical-align: baseline;
+-webkit-box-shadow: 0 0 2px rgba(0,0,0,0.4);
+-moz-box-shadow: 0 0 2px rgba(0,0,0,0.4);
+box-shadow: 0 0 2px rgba(0,0,0,0.4);
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
 }

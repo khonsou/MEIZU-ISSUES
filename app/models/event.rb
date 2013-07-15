@@ -22,6 +22,14 @@ class Event < ActiveRecord::Base
     end    
   end
   
+  def color
+    if eventable_type == "Task"
+      eventable.color
+    else
+      ""
+    end    
+  end
+  
   def conflict_start
     @conflict ||= check_conflict_in_project
     @conflict.first

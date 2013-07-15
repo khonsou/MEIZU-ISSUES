@@ -1,7 +1,7 @@
 <% content_for:sidebar do %>
 
   <div class="sidebar-nav">
-    <ul class="nav nav-list" id="slideRight" ng-controller="MemberCtrl">
+    <ul class="nav nav-list" id="slideRight">
       <li class="form-horizontal head">
         <h5><%= @project.name %></h5>
         <div class="pull-right dropdown-icon">
@@ -29,6 +29,8 @@
       <li>
         <div id="descriptionToPro"><%= @project.description %></div>
       </li>
+    </ul>  
+    <ul class="nav nav-list"  ng-controller="MemberCtrl">            
       <li class="head">
         <h5>Members</h5>
         <div class="pull-right"> 
@@ -49,17 +51,16 @@
           </div>
         </div>
       </li>
+    </ul>  
+    <ul class="nav nav-list">                
       <li class="head">
-        <div>全部</div>
         <div>
-          <a class="pull-right" href="#"><img src="/assets/project_header/add-black.png" alt="add_Person"></a>
           <span class="name">Tasks</span>
         </div>
       </li>
       <li class="classify">
         <div id="external-events" ng-controller="TaskCtrl">
-          <h4>Draggable Tasks</h4>
-          <div ginkgo-task-popover ng-show="tasks.length > 0"  ng-repeat="task in tasks" ginkgo-draggable="{{!task.done}}" class="external-event dragged-{{task.done}}"  data-task-id="{{task.id}}" >{{task.text}}</div>
+          <div ginkgo-task-popover ng-show="tasks.length > 0"  ng-repeat="task in tasks" ginkgo-draggable="" class="external-event"  data-task-id="{{task.id}}" style="background-color:{{task.color}};">{{task.text}}</div>
           <form ng-submit="addTask()">
             <input type="text" ng-model="task.text"  size="10" class="span2"
                    placeholder="add new task here">

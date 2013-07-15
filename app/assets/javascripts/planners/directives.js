@@ -183,11 +183,20 @@ angular.module('ginkgo.directives', []).
      link: function(scope, element, attrs) {
        attrs.$observe('taskId', function(value) {            
            var task = _.find(scope.tasks, function(e){ return e.id == parseInt(value); })        
+           scope.colors = ["#009900", '#aa0000', "#ec61a2", "#3185c5", "#46647c", "#b3a543",
+                          "#ff9c00",  "#000000"];
 
            var template = 
            '<div class="popover-content balloon right_side">' +
              '<span class="arrow"></span>' +
-             '<form name="eventForm" class="form-horizontal">' +              
+             '<form name="eventForm" class="form-horizontal">' +     
+                '<p>选择代表颜色</p>' +
+                '<div class="swatches">' +          
+                   '<span ng-repeat="color in colors">' +
+                     '<input type="radio"  id="calendar_editor_singleton_swatch_{{$index}}" name="color" value="{{color}}">' +                      
+                     '<label class="swatch" for="calendar_editor_singleton_swatch_{{$index}}" style="background-color: {{color}}"></label>' +           
+                   '</span>' +                            
+               '</div>' +         
                '<div class="control-group">' + 
                  '<label class="control-label">名字</label>' + 
                  '<div class="controls"><input name="text" value="{{ task.text }}"></input></div>' +
@@ -219,13 +228,14 @@ angular.module('ginkgo.directives', []).
                   }
                 }) 
                 $('#calendar_item_editor_singleton').find('input[type=submit]').on('click', function(){                                                                  
-                  scope.$apply(function(){         
+//                  scope.$apply(function(){         
                     var eventFormData = $('#calendar_item_editor_singleton').find('form').serializeObject() ;                                     
                     scope.updateTask({
                       id: task.id,
-                      task: {name: eventFormData.text}
+                      task: {name: eventFormData.text,
+                             color: eventFormData.color}
                     })
-                  });                    
+  //                });                    
                   $('#calendar_item_editor_singleton').hide();                                      
                 })
                 e.stopPropagation();                                                                                    

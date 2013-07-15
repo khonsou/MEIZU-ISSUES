@@ -82,7 +82,7 @@ var CalendarCtrl = ['$scope', '$resource',  function ($scope, $resource) {
   };
     
   $scope.$watch('events', function(newVal) {
-    $scope.getEventLength();        
+    $scope.getEventLength();    
    }, true);
         
   $scope.calculateDate = function(startDate, endDate){

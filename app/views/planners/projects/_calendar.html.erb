@@ -6,7 +6,7 @@
           <span style="visibility:hidden;">conflict</span>
         </div>
         
-        <div  class="event  tip wraps_next  {{event.eventableType}}" style="left:{{event.left}};width:{{event.width}};" ginkgo-draggable="true" ginkgo-resizeable="true" data-event-id="{{event.id}}" ginkgo-popover="true" ng-switch on="event.eventableType" data-toggle="tooltip" title="{{ event.startTime }} - {{event.endTime }}">          
+        <div  class="event  tip wraps_next  {{event.eventableType}}" style="left:{{event.left}};width:{{event.width}};background-color:{{event.color}};" ginkgo-draggable="true" ginkgo-resizeable="true" data-event-id="{{event.id}}" ginkgo-popover="true" ng-switch on="event.eventableType" data-toggle="tooltip" title="{{ event.startTime }} - {{event.endTime }}">          
           <span ng-switch-when="Task" class="event">
             <span class="title">{{ event.text }}</span>
           </span>
