@@ -1,23 +1,24 @@
 <%html_title(l(:label_search))-%>
 <% content_for:sidebar do %>
 <div class="span5 sidebar">
+  <label>搜索结果:</label>
   <ul class="search-result-counts">
     
     <li class="active">
-      <a id="all-link">All</a>
-      <label><%=@result_projects.length+@result_users.length%></label>
+      <a id="all-link">所有</a>
+      <label>(<%=@result_projects.length+@result_users.length%>)</label>
     </li>
     <li class="active">
-      <a id="project-link">Projects</a>
-      <label><%=@result_projects.length%></label>
+      <a id="project-link">项目</a>
+      <label>(<%=@result_projects.length%>)</label>
     </li>
     <li class="active">
-      <a id="member-link">Members</a>
-      <label><%=@result_users.length%></label>
+      <a id="member-link">成员</a>
+      <label>(<%=@result_users.length%>)</label>
     </li>
     <li class="active">
-      <a id="tag-link">Tag</a>
-      <label><%=@result_tags.length%></label>
+      <a id="tag-link">Tags</a>
+      <label>(<%=@result_tags.length%>)</label>
     </li>
     
   <ul>
@@ -27,4 +28,32 @@
 <%= render :partial => 'result'%>
 </div>
 
-
+<%= javascript_tag do %>
+  function show_all(){
+    $("#member-list").show();
+    $("#project-list").show();
+  }
+  function hide_all(){
+    $("#member-list").hide();
+    $("#project-list").hide();
+  }
+  
+  $("#all-link").click(function(){
+    show_all();
+  });
+  
+  $("#project-link").click(function(){
+    hide_all(); 
+    $("#project-list").show();
+  });
+  
+   $("#member-link").click(function(){
+    hide_all();
+    $("#member-list").show();
+  });
+  
+   $("#tag-link").click(function(){
+    hide_all();
+     $("#tag-list").show();
+  });
+<% end -%>

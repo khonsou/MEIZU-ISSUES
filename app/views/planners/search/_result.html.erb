@@ -1,7 +1,7 @@
 <div id="project-list">
-  <label>Projects</label>
-  <ul class="nav nav-tabs media-list">
-    <%unless @result_projects.empty? then%>
+  <%unless @result_projects.empty? then%>
+    <label>项目</label>
+    <ul class="nav nav-tabs media-list">
       <%@result_projects.each do |project|%>  
         <li>
            <%=link_to "/planners/projects/#{project.id}", :class =>"pull-left hidden-phone" do %>
@@ -9,15 +9,13 @@
            <%end -%>
            <label><%=project.name%></label>
         </li>
-      <%end -%>
-      <%else%>
-        <label>无</label>
+      <%end -%>       
     <%end -%>
   </ul>
 </div>
 
 <div id="member-list">
-  <label>Members</label>
+  <label>成员</label>
   <ul class="nav nav-tabs media-list">
     <%unless @result_users.empty? then%>
       <%@result_users.each do |user|%>  

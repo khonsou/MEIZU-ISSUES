@@ -2,11 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
   
-  .sidebar {
+   .sidebar {
      .actions {
        margin-bottom: $baseLineHeight;
      }
      width:190px;
+   }
+   
+   .sidebar label{
+     font-size:20px;
    }
    
    .search-result-counts {
@@ -23,7 +27,7 @@
         padding-right: 15px;
         text-decoration: none;
         width:130px;
-
+        font-size:17px;
         &:hover {
           cursor:pointer;
           font-weight: bold;
@@ -47,14 +51,24 @@
  
  #project-list ul,#member-list ul{
   text-align: center;
-  padding-left: 90px; 
+  padding-left: 90px;
+  font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; 
+  font-weight: bold;
  }
+ 
+ #project-list label, #member-list label{
+  font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; 
+  font-size:17px;
+  font-weight: bold;
+ }
+ 
  
  #project-list,#member-list{
   overflow:auto;
  }
+ 
  #project-list img,#member-list img{
-   width:200px;
+   width:120px;
    margin:30px;
  }
  

@@ -2,11 +2,16 @@ class Planners::SearchController < ApplicationController
   layout 'planner'
   def index
     @result = []
-    @question = params[:q].downcase.split(" ") || ""
-    search_for_projects
-    search_for_users
-    search_for_tags
-    debugger
+    unless params[:q].empty?  
+      @question = params[:q].downcase.split(" ") 
+      search_for_projects
+      search_for_users
+      search_for_tags
+    else
+      @result_projects=[]
+      @result_users=[]
+      @result_tags=[]
+    end
   end
  
   private

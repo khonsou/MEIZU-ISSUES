@@ -6,7 +6,6 @@
   <meta name="description" content="<%= Redmine::Info.app_name %>" />
   <meta name="keywords" content="issue,bug,tracker" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
   <%= stylesheet_link_tag    "planners" %>
   <%= javascript_include_tag "planners" %>
   <%= csrf_meta_tags %>
@@ -23,7 +22,7 @@
         
         <a class="brand" href="#" id="mz-top-link-logo">&nbsp;</a>
         <div class="nav-collapse collapse">  
-         <%= form_tag(planners_search_path, :method => :get, class: 'form-search pull-right', id: "quick-search") do %>
+         <%= form_tag( {:controller =>"planners/search",:action=> "index"},{class: 'form-search pull-right', id: "quick-search",:onSubmit=>'return validate();',:method=>:get}) do %>
             <div class="input-prepend">
                 <button type="submit" class="btn">
                     <img src="/assets/project_header/search.png">
@@ -63,3 +62,14 @@
   <%= fix_for_bootstrap_dropdown %>
 </body>
 </html>
+<%= javascript_tag do %>
+  function validate(){
+    var str=$("#q").val();
+          if(str.replace(/(^\s+$)/, "").length==0){
+            return false;
+          }
+          else{
+            return true;
+          }     
+  }  
+<% end -%>
