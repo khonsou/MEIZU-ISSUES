@@ -92,8 +92,7 @@ var CalendarCtrl = ['$scope', '$resource', '$filter', function ($scope, $resourc
     $scope.getEventLength();      
   };
     
-  $scope.$watch('events', function(newVal) {
-//    $scope.getEventLength();    
+  $scope.$watch('events', function(newVal) {   
       $scope.eventsSize();     
    }, true);
         
