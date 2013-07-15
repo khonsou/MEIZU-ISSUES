@@ -23,14 +23,14 @@
         
         <a class="brand" href="#" id="mz-top-link-logo">&nbsp;</a>
         <div class="nav-collapse collapse">  
-          <form class="form-search pull-right">
+         <%= form_tag(planners_search_path, :method => :get, class: 'form-search pull-right', id: "quick-search") do %>
             <div class="input-prepend">
-              <button type="submit" class="btn">
-                <img src="/assets/project_header/search.png">
-              </button>
-              <input type="text" class="span2 search-query">
-            </div>
-          </form>
+                <button type="submit" class="btn">
+                    <img src="/assets/project_header/search.png">
+                </button>
+                <%= text_field_tag 'q', @question, :class => 'search-query', :accesskey => accesskey(:quick_search), placeholder: l(:label_search) %>
+           </div>
+         <% end %>
           <ul class="nav">
             <li class="<%= 'active' if action_name == 'index' and controller_name == 'projects' %>"><a href="/planners">Home</a></li>
             <li><a href="#about">All Projects</a></li>

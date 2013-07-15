@@ -105,6 +105,7 @@ RedmineApp::Application.routes.draw do
       resources :events, shallow: true            
     end      
     resources :members    
+    get 'search', :controller => 'search', :action => 'index'
   end  
 
   resources :users

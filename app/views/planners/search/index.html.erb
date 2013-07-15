@@ -1,0 +1,30 @@
+<%html_title(l(:label_search))-%>
+<% content_for:sidebar do %>
+<div class="span5 sidebar">
+  <ul class="search-result-counts">
+    
+    <li class="active">
+      <a id="all-link">All</a>
+      <label><%=@result_projects.length+@result_users.length%></label>
+    </li>
+    <li class="active">
+      <a id="project-link">Projects</a>
+      <label><%=@result_projects.length%></label>
+    </li>
+    <li class="active">
+      <a id="member-link">Members</a>
+      <label><%=@result_users.length%></label>
+    </li>
+    <li class="active">
+      <a id="tag-link">Tag</a>
+      <label><%=@result_tags.length%></label>
+    </li>
+    
+  <ul>
+</div>
+<% end -%>
+<div>
+<%= render :partial => 'result'%>
+</div>
+
+

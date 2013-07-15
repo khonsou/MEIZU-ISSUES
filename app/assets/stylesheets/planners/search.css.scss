@@ -1,0 +1,64 @@
+// Place all the styles related to the planners::search controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+  
+  .sidebar {
+     .actions {
+       margin-bottom: $baseLineHeight;
+     }
+     width:190px;
+   }
+   
+   .search-result-counts {
+    list-style-type: none;
+    margin: 0;
+
+    li {
+      line-height: 40px;
+      border-bottom: $dashedBorder;
+       
+
+      a {
+        display: inline-block;
+        padding-right: 15px;
+        text-decoration: none;
+        width:130px;
+
+        &:hover {
+          cursor:pointer;
+          font-weight: bold;
+          
+        }
+      }
+      
+      label{
+        display:inline-block;
+      }
+    }
+
+    li.active {
+      a {
+        font-weight: bold;
+      }
+      background: transparent url('icon-arrow-right.png') no-repeat 175px 10px;
+    }
+ 
+  }
+ 
+ #project-list ul,#member-list ul{
+  text-align: center;
+  padding-left: 90px; 
+ }
+ 
+ #project-list,#member-list{
+  overflow:auto;
+ }
+ #project-list img,#member-list img{
+   width:200px;
+   margin:30px;
+ }
+ 
+ #project-list .nav li,#member-list .nav li{
+   float:left;
+ }
+ 

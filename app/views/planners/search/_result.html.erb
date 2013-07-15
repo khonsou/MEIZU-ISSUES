@@ -1,0 +1,37 @@
+<div id="project-list">
+  <label>Projects</label>
+  <ul class="nav nav-tabs media-list">
+    <%unless @result_projects.empty? then%>
+      <%@result_projects.each do |project|%>  
+        <li>
+           <%=link_to "/planners/projects/#{project.id}", :class =>"pull-left hidden-phone" do %>
+            <%= image_tag project.icon_url(:large), :class => "img-rounded" %>
+           <%end -%>
+           <label><%=project.name%></label>
+        </li>
+      <%end -%>
+      <%else%>
+        <label>无</label>
+    <%end -%>
+  </ul>
+</div>
+
+<div id="member-list">
+  <label>Members</label>
+  <ul class="nav nav-tabs media-list">
+    <%unless @result_users.empty? then%>
+      <%@result_users.each do |user|%>  
+        <li>
+           <%=link_to user_path(user), :class =>"pull-left hidden-phone" do %>
+            <%= image_tag user.avatar_url(:large), :class => "img-circle" %>
+           <%end-%>
+           <label><%=user.name%></label>
+        </li>
+      <%end%>
+    <%end%>
+  </ul>
+</div>
+
+<div id="tags">
+   
+</div>
