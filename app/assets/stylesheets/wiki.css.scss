@@ -30,6 +30,14 @@ a.wiki-anchor {
   }
 }
 
+.wiki-page{
+    a.external{
+      text-decoration: underline;
+
+      &:hover{text-decoration:none;}
+    }
+}
+
 h1:hover a.wiki-anchor,
 h2:hover a.wiki-anchor,
 h3:hover a.wiki-anchor {
