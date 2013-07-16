@@ -1,23 +1,17 @@
-  <% project.true_pending_invitations.each do |pending| %>
-    <li class="row-fluid">
-      <div class="avatar span7">
-        <% if u = pending.true_user %>
-          <%= link_to_user(u, :avatar => :small) %>
-        <% else %>
-          <%= image_tag User.new.avatar_url(:small) %>
-        <% end %> 
-      </div>
-      <div class="span17">
-        <span class="user-name">
-          <% if u %>
-            <%= link_to_user(u) %>
-          <% else %>
-            <span title="<%= pending.mail %>"><%= truncate(pending.mail, length: 15) %></span>
-          <% end %>
-        </span><br>
-        <span class="role"><%= l(:label_invited_member) %></span>
-      </div>
-    </li>
-  <% end %>
-
-
+<div class="avatar span7">
+  <% if u = pending.true_user %>
+    <%= link_to_user(u, :avatar => :small) %>
+  <% else %>
+    <%= image_tag User.new.avatar_url(:small) %>
+  <% end %> 
+</div>
+<div class="span17">
+  <span class="user-name">
+    <% if u %>
+      <%= link_to_user(u) %>
+    <% else %>
+      <span title="<%= pending.mail %>"><%= truncate(pending.mail, length: 15) %></span>
+    <% end %>
+  </span><br>
+  <span class="role"><%= l(:label_invited_member) %></span>
+</div>
