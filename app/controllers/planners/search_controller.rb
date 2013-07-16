@@ -21,7 +21,6 @@ class Planners::SearchController < ApplicationController
       @question.each do |k|
         keyword += "%"+k+"%"
       end
-      debugger
       @result_projects = User.current.projects.where("name like '#{keyword}'")
       @result << @result_projects
     end
