@@ -5,7 +5,8 @@
     </div>
 
     <div class="footer">
-      <%= submit_tag l(:button_save), disable_with: l(:button_submiting), class: 'button gray' %>
+      <%= link_to l(:button_cancel), '#', class: 'button button-gray disable-hover', data: { dismiss: 'modal' } %>
+      <%= submit_tag l(:button_save), disable_with: l(:button_submiting), class: 'button button-gray' %>
     </div>
   <% end %>
 </div>

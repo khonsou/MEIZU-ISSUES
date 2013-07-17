@@ -4,8 +4,8 @@
       <%= render :partial => 'form_add_member' %>
     </div>
     <div class="modal-footer">
-      <%= link_to l(:button_close), '#', class: 'Label close_invite', data: { dismiss: 'modal' } %>
-      <%= submit_tag l(:button_send), disable_with: l(:button_submiting), class: 'Label commit-invite', :'ng-click' => "submitInvite(#{@project.id});", :onclick => "return false;" %>
+      <%= link_to l(:button_close), '#', class: 'button button-gray disable-hover', data: { dismiss: 'modal' } %>
+      <%= submit_tag l(:button_send), disable_with: l(:button_submiting), class: 'button button-blue', :'ng-click' => "submitInvite(#{@project.id});", :onclick => "return false;" %>
     </div>
   <% end %>
 </div>

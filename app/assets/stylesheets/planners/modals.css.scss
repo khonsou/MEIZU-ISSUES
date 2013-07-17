@@ -44,6 +44,12 @@
   text-align: right;
 }
 
+a.disable-hover{
+    text-decoration:none;
+
+    &:hover{color:#fff;}
+  }
+  
 .modal{
   -webkit-border-radius: 0px;
      -moz-border-radius: 0px;

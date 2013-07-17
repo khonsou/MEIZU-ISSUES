@@ -50,21 +50,7 @@
 .nomargin {
   margin-left: 25px;
 }
- .commit-invite{
-   background-color:#378ee1;
-   color:#ffffff;
-   border: 0;
-   font-size: 16px;
-   padding: 4px 7px;
- }
- .modal-footer .close_invite{
-   background-color:#000000;
-   color:#ffffff;
-   padding: 4px 7px 6px;
-   border: 0;
-   font-size: 16px;
-   text-decoration: none;
- }
+
 #project_id{
   width: 50%;
   margin-bottom: 5px;

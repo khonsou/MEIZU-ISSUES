@@ -1,14 +1,28 @@
 .button{
-  width: 1000px;
+  display:inline-block;
+  width: 58px;
+  height:20px;
   color: #FFFFFF;
   padding: 4px 10px;
   font-size: 13px;
+  text-align:center;
+  vertical-align: baseline;
 }
 
-.button.gray, .button.primary, .button.gray.disabled:hover, .button.gray:disabled:hover {
-  width: 80px;
+input[type="submit"]{
+  width:80px;
+  height:30px;
+  vertical-align: baseline;
+}
+
+.button-gray {
   border: 1px solid #424242;
   background-color: #424242;
+}
+
+.button-blue {
+  border: 1px solid #378ee1;
+  background-color: #378ee1;
 }
 
 .load-more {
