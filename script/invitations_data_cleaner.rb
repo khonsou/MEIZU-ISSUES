@@ -1,7 +1,4 @@
 #Clean the invitations which are time out
-sql = "delete from member_invitations where created_at <(now()-interval 3 day) and state = 'pending'"
-
-ActiveRecord::Base.establish_connection
-
-ActiveRecord::Base.connection.execute(sql)
-
+puts "Cleaning start ..."
+MemberInvitation.where("created_at < ? and state = ?",Time.now-3.days,'pending').destroy_all
+puts "Cleaning up."
