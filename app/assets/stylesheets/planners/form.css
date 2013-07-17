@@ -77,3 +77,14 @@
   padding-left:15px;
   opacity: 0.8;   
 }
+.title .project-name-label{
+  display:inline-block;
+  margin-left: 20px;
+  color: rgb(43, 38, 38);
+  font-weight: bold;
+  font-size: 18px;
+}
+.title{
+  padding-bottom:10px;
+}
+

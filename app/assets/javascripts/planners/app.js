@@ -249,10 +249,10 @@ var TaskCtrl = ['$scope', '$resource', function ($scope, $resource) {
 
 
 var MemberCtrl =  ['$scope', '$resource', function($scope, $resource) {
-  $scope.submitInvite = function(){
+  $scope.submitInvite = function(projectId){
     var params =  $('#container-modal').find('form').serializeObject();
     var r =  $resource('/planners/projects/add_member.json', 
-                       {},
+                       {project_id: projectId},
                        {'save':{method:'POST',isArray:true}});
     r.save(params, function(data){
       $scope.members = data;

@@ -1,14 +1,14 @@
 <div class="row-fluid form-content" id="invitations">
   <div class="title">
-    <span><%= l(:field_project) %></span>
-    <%= select_tag 'project_id', project_tree_options_for_select(find_visible_projects, :selected => @project), class: 'span24' %>
+    <span><%= l(:field_project)%> :</span>
+    <span class="project-name-label"><%=@project.name%></span>
   </div>
 
   <div class="textarea-backgroundcolor">
     <%= text_field_tag 'recipients', nil, id: 'member-invitation-recipients', class: 'span24' %>
   </div>
 
-  <div>
+  <div class="description">
     <label><%= l(:field_description) %></label>
     <%= text_area_tag 'description', nil, :rows => 6, :class => 'span24 textarea-backgroundcolor' %>
   </div>

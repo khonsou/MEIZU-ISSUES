@@ -72,6 +72,7 @@ class Planners::ProjectsController < ApplicationController
   end
 
   def new_member
+    @project = Project.find(params[:project])
     @all_users=User.status(User::STATUS_ACTIVE)
     @recipients=[]
     if params[:user_id]
