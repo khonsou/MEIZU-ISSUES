@@ -87,6 +87,8 @@ file_max_size_displayed:
 diff_max_lines_displayed:
   format: int
   default: 1500
+login_domain:
+  default: meizu.com
 enabled_scm:
   serialized: true
   default:

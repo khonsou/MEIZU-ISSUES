@@ -376,6 +376,7 @@ zh:
   setting_commit_logtime_enabled: 激活时间日志
   setting_commit_logtime_activity_id: 记录的活动
   setting_gantt_items_limit: 在甘特图上显示的最大记录数
+  setting_login_domain: 登录域名
 
   permission_add_project: 新建一个项目
   permission_add_subprojects: 新建子项目

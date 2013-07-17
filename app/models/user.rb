@@ -136,7 +136,11 @@ class User < Principal
 
   # Returns the user that matches provided login and password, or nil
   def self.try_to_login(login, password)
-    login = login.to_s
+    if login.include?("@")
+      login = login.to_s
+    else
+      login = login.to_s + "@" + Setting.login_domain
+    end
     password = password.to_s
 
     # Make sure no one can sign in with an empty password
