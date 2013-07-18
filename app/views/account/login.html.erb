@@ -8,7 +8,6 @@
 
         <div class="header">
           <span class="title"><%= l(:field_login) %></span>
-          <%= link_to l(:label_password_lost), lost_password_path, class: 'pull-right' %>
         </div>
 
         <div class="body clearfix">
@@ -31,7 +30,7 @@
 
 <%= javascript_tag do %>
   $(document).ready(function() {
-    $("#password").click(function(){
+    $("#password").keyup(function(){
       $("#password").attr("placeholder","");
     });
     
@@ -39,7 +38,7 @@
       $("#password").attr("placeholder","公司邮箱密码");
     });
     
-    $("#username").click(function(){
+    $("#username").keyup(function(){
       $("#username").attr("placeholder","");
     });
          
