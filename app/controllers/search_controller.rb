@@ -133,6 +133,16 @@ class SearchController < ApplicationController
           :before => params[:previous].nil?)
         @results += result
         @results_by_type[s] += result_count
+        # @results_by_project.merge!(project_count) { |project, oldval, newval| oldval + newval }
+      end
+
+      @scope.each do |s|
+        result, result_count, project_count = s.singularize.camelcase.constantize.search(@tokens, nil,
+          :all_words => true,
+          :titles_only => false,
+          :extra_conditions => @extra_conditions[s].join(' AND '),
+          :offset => offset,
+          :before => params[:previous].nil?)
         @results_by_project.merge!(project_count) { |project, oldval, newval| oldval + newval }
       end
 
