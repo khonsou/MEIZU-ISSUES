@@ -608,17 +608,39 @@ $(document).ready(hideOnLoad);
 $(document).ready(addFormObserversForDoubleSubmit);
 
 /*global notification slidedown*/
-$(document).ready(function(){
-  if($(".newFeatures .row").children().length){
-    $("#newfeature-background").slideDown(1500);
 
-    $(".newFeatures .span10 span").mouseover(function(){
-      $(".newFeatures .msg-details").slideDown(1000);
-      $(".newFeatures .row .span10").css({"background-image":"url(/assets/light_one.png)"});
+
+
+$(document).ready(function(){
+  var timeId;
+
+  function slideDown(){
+    $("#newfeature-background").css("background-color","#d4f2ee");
+    $(".newFeatures .msg-details").slideDown(1000);
+    $(".newFeatures .row .span10").css({"background-image":"url(/assets/light_one.png)"});
+  }
+
+  function slideUp(){
+    $(".newFeatures .msg-details").slideUp(1000);
+    $(".newFeatures .row .span10").css({"background-image":"url(/assets/default_trumpet.png)"});
+    $("#newfeature-background").css("background-color","#e4f7f4");
+  }
+
+  if($(".newFeatures .row").children().length){
+    $("#newfeature-background").slideDown(800);
+
+    $(".newFeatures .row").mouseover(function(event){
+        clearTimeout(timeId);
+        slideDown();
     })
-    $(".newFeatures .span10 span").mouseout(function(){
-      $(".newFeatures .msg-details").slideUp(1000);
-      $(".newFeatures .row .span10").css({"background-image":"url(/assets/default_trumpet.png)"});
+    $(".newFeatures .row").mouseout(function(event){
+        timeId = setTimeout(slideUp,500);
+    })
+    $("#newfeatures-msg-description").mouseout(function(){
+        timeId = setTimeout(slideUp,500);
+    })
+    $("#newfeatures-msg-description").mouseover(function(){
+        clearTimeout(timeId);
     })
   }
 });
