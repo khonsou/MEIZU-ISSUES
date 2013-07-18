@@ -179,9 +179,9 @@
   <% end -%>
   
 </div>
-
-<%= render :partial => "shared/textile" %>  
-
+<div id="formatting-help" class="popup showmebox inline-help">
+  <%= render :partial => "shared/textile" %>  
+</div>
 <% html_title "#{@issue.tracker.name} ##{@issue.id}: #{@issue.subject}" %>
 
 <%= javascript_tag do %>

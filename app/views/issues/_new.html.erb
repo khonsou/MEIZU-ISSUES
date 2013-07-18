@@ -14,10 +14,26 @@
       <div id="attachments_form">
         <%= render :partial => 'attachments/form', :locals => {:container => @issue} %>
       </div>
+      <a href="" data-format='true' class="light pull-right">Textile语法</a>
     </div>
     <div class="modal-footer">
       <%= link_to l(:button_cancel), '#', class: 'btn', data: { dismiss: 'modal' } %>
       <%= submit_tag l(:button_create), disable_with: l(:button_submiting), class: 'button blue' %>
     </div>
   <% end %>
+  <div id="formatting-help-new" class="popup showmebox inline-help formatting-edit">
+    <%= render :partial => "shared/textile" %>  
+  </div>
 </div>
+
+<script type="text/javascript">
+  $('a[data-format=true]').click(function(){
+    $('#formatting-help-new').fadeIn();
+    return false;
+  })
+    
+  $("a.close").click(function(){
+    $(this).parent().hide();  
+    return false;
+  })
+</script>
