@@ -1,0 +1,22 @@
+<% content_for:sidebar do %>
+ 
+<% end %>
+<h4 class="title head clearfix">
+  项目列表:
+  <div class="pull-right" style="display:inline-block;"><h5>
+    <%= link_to new_planners_project_path, remote: true do %>
+       <%= l(:label_project_new) %>
+    <% end -%>
+  </h5></div>
+</h4>
+<div class="row-fluid">
+  <%= render :partial => "projectlist" %>
+</div>
+
+<h4 class="title head clearfix" >
+  成员列表:
+</h4>
+
+<div class="row-fluid">
+  <%= render :partial => "memberlist" %>
+</div>

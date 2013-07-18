@@ -1,0 +1,2 @@
+module Planners::HomeHelper
+end

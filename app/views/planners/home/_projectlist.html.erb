@@ -1,0 +1,19 @@
+<ul class="thumbnails">
+  <% @projects.each do |p| %>      
+    <li class="span2">
+      <div>
+        <%= link_to image_tag(p.icon_url(:large)), "/planners/projects/#{p.id}", :class => "thumbnail" %>
+        <div class="caption">
+          <h5><%= p.name %></h5>
+          <p class="small">6月20号 - 6月30号</p>
+        </div>
+      </div>
+    </li>
+  <% end %>    
+</ul>
+<% page = (params[:page] ? params[:page].to_i+1 : 2) %>
+<% if @projects.num_pages > 1 && @projects.num_pages >= page %>
+  <div class="pull-right">
+    <a href="planners/projects">所有项目</a>
+  </div>
+<% end -%>

@@ -110,7 +110,12 @@ body>#wrap {
 .controller-members.action-index #main {
   padding-left:20px;
   margin:20px auto;
-}    
+}
+
+.controller-home.action-index #main {
+  padding-left:20px;
+  margin:20px auto;
+}     
 
 .controller-projects.action-index .thumbnails .span2 {
   width: 206px!important;
@@ -121,6 +126,10 @@ body>#wrap {
 }
 
 .controller-members.action-index .row-fluid [class*="span"]:first-child {
+  margin-left: 2.12766%;
+}
+
+.controller-home.action-index .row-fluid [class*="span"]:first-child {
   margin-left: 2.12766%;
 }
 
