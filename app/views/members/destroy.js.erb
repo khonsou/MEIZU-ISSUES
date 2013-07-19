@@ -1,2 +1,9 @@
 $('#tab-content-members').html('<%= escape_javascript(render :partial => 'projects/settings/members') %>');
 hideOnLoad();
+$('#memberlist').html("<%= j(render '/projects/memberlist', { project: @project }) %>");
+$('#all_members_model').html("<%= j(render '/projects/all_members_model', { project: @project }) %>");
+<% if @project.member_principals.count + @project.true_pending_invitations.count > 10 %>
+  $('.link-all-members').text("<%= l(:view_all_members, count: @project.member_principals.count) %>");
+<% else %>
+  $('.link-all-members').remove();
+<% end -%>

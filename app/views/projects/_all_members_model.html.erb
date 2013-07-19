@@ -1,0 +1,40 @@
+<h5><%= l(:all_members) %></h5>
+  <% project.true_pending_invitations.each do |pending| %>
+      <div class="span7">
+        <div class="row-fluid each-member">
+          <%= render '/projects/pending_members', {pending: pending} %>
+        </div>
+      </div>
+  <% end -%>
+
+<div class="span7">
+  <div class="row-fluid each-member">
+    <div class="avatar span7">
+      <%= link_to_user(project.creator, :avatar => :small) %>
+    </div>
+    <div class="span17">
+      <span class="user-name"><%= link_to_user(project.creator) %></span><br>
+      <span class="role"><%= t('role_project_creator') %></span>
+    </div>
+  </div>
+</div>
+            
+<% project.member_principals.find(:all, :include => [:roles, :principal]).sort_by(&:created_on).each do |member| %>
+  <% unless member.user == project.creator %>
+    <div class="span7">
+      <div class="row-fluid each-member">
+        <div class="avatar span7">
+          <%= link_to_user(member.user, :avatar => :small) %>
+        </div>
+        <div class="span17">
+          <span class="user-name"><%= link_to_user(member.user) %></span>
+          <% if project.creator == User.current %>
+            <%= link_to image_tag("/assets/planners/delete.png"), membership_path(member), :remote => true, :data => {:confirm => l(:text_are_you_sure)}, :method => :delete, :class => "pull-right" %>
+          <% end -%>
+          <br>
+          <span class="role"><%= member.roles.map(&:name).join(', ') %></span>
+        </div>
+      </div>
+    </div>
+  <% end -%>
+<% end -%>
