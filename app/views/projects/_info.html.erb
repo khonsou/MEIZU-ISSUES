@@ -32,7 +32,7 @@
                 <li class="action-watch">
                   <%= link_to l(:button_quit), quit_project_path(project), method: 'post', confirm: l(:text_are_you_sure) %>
                 </li>
-              <% end %>                
+              <% end -%>                
             <% end -%>            
             <% if User.current.allowed_to?(:close_project, project) && project.creator == User.current %>
               <% if project.active? %>
@@ -43,8 +43,8 @@
                 <li class="action-reopen">
                   <%= link_to l(:button_reopen), reopen_project_path(project), :data => {:confirm => l(:text_are_you_sure)}, :method => :post %>
                 </li>
-              <% end %>
-            <% end %>
+              <% end -%>
+            <% end -%>
           </ul>
         </div>
       </div>
@@ -65,7 +65,7 @@
     </h5>
     <ul>
       <div id="memberlist">
-        <%= render '/projects/memberlist', { project: @project } %>
+        <%= render '/projects/memberlist', { project: project } %>
       </div>
     </ul>
 
@@ -75,7 +75,7 @@
       <div class="modal" id="all-members-modal" style="display:none;">
         <div class="modal-body">
           <div class="row-fluid" id="all_members_model">            
-            <%= render '/projects/all_members_model', { project: @project } %>            
+            <%= render '/projects/all_members_model', { project: project } %>            
           </div>
         </div>
         <div class="modal-footer">
