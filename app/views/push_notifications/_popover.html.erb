@@ -1,4 +1,9 @@
-<li class="header"><%= l(:label_notification_plural) %> (<%= link_to @unread_count, push_notifications_path %>)</li>
+<li class="header">
+  <%= l(:label_notification_plural) %> (<%= link_to @unread_count, push_notifications_path %>)
+  <% if push_notifications.size > 0 %>
+    <%= link_to "标记为已读", mark_popover_as_read_push_notifications_path, method: :post, :remote => true, :class => "align-right"%>
+  <% end %>
+</li>
 <% unless push_notifications.blank? %>
   <% push_notifications.each do |push_notification| %>
     <%= render "/push_notifications/#{push_notification.underscore}", { push_notification: push_notification, popover: true } %>

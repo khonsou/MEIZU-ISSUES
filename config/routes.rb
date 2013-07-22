@@ -31,6 +31,7 @@ RedmineApp::Application.routes.draw do
   resources :push_notifications, only: [:index] do
     collection do
       get 'popover'
+      post "mark_popover_as_read"
       post 'mark_all_as_read'
     end
     member do
