@@ -615,32 +615,42 @@ $(document).ready(function(){
   var timeId;
 
   function slideDown(){
-    $("#newfeature-background").css("background-color","#d4f2ee");
-    $(".newFeatures .msg-details").slideDown(1000);
+    $("#newfeature-background").css("background-color","#f7f5c8");
+    $(".newFeatures .msg-details").slideDown(600);
     $(".newFeatures .row .span10").css({"background-image":"url(/assets/light_one.png)"});
   }
 
   function slideUp(){
-    $(".newFeatures .msg-details").slideUp(1000);
+    $(".newFeatures .msg-details").slideUp(600);
     $(".newFeatures .row .span10").css({"background-image":"url(/assets/default_trumpet.png)"});
-    $("#newfeature-background").css("background-color","#e4f7f4");
+
+    $("#newfeature-background").css("background-color","#faf9de");
   }
 
   if($(".newFeatures .row").children().length){
-    $("#newfeature-background").slideDown(800);
-
     $(".newFeatures .row").mouseover(function(event){
         clearTimeout(timeId);
+        if(!$("#newfeatures-msg-description").html()){
+          $(".newFeatures .row .span10").css("cursor","default");
+          return;
+        }
         slideDown();
     })
     $(".newFeatures .row").mouseout(function(event){
-        timeId = setTimeout(slideUp,500);
+        timeId = setTimeout(slideUp,600);
     })
     $("#newfeatures-msg-description").mouseout(function(){
-        timeId = setTimeout(slideUp,500);
+        timeId = setTimeout(slideUp,600);
     })
     $("#newfeatures-msg-description").mouseover(function(){
+
         clearTimeout(timeId);
+    })
+    $(".newFeatures .row .span10 img").mouseover(function(){
+      $(".newFeatures .row .span10 img").attr("src","/assets/icon-through.png");
+    })
+    $(".newFeatures .row .span10 img").mouseout(function(){
+      $(".newFeatures .row .span10 img").attr("src","/assets/icon-delete2.png");
     })
   }
 });

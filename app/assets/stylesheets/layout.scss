@@ -261,6 +261,7 @@ a.bluelink{
 
 #newfeature-background a{
   float:right;
+  margin-top: -29px;
 }
 
 .msg-details{
@@ -274,7 +275,7 @@ a.bluelink{
 #newfeature-background{
   width:100%;
   position:relative;top:-35px;
-  background-color:#e4f7f4;
+  background-color:#faf9de;
   height:25px;
 }
 
@@ -283,6 +284,7 @@ a.bluelink{
     margin:5px;
     cursor:pointer;
   }
+
   .link{
     margin-right: 20px;
     position:relative;
@@ -293,17 +295,23 @@ a.bluelink{
   }
 }
 
+textarea#message_area {
+  width: 539px;
+}
+
 #newfeatures-msg-description{
   position:absolute; 
   top:30px;
   z-index:1000;
-  background:#ffffff;
+  background:#f7f5c8;
   padding:10px 2px;
   display:none;
   font-size:14px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
+  margin-left: 0px;
+  padding: 10px 0 10px 16px;
 
   p{
     font-family: Courier New,Console,Verdana,"微软雅黑";

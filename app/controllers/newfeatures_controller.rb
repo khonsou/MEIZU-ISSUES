@@ -4,7 +4,7 @@ class NewfeaturesController < ApplicationController
   # GET /newfeatures
   # GET /newfeatures.json
   def index
-    @newfeature = Newfeature.all
+    @newfeature = Newfeature.all(:order => "created_at DESC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -30,7 +30,6 @@ class NewfeaturesController < ApplicationController
 
     respond_to do |format|
       format.html # show_admin.html.erb
-      format.json { render :json => @newfeatures }
     end
 end
 

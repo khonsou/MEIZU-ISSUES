@@ -34,8 +34,8 @@
             <div class="row">
               <div class="span10">
                 <span class = "lines">
-                  <%= latest_newfeatures_title %></span>
-                    <a href="/newfeatures/cancel" data-remote = true ><img src="/assets/icon-delete.png" class = "link"></a>
+                  <%= textilizable(latest_newfeatures_title) %></span>
+                    <a href="/newfeatures/cancel" data-remote = true ><img src="/assets/icon-delete2.png" class = "link"></a>
               </div>
     <% end %>
   <% end %>
@@ -45,7 +45,7 @@
           <% if User.current.logged? %>
             <% if has_newfeatures? %>
               <% if show_notification? %>
-                    <div class="container msg-details" id = "newfeatures-msg-description"><%= simple_format(latest_newfeatures_description) %></div>
+                    <div class="container msg-details" id = "newfeatures-msg-description"><%= textilizable(latest_newfeatures_description) %></div>
               <% end %>
             <% end %>
           <%end%>
