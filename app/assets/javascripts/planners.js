@@ -1,6 +1,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+
 //= require i18n/jquery.ui.datepicker-zh-CN
 //= require bootstrap
 //= require select2

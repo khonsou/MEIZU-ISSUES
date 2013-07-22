@@ -200,6 +200,19 @@ var CalendarCtrl = ['$scope', '$resource',  function ($scope, $resource) {
 
   }
   
+  $scope.insertFakeEvent = function (event) {
+    $scope.events.push(event)
+  }
+  
+  $scope.destroyFakeEvent = function () {
+    var event = _.findWhere($scope.events, {fake: true});
+    if (event != undefined) {
+      var index = $scope.events.indexOf(event);
+      $scope.events.splice(index,1);      
+    }
+
+  }
+  
   $scope.hasEventByTagId = function(tagId){
     if(_.findWhere($scope.events, {tagId: tagId}) == undefined){
       return false;      
@@ -294,7 +307,8 @@ $.fn.serializeObject = function()
 };
 
 $(document).ready(function () {
-  $('#wrap').click(function(){
+  
+  $('body').click(function(){
     $('#calendar_item_editor_singleton').hide();
     $('input[rel=date]').datepicker('destroy');                      
   })
@@ -306,7 +320,7 @@ $(document).ready(function () {
   $('body').tooltip({
     selector: '.tip'
   });
-
+  
 
 })
 

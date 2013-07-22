@@ -18,6 +18,7 @@ color: #fff;
 font-size: .85em;
 cursor: pointer;
 z-index:1000;
+width: 190px;
 }
 #external-events .external-event.dragged-true{
   background:#333;
@@ -121,19 +122,20 @@ line-height: normal;
  
 div.events.holdable {
 position: absolute;
-height: 0;
+/*height: 0;*/
 width:100%;
+min-height:500px;
 }
-div.events.holdable div.event-row {
+/*div.events.holdable div.event-row {
 height: 0;
 width: 100%;
 float: left;
 clear: left;
-}
-div.events.holdable div.event-row .event.Task{
+}*/
+div.events.holdable  .event.Task{
   background-color: #3366CC;
 }
-div.events.holdable div.event-row .event.Member{
+div.events.holdable  .event.Member{
   
   background-color: #a6c6d3;
    
@@ -156,14 +158,14 @@ div.events.holdable div.event-row .event.Member{
   }
 }
  
-div.events.holdable div.spacer {
+/*div.events.holdable div.spacer {
 height: 25px;
 width: 0;
 float: left;
 clear: left;
-}
+}*/
 div.events.holdable div.event{
-  position: absolute;  
+  position: relative;  
   cursor: pointer;
   margin-top:10px;  
 //  margin-left:-5px;
@@ -303,3 +305,5 @@ box-shadow: 0 0 2px rgba(0,0,0,0.4);
 -moz-border-radius: 4px;
 border-radius: 4px;
 }
+
+.ui-state-highlight { height:20px; margin-top:10px;}

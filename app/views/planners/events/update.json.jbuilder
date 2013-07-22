@@ -1,5 +1,6 @@
 json.array! @events do |json, event|
   json.text event.text
+  json.position event.position  
   json.startTime event.start_at.strftime("%Y-%m-%d")
   json.endTime  event.end_at.strftime("%Y-%m-%d") 
   json.conflictStart event.conflict_start.try(:strftime, "%Y-%m-%d")

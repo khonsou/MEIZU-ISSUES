@@ -47,7 +47,7 @@
               <a class="name" href="/planners/members/{{member.id}}">{{member.name}}</span>
               <div class="role">master</div>
             </div>
-            <a class="pull-right" href="/planners/members/{{member.id}}" data-member-id="{{member.id}}" rel="nofollow" ginkgo-destroy-member=""><img src="/assets/planners/delete.png"></a>                       
+            <a class="pull-right destroy" href="/planners/members/{{member.id}}" data-member-id="{{member.id}}" rel="nofollow" ginkgo-destroy-member=""><img src="/assets/planners/delete.png"></a>                       
           </div>
         </div>
       </li>
@@ -58,15 +58,15 @@
           <span class="name">Tasks</span>
         </div>
       </li>
-      <li class="classify">
-        <div id="external-events" ng-controller="TaskCtrl">
-          <div ginkgo-task-popover ng-show="tasks.length > 0"  ng-repeat="task in tasks" ginkgo-draggable="" class="external-event"  data-task-id="{{task.id}}" style="background-color:{{task.color}};">{{task.text}}</div>
-          <form ng-submit="addTask()">
-            <input type="text" ng-model="task.text"  size="10" class="span2"
-                   placeholder="add new task here">
-            <input class="btn-primary" type="submit" value="add">
-          </form>
+      <li class="classify" ng-controller="TaskCtrl">
+        <div id="external-events">
+          <div ginkgo-task-popover ginkgo-draggable ng-show="tasks.length > 0"  ng-repeat="task in tasks"  class="external-event"  data-task-id="{{task.id}}" style="background-color:{{task.color}};"><span class="name">{{task.text}}</span></div>
         </div>
+        <form ng-submit="addTask()">
+          <input type="text" ng-model="task.text"  size="10" class="span2"
+                 placeholder="add new task here">
+          <input class="btn-primary" type="submit" value="add">
+        </form>
       </li>
     </ul>
   </div><!--/.well -->
@@ -101,14 +101,7 @@
   </div>
   
   <%= render :partial => "calendar" %>
-  
-  <div class="month-row no-events">
-    <div class="days" ginkgo-droppable="true"  style="min-height:{{  500 - (eventsInMonth.length * 30)}}px;">            
-      <div class="day {{ day.dateOjbect.getDay()%6==0  && 'sat' || '' }}" ng-repeat="day in days" data-date="{{day.year}}-{{day.month}}-{{day.day}}" style="height:{{  500 - (eventsInMonth.length * 30)}}px;">
-      </div>
-    </div>   
-  </div>             
-  
+      
   <div class="days-of-month date img-polaroid">
     <div class="day-header {{ day.dateOjbect.getDay()%6==0  && 'sun-color-date' || '' }}" ng-repeat="day in days">{{ day.day }}</div>          
   </div>

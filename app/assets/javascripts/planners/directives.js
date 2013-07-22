@@ -6,12 +6,73 @@ angular.module('ginkgo.directives', []).
   directive('ginkgoDraggable', function () {
     return function(scope, element, attrs) {
         element.draggable({
-          revert: 'invalid',
+
           helper: 'clone',
-          drag: function( event, ui ) {
-            var range = scope.calculateHoverIndex(ui.helper);
-            var allDays = $(this).parents('.month-row').find('.days .day') ;        
-            var hoverColumns = $(allDays).slice(range.start, range.end);
+//          revert: 'invalid',                  
+          start: function(e, ui) {              
+            if(ui.helper.hasClass('member')){
+              ui.helper.children('a.destroy').remove();
+            }                  
+          }, 
+          stop: function(e, ui) {  
+            $('.tooltip').hide();                  
+          },          
+          revert: function (socketObj) {
+            if ($(socketObj).offset() == null) {
+              $(this).show();  
+              $('.ui-state-highlight').hide();             
+            }
+          },
+          drag: function(e, ui){
+            
+            var placeholder = $('<div class="ui-state-highlight"></div>');
+            placeholder.height($(this).outerHeight());
+            
+            var rowIndex =  parseInt(($(ui.helper).offset().top - $('.month-row').offset().top) / 30);
+            
+            if($(this).data('event-id') != undefined){      
+              if (rowIndex >= scope.events.length) {
+                rowIndex = scope.events.length ;
+              }else if(rowIndex < 0){
+                rowIndex = 0;
+              }
+                         
+              $(this).hide();                          
+              if ($('.ui-state-highlight')[0] == undefined) {
+                $(placeholder).insertBefore($('div.tip').get(rowIndex));                                          
+              }else {       
+                $('.ui-state-highlight').remove();                            
+                if ((rowIndex == scope.events.length )) {
+                  $(placeholder).insertAfter($('div.tip').get(rowIndex));                                                                                 
+                }else {
+                  $(placeholder).insertBefore($('div.tip').get(rowIndex));              
+                }       
+              }        
+            }else{
+              
+              if (rowIndex >= scope.events.length) {
+                rowIndex = scope.events.length  ;
+              }else if(rowIndex < 0){
+                rowIndex = 0;
+              }
+              
+              if ($('.ui-state-highlight')[0] == undefined) {
+                $(placeholder).insertAfter($('div.tip').get(rowIndex));                                          
+              }else {       
+                $('.ui-state-highlight').remove();                            
+                if (rowIndex == 0 ) {
+                  $(placeholder).insertBefore($('div.tip').get(rowIndex));                                                          
+                }else if(rowIndex == scope.events.length  ){
+                  $(placeholder).insertAfter($('div.tip').get(scope.events.length - 1));                                                            
+                }else if(rowIndex == scope.events.length -1 ){
+                  $(placeholder).insertBefore($('div.tip').get(scope.events.length - 1));                                                                              
+                }else {
+                  $(placeholder).insertBefore($('div.tip').get(rowIndex));                                        
+                }       
+              }        
+            }       
+
+    
           }
         });
       };              
@@ -20,11 +81,28 @@ angular.module('ginkgo.directives', []).
     return function(scope, element, attrs) {
           
       element.droppable({
+        tolerance: 'pointer',
         drop: function(event, ui ){
-          var rowIndex = $('.month-row').index($(this).parents(".month-row"));                                
-          var allDays = $(this).find('.day') ;                            
-          var range = scope.calculateHoverIndex(ui.helper);
+          $('.tooltip').hide();        
+
+          if ($('.ui-state-highlight').index() == -1) {
+            var rowIndex = scope.events.length  ;
+          }else {
+            var rowIndex =  parseInt(($('.ui-state-highlight').offset().top - $('.month-row').offset().top) / 30);
+            if (rowIndex >= scope.events.length) {
+              rowIndex = scope.events.length  ;
+            }else if(rowIndex < 0){
+              rowIndex = 0;
+            }
+
+          }         
           
+          $('.ui-state-highlight').css('visibility', 'hidden');
+        
+                                                                                   
+          var allDays = $('.dates').find('.day') ;                            
+          var range = scope.calculateHoverIndex(ui.helper);                      
+            
           if($(ui.draggable).data('event-id') != undefined){
             // drag from inner calendar
             var hoverColumns = $(allDays).slice(range.start - 1, range.end - 2);          
@@ -38,14 +116,9 @@ angular.module('ginkgo.directives', []).
                      }
               })
             });  
-
           }else{
             // drag from outer calendar
-            var hoverColumns = $(allDays).slice(range.start, range.end + 5);// + 5 is for make the length longer          
-            // if (scope.hasEventByTagId($(ui.draggable).data('tag-id'))) {
-            //   alert('this tag already in');
-            //   return false;                
-            // }
+            var hoverColumns = $(allDays).slice(range.start, range.end );
             
             var eventableId, type;
             if($(ui.draggable).data('task-id') != undefined){
@@ -54,7 +127,7 @@ angular.module('ginkgo.directives', []).
             }else{
               eventableId = $(ui.draggable).data('member-id');              
               type = 'Member';              
-            }  
+            } 
             
             scope.$apply(function(){
               scope.addEvent({event: 
@@ -68,7 +141,7 @@ angular.module('ginkgo.directives', []).
               })          
             });          
        
-          }
+          }        
                 
         }
       });       
@@ -135,7 +208,7 @@ angular.module('ginkgo.directives', []).
              
              var compile =  $compile(template)(scope);
              element.on('click', function(e){
-               var targetOffset = element.parents('.month-row').find('.title').offset();
+               var targetOffset = element.find('.title').offset();
                $('#calendar_item_editor_singleton').html(compile);
                $('#calendar_item_editor_singleton').show()
                                                    .css('top', targetOffset.top - 55).

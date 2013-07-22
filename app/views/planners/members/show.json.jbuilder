@@ -1,6 +1,7 @@
 json.events_groups @events_groups do |json, events|
   json.events  events do |je, event|
     je.text event.text
+    json.position event.position    
     je.startTime event.start_at.strftime("%Y-%m-%d")
     je.endTime  event.end_at.strftime("%Y-%m-%d") 
     json.conflictStart event.conflict_start.try(:strftime, "%Y-%m-%d")
