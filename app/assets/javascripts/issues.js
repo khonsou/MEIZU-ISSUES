@@ -149,5 +149,23 @@ $(document).ready( function(){
   
   $('textarea.autosize').autosize({append: "\n"});   
 
-  
+  $('#notes').bind('paste',function(event){
+      var that = this;
+       event.clipboardData = event.originalEvent.clipboardData;
+       if(!event.clipboardData){
+          return;
+       }
+       Array.prototype.forEach.call(
+          event.clipboardData.types,function(type,i){
+          if(event.clipboardData.items[i].type.match(/image.*/)){
+                 var blob = event.clipboardData.items[i].getAsFile();
+                 var path = event.clipboardData.getData("text/plain");
+                 path = path.split("/");
+                 blob.webkitRelativePath="";
+                 blob.name = path[path.length-1];
+                 Dropzone.forElement('#dropzone').addFile(blob);
+             }
+          }
+       )
+  });
 })

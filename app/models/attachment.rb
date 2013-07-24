@@ -75,7 +75,7 @@ class Attachment < ActiveRecord::Base
 
   def file=(incoming_file)
     unless incoming_file.nil?
-      @temp_file = incoming_file
+      @temp_file = file_decorate(incoming_file)
       if @temp_file.size > 0
         if @temp_file.respond_to?(:original_filename)
           self.filename = @temp_file.original_filename
@@ -90,6 +90,15 @@ class Attachment < ActiveRecord::Base
         self.filesize = @temp_file.size
       end
     end
+  end
+
+  def file_decorate(incoming_file)
+    if(incoming_file.content_type.match(/image.*/))
+        if(File.extname(incoming_file.original_filename).empty?)
+            incoming_file.original_filename = incoming_file.original_filename+"."+incoming_file.content_type[6..-1]
+        end
+    end
+    incoming_file
   end
 
   def file
