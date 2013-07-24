@@ -1,1 +1,3 @@
-<a href="<%= attachment_path(attachment) %>" data-remote="true"><%= image_tag(url_for(:controller => 'attachments', :action => 'thumbnail', :id => attachment)) %></a>
+<a href="<%= attachment_path(attachment) %>" data-remote="true"><%= image_tag(url_for(:controller => 'attachments', :action => 'thumbnail', :id => attachment), {:path => url_for(:controller => 'attachments', :action => 'show', :id => attachment, :filename => attachment.filename)}) %>
+
+</a>

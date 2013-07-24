@@ -1,10 +1,92 @@
 <div id="container-modal" class="modal hide" tabindex="-1" role="dialog"  aria-hidden="true">
-  <div class="modal-body" style="text-align:center;">
+  <div class="modal-body" style="text-align:center;"> 	
+    <%= link_to image_tag('/assets/left-arrow-live.png'),"#", {:id => "preImage",:title => "上一张",:index => @attachment.filename} %> 
      <%= link_to image_tag(url_for(:controller => 'attachments', :action => 'show', :id => @attachment, :filename => @attachment.filename)),
     { :controller => 'attachments', :action => 'show', :id => @attachment, :filename => @attachment.filename },
     { :title => '点击查看大图', :target => '_blank' } %>
+    <%= link_to image_tag('/assets/right-arrow-live.png'),"#", {:id => "nextImage",:title => "下一张"} %> 
   </div>  
   <div class="modal-footer">
     <%= submit_tag "关闭",  class: 'button blue', data: { dismiss: 'modal' } %>    
-  </div>      
+  </div>     
 </div>
+<%= javascript_tag do %>
+  $(document).ready(function(){
+    (function(){
+      var activeLink = $("#preImage").next(),
+          imagePath = $("#preImage").next().find("img").attr("src");
+
+      $(".issue .attachments ul.thumbnails li").each(function(index,item){
+          var link_href = $(item).find("a").attr("href"),
+              listImagePath = $(item).find("img").attr("path");
+
+          if(imagePath == listImagePath){
+            if(index == 0){
+              $("#preImage").find("img").attr("src","/assets/left-arrow.png");
+            }else if(index == $(item).parent().children().length-1){
+              $("#nextImage").find("img").attr("src","/assets/right-arrow.png");
+            }else{
+              return;
+            }
+          }
+        })
+    })()
+
+    function matchLi(activeLink,liElements,imageIndex,direction){
+      if(direction == "pre"){
+        $(liElements).each(function(index,item){
+          var listImagePath = $(item).find("img").attr("path"),
+              url;
+
+          if(imageIndex == listImagePath){
+            if($(item).prev().length){
+              url = $(item).prev().find("img").attr("path");
+
+              $(activeLink).attr("href",url);
+              $(activeLink).find("img").attr("src", url);
+
+              if($(item).prev().index() == 0){
+                $(activeLink).prev().children().first().attr("src", "/assets/left-arrow.png");
+              }
+            }
+          }
+          $("#nextImage").find("img").attr("src", "/assets/right-arrow-live.png");
+        })
+      }else if(direction == "next"){
+        $(".issue .attachments ul.thumbnails li").each(function(index,item){
+          var listImagePath = $(item).find("img").attr("path"),
+              url;
+
+          if(imageIndex == listImagePath){
+            if($(item).next().length){
+              url = $(item).next().find("img").attr("path");
+
+              $(activeLink).attr("href",url);
+              $(activeLink).find("img").attr("src", url);
+
+              if($(item).next().index()==$(item).parent().children().length-1){
+                $(activeLink).next().children().first().attr("src", "/assets/right-arrow.png");
+              }
+            }
+          }
+          $("#preImage").find("img").attr("src", "/assets/left-arrow-live.png");
+        })
+      }else{
+        return;
+      }
+    }
+
+    $("#preImage").bind("click",function(){
+      var activeLink = $(this).next(),
+          imageIndex = $(this).next().find("img").attr("src"); 
+
+      matchLi(activeLink,".issue .attachments ul.thumbnails li",imageIndex,"pre")
+    })
+    $("#nextImage").bind("click",function(){
+      var activeLink = $(this).prev(),
+          imageIndex = $(this).prev().find("img").attr("src");
+
+      matchLi(activeLink,".issue .attachments ul.thumbnails li",imageIndex,"next")  
+    });
+  })
+<% end -%>
