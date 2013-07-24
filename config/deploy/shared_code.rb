@@ -1,7 +1,5 @@
-set :application, "plano"
 set :application_root, "/rails_apps/#{application}"
 
-ssh_options[:port] = 16120
 set :deploy_to, application_root
 set :use_sudo, false
 

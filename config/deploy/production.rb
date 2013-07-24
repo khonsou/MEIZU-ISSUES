@@ -5,6 +5,8 @@ set :user, "rails"
 set :rails_env, "production"
 set :branch, "production"
 set :deploy_via, :remote_cache
+set :application, "plano"
+ssh_options[:port] = 16120 
 
 load File.dirname(__FILE__) + "/shared_code"
 
