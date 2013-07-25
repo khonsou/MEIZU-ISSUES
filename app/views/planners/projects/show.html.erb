@@ -58,20 +58,9 @@
           <span class="name">Tasks</span>
         </div>
       </li>
-<<<<<<< HEAD
       <li class="classify" ng-controller="TaskCtrl">
         <div id="external-events">
           <div ginkgo-task-popover ginkgo-draggable ng-show="tasks.length > 0"  ng-repeat="task in tasks"  class="external-event"  data-task-id="{{task.id}}" style="background-color:{{task.color}};"><span class="name">{{task.text}}</span></div>
-=======
-      <li class="classify">
-        <div id="external-events" ng-controller="TaskCtrl">
-          <div ginkgo-task-popover ng-show="tasks.length > 0"  ng-repeat="task in tasks" ginkgo-draggable="" class="external-event"  data-task-id="{{task.id}}" style="background-color:{{task.color}};">{{task.text}}</div>
-          <form ng-submit="addTask()">
-            <input type="text" ng-model="task.text"  size="10" class="span2"
-                   placeholder="add new task here">
-            <input class="btn-primary" type="submit" value="add">
-          </form>
->>>>>>> [#1708] can change task color
         </div>
         <form ng-submit="addTask()">
           <input type="text" ng-model="task.text"  size="10" class="span2"
