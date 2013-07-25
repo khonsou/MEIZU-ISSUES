@@ -4,9 +4,16 @@
     <%= link_to "标记为已读", mark_popover_as_read_push_notifications_path, method: :post, :remote => true, :class => "align-right"%>
   <% end %>
 </li>
-<% unless push_notifications.blank? %>
-  <% push_notifications.each do |push_notification| %>
+
+<% unless push_notifications.blank? && pending_members.blank? %>
+  <% pending_members[0..9].each do |push_notification| %>
     <%= render "/push_notifications/#{push_notification.underscore}", { push_notification: push_notification, popover: true } %>
+  <% end -%>
+
+  <% if pending_members.size < 10 %>
+    <% push_notifications[0..9 - pending_members.size].each do |push_notification| %>
+        <%= render "/push_notifications/#{push_notification.underscore}", { push_notification: push_notification, popover: true } %>
+    <% end -%>
   <% end -%>
 <% else %>
   <li class="no-data"><%= link_to l(:label_no_data), '#' %></li>

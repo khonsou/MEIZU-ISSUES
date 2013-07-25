@@ -1,4 +1,4 @@
-$('#push_notification_popover ul.dropdown-menu').html("<%= j render('popover', { push_notifications: @push_notifications }) %>");
+$('#push_notification_popover ul.dropdown-menu').html("<%= j render('popover', { push_notifications: @push_notifications, pending_members: @pending_members }) %>");
 <% if @push_notifications.size > 0 %>
   $('#push_notification_popover').addClass('has_notification');
 <% else %>
