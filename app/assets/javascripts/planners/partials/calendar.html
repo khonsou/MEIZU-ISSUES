@@ -1,0 +1,34 @@
+<div class="calendar-body" style="float:left;max-width:900px;">    
+
+  <div class="days-of-month date img-polaroid">
+    <div class="day-header {{ day.dateOjbect.getDay()%6==0  && 'sun-color-date' || '' }}" ng-repeat="day in days">{{ day.day }}</div>          
+  </div>
+
+  <div class="month-row">
+    <div class="events holdable" style="width:100%;">                      
+      <div   ng-repeat="event in eventsInMonth = (events | filterByMonth:currentMonth | orderBy:'position' ) " ginkgo-draggable="true" class="event  tip wraps_next  {{event.eventableType}}" style="margin-left:{{event.left}};width:{{event.width}};background-color:{{event.color}};"  ginkgo-resizeable="true" data-event-id="{{event.id}}"  data-position="{{event.position}}" ginkgo-popover="true" ng-switch on="event.eventableType" data-toggle="tooltip" title="{{ event.startTime }} - {{event.endTime }}">          
+        <span ng-switch-when="Task" class="event">
+          <span class="title">{{ event.text }} {{event.position}}</span>
+        </span>
+  
+        <span ng-switch-default class="event">
+          <a><img class="img-circle" src="/assets/planners/person.png" style=""></a>
+          <span style="" class="title">{{ event.text }} {{event.position}}</span>
+        </span>
+      </div>  
+    </div> 
+                
+    <div class="days"  style="min-height:500px;height:{{  200 + (eventsInMonth.length * 30)}}px;" ginkgo-droppable="true">            
+      <div class="dates" style="display:table-row;">
+        <div class="day {{ day.dateOjbect.getDay()%6==0  && 'sat' || '' }}" ng-repeat="day in days" data-date="{{day.year}}-{{day.month}}-{{day.day}}" >
+        </div>
+      </div>
+    </div>   
+  
+  </div>
+  
+  <div class="days-of-month date img-polaroid">
+    <div class="day-header {{ day.dateOjbect.getDay()%6==0  && 'sun-color-date' || '' }}" ng-repeat="day in days">{{ day.day }}</div>          
+  </div>
+  
+</div>

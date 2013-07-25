@@ -3,39 +3,48 @@ var Ginkgo = angular.module('Ginkgo', ['ginkgo.services', 'ginkgo.directives',
                                       'ginkgo.filters', 'ginkgo.resources', 'ng-rails-csrf', 'ngResource']);
 
 
-var CalendarCtrl = ['$scope', '$resource',  function ($scope, $resource) {
-  $scope.daysPerMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-       
-  $scope.getNumberOfDaysInMonth = function (dateObject) {
-      var month = dateObject.getMonth();
-      if (month == 1) {
-          var leapYear = (new Date(dateObject.getYear(), 1, 29).getDate()) == 29;
-          if (leapYear)
-              return 29
-          else
-              return 28;
-      } else {
-          return $scope.daysPerMonth[month];          
-      }
-  }
-  
-  $scope.getDadysInMonth = function(dateObject) {
+var CalendarCtrl = ['$scope', '$resource', '$filter', function ($scope, $resource, $filter) {
+           
+  $scope.getDadysInMonth = function(dateObject) {    
     var result = [];
-    var numberOfDays = $scope.getNumberOfDaysInMonth(dateObject);
+    var numberOfDays = moment(dateObject).daysInMonth();
+
     for (var i = 0; i < numberOfDays; i++) {
+      var date = new Date(dateObject.getFullYear(), dateObject.getMonth(), i + 1);
          result.push({
              year: dateObject.getFullYear(),
-             month: dateObject.getMonth(),              
+             month: dateObject.getMonth() + 1,              
              day: (i + 1 < 10) ? "0" + (i + 1) : (i + 1),
-             dateOjbect: new Date(dateObject.getFullYear(), dateObject.getMonth() - 1, i + 1)
+             today:  date.toDateString() == new Date().toDateString(),
+             dateOjbect: date
          });
     }
     return result;     
   }    
-    
-  $scope.rows = [0,1,2];    
-  $scope.currentMonth = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1);  
-  $scope.days = $scope.getDadysInMonth($scope.currentMonth);  
+        
+  $scope.currentMonth = new Date();              
+  
+  $scope.months =  [ 
+                     {date:  moment().subtract('month', 5).toDate()},
+                     {date: moment().subtract('month', 4).toDate()},
+                     {date:  moment().subtract('month', 3).toDate()},
+                     {date: moment().subtract('month', 2).toDate()},
+                     {date: moment().subtract('month', 1).toDate()},
+                     {date: moment().toDate()},
+                     {date: moment().add('month', 1).toDate()},
+                     {date: moment().add('month', 2).toDate()},
+                     {date: moment().add('month', 3).toDate()},
+                     {date: moment().add('month', 4).toDate()},
+                     {date: moment().add('month', 5).toDate()},
+                     {date: moment().add('month', 6).toDate()}                                            
+                     ] 
+
+   $scope.eventsSize = function(){
+     _.each($scope.months, function(month, index){  
+       var monthEvents = $filter('filterByMonth')($scope.events, month.date);
+       $scope.months[index] = {date: month.date, events: monthEvents};
+     })    
+   }
   
   $scope.events = [];
   $scope.tasks  = [];
@@ -48,7 +57,7 @@ var CalendarCtrl = ['$scope', '$resource',  function ($scope, $resource) {
     r.query(function(data){
       $scope.events = data.events;
       $scope.tasks = data.tasks;
-      $scope.members = data.members;    
+      $scope.members = data.members;          
     });       
   }else if($scope.memberId){
 
@@ -62,6 +71,8 @@ var CalendarCtrl = ['$scope', '$resource',  function ($scope, $resource) {
       })
     });       
   }
+
+
     
   $scope.nextMonth = function(){
     $scope.currentMonth = new Date($scope.currentMonth.getFullYear(), $scope.currentMonth.getMonth() + 1, 1);    
@@ -82,11 +93,12 @@ var CalendarCtrl = ['$scope', '$resource',  function ($scope, $resource) {
   };
     
   $scope.$watch('events', function(newVal) {
-    $scope.getEventLength();    
+//    $scope.getEventLength();    
+      $scope.eventsSize();     
    }, true);
         
   $scope.calculateDate = function(startDate, endDate){
-    var totalDates = $scope.getNumberOfDaysInMonth($scope.currentMonth);    
+    var totalDates = moment($scope.currentMonth).daysInMonth();    
     var date1 = new Date($scope.currentMonth.getFullYear(), $scope.currentMonth.getMonth() - 1, 1);          
     var date2 = new Date($scope.currentMonth.getFullYear(), $scope.currentMonth.getMonth() - 1, totalDates);                  
     
@@ -121,7 +133,7 @@ var CalendarCtrl = ['$scope', '$resource',  function ($scope, $resource) {
   }      
         
   $scope.getEventStyle = function(event){   
-    var totalDates = $scope.getNumberOfDaysInMonth($scope.currentMonth);
+    var totalDates = moment($scope.currentMonth).daysInMonth();
     var dateWidth = (1 / totalDates) * 100;
     var eventRange =  $scope.calculateDate(event.startTime, event.endTime);
               
@@ -142,14 +154,19 @@ var CalendarCtrl = ['$scope', '$resource',  function ($scope, $resource) {
     }
   }  
   
-  $scope.calculateHoverIndex =  function(ui){
-    var totalWidth =  parseInt($('#calendar').css('width'));  
-    var totalDates = $scope.getNumberOfDaysInMonth($scope.currentMonth);    
+  $scope.calculateHoverIndex =  function(ui, holder, date){
+    var totalWidth =  $('#calendar').outerWidth();  
+    var totalDates = moment(date).daysInMonth();    
     $scope.gridWidth = totalWidth / totalDates;
-        
-    var startHoverIndex  =  Math.round(($(ui).offset().left - $('#calendar').offset().left) / $scope.gridWidth) + 1 ;
-    var ownerWidth =  parseInt($(ui).css('width'));  
-    var widthCount =  Math.round(ownerWidth /  $scope.gridWidth) + 1 ;    
+    
+    var startHoverIndex;
+    if ($(holder).offset().left > $(ui).offset().left) {
+      startHoverIndex  =  Math.round(($(ui).offset().left - $(holder).parents('li').offset().left) / $scope.gridWidth) + 1 ;      
+    }else{
+      startHoverIndex  =  Math.round(($(ui).offset().left - $(holder).offset().left) / $scope.gridWidth) + 1 ;      
+    }
+
+    var widthCount =  Math.round($(ui).outerWidth() /  $scope.gridWidth)  ;    
     var endHoverIndex = startHoverIndex + widthCount ;
   
     return {start: startHoverIndex, end: endHoverIndex};
@@ -308,18 +325,45 @@ $.fn.serializeObject = function()
 
 $(document).ready(function () {
   
-  $('body').click(function(){
+  $('#wrap').click(function(){
     $('#calendar_item_editor_singleton').hide();
     $('input[rel=date]').datepicker('destroy');                      
   })
-
+  
   $('#calendar_item_editor_singleton').on('click', function(e){
     e.stopPropagation();
   })    
+  $('#ui-datepicker-div').on('click', function(e){
+    e.stopPropagation();
+  })    
+  
+  
   
   $('body').tooltip({
     selector: '.tip'
   });
+  
+  var sly ;
+  if($('#frame')[0] != undefined){
+    sly = new Sly('#frame', {
+      horizontal: 1,
+      mouseDragging: 0,
+      touchDragging: 1 ,
+      itemNav: 0,
+      smart: 0,
+      dragHandle: 1,
+  		dynamicHandle: 1,
+    	speed: 300,
+      startAt: 4250 + new Date().getDate() / 2 * 25, //居中
+      releaseSwing: 1,
+    	elasticBounds: 0,
+      scrollBar: $('.scrollbar'),
+      clickBar: 1,
+      scrollBy: 0 ,
+      keyboardNavBy: 'items'
+    }).init();
+  }
+
   
 
 })

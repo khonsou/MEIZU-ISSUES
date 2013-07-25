@@ -11,6 +11,9 @@
 //= require planners/vendor/underscore-min.js
 //= require planners/vendor/jquery.ui.touch-punch.min.js
 
+//= require planners/sly.js
+//= require planners/moment.js
+
 //= require planners/app.js
 //= require planners/directives.js
 //= require planners/filters.js

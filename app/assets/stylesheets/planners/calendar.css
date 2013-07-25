@@ -163,6 +163,9 @@ ul{
   opacity: 0.2;
   filter: alpha(opacity=20);
 }
+.today{
+  background: #ccc;  
+}
 /*reset css zsn*/
 .no-padding{
   padding-left: 0!important;

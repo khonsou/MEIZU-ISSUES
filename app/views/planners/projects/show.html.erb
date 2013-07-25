@@ -73,13 +73,13 @@
   
 <% end -%>
 
-<div id='calendar'>
+<div id='calendar' style="overflow:hidden;">
   
   <div class="row-fluid grid img-polaroid">
     <div  class="span12">
       <div class="row-fluid">
         <div class="span4">
-          <h3>{{ currentMonth.getFullYear()}} - {{ currentMonth.getMonth() }}</h3>
+          <h3>{{ currentMonth.getFullYear()}} - {{ currentMonth.getMonth() + 1 }}</h3>
         </div>
         <div class="span3 offset5">
           <div class="header">
@@ -87,23 +87,22 @@
               <div class="btn-group">
                 <button class=" btn" ng-click="prevMonth();">◀</button>
                 <button class="btn" ng-click="today();">今天</button>                
-                <button class=" btn" ng-click="nextMonth();">▶</button>                
+                <!-- <button class=" btn" ng-click="nextMonth();">▶</button>                 -->
+                <button class="btn" ginkgo-next-month="">▶</button>
               </div>
             </nav>      
           </div>  
         </div>
       </div>  
-    </di>
+    </div>
   </div>      
   
-  <div class="days-of-month date img-polaroid">
-    <div class="day-header {{ day.dateOjbect.getDay()%6==0  && 'sun-color-date' || '' }}" ng-repeat="day in days">{{ day.day }}</div>          
-  </div>
+  <div class="scrollbar">
+		<div class="handle">
+			<div class="mousearea"></div>
+		</div>
+	</div>
   
   <%= render :partial => "calendar" %>
-      
-  <div class="days-of-month date img-polaroid">
-    <div class="day-header {{ day.dateOjbect.getDay()%6==0  && 'sun-color-date' || '' }}" ng-repeat="day in days">{{ day.day }}</div>          
-  </div>
   
 </div>      

@@ -39,13 +39,13 @@ angular.module('ginkgo.directives', []).
                          
               $(this).hide();                          
               if ($('.ui-state-highlight')[0] == undefined) {
-                $(placeholder).insertBefore($('div.tip').get(rowIndex));                                          
+                $(placeholder).insertBefore($(this).parents().find('div.tip').get(rowIndex));                                          
               }else {       
                 $('.ui-state-highlight').remove();                            
                 if ((rowIndex == scope.events.length )) {
-                  $(placeholder).insertAfter($('div.tip').get(rowIndex));                                                                                 
+                  $(placeholder).insertAfter($(this).parents().find('div.tip').get(rowIndex));                                                                                 
                 }else {
-                  $(placeholder).insertBefore($('div.tip').get(rowIndex));              
+                  $(placeholder).insertBefore($(this).parents().find('div.tip').get(rowIndex));              
                 }       
               }        
             }else{
@@ -57,17 +57,17 @@ angular.module('ginkgo.directives', []).
               }
               
               if ($('.ui-state-highlight')[0] == undefined) {
-                $(placeholder).insertAfter($('div.tip').get(rowIndex));                                          
+                $(placeholder).insertAfter($(this).parents().find('div.tip').get(rowIndex));                                          
               }else {       
                 $('.ui-state-highlight').remove();                            
                 if (rowIndex == 0 ) {
-                  $(placeholder).insertBefore($('div.tip').get(rowIndex));                                                          
+                  $(placeholder).insertBefore($(this).parents().find('div.tip').get(rowIndex));                                                          
                 }else if(rowIndex == scope.events.length  ){
-                  $(placeholder).insertAfter($('div.tip').get(scope.events.length - 1));                                                            
+                  $(placeholder).insertAfter($(this).parents().find('div.tip').get(scope.events.length - 1));                                                            
                 }else if(rowIndex == scope.events.length -1 ){
-                  $(placeholder).insertBefore($('div.tip').get(scope.events.length - 1));                                                                              
+                  $(placeholder).insertBefore($(this).parents().find('div.tip').get(scope.events.length - 1));                                                                              
                 }else {
-                  $(placeholder).insertBefore($('div.tip').get(rowIndex));                                        
+                  $(placeholder).insertBefore($(this).parents().find('div.tip').get(rowIndex));                                        
                 }       
               }        
             }       
@@ -97,28 +97,57 @@ angular.module('ginkgo.directives', []).
 
           }         
           
-          $('.ui-state-highlight').css('visibility', 'hidden');
-        
-                                                                                   
-          var allDays = $('.dates').find('.day') ;                            
-          var range = scope.calculateHoverIndex(ui.helper);                      
-            
+          $('.ui-state-highlight').css('visibility', 'hidden');                                                                                           
+         console.log(this)
+          var date   = new Date($(this).find('.day:first').data('date'));              
+          var range = scope.calculateHoverIndex(ui.helper, this, date);                     
+          
+          console.log(range) 
+          var allDays = $(this).find('.day') ;                        
+          var hoverColumns, startAt, endAt;
+                                
           if($(ui.draggable).data('event-id') != undefined){
             // drag from inner calendar
-            var hoverColumns = $(allDays).slice(range.start - 1, range.end - 2);          
+            if (range.start < 0) {            
+              hoverColumns = $(allDays).slice(0, range.end);
+              endAt = $(hoverColumns).last().data('date') ;               
+              startAt = $.datepicker.formatDate('yy-mm-dd', new Date(new Date(endAt) - (range.end - range.start) * 24 * 60 * 60 * 1000))            
+            }else if(range.end > 31){
+              hoverColumns = $(allDays).slice(range.start, 30);
+              startAt = $(hoverColumns).first().data('date') ;
+              endAt = $.datepicker.formatDate('yy-mm-dd', new Date(new Date(startAt).getTime() + (range.end - range.start) * 24 * 60 * 60 * 1000))           
+            }else{
+              hoverColumns = $(allDays).slice(range.start , range.end + 1);                        
+              startAt = $(hoverColumns).first().data('date') ;             
+              endAt = $(hoverColumns).last().data('date') ;            
+            }
 
             scope.$apply(function(){
               scope.updateEvent({
                 event: {id: $(ui.helper).data('event-id'), 
-                       start_at: $(hoverColumns).first().data('date'), 
-                       end_at: $(hoverColumns).last().data('date'),
+                       start_at: startAt, 
+                       end_at: endAt,
                        order: rowIndex
                      }
               })
             });  
           }else{
-            // drag from outer calendar
-            var hoverColumns = $(allDays).slice(range.start, range.end );
+            // drag from outer calendar            
+            if (range.start < 0) {            
+              hoverColumns = $(allDays).slice(0, range.end);
+              endAt = $(hoverColumns).last().data('date') ;
+              startAt = new Date(new Date(endAt) - (range.end - range.start) * 24 * 60 * 60 * 1000).toString('yyyy-MM-dd')                                 
+            
+            }else if(range.end > 31){
+              hoverColumns = $(allDays).slice(range.start, 30);
+              startAt = $(hoverColumns).first().data('date') ;
+              endAt = new Date(new Date(startAt) + (range.end - range.start) * 24 * 60 * 60 * 1000).toString('yyyy-MM-dd')                                 
+            
+            }else{
+              hoverColumns = $(allDays).slice(range.start, range.end );
+              startAt = $(hoverColumns).first().data('date') ;             
+              endAt = $(hoverColumns).last().data('date') ;            
+            }
             
             var eventableId, type;
             if($(ui.draggable).data('task-id') != undefined){
@@ -132,8 +161,8 @@ angular.module('ginkgo.directives', []).
             scope.$apply(function(){
               scope.addEvent({event: 
                 {
-                 start_at: $(hoverColumns).first().data('date'), 
-                 end_at: $(hoverColumns).last().data('date'),
+                 start_at: startAt, 
+                 end_at: endAt,
                  eventable_id: eventableId,
                  eventable_type: type,
                  order: rowIndex 
@@ -354,9 +383,22 @@ angular.module('ginkgo.directives', []).
         }) 
       }
     } 
-}])       
-
-
-
+}]).       
+directive('ginkgoNextMonth', ['$rootScope', '$http', '$compile', function ($rootScope, $http, $compile) {
+  return {
+    link: function(scope, element, attrs) {
+      element.on('click', function(e){           
+        $http.get('/assets/planners/partials/calendar.html', {cache: false}).then(function onSuccess(template) {
+           // Handle response from $http promise
+           var compile =  $compile(template.data)(scope);            
+          
+           $('#bigzone').append(compile);       
+           $("#bigzone").css("-webkit-transform","translate(" + ($('.calendar-body').length - 1) * -$('.calendar-body:first').outerWidth() + "px, 0px)");              
+//           $('.calendar-body:first').remove();
+        });
+      })
+    }
+  } 
+}])
 
 
