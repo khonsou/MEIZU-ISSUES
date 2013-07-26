@@ -228,6 +228,14 @@ border-left-width: 0;
 border-right-color: #999;
 border-right-color: rgba(0,0,0,0.25);
 }
+.balloon.left_side .arrow{
+top: 35px;
+left: 244px;
+margin-top: -11px;
+border-right-width: 0;
+border-left-color: #999;
+border-left-color: rgba(0,0,0,0.25);
+}
 .balloon .arrow {
 border-width: 11px;
 }
@@ -245,6 +253,13 @@ bottom: -10px;
 border-left-width: 0;
 border-right-color: #fff;
 }
+.balloon.left_side .arrow:after {
+right: 1px;
+bottom: -10px;
+border-right-width: 0;
+border-left-color: #fff;
+}
+
 .balloon .arrow:after {
 border-width: 10px;
 content: "";

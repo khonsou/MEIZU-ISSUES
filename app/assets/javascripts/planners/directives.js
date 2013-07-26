@@ -237,12 +237,30 @@ angular.module('ginkgo.directives', []).
              
              var compile =  $compile(template)(scope);
              element.on('click', function(e){
-               var targetOffset = element.find('.title').offset();
-               $('#calendar_item_editor_singleton').html(compile);
-               $('#calendar_item_editor_singleton').show()
-                                                   .css('top', targetOffset.top - 55).
-                                                    css('left', targetOffset.left + 10 + element.parents('.month-row').find('span.event').width());                                                    
-            
+                var targetOffset = element.find('.title').offset(),
+                    calendarItemEditorSingletonLeft = targetOffset.left + 10 + element.parents('.month-row').find('span.event').width(),
+                    editActualWidth = $('#calendar_item_editor_singleton').children().first().width()+parseInt($('#calendar_item_editor_singleton').children().first().css("padding-left"))*2;
+
+                $('#calendar_item_editor_singleton').html(compile);
+                //Locate ballon
+                if($(document).width() - targetOffset.left < editActualWidth){
+                  calendarItemEditorSingletonLeft = calendarItemEditorSingletonLeft - editActualWidth-100;
+                  $('#calendar_item_editor_singleton').find(".balloon").removeClass("right_side").addClass("left_side");
+                  $('#calendar_item_editor_singleton').show()
+                                                      .css('top', targetOffset.top)
+                                                      .css('left',e.pageX - editActualWidth); 
+                }else if(targetOffset.left<$(element).width()/2){
+                  $('#calendar_item_editor_singleton').find(".balloon").removeClass("left_side").addClass("right_side");
+                  $('#calendar_item_editor_singleton').show()
+                                                      .css('top', targetOffset.top)
+                                                      .css('left',e.pageX); 
+                }else{
+                  $('#calendar_item_editor_singleton').find(".balloon").removeClass("left_side").addClass("right_side");
+                  $('#calendar_item_editor_singleton').show()
+                                                      .css('top', targetOffset.top)
+                                                      .css('left', calendarItemEditorSingletonLeft);                                                    
+                }
+               
                 $('input[rel=date]').datepicker({});
                                                                     
                 $('#calendar_item_editor_singleton').find('.cancel').on('click', function(){
