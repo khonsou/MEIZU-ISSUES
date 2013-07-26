@@ -20,4 +20,5 @@ json.events @project.events do |json, event|
   json.eventableId  event.eventable_id  
   json.color event.color  
   json.id event.id
+  json.timestamp Time.now.to_i
 end  

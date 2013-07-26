@@ -82,6 +82,7 @@ angular.module('ginkgo.filters', []).
       }  
     
       return function(events, date) {    
+        date = new Date(date);    
             
         var date1 = moment(date).date(1).toDate();          
         var date2 = moment(date).add('month', 1).date(0).toDate();                          

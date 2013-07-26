@@ -98,7 +98,6 @@ angular.module('ginkgo.directives', []).
           }         
           
           $('.ui-state-highlight').css('visibility', 'hidden');                                                                                           
-         console.log(this)
           var date   = new Date($(this).find('.day:first').data('date'));              
           var range = scope.calculateHoverIndex(ui.helper, this, date);                     
           

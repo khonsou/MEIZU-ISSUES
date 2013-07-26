@@ -1,16 +1,22 @@
 <div id="frame" >
   <ul class="slidee clearfix" style="width:10250px;">
-    <li ng-repeat="month in months">
-      <div class="days-of-month date img-polaroid" ng-init="days = getDadysInMonth(month.date)">
-        <div class="day-header {{ day.dateOjbect.getDay()%6==0  && 'sun-color-date' || '' }}"  ng-repeat="day in days" ng-switch on="day.day">
-          <span ng-switch-when="01" style="font-weight:bold;color:#333;font-size:13px;">{{ month.date.getMonth() + 1 }}月</span>
-          <span ng-switch-default>{{ day.day }}</span>          
-        </div>          
+    <% (-5..6).to_a.map {|i| Date.today + i.months }.each do |month| %>
+    <li>      
+      <div class="days-of-month date img-polaroid">
+        <% (month.beginning_of_month..month.end_of_month).to_a.each do |day| %>
+          <div class="day-header <%= 'sun-color-date' if day.saturday? || day.sunday? %>" >
+            <% if day.day == 1 %>
+            <span style="font-weight:bold;color:#333;font-size:13px;"><%= day.month %>月</span>
+            <% else %>
+            <span ><%= day.day %></span>          
+            <% end %>
+          </div>    
+        <% end %>      
       </div>
       
       <div class="month-row">
-        <div class="events holdable" style="width:100%;padding-top:{{ month.events[0].position * 30}}px;">                      
-          <div   ng-repeat="event in month.events | orderBy:'position' " ginkgo-draggable="true" class="event  tip wraps_next  {{event.eventableType}}" style="margin-left:{{event.left}};width:{{event.width}};background-color:{{event.color}};"  ginkgo-resizeable="true" data-event-id="{{event.id}}"  data-position="{{event.position}}" ginkgo-popover="true" ng-switch on="event.eventableType" data-toggle="tooltip" title="{{ event.startTime }} - {{event.endTime }}">          
+        <div class="events holdable" style="width:100%;padding-top:{{ eventsInMonth.position * 30}}px;">                      
+          <div  ng-repeat="event in eventsInMonth = (events | filterByMonth:'<%= month.to_s %>' | orderBy:'position' ) " ginkgo-draggable="true" class="event  tip wraps_next  {{event.eventableType}}" style="margin-left:{{event.left}};width:{{event.width}};background-color:{{event.color}};"  ginkgo-resizeable="true" data-event-id="{{event.id}}"  data-position="{{event.position}}" ginkgo-popover="true" ng-switch on="event.eventableType" data-toggle="tooltip" title="{{ event.startTime }} - {{event.endTime }}">          
             <span ng-switch-when="Task" class="event">
               <span class="title">{{ event.text }} {{event.position}}</span>
             </span>
@@ -22,19 +28,29 @@
           </div>  
         </div> 
                 
-        <div class="days"  style="min-height:500px;height:{{  200 + (eventsInMonth.length * 30)}}px;" ginkgo-droppable="true"  date-month="{{days[0].month}}">            
+        <div class="days"  style="min-height:500px;height:{{  200 + (events.length * 20)}}px;" ginkgo-droppable="true">            
           <div class="dates" style="display:table-row;">
-            <div class="day {{ day.dateOjbect.getDay()%6==0  && 'sat' || '' }}  {{ day.today &&  'today' || ''}}" ng-repeat="day in days" data-date="{{day.year}}-{{day.month}}-{{day.day}}" >
-            </div>
+            <% (month.beginning_of_month..month.end_of_month).to_a.each do |day| %>            
+              <div class="day <%= 'sat' if day.saturday? || day.sunday? %> <%= 'today' if day == Date.today %> " data-date="<%= day.to_s %>" ></div>
+            <% end %>                
           </div>
         </div>   
   
       </div>
     
-      <div class="days-of-month date img-polaroid" ng-init="days = getDadysInMonth(month.date)">
-        <div class="day-header {{ day.dateOjbect.getDay()%6==0  && 'sun-color-date' || '' }}" ng-repeat="day in days">{{ day.day }}</div>          
+      <div class="days-of-month date img-polaroid">
+        <% (month.beginning_of_month..month.end_of_month).to_a.each do |day| %>
+          <div class="day-header <%= 'sun-color-date' if day.saturday? || day.sunday? %>" >
+            <% if day.day == 1 %>
+            <span style="font-weight:bold;color:#333;font-size:13px;"><%= day.month %>月</span>
+            <% else %>
+            <span ><%= day.day %></span>          
+            <% end %>
+          </div>    
+        <% end %>      
       </div>
     </li>
+    <% end %>
   </ul> 
 
 </div>

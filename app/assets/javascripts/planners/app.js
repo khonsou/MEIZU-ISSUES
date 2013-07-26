@@ -4,47 +4,8 @@ var Ginkgo = angular.module('Ginkgo', ['ginkgo.services', 'ginkgo.directives',
 
 
 var CalendarCtrl = ['$scope', '$resource', '$filter', function ($scope, $resource, $filter) {
-           
-  $scope.getDadysInMonth = function(dateObject) {    
-    var result = [];
-    var numberOfDays = moment(dateObject).daysInMonth();
-
-    for (var i = 0; i < numberOfDays; i++) {
-      var date = new Date(dateObject.getFullYear(), dateObject.getMonth(), i + 1);
-         result.push({
-             year: dateObject.getFullYear(),
-             month: dateObject.getMonth() + 1,              
-             day: (i + 1 < 10) ? "0" + (i + 1) : (i + 1),
-             today:  date.toDateString() == new Date().toDateString(),
-             dateOjbect: date
-         });
-    }
-    return result;     
-  }    
-        
+                   
   $scope.currentMonth = new Date();              
-  
-  $scope.months =  [ 
-                     {date:  moment().subtract('month', 5).toDate()},
-                     {date: moment().subtract('month', 4).toDate()},
-                     {date:  moment().subtract('month', 3).toDate()},
-                     {date: moment().subtract('month', 2).toDate()},
-                     {date: moment().subtract('month', 1).toDate()},
-                     {date: moment().toDate()},
-                     {date: moment().add('month', 1).toDate()},
-                     {date: moment().add('month', 2).toDate()},
-                     {date: moment().add('month', 3).toDate()},
-                     {date: moment().add('month', 4).toDate()},
-                     {date: moment().add('month', 5).toDate()},
-                     {date: moment().add('month', 6).toDate()}                                            
-                     ] 
-
-   $scope.eventsSize = function(){
-     _.each($scope.months, function(month, index){  
-       var monthEvents = $filter('filterByMonth')($scope.events, month.date);
-       $scope.months[index] = {date: month.date, events: monthEvents};
-     })    
-   }
   
   $scope.events = [];
   $scope.tasks  = [];
@@ -70,88 +31,11 @@ var CalendarCtrl = ['$scope', '$resource', '$filter', function ($scope, $resourc
         $scope.events = _.union($scope.events, iterator.events);
       })
     });       
-  }
-
-
+  }    
     
-  $scope.nextMonth = function(){
-    $scope.currentMonth = new Date($scope.currentMonth.getFullYear(), $scope.currentMonth.getMonth() + 1, 1);    
-    $scope.days = $scope.getDadysInMonth($scope.currentMonth);      
-    $scope.getEventLength();      
-  };
-  
-  $scope.prevMonth = function(){
-    $scope.currentMonth =  new Date($scope.currentMonth.getFullYear(), $scope.currentMonth.getMonth() - 1, 1);
-    $scope.days = $scope.getDadysInMonth($scope.currentMonth);      
-    $scope.getEventLength();      
-  };
-  
-  $scope.today = function(){
-    $scope.currentMonth = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1);  
-    $scope.days = $scope.getDadysInMonth($scope.currentMonth);      
-    $scope.getEventLength();      
-  };
-    
-  $scope.$watch('events', function(newVal) {   
-      $scope.eventsSize();     
-   }, true);
-        
-  $scope.calculateDate = function(startDate, endDate){
-    var totalDates = moment($scope.currentMonth).daysInMonth();    
-    var date1 = new Date($scope.currentMonth.getFullYear(), $scope.currentMonth.getMonth() - 1, 1);          
-    var date2 = new Date($scope.currentMonth.getFullYear(), $scope.currentMonth.getMonth() - 1, totalDates);                  
-    
-    var startDateInt = Date.parse(startDate);
-    var endDateInt = Date.parse(endDate) ;
-
-    var startDay, endDay;        
-              
-    if( (endDateInt < date1.getTime()) || (startDateInt > date2.getTime()) ){
-      return {startDay: 0, endDay: 0};
-    }
-    
-    if (startDateInt < date1) {
-      if (endDateInt < date2) {
-        startDay = 0;
-        endDay = parseInt(endDate.split("-").pop()) ;                
-      }else{
-        startDay = 1;
-        endDay = 31;                
-      }
-    }else{
-      if (endDateInt < date2) {
-        startDay = parseInt(startDate.split("-").pop()) - 1;
-        endDay = parseInt(endDate.split("-").pop());                
-      }else{
-        startDay = parseInt(startDate.split("-").pop()) - 1;
-        endDay = 31;                
-      }
-    }
-    
-    return {startDay: startDay, endDay: endDay};
-  }      
-        
-  $scope.getEventStyle = function(event){   
-    var totalDates = moment($scope.currentMonth).daysInMonth();
-    var dateWidth = (1 / totalDates) * 100;
-    var eventRange =  $scope.calculateDate(event.startTime, event.endTime);
-              
-    if (event.conflictStart == null || event.conflictEnd == null ) {
-      return {left: dateWidth * eventRange.startDay + "%", 
-              width: (eventRange.endDay - eventRange.startDay) * dateWidth + "%",
-              conflictLeft: "0%",
-              conflictWidth: "0%"
-            };
-    }else{
-
-      var conflictRange =  $scope.calculateDate(event.conflictStart, event.conflictEnd);    
-      return {left: dateWidth * eventRange.startDay + "%", 
-              width: (eventRange.endDay - eventRange.startDay) * dateWidth + "%",
-              conflictLeft: dateWidth * conflictRange.startDay + "%",
-              conflictWidth: (conflictRange.endDay - conflictRange.startDay) * dateWidth + "%"
-            };
-    }
-  }  
+  // $scope.$watch('events', function(newVal, oldVal) {   
+  //     $scope.eventsSize();     
+  //  }, true);        
   
   $scope.calculateHoverIndex =  function(ui, holder, date){
     var totalWidth =  $('#calendar').outerWidth();  
@@ -170,20 +54,7 @@ var CalendarCtrl = ['$scope', '$resource', '$filter', function ($scope, $resourc
   
     return {start: startHoverIndex, end: endHoverIndex};
   }
-    
-  $scope.getEventLength = function(){
-    
-    for (var i = 0; i < $scope.events.length; i++) {
-        event = $scope.events[i];
-      
-        var eventStyle = $scope.getEventStyle($scope.events[i]);
-        $scope.events[i].left = eventStyle.left;
-        $scope.events[i].width = eventStyle.width;   
-        
-        $scope.events[i].conflictLeft = eventStyle.conflictLeft;
-        $scope.events[i].conflictWidth = eventStyle.conflictWidth;             
-    }  
-  }     
+   
   
   $scope.addEvent = function (event) {
     var r =  $resource('/planners/projects/:project_id/events.json', 
