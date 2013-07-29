@@ -9,7 +9,7 @@ angular.module('ginkgo.directives', []).
 
           helper: 'clone',
 //          revert: 'invalid',                  
-          start: function(e, ui) {              
+          start: function(e, ui) {             
             if(ui.helper.hasClass('member')){
               ui.helper.children('a.destroy').remove();
             }                  
@@ -29,26 +29,37 @@ angular.module('ginkgo.directives', []).
             placeholder.height($(this).outerHeight());
             
             var rowIndex =  parseInt(($(ui.helper).offset().top - $('.month-row').offset().top) / 30);
+
+            var currentEventMonth = $(this).attr("data-original-title").split(/\s-\s/);
+            var eventMonthArray=[];
             
-            if($(this).data('event-id') != undefined){      
-              if (rowIndex >= scope.events.length) {
-                rowIndex = scope.events.length ;
+            for(var i=0;i<scope.events.length;i++){
+              //why four
+              if(scope.events[i].startTime.split('-')[0]==currentEventMonth[0].split('-')[0]&&scope.events[i].startTime.split('-')[1]==(currentEventMonth[0].split('-')[1])){
+                eventMonthArray.push(scope.events[i]);
+              }
+            }
+
+             console.log(eventMonthArray)
+            if($(this).data('event-id') != undefined){//inner
+              if (rowIndex >= eventMonthArray.length) {
+                rowIndex = eventMonthArray.length ;
               }else if(rowIndex < 0){
                 rowIndex = 0;
               }
-                         
+
               $(this).hide();                          
               if ($('.ui-state-highlight')[0] == undefined) {
                 $(placeholder).insertBefore($(this).parents().find('div.tip').get(rowIndex));                                          
               }else {       
                 $('.ui-state-highlight').remove();                            
-                if ((rowIndex == scope.events.length )) {
+                if ((rowIndex == eventMonthArray.length)) {
                   $(placeholder).insertAfter($(this).parents().find('div.tip').get(rowIndex));                                                                                 
                 }else {
                   $(placeholder).insertBefore($(this).parents().find('div.tip').get(rowIndex));              
                 }       
               }        
-            }else{
+            }else{//outer
               
               if (rowIndex >= scope.events.length) {
                 rowIndex = scope.events.length  ;
@@ -98,6 +109,7 @@ angular.module('ginkgo.directives', []).
           }         
           
           $('.ui-state-highlight').css('visibility', 'hidden');                                                                                           
+
           var date   = new Date($(this).find('.day:first').data('date'));              
           var range = scope.calculateHoverIndex(ui.helper, this, date);                     
           
