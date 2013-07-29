@@ -1,31 +1,52 @@
-<div class="month-row" ng-repeat="projectEvents in eventsGroups">
-  <div class="events holdable" style="width:100%;" ng-repeat="event in eventsInMonth = (events | filterByMonth:currentMonth  ) ">                          
-    <div >
-      <div  class="event-row task" >
-        <div style="background-color:#000;width:{{ event.conflictWidth }};left:{{ event.conflictLeft }};position:absolute;z-index:100;top:11px;"  data-event-id="{{event.id}}" ginkgo-popover="true">
-          <span style="visibility:hidden;">conflict</span>
-        </div>
-        
-        <div  class="event  tip wraps_next  {{event.eventableType}}" style="left:{{event.left}};width:{{event.width}};" ginkgo-draggable="true" ginkgo-resizeable="true" data-event-id="{{event.id}}" ginkgo-popover="true" ng-switch on="event.eventableType" data-toggle="tooltip" title="{{ event.startTime }} - {{event.endTime }}">          
-          <span ng-switch-when="Task" class="event">
-            <span class="title">{{ event.text }}</span>
-          </span>
-        
-          <span ng-switch-default class="event">
-            <a><img class="img-circle" src="/assets/planners/person.png" style=""></a>
-            <span style="" class="title">{{ event.text }}</span>
-          </span>
-        </div>  
+<div id="frame" >
+  <ul class="slidee clearfix" style="width:10250px;">
+    <% (-5..6).to_a.map {|i| Date.today + i.months }.each do |month| %>
+    <li>      
+      <div class="days-of-month date img-polaroid">
+        <% (month.beginning_of_month..month.end_of_month).to_a.each do |day| %>
+          <div class="day-header <%= 'sun-color-date' if day.saturday? || day.sunday? %>" >
+            <% if day.day == 1 %>
+            <span style="font-weight:bold;color:#333;font-size:13px;"><%= day.month %>月</span>
+            <% else %>
+            <span ><%= day.day %></span>          
+            <% end %>
+          </div>    
+        <% end %>      
       </div>
-      <div class="spacer"></div>
-    </div>            
-  </div> 
-                
-  <div class="days" ginkgo-droppable="true">            
-    <div class="dates" style="display:table-row;">
-      <div class="day {{ day.dateOjbect.getDay()%6==0  && 'sat' || '' }}" ng-repeat="day in days" data-date="{{day.year}}-{{day.month}}-{{day.day}}" >
-      </div>
-    </div>
-  </div>   
+      
+      <div class="month-row">
+        <div class="events holdable" style="width:100%;padding-top:{{ eventsInMonth[0].position * 30}}px;">                      
+          <div  ng-repeat="event in eventsInMonth = (events | filterByMonth:'<%= month.to_s %>' | orderBy:'position' ) " class="event  tip wraps_next  {{event.eventableType}}" style="margin-left:{{event.left}};width:{{event.width}};background-color:{{event.color}};"   data-event-id="{{event.id}}"  data-position="{{event.position}}" data-toggle="tooltip" title="{{ event.startTime }} - {{event.endTime }}">         
   
+            <span class="event">
+              <span style="" class="title">{{ event.projectName }} </span>
+            </span>
+          </div>  
+        </div> 
+                
+        <div class="days"  style="min-height:500px;height:{{  200 + (events.length * 20)}}px;">            
+          <div class="dates" style="display:table-row;">
+            <% (month.beginning_of_month..month.end_of_month).to_a.each do |day| %>            
+              <div class="day <%= 'sat' if day.saturday? || day.sunday? %> <%= 'today' if day == Date.today %> " data-date="<%= day.to_s %>" ></div>
+            <% end %>                
+          </div>
+        </div>   
+  
+      </div>
+    
+      <div class="days-of-month date img-polaroid">
+        <% (month.beginning_of_month..month.end_of_month).to_a.each do |day| %>
+          <div class="day-header <%= 'sun-color-date' if day.saturday? || day.sunday? %>" >
+            <% if day.day == 1 %>
+              <span style="font-weight:bold;color:#333;font-size:13px;"><%= day.month %>月</span>
+            <% else %>
+              <span ><%= day.day %></span>          
+            <% end %>
+          </div>    
+        <% end %>      
+      </div>
+    </li>
+    <% end %>
+  </ul> 
+
 </div>

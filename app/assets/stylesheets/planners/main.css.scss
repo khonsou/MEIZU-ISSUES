@@ -126,12 +126,9 @@ position: absolute;
 width:100%;
 min-height:500px;
 }
-/*div.events.holdable div.event-row {
-height: 0;
-width: 100%;
-float: left;
-clear: left;
-}*/
+.event .title{
+  padding:0px;
+}
 div.events.holdable  .event.Task{
   background-color: #3366CC;
 }

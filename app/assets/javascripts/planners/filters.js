@@ -70,12 +70,15 @@ angular.module('ginkgo.filters', []).
         date = new Date(date);    
             
         var date1 = moment(date).date(1).toDate();          
-        var date2 = moment(date).add('month', 1).date(0).toDate();                          
-        
+        var date2 = moment(date).add('month', 1).date(0).toDate();                         
+        console.log(111111)
+        console.log(date1)
+                console.log(date2)
         var out = _.filter(events, function(event){                
           var d1 = Date.parse(event.startTime);
-          var d2 = Date.parse(event.endTime) ;                  
-          return ((d1 > date1.getTime()) && (d1 < date2.getTime()));
+          console.log(d1)             
+          
+          return ((d1 >= date1.getTime()) && (d1 <= date2.getTime()));
         })              
         
         
