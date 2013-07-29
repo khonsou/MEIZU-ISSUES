@@ -38,15 +38,19 @@ var CalendarCtrl = ['$scope', '$resource', '$filter', function ($scope, $resourc
   //  }, true);        
   
   $scope.calculateHoverIndex =  function(ui, holder, date){
-    var totalWidth =  $('#calendar').outerWidth();  
+    var totalWidth =  $('#frame ul li').outerWidth();  
     var totalDates = moment(date).daysInMonth();    
     $scope.gridWidth = totalWidth / totalDates;
-    
     var startHoverIndex;
     if ($(holder).offset().left > $(ui).offset().left) {
       startHoverIndex  =  Math.round(($(ui).offset().left - $(holder).parents('li').offset().left) / $scope.gridWidth) + 1 ;      
-    }else{
-      startHoverIndex  =  Math.round(($(ui).offset().left - $(holder).offset().left) / $scope.gridWidth) + 1 ;      
+    }else{   
+      startHoverIndex = parseInt(($(ui).offset().left - $(holder).offset().left) / $scope.gridWidth);
+      
+      if (($(ui).offset().left - $(holder).offset().left) % $scope.gridWidth > 0) {
+        startHoverIndex += 1;
+      }
+      
     }
 
     console.log($(ui).outerWidth())

@@ -24,7 +24,7 @@
           </div>  
         </div> 
                 
-        <div class="days"  style="min-height:500px;height:{{  200 + (events.length * 20)}}px;">            
+        <div class="days"  style="min-height:500px;height:{{  200 + (events.length * 30)}}px;">            
           <div class="dates" style="display:table-row;">
             <% (month.beginning_of_month..month.end_of_month).to_a.each do |day| %>            
               <div class="day <%= 'sat' if day.saturday? || day.sunday? %> <%= 'today' if day == Date.today %> " data-date="<%= day.to_s %>" ></div>

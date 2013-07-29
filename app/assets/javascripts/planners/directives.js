@@ -116,7 +116,7 @@ angular.module('ginkgo.directives', []).
               startAt = $(hoverColumns).first().data('date') ;
               endAt = $.datepicker.formatDate('yy-mm-dd', new Date(new Date(startAt).getTime() + (range.end - range.start) * 24 * 60 * 60 * 1000))           
             }else{
-              hoverColumns = $(allDays).slice(range.start , range.end + 1);                        
+              hoverColumns = $(allDays).slice(range.start - 1, range.end);                        
               startAt = $(hoverColumns).first().data('date') ;             
               endAt = $(hoverColumns).last().data('date') ;            
             }
