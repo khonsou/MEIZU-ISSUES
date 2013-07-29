@@ -49,6 +49,7 @@ var CalendarCtrl = ['$scope', '$resource', '$filter', function ($scope, $resourc
       startHoverIndex  =  Math.round(($(ui).offset().left - $(holder).offset().left) / $scope.gridWidth) + 1 ;      
     }
 
+    console.log($(ui).outerWidth())
     var widthCount =  Math.round($(ui).outerWidth() /  $scope.gridWidth)  ;    
     var endHoverIndex = startHoverIndex + widthCount ;
   
@@ -207,11 +208,10 @@ $(document).ready(function () {
     e.stopPropagation();
   })    
   
-  
-  
-  $('body').tooltip({
-    selector: '.tip'
-  });
+    
+  // $('body').tooltip({
+  //   selector: '.tip'
+  // });
   
   var sly ;
   if($('#frame')[0] != undefined){

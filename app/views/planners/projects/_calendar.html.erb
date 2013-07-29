@@ -42,9 +42,9 @@
         <% (month.beginning_of_month..month.end_of_month).to_a.each do |day| %>
           <div class="day-header <%= 'sun-color-date' if day.saturday? || day.sunday? %>" >
             <% if day.day == 1 %>
-            <span style="font-weight:bold;color:#333;font-size:13px;"><%= day.month %>月</span>
+              <span style="font-weight:bold;color:#333;font-size:13px;"><%= day.month %>月</span>
             <% else %>
-            <span ><%= day.day %></span>          
+              <span ><%= day.day %></span>          
             <% end %>
           </div>    
         <% end %>      

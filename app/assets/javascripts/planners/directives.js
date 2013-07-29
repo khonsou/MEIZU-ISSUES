@@ -184,16 +184,28 @@ angular.module('ginkgo.directives', []).
           $(this).css('height', 'auto');
         },
         stop: function(event, ui) {
-          var range = scope.calculateHoverIndex(ui.helper);
+
           var allDays = $(this).parents('.month-row').find('.days .day') ;        
-          var hoverColumns = $(allDays).slice(range.start - 1, range.end - 2);  
-          
+          var date   = $(allDays[0]).data('date'); 
+          var range = scope.calculateHoverIndex(ui.helper, $(this).parents('.month-row'), date);
+          console.log(range)
+          var hoverColumns , startAt, endAt;
+          if(range.end > 31){
+            hoverColumns = $(allDays).slice(range.start, 30);
+            startAt = $(hoverColumns).first().data('date') ;
+            endAt = $.datepicker.formatDate('yy-mm-dd', new Date(new Date(startAt).getTime() + (range.end + 2 - range.start) * 24 * 60 * 60 * 1000))           
+          }else{
+            hoverColumns = $(allDays).slice(range.start, range.end + 1);  
+            startAt =  $(hoverColumns).first().data('date'), 
+            endAt =  $(hoverColumns).last().data('date')            
+          }  
+                                           
           scope.$apply(function(){
             scope.updateEvent({
               event: {              
                 id: $(ui.helper).data('event-id'), 
-                start_at: $(hoverColumns).first().data('date'), 
-                end_at: $(hoverColumns).last().data('date')
+                start_at: startAt, 
+                end_at: endAt
                }  
             })
           });  

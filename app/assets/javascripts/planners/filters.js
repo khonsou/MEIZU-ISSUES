@@ -59,26 +59,11 @@ angular.module('ginkgo.filters', []).
         var daysLength = Math.round((d2 - d1)/ (60 * 60 * 24 * 1000)) + 1;        
         var startDay = parseInt(event.startTime.split("-").pop()) - 1;      
               
-      //  if (event.conflictStart == null || event.conflictEnd == null ) {
-          // return {left: dateWidth * eventRange.startDay + "%", 
-          //         width: (eventRange.endDay - eventRange.startDay) * dateWidth + "%",
-          //         conflictLeft: "0%",
-          //         conflictWidth: "0%"
-          //       };
           return {left: dateWidth * startDay + "%", 
                   width: daysLength * dateWidth + "%",
                   conflictLeft: "0%",
                   conflictWidth: "0%"
                 };
-        // }else{
-        // 
-        //   var conflictRange =  calculateDate(event.conflictStart, event.conflictEnd, date);    
-        //   return {left: dateWidth * eventRange.startDay + "%", 
-        //           width: (eventRange.endDay - eventRange.startDay) * dateWidth + "%",
-        //           conflictLeft: dateWidth * conflictRange.startDay + "%",
-        //           conflictWidth: (conflictRange.endDay - conflictRange.startDay) * dateWidth + "%"
-        //         };
-        // }
       }  
     
       return function(events, date) {    
