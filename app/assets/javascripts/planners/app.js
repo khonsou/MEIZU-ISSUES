@@ -52,13 +52,24 @@ var CalendarCtrl = ['$scope', '$resource', '$filter', function ($scope, $resourc
       }
       
     }
-
-    console.log($(ui).outerWidth())
-    var widthCount =  Math.round($(ui).outerWidth() /  $scope.gridWidth)  ;    
+    var widthCount =  parseInt($(ui).outerWidth() /  $scope.gridWidth)  ;    
     var endHoverIndex = startHoverIndex + widthCount ;
   
     return {start: startHoverIndex, end: endHoverIndex};
   }
+  
+  $scope.calculateHoverIndexResize =  function(ui, holder, date){
+    var totalWidth =  $('#frame ul li').outerWidth();  
+    var totalDates = moment(date).daysInMonth();    
+    $scope.gridWidth = totalWidth / totalDates;
+    
+    var startHoverIndex = parseInt($(ui).attr('title').split('-')[2]) - 1;
+
+    var widthCount =  parseInt($(ui).outerWidth() /  $scope.gridWidth)  ;    
+    var endHoverIndex = startHoverIndex + widthCount ;
+  
+    return {start: startHoverIndex, end: endHoverIndex};
+  }  
    
   
   $scope.addEvent = function (event) {

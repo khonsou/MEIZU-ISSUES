@@ -84,9 +84,9 @@ angular.module('ginkgo.filters', []).
             var eventStyle = getEventStyle(out[i], date);
             out[i].left = eventStyle.left;
             out[i].width = eventStyle.width;   
+            out[i].index = _.sortedIndex(events, event , 'position');
  
         }  
-        
         return out;
       }  
   })  

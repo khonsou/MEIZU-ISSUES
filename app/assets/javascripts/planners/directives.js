@@ -116,7 +116,7 @@ angular.module('ginkgo.directives', []).
               startAt = $(hoverColumns).first().data('date') ;
               endAt = $.datepicker.formatDate('yy-mm-dd', new Date(new Date(startAt).getTime() + (range.end - range.start) * 24 * 60 * 60 * 1000))           
             }else{
-              hoverColumns = $(allDays).slice(range.start - 1, range.end);                        
+              hoverColumns = $(allDays).slice(range.start - 1, range.end - 1);                        
               startAt = $(hoverColumns).first().data('date') ;             
               endAt = $(hoverColumns).last().data('date') ;            
             }
@@ -187,15 +187,15 @@ angular.module('ginkgo.directives', []).
 
           var allDays = $(this).parents('.month-row').find('.days .day') ;        
           var date   = $(allDays[0]).data('date'); 
-          var range = scope.calculateHoverIndex(ui.helper, $(this).parents('.month-row'), date);
+          var range = scope.calculateHoverIndexResize(ui.helper, $(this).parents('.month-row'), date);
           console.log(range)
           var hoverColumns , startAt, endAt;
           if(range.end > 31){
             hoverColumns = $(allDays).slice(range.start, 30);
             startAt = $(hoverColumns).first().data('date') ;
-            endAt = $.datepicker.formatDate('yy-mm-dd', new Date(new Date(startAt).getTime() + (range.end + 2 - range.start) * 24 * 60 * 60 * 1000))           
+            endAt = $.datepicker.formatDate('yy-mm-dd', new Date(new Date(startAt).getTime() + (range.end  - range.start) * 24 * 60 * 60 * 1000))           
           }else{
-            hoverColumns = $(allDays).slice(range.start, range.end + 1);  
+            hoverColumns = $(allDays).slice(range.start, range.end);  
             startAt =  $(hoverColumns).first().data('date'), 
             endAt =  $(hoverColumns).last().data('date')            
           }  
