@@ -29,6 +29,7 @@ angular.module('ginkgo.directives', []).
             var placeholder = $('<div class="ui-state-highlight"></div>');
                 placeholder.height($(this).outerHeight());
             
+
             var rowIndex =  parseInt(($(ui.helper).offset().top - $('.month-row').offset().top) / 30),
                 currentEventMonth,
                 eventMonthArray=[];
@@ -169,7 +170,6 @@ angular.module('ginkgo.directives', []).
             var rowIndex = scope.events.length  ;
           }else {
             var rowIndex =  parseInt(($('.ui-state-highlight').offset().top - $('.month-row').offset().top - parseInt($(this).prev('.events.holdable').css('padding-top'))) / 30);
-            console.log(rowIndex)
             if (rowIndex >= scope.events.length) {
               rowIndex = scope.events.length  ;
             }else if(rowIndex < 0){
@@ -183,28 +183,23 @@ angular.module('ginkgo.directives', []).
           var date   = new Date($(this).find('.day:first').data('date'));              
           var range = scope.calculateHoverIndex(ui.helper, this, date);                     
           
-<<<<<<< HEAD
-          //console.log(range) 
-=======
-          
->>>>>>> [#1982] add scroll to prev and next month
           var allDays = $(this).find('.day') ;                        
           var hoverColumns, startAt, endAt;
           
-          var basePosition = $(this).parents('li').prevUntil().find('.event.tip').length;
-          console.log(basePosition)                       
+          var basePosition = $(this).parents('li').prevUntil().find('.event.tip').length;              
           if($(ui.draggable).data('event-id') != undefined){
             // drag from inner calendar
             if (range.start < 0) {            
               hoverColumns = $(allDays).slice(0, range.end);
               endAt = $(hoverColumns).last().data('date') ;               
               startAt = $.datepicker.formatDate('yy-mm-dd', new Date(new Date(endAt) - (range.end - range.start) * 24 * 60 * 60 * 1000))            
+              endAt =  $.datepicker.formatDate('yy-mm-dd', new Date(new Date(endAt) -  24 * 60 * 60 * 1000))            
             }else if(range.end > 31){
               hoverColumns = $(allDays).slice(range.start, 30);
               startAt = $(hoverColumns).first().data('date') ;
-              endAt = $.datepicker.formatDate('yy-mm-dd', new Date(new Date(startAt).getTime() + (range.end - range.start) * 24 * 60 * 60 * 1000))           
+              endAt = $.datepicker.formatDate('yy-mm-dd', new Date(new Date(startAt).getTime() + (range.end - range.start - 1) * 24 * 60 * 60 * 1000))           
             }else{
-              hoverColumns = $(allDays).slice(range.start - 1, range.end - 1);                        
+              hoverColumns = $(allDays).slice(range.start, range.end);                        
               startAt = $(hoverColumns).first().data('date') ;             
               endAt = $(hoverColumns).last().data('date') ;            
             }
@@ -276,7 +271,6 @@ angular.module('ginkgo.directives', []).
           var allDays = $(this).parents('.month-row').find('.days .day') ;        
           var date   = $(allDays[0]).data('date'); 
           var range = scope.calculateHoverIndexResize(ui.helper, $(this).parents('.month-row'), date);
-          console.log(range)
           var hoverColumns , startAt, endAt;
           if(range.end > 31){
             hoverColumns = $(allDays).slice(range.start, 30);

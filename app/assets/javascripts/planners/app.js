@@ -46,13 +46,19 @@ var CalendarCtrl = ['$scope', '$resource', '$filter', function ($scope, $resourc
       startHoverIndex  =  Math.round(($(ui).offset().left - $(holder).parents('li').offset().left) / $scope.gridWidth) + 1 ;      
     }else{   
       startHoverIndex = parseInt(($(ui).offset().left - $(holder).offset().left) / $scope.gridWidth);
-      
-      if (($(ui).offset().left - $(holder).offset().left) % $scope.gridWidth > 0) {
+      console.log($(ui).offset().left)
+      console.log($(holder).offset().left)      
+      if (($(ui).offset().left - $(holder).offset().left) % $scope.gridWidth > ( $scope.gridWidth / 3)) {
         startHoverIndex += 1;
       }
       
     }
-    var widthCount =  parseInt($(ui).outerWidth() /  $scope.gridWidth)  ;    
+    var widthCount =  parseInt($(ui).outerWidth() /  $scope.gridWidth)  ;        
+    
+    if (($(ui).outerWidth() %  $scope.gridWidth) > ($scope.gridWidth / 3)) {
+      widthCount += 1;
+    }
+    
     var endHoverIndex = startHoverIndex + widthCount ;
   
     return {start: startHoverIndex, end: endHoverIndex};
@@ -65,7 +71,12 @@ var CalendarCtrl = ['$scope', '$resource', '$filter', function ($scope, $resourc
     
     var startHoverIndex = parseInt($(ui).attr('title').split('-')[2]) - 1;
 
-    var widthCount =  parseInt($(ui).outerWidth() /  $scope.gridWidth)  ;    
+    var widthCount =  parseInt($(ui).outerWidth() /  $scope.gridWidth)  ;        
+    
+    if (($(ui).outerWidth() %  $scope.gridWidth) > ($scope.gridWidth / 3)) {
+      widthCount += 1;
+    }
+    
     var endHoverIndex = startHoverIndex + widthCount ;
   
     return {start: startHoverIndex, end: endHoverIndex};
