@@ -245,8 +245,20 @@ $(document).ready(function () {
       scrollBar: $('.scrollbar'),
       clickBar: 1,
       scrollBy: 0 ,
-      keyboardNavBy: 'items'
+      keyboardNavBy: 'items',
+    	// Buttons
+			prevPage: $('#calendar').find('.prev'),
+			nextPage: $('#calendar').find('.next')
     }).init();
+    
+  	// To Center button
+  		$('#calendar').find('.toCenter').on('click', function () {
+  			var item = $(this).data('item');
+  			// Animate a particular item to the center of the frame.
+  			// If no item is provided, the whole content will be animated.
+  			sly.toCenter(item);
+  		});
+    
   }
 
   

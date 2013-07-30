@@ -42,8 +42,6 @@ angular.module('ginkgo.directives', []).
                     eventMonthArray.push(scope.events[i]);
                   }
                 }
-                //$(this).parents("li").find('div.tip').offset().top = $(this).parents("li:eq(0)").find('.holdable').css("padding-top") +128 but former exit bug when first dragged
-                //rowIndex =  parseInt(($(ui.helper).offset().top - $(this).parents("li").find('div.tip').offset().top) / 30);
 
                 rowIndex =  parseInt(($(ui.helper).offset().top - parseInt($(this).parents("li:eq(0)").find('.holdable').css("padding-top"))-128) / 30);
 
@@ -153,29 +151,6 @@ angular.module('ginkgo.directives', []).
               }
     
             }else{//outer
-              /*
-              if (rowIndex >= scope.events.length) {
-                rowIndex = scope.events.length  ;
-              }else if(rowIndex < 0){
-                rowIndex = 0;
-              }
-              if ($('.ui-state-highlight')[0] == undefined) {
-                $(placeholder).insertAfter($(this).parents().find('div.tip').get(rowIndex));                                          
-              }else {       
-                $('.ui-state-highlight').remove();                            
-                if (rowIndex == 0 ) {
-                  $(placeholder).insertBefore($(this).parents().find('div.tip').get(rowIndex));                                                          
-                }else if(rowIndex == scope.events.length  ){
-                  $(placeholder).insertAfter($(this).parents().find('div.tip').get(scope.events.length - 1));
-                  console.log($(placeholder).index())                                                            
-                }else if(rowIndex == scope.events.length -1 ){
-                  $(placeholder).insertBefore($(this).parents().find('div.tip').get(scope.events.length - 1));
-                  console.log($(placeholder).index())                                                                              
-                }else {
-                  $(placeholder).insertBefore($(this).parents().find('div.tip').get(rowIndex)); 
-                }       
-              } 
-              */
             }       
     
           }
@@ -193,7 +168,8 @@ angular.module('ginkgo.directives', []).
           if ($('.ui-state-highlight').index() == -1) {
             var rowIndex = scope.events.length  ;
           }else {
-            var rowIndex =  parseInt(($('.ui-state-highlight').offset().top - $('.month-row').offset().top) / 30);
+            var rowIndex =  parseInt(($('.ui-state-highlight').offset().top - $('.month-row').offset().top - parseInt($(this).prev('.events.holdable').css('padding-top'))) / 30);
+            console.log(rowIndex)
             if (rowIndex >= scope.events.length) {
               rowIndex = scope.events.length  ;
             }else if(rowIndex < 0){
@@ -207,10 +183,16 @@ angular.module('ginkgo.directives', []).
           var date   = new Date($(this).find('.day:first').data('date'));              
           var range = scope.calculateHoverIndex(ui.helper, this, date);                     
           
+<<<<<<< HEAD
           //console.log(range) 
+=======
+          
+>>>>>>> [#1982] add scroll to prev and next month
           var allDays = $(this).find('.day') ;                        
           var hoverColumns, startAt, endAt;
-                                
+          
+          var basePosition = $(this).parents('li').prevUntil().find('.event.tip').length;
+          console.log(basePosition)                       
           if($(ui.draggable).data('event-id') != undefined){
             // drag from inner calendar
             if (range.start < 0) {            
@@ -232,7 +214,7 @@ angular.module('ginkgo.directives', []).
                 event: {id: $(ui.helper).data('event-id'), 
                        start_at: startAt, 
                        end_at: endAt,
-                       order: rowIndex
+                       order: basePosition + rowIndex
                      }
               })
             });  
@@ -270,7 +252,7 @@ angular.module('ginkgo.directives', []).
                  end_at: endAt,
                  eventable_id: eventableId,
                  eventable_type: type,
-                 order: rowIndex 
+                 order: basePosition + rowIndex 
                }
               })          
             });          

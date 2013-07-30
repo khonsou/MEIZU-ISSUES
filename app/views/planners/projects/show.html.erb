@@ -75,7 +75,6 @@
 
 <div id='calendar' style="overflow:hidden;">
 
-<% if false %>  
   <div class="row-fluid grid img-polaroid">
     <div  class="span12">
       <div class="row-fluid">
@@ -86,10 +85,9 @@
           <div class="header">
             <nav>  
               <div class="btn-group">
-                <button class=" btn" ng-click="prevMonth();">◀</button>
-                <button class="btn" ng-click="today();">今天</button>                
-                <!-- <button class=" btn" ng-click="nextMonth();">▶</button>                 -->
-                <button class="btn" ginkgo-next-month="">▶</button>
+                <button class="prev btn" >◀</button>
+                <button class="toCenter btn" >今天</button>                
+                <button class="next btn" >▶</button>
               </div>
             </nav>      
           </div>  
@@ -97,7 +95,6 @@
       </div>  
     </div>
   </div>     
-<% end %>   
   
   <div class="scrollbar">
 		<div class="handle">
