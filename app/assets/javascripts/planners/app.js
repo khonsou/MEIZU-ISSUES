@@ -46,8 +46,6 @@ var CalendarCtrl = ['$scope', '$resource', '$filter', function ($scope, $resourc
       startHoverIndex  =  Math.round(($(ui).offset().left - $(holder).parents('li').offset().left) / $scope.gridWidth) + 1 ;      
     }else{   
       startHoverIndex = parseInt(($(ui).offset().left - $(holder).offset().left) / $scope.gridWidth);
-      console.log($(ui).offset().left)
-      console.log($(holder).offset().left)      
       if (($(ui).offset().left - $(holder).offset().left) % $scope.gridWidth > ( $scope.gridWidth / 3)) {
         startHoverIndex += 1;
       }

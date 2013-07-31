@@ -167,9 +167,11 @@ angular.module('ginkgo.directives', []).
           $('.tooltip').hide();        
 
           if ($('.ui-state-highlight').index() == -1) {
-            var rowIndex = scope.events.length  ;
+//            var rowIndex = scope.events.length  ;
+             var rowIndex = $(this).parents('li').find('.event.tip:last').data('position') + 1;
           }else {
-            var rowIndex =  parseInt(($('.ui-state-highlight').offset().top - $('.month-row').offset().top - parseInt($(this).prev('.events.holdable').css('padding-top'))) / 30);
+            var rowIndex =  parseInt(($('.ui-state-highlight').offset().top - $('.month-row').offset().top ) / 30);
+            console.log(rowIndex);
             if (rowIndex >= scope.events.length) {
               rowIndex = scope.events.length  ;
             }else if(rowIndex < 0){
@@ -186,7 +188,9 @@ angular.module('ginkgo.directives', []).
           var allDays = $(this).find('.day') ;                        
           var hoverColumns, startAt, endAt;
           
-          var basePosition = $(this).parents('li').prevUntil().find('.event.tip').length;              
+          // var basePosition = $(this).parents('li').prevUntil().find('.event.tip').length;              
+          // console.log(basePosition)
+          
           if($(ui.draggable).data('event-id') != undefined){
             // drag from inner calendar
             if (range.start < 0) {            
@@ -209,7 +213,7 @@ angular.module('ginkgo.directives', []).
                 event: {id: $(ui.helper).data('event-id'), 
                        start_at: startAt, 
                        end_at: endAt,
-                       order: basePosition + rowIndex
+                       order: rowIndex
                      }
               })
             });  
@@ -217,13 +221,12 @@ angular.module('ginkgo.directives', []).
             // drag from outer calendar            
             if (range.start < 0) {            
               hoverColumns = $(allDays).slice(0, range.end);
-              endAt = $(hoverColumns).last().data('date') ;
-              startAt = new Date(new Date(endAt) - (range.end - range.start) * 24 * 60 * 60 * 1000).toString('yyyy-MM-dd')                                 
-            
+              endAt = $(hoverColumns).last().data('date') ;                           
+              startAt = $.datepicker.formatDate('yy-mm-dd', new Date(new Date(endAt) - (range.end - range.start) * 24 * 60 * 60 * 1000))                        
             }else if(range.end > 31){
               hoverColumns = $(allDays).slice(range.start, 30);
               startAt = $(hoverColumns).first().data('date') ;
-              endAt = new Date(new Date(startAt) + (range.end - range.start) * 24 * 60 * 60 * 1000).toString('yyyy-MM-dd')                                 
+              endAt = $.datepicker.formatDate('yy-mm-dd', new Date(new Date(startAt).getTime() + (range.end - range.start) * 24 * 60 * 60 * 1000))           
             
             }else{
               hoverColumns = $(allDays).slice(range.start, range.end );
@@ -247,7 +250,7 @@ angular.module('ginkgo.directives', []).
                  end_at: endAt,
                  eventable_id: eventableId,
                  eventable_type: type,
-                 order: basePosition + rowIndex 
+                 order: rowIndex 
                }
               })          
             });          
@@ -275,7 +278,7 @@ angular.module('ginkgo.directives', []).
           if(range.end > 31){
             hoverColumns = $(allDays).slice(range.start, 30);
             startAt = $(hoverColumns).first().data('date') ;
-            endAt = $.datepicker.formatDate('yy-mm-dd', new Date(new Date(startAt).getTime() + (range.end  - range.start) * 24 * 60 * 60 * 1000))           
+            endAt = $.datepicker.formatDate('yy-mm-dd', new Date(new Date(startAt).getTime() + (range.end  - range.start - 1) * 24 * 60 * 60 * 1000))           
           }else{
             hoverColumns = $(allDays).slice(range.start, range.end);  
             startAt =  $(hoverColumns).first().data('date'), 
