@@ -123,7 +123,7 @@
               <%= textilizable(@issue, :description, :attachments => attachments) %>
             </div>
           <% end %>
-          <%= render 'attachments/links', { :attachments => attachments, :options => { deletable: true, author: false }, :thumbnails => true } %>
+          <%= render 'attachments/links', { :attachments => attachments, :options => { deletable: false, author: false }, :thumbnails => true } %>
         <% end -%>
       </div>
     </div>

@@ -286,12 +286,11 @@ function addFileField(field) {
 
   
   // add file name div
-  var attachment =   $("#attachments_fields").find('.attachment_field:first').clone();
+  var attachment = $("#attachments_fields").find('.attachment_field:first').clone();
   $(attachment).find(".attachment_name").text(filename);
   $(attachment).data("field-id", $(old_upload).attr('id'));
   $("#attachments_fields").prepend(attachment);
   $(attachment).show();
-  
 }
 
 function removeFileField(el) {  
@@ -318,7 +317,6 @@ function checkFileSize(el, maxSize, message) {
       }
     }
   }
-  
   addFileField(el);
   return true;
 }

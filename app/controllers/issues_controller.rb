@@ -155,6 +155,9 @@ class IssuesController < ApplicationController
     return if @issue.closed?
 
     return unless update_issue_from_params
+    unless params[:remove_attachments].blank?
+      @issue.delete_attachments(params[:remove_attachments].split(/,/))
+    end
     @issue.save_attachments(params[:attachments] || (params[:issue] && params[:issue][:uploads]))
     saved = false
     begin

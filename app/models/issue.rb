@@ -144,6 +144,12 @@ class Issue < ActiveRecord::Base
     end
   end
 
+  def delete_attachments(attachment_ids)
+    attachment_ids = attachment_ids.map{|id| id.to_i}
+    attachments = Attachment.find(attachment_ids)
+    self.attachments.delete(attachments)
+  end
+
   # AR#Persistence#destroy would raise and RecordNotFound exception
   # if the issue was already deleted or updated (non matching lock_version).
   # This is a problem when bulk deleting issues or deleting a project
