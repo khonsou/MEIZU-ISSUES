@@ -44,7 +44,7 @@ angular.module('ginkgo.directives', []).
                   }
                 }
 
-                rowIndex =  parseInt(($(ui.helper).offset().top - parseInt($(this).parents("li:eq(0)").find('.holdable').css("padding-top"))-128) / 30);
+                rowIndex =  parseInt(($(ui.helper).offset().top - $('.month-row').offset().top - parseInt($(this).parents("li:eq(0)").find('.holdable').css("padding-top"))) / 30);
 
                 if (rowIndex >= eventMonthArray.length) {
                   rowIndex = eventMonthArray.length;
@@ -167,13 +167,18 @@ angular.module('ginkgo.directives', []).
           $('.tooltip').hide();        
 
           if ($('.ui-state-highlight').index() == -1) {
-//            var rowIndex = scope.events.length  ;
-             var rowIndex = $(this).parents('li').find('.event.tip:last').data('position') + 1;
+            if ($(this).parents('li').find('.event.tip:last')[0] == undefined) {
+               // 当月没有event
+               var rowIndex = scope.events.length  - 1;
+            }else {
+               var rowIndex = $(this).parents('li').find('.event.tip:last').data('position') + 1;
+            }
+  
           }else {
             var rowIndex =  parseInt(($('.ui-state-highlight').offset().top - $('.month-row').offset().top ) / 30);
             console.log(rowIndex);
             if (rowIndex >= scope.events.length) {
-              rowIndex = scope.events.length  ;
+              rowIndex = scope.events.length -1 ;
             }else if(rowIndex < 0){
               rowIndex = 0;
             }
