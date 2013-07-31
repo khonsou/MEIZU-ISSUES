@@ -8,7 +8,8 @@ angular.module('ginkgo.directives', []).
         element.draggable({
 
           helper: 'clone',
-//          revert: 'invalid',                  
+//          revert: 'invalid',
+          zIndex:1000,                  
           start: function(e, ui) {             
             if(ui.helper.hasClass('member')){
               ui.helper.children('a.destroy').remove();
@@ -26,47 +27,138 @@ angular.module('ginkgo.directives', []).
           drag: function(e, ui){
             
             var placeholder = $('<div class="ui-state-highlight"></div>');
-            placeholder.height($(this).outerHeight());
+                placeholder.height($(this).outerHeight());
             
-            var rowIndex =  parseInt(($(ui.helper).offset().top - $('.month-row').offset().top) / 30);
+            var rowIndex =  parseInt(($(ui.helper).offset().top - $('.month-row').offset().top) / 30),
+                currentEventMonth,
+                eventMonthArray=[];
 
-            var currentEventMonth = $(this).attr("data-original-title").split(/\s-\s/);
-            var eventMonthArray=[];
-            
-            for(var i=0;i<scope.events.length;i++){
-              //why four
-              if(scope.events[i].startTime.split('-')[0]==currentEventMonth[0].split('-')[0]&&scope.events[i].startTime.split('-')[1]==(currentEventMonth[0].split('-')[1])){
-                eventMonthArray.push(scope.events[i]);
-              }
-            }
-
-             console.log(eventMonthArray)
             if($(this).data('event-id') != undefined){//inner
-              if (rowIndex >= eventMonthArray.length) {
-                rowIndex = eventMonthArray.length ;
-              }else if(rowIndex < 0){
-                rowIndex = 0;
-              }
+              currentEventMonth = $(this).attr("title").split(/\s-\s/);
+              //the same month
+              if($(ui.helper).offset().left>$(ui.helper).parents("li").offset().left&&$(ui.helper).offset().left<$(ui.helper).parents("li").next().offset().left){
+                for(var i=0;i<scope.events.length;i++){
+                  if(scope.events[i].startTime.split('-')[0]==currentEventMonth[0].split('-')[0]&&scope.events[i].startTime.split('-')[1]==(currentEventMonth[0].split('-')[1])){
+                    eventMonthArray.push(scope.events[i]);
+                  }
+                }
+                //$(this).parents("li").find('div.tip').offset().top = $(this).parents("li:eq(0)").find('.holdable').css("padding-top") +128 but former exit bug when first dragged
+                //rowIndex =  parseInt(($(ui.helper).offset().top - $(this).parents("li").find('div.tip').offset().top) / 30);
 
-              $(this).hide();                          
-              if ($('.ui-state-highlight')[0] == undefined) {
-                $(placeholder).insertBefore($(this).parents().find('div.tip').get(rowIndex));                                          
-              }else {       
-                $('.ui-state-highlight').remove();                            
-                if ((rowIndex == eventMonthArray.length)) {
-                  $(placeholder).insertAfter($(this).parents().find('div.tip').get(rowIndex));                                                                                 
-                }else {
-                  $(placeholder).insertBefore($(this).parents().find('div.tip').get(rowIndex));              
-                }       
-              }        
+                rowIndex =  parseInt(($(ui.helper).offset().top - parseInt($(this).parents("li:eq(0)").find('.holdable').css("padding-top"))-128) / 30);
+
+                if (rowIndex >= eventMonthArray.length) {
+                  rowIndex = eventMonthArray.length;
+                }else if(rowIndex < 0){
+                  rowIndex = 0;
+                } 
+
+                $(this).hide();
+                if ($('.ui-state-highlight')[0] == undefined) {
+                  $(placeholder).insertBefore($(this).parents().find('div.tip').get(rowIndex));                                 
+                }else {       
+                  $('.ui-state-highlight').remove();                            
+                  if(rowIndex == eventMonthArray.length) {
+                    $(placeholder).insertAfter($(this).parents().find('div.tip').get(rowIndex));                                      
+                  }else {
+                    $(placeholder).insertBefore($(this).parents().find('div.tip').get(rowIndex));              
+                  }       
+                }        
+              }else if($(ui.helper).offset().left<$(ui.helper).parents("li").offset().left){//the previous month
+                if(parseInt(currentEventMonth[0].split('-')[1],10)!=1){//the same year
+                  for(var i=0;i<scope.events.length;i++){
+                    if(scope.events[i].startTime.split('-')[0]==currentEventMonth[0].split('-')[0]&&parseInt(scope.events[i].startTime.split('-')[1],10)==(parseInt(currentEventMonth[0].split('-')[1],10)-1)){
+                      eventMonthArray.push(scope.events[i]);
+                    }
+                  }
+                }else{//different year
+                  for(var i=0;i<scope.events.length;i++){
+                    if((parseInt(scope.events[i].startTime.split('-')[0],10)==parseInt(currentEventMonth[0].split('-')[0],10)-1)&&parseInt(scope.events[i].startTime.split('-')[1],10)==12){
+                      eventMonthArray.push(scope.events[i]);
+                    }
+                  }
+                }
+                
+                if($(this).parents("li").prev().find('div.tip').children().length){
+                  rowIndex =  parseInt(($(ui.helper).offset().top - $(this).parents("li").prev().find('div.tip:eq(0)').offset().top) / 30);
+
+                  if (rowIndex >= eventMonthArray.length) {
+                    rowIndex = eventMonthArray.length ;
+                  }else if(rowIndex < 0){
+                    rowIndex = 0;
+                  }
+                }else{
+                  //rowIndex = 0;
+                  //当下一个项目都没有时，默认第一个
+                  $('.ui-state-highlight').remove();
+                  return;
+                }
+
+                $(this).hide();
+                if ($('.ui-state-highlight')[0] == undefined) {
+                  $(placeholder).insertBefore($(this).parents("li").prev().find('div.tip').get(rowIndex));                                   
+                }else {       
+                  $('.ui-state-highlight').remove();                            
+                  if ((rowIndex == eventMonthArray.length)) {
+                    $(placeholder).insertAfter($(this).parents("li").prev().find('div.tip').get(rowIndex-1));                                                                                 
+                  }else {
+                    $(placeholder).insertBefore($(this).parents("li").prev().find('div.tip').get(rowIndex));              
+                  }       
+                } 
+              }else if($(ui.helper).offset().left>$(ui.helper).parents("li").next().offset().left){
+                //the next month
+                if(parseInt(currentEventMonth[0].split('-')[1],10)!=12){//the same year
+                  for(var i=0;i<scope.events.length;i++){
+                    if(scope.events[i].startTime.split('-')[0]==currentEventMonth[0].split('-')[0]&&parseInt(scope.events[i].startTime.split('-')[1],10)==(parseInt(currentEventMonth[0].split('-')[1],10)+1)){
+                      eventMonthArray.push(scope.events[i]);
+                    }
+                  }
+                }else{//different year
+                  for(var i=0;i<scope.events.length;i++){
+                    if((parseInt(scope.events[i].startTime.split('-')[0],10)==parseInt(currentEventMonth[0].split('-')[0],10)+1)&&parseInt(scope.events[i].startTime.split('-')[1],10)==1){
+                      eventMonthArray.push(scope.events[i]);
+                    }
+                  }
+                }
+
+                if($(this).parents("li").next().find('div.tip').children().length){
+                  rowIndex =  parseInt(($(ui.helper).offset().top - $(this).parents("li").next().find('div.tip:eq(0)').offset().top) / 30);
+
+                  if (rowIndex >= eventMonthArray.length) {
+                    rowIndex = eventMonthArray.length ;
+                  }else if(rowIndex < 0){
+                    rowIndex = 0;
+                  }
+                }else{
+                  //rowIndex = 0;
+                  //当下一个项目都没有时，默认第一个
+                  $('.ui-state-highlight').remove();
+                  return;
+                }
+
+                $(this).hide();
+                if ($('.ui-state-highlight')[0] == undefined) {
+                  //七月有，八月空  加不上
+                  $(placeholder).insertBefore($(this).parents("li").next().find('div.tip').get(rowIndex));                                   
+                }else {       
+                  $('.ui-state-highlight').remove();                            
+                  if ((rowIndex == eventMonthArray.length)) {
+                    $(placeholder).insertAfter($(this).parents("li").next().find('div.tip').get(rowIndex-1));                                                                                 
+                  }else {
+                    $(placeholder).insertBefore($(this).parents("li").next().find('div.tip').get(rowIndex));      
+                  }       
+                } 
+              }else{
+                return;
+              }
+    
             }else{//outer
-              
+              /*
               if (rowIndex >= scope.events.length) {
                 rowIndex = scope.events.length  ;
               }else if(rowIndex < 0){
                 rowIndex = 0;
               }
-              
               if ($('.ui-state-highlight')[0] == undefined) {
                 $(placeholder).insertAfter($(this).parents().find('div.tip').get(rowIndex));                                          
               }else {       
@@ -74,15 +166,17 @@ angular.module('ginkgo.directives', []).
                 if (rowIndex == 0 ) {
                   $(placeholder).insertBefore($(this).parents().find('div.tip').get(rowIndex));                                                          
                 }else if(rowIndex == scope.events.length  ){
-                  $(placeholder).insertAfter($(this).parents().find('div.tip').get(scope.events.length - 1));                                                            
+                  $(placeholder).insertAfter($(this).parents().find('div.tip').get(scope.events.length - 1));
+                  console.log($(placeholder).index())                                                            
                 }else if(rowIndex == scope.events.length -1 ){
-                  $(placeholder).insertBefore($(this).parents().find('div.tip').get(scope.events.length - 1));                                                                              
+                  $(placeholder).insertBefore($(this).parents().find('div.tip').get(scope.events.length - 1));
+                  console.log($(placeholder).index())                                                                              
                 }else {
-                  $(placeholder).insertBefore($(this).parents().find('div.tip').get(rowIndex));                                        
+                  $(placeholder).insertBefore($(this).parents().find('div.tip').get(rowIndex)); 
                 }       
-              }        
+              } 
+              */
             }       
-
     
           }
         });
@@ -113,7 +207,7 @@ angular.module('ginkgo.directives', []).
           var date   = new Date($(this).find('.day:first').data('date'));              
           var range = scope.calculateHoverIndex(ui.helper, this, date);                     
           
-          console.log(range) 
+          //console.log(range) 
           var allDays = $(this).find('.day') ;                        
           var hoverColumns, startAt, endAt;
                                 
