@@ -18,12 +18,12 @@
         <div class="events holdable" style="width:100%;padding-top:{{ eventsInMonth[0].index * 30}}px;">                      
           <div  ng-repeat="event in eventsInMonth = (events | filterByMonth:'<%= month.to_s %>' | orderBy:'position' ) " ginkgo-draggable="true" class="event  tip wraps_next  {{event.eventableType}}" style="margin-left:{{event.left}};width:{{event.width}};background-color:{{event.color}};"  ginkgo-resizeable="true" data-event-id="{{event.id}}"  data-position="{{event.position}}" ginkgo-popover="true" ng-switch on="event.eventableType" data-toggle="tooltip" title="{{ event.startTime }} - {{event.endTime }}">          
             <span ng-switch-when="Task" class="event">
-              <span class="title">{{ event.text }} {{event.position}}</span>
+              <span class="title">{{ event.text }} </span>
             </span>
   
             <span ng-switch-default class="event">
               <a><img class="img-circle" src="/assets/planners/person.png" style=""></a>
-              <span style="" class="title">{{ event.text }} {{event.position}}</span>
+              <span style="" class="title">{{ event.text }} </span>
             </span>
           </div>  
         </div> 
