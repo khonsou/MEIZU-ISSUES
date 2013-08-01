@@ -74,14 +74,13 @@ angular.module('ginkgo.directives', []).
           if ($('.ui-state-highlight').index() == -1) {
             if ($(this).parents('li').find('.event.tip:last')[0] == undefined) {
                // 当月没有event
-               var rowIndex = scope.events.length  - 1;
+               var rowIndex = scope.events.length;
             }else {
                var rowIndex = $(this).parents('li').find('.event.tip:last').data('position') + 1;
             }
   
           }else {
             var rowIndex =  parseInt(($('.ui-state-highlight').offset().top - $('.month-row').offset().top ) / 30);
-            console.log(rowIndex);
             if (rowIndex >= scope.events.length) {
               rowIndex = scope.events.length -1 ;
             }else if(rowIndex < 0){
@@ -94,24 +93,21 @@ angular.module('ginkgo.directives', []).
 
           var date   = new Date($(this).find('.day:first').data('date'));              
           var range = scope.calculateHoverIndex(ui.helper, this, date);                     
-          
+          console.log(range)
           var allDays = $(this).find('.day') ;                        
-          var hoverColumns, startAt, endAt;
-          
-          // var basePosition = $(this).parents('li').prevUntil().find('.event.tip').length;              
-          // console.log(basePosition)
+          var hoverColumns, startAt, endAt;        
           
           if($(ui.draggable).data('event-id') != undefined){
             // drag from inner calendar
             if (range.start < 0) {            
               hoverColumns = $(allDays).slice(0, range.end);
-              endAt = $(hoverColumns).last().data('date') ;               
-              startAt = $.datepicker.formatDate('yy-mm-dd', new Date(new Date(endAt) - (range.end - range.start) * 24 * 60 * 60 * 1000))            
-              endAt =  $.datepicker.formatDate('yy-mm-dd', new Date(new Date(endAt) -  24 * 60 * 60 * 1000))            
+              endAt = $(hoverColumns).last().data('date') ;            
+              startAt = moment(endAt).subtract('days', range.end - range.start).format("YYYY-MM-DD")   
+              endAt = moment(endAt).subtract('days', 1).format("YYYY-MM-DD")   
             }else if(range.end > 31){
               hoverColumns = $(allDays).slice(range.start, 30);
               startAt = $(hoverColumns).first().data('date') ;
-              endAt = $.datepicker.formatDate('yy-mm-dd', new Date(new Date(startAt).getTime() + (range.end - range.start - 1) * 24 * 60 * 60 * 1000))           
+              endAt = moment(startAt).add('days', range.end - range.start - 1).format("YYYY-MM-DD")                            
             }else{
               hoverColumns = $(allDays).slice(range.start, range.end);                        
               startAt = $(hoverColumns).first().data('date') ;             
@@ -131,13 +127,12 @@ angular.module('ginkgo.directives', []).
             // drag from outer calendar            
             if (range.start < 0) {            
               hoverColumns = $(allDays).slice(0, range.end);
-              endAt = $(hoverColumns).last().data('date') ;                           
-              startAt = $.datepicker.formatDate('yy-mm-dd', new Date(new Date(endAt) - (range.end - range.start) * 24 * 60 * 60 * 1000))                        
+              endAt = $(hoverColumns).last().data('date') ; 
+              startAt = moment(endAt).subtract('days', range.end - range.start).format("YYYY-MM-DD")                                           
             }else if(range.end > 31){
               hoverColumns = $(allDays).slice(range.start, 30);
               startAt = $(hoverColumns).first().data('date') ;
-              endAt = $.datepicker.formatDate('yy-mm-dd', new Date(new Date(startAt).getTime() + (range.end - range.start) * 24 * 60 * 60 * 1000))           
-            
+              endAt = moment(startAt).add('days', range.end - range.start).format("YYYY-MM-DD")                                                         
             }else{
               hoverColumns = $(allDays).slice(range.start, range.end );
               startAt = $(hoverColumns).first().data('date') ;             
@@ -407,22 +402,4 @@ angular.module('ginkgo.directives', []).
         }) 
       }
     } 
-}]).       
-directive('ginkgoNextMonth', ['$rootScope', '$http', '$compile', function ($rootScope, $http, $compile) {
-  return {
-    link: function(scope, element, attrs) {
-      element.on('click', function(e){           
-        $http.get('/assets/planners/partials/calendar.html', {cache: false}).then(function onSuccess(template) {
-           // Handle response from $http promise
-           var compile =  $compile(template.data)(scope);            
-          
-           $('#bigzone').append(compile);       
-           $("#bigzone").css("-webkit-transform","translate(" + ($('.calendar-body').length - 1) * -$('.calendar-body:first').outerWidth() + "px, 0px)");              
-//           $('.calendar-body:first').remove();
-        });
-      })
-    }
-  } 
 }])
-
-
