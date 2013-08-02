@@ -34,7 +34,7 @@
             <li class="<%= 'active' if action_name == 'index' and controller_name == 'home' %>"><a href="/planners">Home</a></li>
             <li class="<%= 'active' if action_name == 'index' and controller_name == 'projects' %>"><a href="/planners/projects">All Projects</a></li>
             <li class="<%= 'active' if action_name == 'index' and controller_name == 'members' %>"><a href="/planners/members">All Members</a></li>
-            <li><a href="#contact">Me</a></li>
+            <li class="<%= 'active' if action_name == 'show' and controller_name == 'members' %>"><a href="/planners/members/<%= User.current.id %>">Me</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
