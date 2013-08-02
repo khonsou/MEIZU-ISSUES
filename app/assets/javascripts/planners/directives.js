@@ -240,17 +240,17 @@ angular.module('ginkgo.directives', []).
              element.on('click', function(e){
                 var targetOffset = element.find('.title').offset(),
                     calendarItemEditorSingletonLeft = targetOffset.left + 10 + element.parents('.month-row').find('span.event').width(),
-                    editActualWidth = $('#calendar_item_editor_singleton').children().first().width()+parseInt($('#calendar_item_editor_singleton').children().first().css("padding-left"))*2;
+                    //EDIT_WIDTH = $('#calendar_item_editor_singleton').children().first().width()+parseInt($('#calendar_item_editor_singleton').children().first().css("padding-left"))*2;
+                    EDIT_WIDTH = 245;// actual width of edit panel
 
                 $('#calendar_item_editor_singleton').html(compile);
                 //Locate ballon
-                if($(document).width() - targetOffset.left < editActualWidth){
-                  calendarItemEditorSingletonLeft = calendarItemEditorSingletonLeft - editActualWidth-100;
+                if($(document).width() - targetOffset.left < EDIT_WIDTH){//right
                   $('#calendar_item_editor_singleton').find(".balloon").removeClass("right_side").addClass("left_side");
                   $('#calendar_item_editor_singleton').show()
                                                       .css('top', targetOffset.top)
-                                                      .css('left',e.pageX - editActualWidth); 
-                }else if(targetOffset.left<$(element).width()/2){
+                                                      .css('left',e.pageX - EDIT_WIDTH); 
+                }else if(targetOffset.left<$(element).width()/2){//left
                   $('#calendar_item_editor_singleton').find(".balloon").removeClass("left_side").addClass("right_side");
                   $('#calendar_item_editor_singleton').show()
                                                       .css('top', targetOffset.top)
