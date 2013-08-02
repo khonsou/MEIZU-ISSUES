@@ -613,13 +613,13 @@ $(document).ready(function(){
   var timeId;
 
   function slideDown(){
-    $("#newfeature-background").css("background-color","#f7f5c8");
-    $(".newFeatures .msg-details").slideDown(600);
+    $("#newfeature-background").css("background-color","#faf9de");
+    $(".newFeatures .msg-details").slideDown(300);
     $(".newFeatures .row .span10").css({"background-image":"url(/assets/light_one.png)"});
   }
 
   function slideUp(){
-    $(".newFeatures .msg-details").slideUp(600);
+    $(".newFeatures .msg-details").slideUp(300);
     $(".newFeatures .row .span10").css({"background-image":"url(/assets/default_trumpet.png)"});
 
     $("#newfeature-background").css("background-color","#faf9de");
