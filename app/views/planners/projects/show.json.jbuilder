@@ -7,6 +7,7 @@ end
 json.members @project.members do |json, member|
   json.name member.user.name
   json.id member.id
+  json.role member.roles.map(&:name).join(', ') 
 end  
 
 json.events @project.events do |json, event|

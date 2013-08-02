@@ -32,7 +32,7 @@
     </ul>  
     <ul class="nav nav-list"  ng-controller="MemberCtrl">            
       <li class="head">
-        <h5>Members</h5>
+        <h5>成员</h5>
         <div class="pull-right"> 
           <%= link_to l(:label_planner_invite),new_member_planners_projects_path(project: @project), class:'invite-member', "ginkgo-invite-member" => "" %>
         </div>
@@ -54,9 +54,7 @@
     </ul>  
     <ul class="nav nav-list">                
       <li class="head">
-        <div>
-          <span class="name">Tasks</span>
-        </div>
+        <h5>阶段</h5>
       </li>
       <li class="classify" ng-controller="TaskCtrl">
         <div id="external-events">
@@ -64,8 +62,8 @@
         </div>
         <form ng-submit="addTask()">
           <input type="text" ng-model="task.text"  size="10" class="span2"
-                 placeholder="add new task here">
-          <input class="btn-primary" type="submit" value="add">
+                 placeholder="添加新阶段">
+          <!-- <input class="btn-primary" type="submit" value="add"> -->
         </form>
       </li>
     </ul>

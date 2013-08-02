@@ -265,7 +265,8 @@ $(document).ready(function () {
   			var item = $(this).data('item');
   			// Animate a particular item to the center of the frame.
   			// If no item is provided, the whole content will be animated.
-  			sly.toCenter(item);
+//  			sly.toCenter(item);
+         sly.slideTo(4250 - (15 - new Date().getDate()) * 30)
   		});
     
   }
