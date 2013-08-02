@@ -248,7 +248,7 @@ $(document).ready(function () {
       dragHandle: 1,
   		dynamicHandle: 1,
     	speed: 300,
-      startAt: 4250 + new Date().getDate() / 2 * 25, //居中
+      startAt: 4250 - (15 - new Date().getDate()) * 30, //居中
       releaseSwing: 1,
     	elasticBounds: 0,
       scrollBar: $('.scrollbar'),
