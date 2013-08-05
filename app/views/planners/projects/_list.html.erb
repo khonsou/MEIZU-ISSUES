@@ -5,7 +5,7 @@
         <%= link_to image_tag(p.icon_url(:large)), "/planners/projects/#{p.id}", :class => "thumbnail" %>
         <div class="caption">
           <h5><%= p.name %></h5>
-          <p class="small">6月20号 - 6月30号</p>
+          <p class="small"><%= p.description %></p>
         </div>
       </div>
     </li>

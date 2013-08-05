@@ -9,7 +9,8 @@ json.events_groups @events_groups do |json, events|
     je.eventableType event.eventable_type
     je.eventableId  event.eventable_id  
     je.id event.id
-    je.color event.color    
+    je.projectId event.project_id    
+    je.color Event::COLOR[@events_groups.index(events) % Event::COLOR.size]
     je.projectName event.project.name
   end  
 end  

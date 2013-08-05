@@ -93,7 +93,7 @@ angular.module('ginkgo.directives', []).
 
           var date   = new Date($(this).find('.day:first').data('date'));              
           var range = scope.calculateHoverIndex(ui.helper, this, date);                     
-          console.log(range)
+
           var allDays = $(this).find('.day') ;                        
           var hoverColumns, startAt, endAt;        
           

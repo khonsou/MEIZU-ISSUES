@@ -85,7 +85,11 @@ angular.module('ginkgo.filters', []).
             var eventStyle = getEventStyle(out[i], date);
             out[i].left = eventStyle.left;
             out[i].width = eventStyle.width;   
-            out[i].index = _.sortedIndex(events, event , 'position');
+            if (out[i].projectId == undefined) {
+              out[i].index = _.sortedIndex(events, event , 'position');                          
+            }else{
+              out[i].index = _.sortedIndex(events, event , 'projectId');              
+            }
  
         }  
         return out;

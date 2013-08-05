@@ -118,6 +118,8 @@ body>#wrap {
 }     
 
 .controller-projects.action-index .thumbnails .span2 {
+  overflow: hidden;
+  height: 215px;
   width: 206px!important;
 }
 

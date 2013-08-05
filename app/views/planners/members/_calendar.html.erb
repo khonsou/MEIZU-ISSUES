@@ -16,7 +16,7 @@
       
       <div class="month-row">
         <div class="events holdable" style="width:100%;padding-top:{{ eventsInMonth[0].index * 30}}px;">                      
-          <div  ng-repeat="event in eventsInMonth = (events | filterByMonth:'<%= month.to_s %>' | orderBy:'position' ) " class="event  tip wraps_next  {{event.eventableType}}" style="margin-left:{{event.left}};width:{{event.width}};background-color:{{event.color}};"   data-event-id="{{event.id}}"  data-position="{{event.position}}" data-toggle="tooltip" title="{{ event.startTime }} - {{event.endTime }}">         
+          <div  ng-repeat="event in eventsInMonth = (events | filterByMonth:'<%= month.to_s %>' | orderBy:'index' ) " class="event  tip wraps_next  {{event.eventableType}}" style="margin-left:{{event.left}};width:{{event.width}};background-color:{{event.color}};"   data-event-id="{{event.id}}"  data-position="{{event.position}}" data-toggle="tooltip" title="{{ event.startTime }} - {{event.endTime }}">         
   
             <span class="event">
               <span style="" class="title">{{ event.projectName }} </span>

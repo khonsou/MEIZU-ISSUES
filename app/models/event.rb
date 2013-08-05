@@ -6,11 +6,13 @@ class Event < ActiveRecord::Base
   
   validate :check_time
   
-#  attr_accessor :conflict_start, :conflict_end
-  
+#  attr_accessor :conflict_start, :conflict_end  
   acts_as_list :scope => :project
   
   default_scope order('position asc')
+  
+  COLOR = ["#009900", '#aa0000', "#ec61a2", "#3185c5", "#46647c", "#b3a543",
+                 "#ff9c00",  "#000000"];
   
   attr_accessor :order
   
