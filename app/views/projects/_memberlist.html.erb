@@ -21,14 +21,14 @@
   </li>
   <% project.member_principals.find(:all, :include => [:roles, :principal]).sort_by(&:created_on)[0..9-project.true_pending_invitations.count].each do |member| %>
     <% unless member.user == project.creator %>
-      <li class="row-fluid">
+      <li class="row-fluid item_member">
         <div class="avatar span7">
           <%= link_to_user(member.user, :avatar => :small) %>
         </div>
         <div class="span17">
           <span class="user-name"><%= link_to_user(member.user) %></span>
           <% if project.creator == User.current %>
-            <%= link_to image_tag("/assets/planners/delete.png"), membership_path(member), :remote => true, :data => {:confirm => l(:text_are_you_sure)}, :method => :delete, :class => "pull-right" %>
+            <%= link_to image_tag("/assets/planners/delete.png"), membership_path(member), :remote => true, :data => {:confirm => l(:text_are_you_sure)}, :method => :delete, :class => "pull-right icon_delete", "hidden" => true %>
           <% end -%>
           <br>
           <span class="role"><%= member.roles.map(&:name).join(', ') %></span>
@@ -36,4 +36,14 @@
       </li>
     <% end -%>
   <% end -%>
+<% end -%>
+
+<%= javascript_tag do %>
+  $(document).ready(function(){
+    $(".item_member").hover(function(){
+      $(".icon_delete").show();
+    },function(){
+      $(".icon_delete").hide();
+    });
+  })
 <% end -%>
