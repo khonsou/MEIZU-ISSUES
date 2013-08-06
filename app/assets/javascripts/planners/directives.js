@@ -33,7 +33,7 @@ angular.module('ginkgo.directives', []).
             var currentEventMonthTaskSize,
                 eventMonthIndex,
                 myrowIndex,
-                MONTHWIDTH = 850;
+                MONTHWIDTH = $('#frame li').outerWidth();
 
             if($(this).data('event-id') != undefined){//inner
               eventMonthIndex = Math.floor(($(ui.helper).offset().left-$(".slidee").children(":eq(0)").offset().left) / MONTHWIDTH);
@@ -88,56 +88,26 @@ angular.module('ginkgo.directives', []).
             }
 
           }         
-          
+//          console.log(rowIndex)
           $('.ui-state-highlight').css('visibility', 'hidden');                                                                                           
 
           var date   = new Date($(this).find('.day:first').data('date'));              
           var range = scope.calculateHoverIndex(ui.helper, this, date);                     
-
+//          console.log(range)
           var allDays = $(this).find('.day') ;                        
           var hoverColumns, startAt, endAt;        
           
           if($(ui.draggable).data('event-id') != undefined){
-            // drag from inner calendar
-            if (range.start < 0) {            
-              hoverColumns = $(allDays).slice(0, range.end);
-              endAt = $(hoverColumns).last().data('date') ;            
-              startAt = moment(endAt).subtract('days', range.end - range.start).format("YYYY-MM-DD")   
-              endAt = moment(endAt).subtract('days', 1).format("YYYY-MM-DD")   
-            }else if(range.end > 31){
-              hoverColumns = $(allDays).slice(range.start, 30);
-              startAt = $(hoverColumns).first().data('date') ;
-              endAt = moment(startAt).add('days', range.end - range.start - 1).format("YYYY-MM-DD")                            
-            }else{
-              hoverColumns = $(allDays).slice(range.start, range.end);                        
-              startAt = $(hoverColumns).first().data('date') ;             
-              endAt = $(hoverColumns).last().data('date') ;            
-            }
-
             scope.$apply(function(){
               scope.updateEvent({
                 event: {id: $(ui.helper).data('event-id'), 
-                       start_at: startAt, 
-                       end_at: endAt,
+                       start_at: range.start, 
+                       end_at: range.end,
                        order: rowIndex
                      }
               })
             });  
           }else{
-            // drag from outer calendar            
-            if (range.start < 0) {            
-              hoverColumns = $(allDays).slice(0, range.end);
-              endAt = $(hoverColumns).last().data('date') ; 
-              startAt = moment(endAt).subtract('days', range.end - range.start).format("YYYY-MM-DD")                                           
-            }else if(range.end > 31){
-              hoverColumns = $(allDays).slice(range.start, 30);
-              startAt = $(hoverColumns).first().data('date') ;
-              endAt = moment(startAt).add('days', range.end - range.start).format("YYYY-MM-DD")                                                         
-            }else{
-              hoverColumns = $(allDays).slice(range.start, range.end );
-              startAt = $(hoverColumns).first().data('date') ;             
-              endAt = $(hoverColumns).last().data('date') ;            
-            }
             
             var eventableId, type;
             if($(ui.draggable).data('task-id') != undefined){
@@ -151,8 +121,8 @@ angular.module('ginkgo.directives', []).
             scope.$apply(function(){
               scope.addEvent({event: 
                 {
-                 start_at: startAt, 
-                 end_at: endAt,
+                 start_at: range.start, 
+                 end_at: range.end,
                  eventable_id: eventableId,
                  eventable_type: type,
                  order: rowIndex 
@@ -179,23 +149,13 @@ angular.module('ginkgo.directives', []).
           var allDays = $(this).parents('.month-row').find('.days .day') ;        
           var date   = $(allDays[0]).data('date'); 
           var range = scope.calculateHoverIndexResize(ui.helper, $(this).parents('.month-row'), date);
-          var hoverColumns , startAt, endAt;
-          if(range.end > 31){
-            hoverColumns = $(allDays).slice(range.start, 30);
-            startAt = $(hoverColumns).first().data('date') ;
-            endAt = $.datepicker.formatDate('yy-mm-dd', new Date(new Date(startAt).getTime() + (range.end  - range.start - 1) * 24 * 60 * 60 * 1000))           
-          }else{
-            hoverColumns = $(allDays).slice(range.start, range.end);  
-            startAt =  $(hoverColumns).first().data('date'), 
-            endAt =  $(hoverColumns).last().data('date')            
-          }  
                                            
           scope.$apply(function(){
             scope.updateEvent({
               event: {              
                 id: $(ui.helper).data('event-id'), 
-                start_at: startAt, 
-                end_at: endAt
+                start_at: range.start, 
+                end_at: range.end
                }  
             })
           });  

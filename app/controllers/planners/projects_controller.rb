@@ -39,7 +39,12 @@ class Planners::ProjectsController < ApplicationController
     @load_angular = true    
     @project = Project.find params[:id]
     respond_to do |format|
-      format.html      
+      format.html do
+        if params[:week].present?
+          render :template => "planners/projects/show_week"
+        end    
+      end       
+      
       format.json 
     end      
   end

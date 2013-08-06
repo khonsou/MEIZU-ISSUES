@@ -1,74 +1,5 @@
 <% content_for:sidebar do %>
-
-  <div class="sidebar-nav">
-    <ul class="nav nav-list" id="slideRight">
-      <li class="form-horizontal head">
-        <h5><%= @project.name %></h5>
-        <div class="pull-right dropdown-icon">
-          <div class="actions span">
-            <div class="btn-group">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <img src="/assets/project_header/down.png" alt="down"/>
-              </a>
-              <ul class="dropdown-menu pull-right">
-                <% if User.current.allowed_to?(:edit_project, @project) && @project.creator == User.current %>
-                  <li class="action-edit">
-                    <%= link_to l(:button_edit), edit_planners_project_path(@project), remote: true %>
-                  </li>
-                <% end -%>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </li>
-      <li style="overflow:auto">
-        <div class="form-span3">
-          <%= image_tag(@project.icon_url(:large), :class => "hidden-phone img-polaroid") %>
-        </div>
-      </li>
-      <li>
-        <div id="descriptionToPro"><%= @project.description %></div>
-      </li>
-    </ul>  
-    <ul class="nav nav-list"  ng-controller="MemberCtrl">            
-      <li class="head">
-        <h5>成员</h5>
-        <div class="pull-right"> 
-          <%= link_to l(:label_planner_invite),new_member_planners_projects_path(project: @project), class:'invite-member', "ginkgo-invite-member" => "" %>
-        </div>
-      </li>
-      <li class="head">        
-        <div id="members">
-          <div ng-repeat="member in members" ginkgo-draggable="true" class="member" data-member-id="{{member.id}}">
-            <a class="photo" href="/planners/members/{{member.id}}">
-              <img class="img-circle" src="/assets/project_header/person.png">
-            </a>            
-            <div class="member-infor">
-              <a class="name" href="/planners/members/{{member.id}}">{{member.name}}</span>
-              <div class="role">master</div>
-            </div>
-            <a class="pull-right destroy" href="/planners/members/{{member.id}}" data-member-id="{{member.id}}" rel="nofollow" ginkgo-destroy-member=""><img src="/assets/planners/delete.png"></a>                       
-          </div>
-        </div>
-      </li>
-    </ul>  
-    <ul class="nav nav-list">                
-      <li class="head">
-        <h5>阶段</h5>
-      </li>
-      <li class="classify" ng-controller="TaskCtrl">
-        <div id="external-events">
-          <div ginkgo-task-popover ginkgo-draggable ng-show="tasks.length > 0"  ng-repeat="task in tasks"  class="external-event"  data-task-id="{{task.id}}" style="background-color:{{task.color}};"><span class="name">{{task.text}}</span></div>
-        </div>
-        <form ng-submit="addTask()">
-          <input type="text" ng-model="task.text"  size="10" class="span2"
-                 placeholder="添加新阶段">
-          <!-- <input class="btn-primary" type="submit" value="add"> -->
-        </form>
-      </li>
-    </ul>
-  </div><!--/.well -->
-  
+  <%= render :partial => "sidebar" %>
 <% end -%>
 
 <div id='calendar' style="overflow:hidden;">
@@ -82,6 +13,10 @@
         <div class="span3 offset5">
           <div class="header">
             <nav>  
+              <div class="btn-group">
+                <a class="btn" href="/planners/projects/<%= @project.id %>">天</a>
+                <a class="btn" href="/planners/projects/<%= @project.id %>?week=true">周</a>                
+              </div>
               <div class="btn-group">
                 <button class="prev btn" >◀</button>
                 <button class="toCenter btn" >今天</button>                

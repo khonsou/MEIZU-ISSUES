@@ -1,0 +1,101 @@
+<% content_for:sidebar do %>
+  <%= render :partial => "sidebar" %>  
+<% end -%>
+
+<div id='calendar' style="overflow:hidden;">
+
+  <div class="row-fluid grid img-polaroid">
+    <div  class="span12">
+      <div class="row-fluid">
+        <div class="span4">
+          <h3>{{ currentMonth.getFullYear()}} - {{ currentMonth.getMonth() + 1 }}</h3>
+        </div>
+        <div class="span3 offset5">
+          <div class="header">
+            <nav>  
+              <div class="btn-group">
+                <a class="btn" href="/planners/projects/<%= @project.id %>">天</a>
+                <a class="btn" href="/planners/projects/<%= @project.id %>?week=true">周</a>                
+              </div>
+              <div class="btn-group">
+                <button class="prev btn" >◀</button>
+                <button class="toCenter btn" >今天</button>                
+                <button class="next btn" >▶</button>
+              </div>
+            </nav>      
+          </div>  
+        </div>
+      </div>  
+    </div>
+  </div>     
+  
+  <div class="scrollbar">
+		<div class="handle">
+			<div class="mousearea"></div>
+		</div>
+	</div>
+  
+  <div id="frame" >
+    <ul class="slidee clearfix" style="width:3620px;">
+      <% (-5..6).to_a.map {|i| Date.today + i.months }.each do |month| %>
+      <li style="width:300px;">      
+        <div class="days-of-month date img-polaroid">
+          <% (month.beginning_of_month..month.end_of_month).to_a.each do |day| %>
+            <% if day.monday? %>
+              <div class="day-header" >
+                <% if day.day < 8 %>
+                <span style="font-weight:bold;color:#333;font-size:13px;"><%= day.month %>月<%= day.day %>号</span>
+                <% else %>
+                  <span ><%= day.day %></span>          
+                <% end %>
+              </div>    
+            <% end %>
+          <% end %>      
+        </div>
+      
+        <div class="month-row">
+          <div class="events holdable" style="width:100%;padding-top:{{ eventsInMonth[0].index * 30}}px;">                      
+            <div  ng-repeat="event in eventsInMonth = (events | filterByMonth:'<%= month.to_s %>' | orderBy:'position' ) " ginkgo-draggable="true" class="event  tip wraps_next  {{event.eventableType}}" style="margin-left:{{event.left}};width:{{event.width}};background-color:{{event.color}};"  ginkgo-resizeable="true" data-event-id="{{event.id}}"  data-position="{{event.position}}" ginkgo-popover="true" ng-switch on="event.eventableType" data-toggle="tooltip" title="{{ event.startTime }} - {{event.endTime }}">          
+              <span ng-switch-when="Task" class="event">
+                <span class="title">{{ event.text }} </span>
+              </span>
+  
+              <span ng-switch-default class="event">
+                <a><img class="img-circle" src="/assets/planners/person.png" style=""></a>
+                <span style="" class="title">{{ event.text }} </span>
+              </span>
+            </div>  
+          </div> 
+                
+          <div class="days"  style="min-height:500px;height:{{  200 + (events.length * 20)}}px;" ginkgo-droppable="true">            
+            <div class="dates" style="display:table-row;">
+              <% (month.beginning_of_month..month.end_of_month).to_a.each do |day| %>            
+                <% if day.monday? %>              
+                  <div class="day"  data-date="<%= day.to_s %>" ></div>
+                <% end %>  
+              <% end %>                
+            </div>
+          </div>   
+  
+        </div>
+    
+        <div class="days-of-month date img-polaroid">
+          <% (month.beginning_of_month..month.end_of_month).to_a.each do |day| %>
+            <% if day.monday? %>
+              <div class="day-header" >
+                <% if day.day < 8 %>
+                <span style="font-weight:bold;color:#333;font-size:13px;"><%= day.month %>月</span>
+                <% else %>
+                  <span ><%= day.day %></span>          
+                <% end %>
+              </div>    
+            <% end %>
+          <% end %>      
+        </div>
+      </li>
+      <% end %>
+    </ul> 
+
+  </div>
+  
+</div>      

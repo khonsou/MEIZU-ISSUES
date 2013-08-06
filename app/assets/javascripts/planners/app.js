@@ -41,6 +41,9 @@ var CalendarCtrl = ['$scope', '$resource', '$filter', function ($scope, $resourc
     var totalWidth =  $('#frame ul li').outerWidth();  
     var totalDates = moment(date).daysInMonth();    
     $scope.gridWidth = totalWidth / totalDates;
+    
+    moment(date).date(1).toDate()
+        
     var startHoverIndex;
     if ($(holder).offset().left > $(ui).offset().left) {
       startHoverIndex  =  Math.round(($(ui).offset().left - $(holder).parents('li').offset().left) / $scope.gridWidth) + 1 ;      
@@ -51,6 +54,7 @@ var CalendarCtrl = ['$scope', '$resource', '$filter', function ($scope, $resourc
       }
       
     }
+
     var widthCount =  parseInt($(ui).outerWidth() /  $scope.gridWidth)  ;        
     
     if (($(ui).outerWidth() %  $scope.gridWidth) > ($scope.gridWidth / 3)) {
@@ -59,7 +63,10 @@ var CalendarCtrl = ['$scope', '$resource', '$filter', function ($scope, $resourc
     
     var endHoverIndex = startHoverIndex + widthCount ;
   
-    return {start: startHoverIndex, end: endHoverIndex};
+    var startDay = moment(date).date(1).add('days', startHoverIndex ).format("YYYY-MM-DD");
+    var endDay = moment(date).date(1).add('days', endHoverIndex - 1 ).format("YYYY-MM-DD");    
+  
+    return {start: startDay, end: endDay};
   }
   
   $scope.calculateHoverIndexResize =  function(ui, holder, date){
@@ -77,7 +84,11 @@ var CalendarCtrl = ['$scope', '$resource', '$filter', function ($scope, $resourc
     
     var endHoverIndex = startHoverIndex + widthCount ;
   
-    return {start: startHoverIndex, end: endHoverIndex};
+    var startDay = moment(date).date(1).add('days', startHoverIndex).format("YYYY-MM-DD");
+    var endDay = moment(date).date(1).add('days', endHoverIndex - 1).format("YYYY-MM-DD");    
+  
+    return {start: startDay, end: endDay};
+
   }  
    
   
@@ -238,6 +249,7 @@ $(document).ready(function () {
   // });
   
   var sly ;
+  var width = $('#frame li').outerWidth();
   if($('#frame')[0] != undefined){
     sly = new Sly('#frame', {
       horizontal: 1,
@@ -248,7 +260,7 @@ $(document).ready(function () {
       dragHandle: 1,
   		dynamicHandle: 1,
     	speed: 300,
-      startAt: 4250 - (15 - new Date().getDate()) * 30, //居中
+      startAt:  width * 5 - (15 - new Date().getDate()) * 30, //居中
       releaseSwing: 1,
     	elasticBounds: 0,
       scrollBar: $('.scrollbar'),
@@ -266,7 +278,7 @@ $(document).ready(function () {
   			// Animate a particular item to the center of the frame.
   			// If no item is provided, the whole content will be animated.
 //  			sly.toCenter(item);
-         sly.slideTo(4250 - (15 - new Date().getDate()) * 30)
+         sly.slideTo( width * 5 - (15 - new Date().getDate()) * 30)
   		});
     
   }
