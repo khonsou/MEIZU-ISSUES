@@ -41,7 +41,7 @@
                     <div class="pull-left name"><%= journal.user %></div>
                     <div class="pull-right"><%= relative_time(journal.created_on) %></div>
                   </div>
-                  <div class="span16 marleft0">
+                  <div class="wiki span22 padright22">
                     <% if journal.notes %>
                       <%= truncate(h(journal.notes), length: 75) %>
                     <% else %>
