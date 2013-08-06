@@ -1,16 +1,14 @@
-<ul class="thumbnails project-list">
-  <% @projects.each do |p| %>      
-    <li class="span2 project-item">
-      <div>
-        <%= link_to image_tag(p.icon_url(:large)), "/planners/projects/#{p.id}", :class => "project-picture thumbnail" %>
-        <div class="caption">
-          <h5><%= p.name %></h5>
-          <p class="small"><%= p.description %></p>
-        </div>
+<% @projects.each do |p| %>      
+  <li class="span2 project-item">
+    <div>
+      <%= link_to image_tag(p.icon_url(:large)), "/planners/projects/#{p.id}", :class => "project-picture thumbnail" %>
+      <div class="caption">
+        <h5><%= p.name %></h5>
+        <p class="small"><%= p.description %></p>
       </div>
-    </li>
-  <% end %>    
-</ul>
+    </div>
+  </li>
+<% end %>    
 <% page = (params[:page] ? params[:page].to_i+1 : 2) %>
 <% if @projects.num_pages > 1 && @projects.num_pages >= page %>
   <div class="load-more">
