@@ -14,7 +14,8 @@ class MemberInvitation < ActiveRecord::Base
   def self.invite(project, mails, description = nil, inviter = nil)
     mails.map do |mail|
       pending_member_invitations = MemberInvitation.where(:project_id => project.id, :mail => mail, :state => "pending")
-      if pending_member_invitations.blank?
+      members = Member.where(:project_id => project.id, :user_id => User.find_by_login(mail))
+      if pending_member_invitations.blank? && members.blank?
         create(project: project, mail: mail, description: description, inviter: inviter)
       else
         pending_member_invitations.last.updated_at = Time.now

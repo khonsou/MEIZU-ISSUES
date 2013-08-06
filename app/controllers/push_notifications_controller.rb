@@ -46,7 +46,8 @@ class PushNotificationsController < ApplicationController
   private
 
   def pending_members_push_notifications_and_unread_count
-    member_invitations = User.current.member_invitations.where("state = 'pending'")
+    member_invitations = User.current.member_invitations.where("state = 'pending'")\
+     - User.current.member_invitations.where(:project_id => User.current.members.map{|p| p.project_id})
     @push_notifications = User.current.push_notifications.where("pusher_type != 'MemberInvitation'").unread
     @pending_members = member_invitations.map{|p| p.push_notifications}.reverse.flatten
     @unread_count = @push_notifications.count + @pending_members.size

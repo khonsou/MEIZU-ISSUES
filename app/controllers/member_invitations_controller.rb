@@ -35,6 +35,8 @@ class MemberInvitationsController < ApplicationController
     @member_invitation = MemberInvitation.find(params[:id])
 
     if @member_invitation.accept!(params[:token])
+      member_invitations = MemberInvitation.where(:project_id => @member_invitation.project_id, :state => "pending", :mail => @member_invitation.mail)
+      member_invitations.map{|m| m.accept!(m.token)}
       #make user's latest project position to top
       Member.where(:user_id => User.current.id).order("created_on desc").first.move_to_top
       redirect_to project_path(@member_invitation.project), notice: l(:notice_member_invitation_accepted)
@@ -47,6 +49,8 @@ class MemberInvitationsController < ApplicationController
     @member_invitation = MemberInvitation.find(params[:id])
     
     if @member_invitation.reject!(params[:token])
+      member_invitations = MemberInvitation.where(:project_id => @member_invitation.project_id, :state => "pending", :mail => @member_invitation.mail)
+      member_invitations.map{|m| m.reject!(m.token)}
       redirect_to home_path, notice: l(:notice_member_invitation_rejected)
     else
       redirect_to home_path, alert: l(:error_member_invitation)
