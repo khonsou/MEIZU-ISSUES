@@ -1,3 +1,27 @@
 // Place all the styles related to the planners::projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.project-picture{
+  width:148px;
+  height:148px;
+
+  img{
+    width:148px;
+    height:148px;
+  }
+}
+
+ul.project-list{
+  li.project-item{
+    margin-top:20px;
+  }
+}
+
+.padding-align{
+  margin-left:75px!important;
+}
+
+.margin-align{
+	margin-left:40px;
+}

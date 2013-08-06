@@ -18,9 +18,9 @@
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container-fluid">
-        <a href="#" class="navbar-link" style="display:block;text-align:right">logout</a>
+        <a href="#" class="navbar-link">logout</a>
         
-        <a class="brand" href="/planners" id="mz-top-link-logo">&nbsp;</a>
+        <a class="brand padding-align" href="/planners" id="mz-top-link-logo">&nbsp;</a>
         <div class="nav-collapse collapse">  
          <%= form_tag( {:controller =>"planners/search",:action=> "index"},{class: 'form-search pull-right', id: "quick-search",:onSubmit=>'return validate();',:method=>:get}) do %>
             <div class="input-prepend">

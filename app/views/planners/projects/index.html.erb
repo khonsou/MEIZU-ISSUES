@@ -1,7 +1,7 @@
 <% content_for:sidebar do %>
  
 <% end %>
-<h4 class="title head clearfix">
+<h4 class="title head clearfix padding-align">
   所有项目:
   <div class="pull-right" style="display:inline-block;"><h5>
     <%= link_to new_planners_project_path, remote: true do %>
@@ -9,6 +9,6 @@
     <% end -%>
   </h5></div>
 </h4>
-<div class="row-fluid">
+<div class="row-fluid margin-align">
   <%= render :partial => "list" %>
 </div>
