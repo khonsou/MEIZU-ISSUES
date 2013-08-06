@@ -7,6 +7,10 @@ class MemberInvitationsController < ApplicationController
     if params[:user_id]
       user = User.find(params[:user_id])
       @recipients << user
+    elsif params[:member_invitation_id]
+      user = User.new
+      user.mail = MemberInvitation.find_by_id(params[:member_invitation_id]).mail
+      @recipients << user
     end
   end
 

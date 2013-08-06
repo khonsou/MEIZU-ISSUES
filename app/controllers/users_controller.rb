@@ -18,7 +18,7 @@
 class UsersController < ApplicationController
   layout 'admin'
 
-  before_filter :require_admin, :except => :show
+  before_filter :require_admin, :except => [:show, :stranger]
   before_filter :find_user, :only => [:show, :edit, :update, :destroy, :edit_membership, :destroy_membership]
   accept_api_auth :index, :show, :create, :update, :destroy
 
@@ -65,8 +65,8 @@ class UsersController < ApplicationController
     # show projects based on current user visibility
     @memberships = @user.memberships.all(:conditions => Project.visible_condition(User.current))
 
-    # events = Redmine::Activity::Fetcher.new(User.current, :author => @user).events(nil, nil, :limit => 10)
-    # @events_by_day = events.group_by(&:event_date)
+    events = Redmine::Activity::Fetcher.new(User.current, :author => @user).events(nil, nil, :limit => 10)
+    @events_by_day = events.group_by(&:event_date)
 
     unless User.current.admin?
       # if !@user.active? || (@user != User.current  && @memberships.empty? && events.empty?)
@@ -81,6 +81,11 @@ class UsersController < ApplicationController
       format.js
       format.api
     end
+  end
+
+  def stranger
+    @member_invitation_id = params[:member_invitation_id]
+    @email = MemberInvitation.find_by_id(params[:member_invitation_id]).mail
   end
 
   def new

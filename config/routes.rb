@@ -110,6 +110,7 @@ RedmineApp::Application.routes.draw do
     get 'search', :controller => 'search', :action => 'index'
   end  
 
+  match 'users/stranger', :to => 'users#stranger', :via => :get, :member_invitation_id => /.*/
   resources :users
   match 'users/:id/memberships/:membership_id', :to => 'users#edit_membership', :via => :put, :as => 'user_membership'
   match 'users/:id/memberships/:membership_id', :to => 'users#destroy_membership', :via => :delete

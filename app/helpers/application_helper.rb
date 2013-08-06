@@ -66,6 +66,15 @@ module ApplicationHelper
     end
   end
 
+  def link_to_stranger(pending, options={})
+    email = truncate(pending.mail, length: 15)
+    if options[:remote] == false
+      link_to email, :controller => 'users', :action => 'stranger', :member_invitation_id => pending.id
+    else
+      link_to email, { :controller => 'users', :action => 'stranger', :member_invitation_id => pending.id}, { remote: true }
+    end
+  end
+
   # Displays a link to +issue+ with its subject.
   # Examples:
   #
