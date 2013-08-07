@@ -16,7 +16,6 @@ gem 'daemons'
 gem "unicode-display_width"
 gem 'dropzonejs-rails'
 gem "useragent"
-gem "jquery-atwho-rails"
 gem 'ruby-pinyin'
 gem 'acts-as-taggable-on'
 gem 'jbuilder'
