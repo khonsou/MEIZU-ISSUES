@@ -14,8 +14,7 @@
 
 //= require bootstrapx-clickover
 //= require jquery.pin
-//= require atwho-caret
-//= require atwho
+//= require jquery.atwho
 
 //= require core
 //= require ./files

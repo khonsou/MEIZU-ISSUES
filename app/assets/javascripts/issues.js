@@ -73,7 +73,17 @@ function initAt(){
     data: window._project_watchers,
     limit: 2000,
     tpl: "<li data-pinyin='${pinyin}' data-value='${name}'> ${name} </li>"  ,
-    callbacks: {
+    callbacks: {      
+      matcher: function(flag, subtext) {
+        flag = flag.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+        regexp = new RegExp(flag + '([A-Za-z0-9_\+\-]*)$|' + flag + '([^\\x00-\\xff]*)$', 'gi');
+        match = regexp.exec(subtext);
+        if (match) {
+          return match[2] || match[1];
+        } else {
+          return null;
+        }
+      },
       filter: function(query, data, search_key) {
         var item, _i, _len, _results;
         _results = [];
