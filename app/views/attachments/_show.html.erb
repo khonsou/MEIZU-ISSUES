@@ -16,15 +16,15 @@
       var activeLink = $("#preImage").next(),
           imagePath = $("#preImage").next().find("img").attr("src");
 
-      $(".issue .attachments ul.thumbnails li").each(function(index,item){
+      $("ul.thumbnails li").each(function(index, item){
           var link_href = $(item).find("a").attr("href"),
               listImagePath = $(item).find("img").attr("path");
 
           if(imagePath == listImagePath){
             if(index == 0){
-              $("#preImage").find("img").attr("src","/assets/left-arrow.png");
-            }else if(index == $(item).parent().children().length-1){
-              $("#nextImage").find("img").attr("src","/assets/right-arrow.png");
+              $("#preImage").find("img").attr( "src", "/assets/left-arrow.png");
+            }else if(index == $("ul.thumbnails li").length-1){
+              $("#nextImage").find("img").attr("src", "/assets/right-arrow.png");
             }else{
               return;
             }
@@ -32,61 +32,57 @@
         })
     })()
 
-    function matchLi(activeLink,liElements,imageIndex,direction){
+    function matchLi(activeLink, liElements, imageIndex, direction){
+      var liElements = $(liElements);
       if(direction == "pre"){
-        $(liElements).each(function(index,item){
+        liElements.each(function(index, item){
           var listImagePath = $(item).find("img").attr("path"),
               url;
 
           if(imageIndex == listImagePath){
-            if($(item).prev().length){
-              url = $(item).prev().find("img").attr("path");
-
-              $(activeLink).attr("href",url);
-              $(activeLink).find("img").attr("src", url);
-
-              if($(item).prev().index() == 0){
-                $(activeLink).prev().children().first().attr("src", "/assets/left-arrow.png");
-              }
+            if(index == 1){
+              $("#preImage").children(":eq(0)").attr("src", "/assets/left-arrow.png");
             }
+            url = liElements.children(":eq(" + (index - 1) + ")").find("img").attr("path");
+
+            $(activeLink).attr("href", url);
+            $(activeLink).find("img").attr("src", url);
+           
           }
-          $("#nextImage").find("img").attr("src", "/assets/right-arrow-live.png");
+          $("#nextImage").children(":eq(0)").attr("src", "/assets/right-arrow-live.png");
         })
       }else if(direction == "next"){
-        $(".issue .attachments ul.thumbnails li").each(function(index,item){
+        liElements.each(function(index, item){
           var listImagePath = $(item).find("img").attr("path"),
               url;
 
           if(imageIndex == listImagePath){
-            if($(item).next().length){
-              url = $(item).next().find("img").attr("path");
-
-              $(activeLink).attr("href",url);
-              $(activeLink).find("img").attr("src", url);
-
-              if($(item).next().index()==$(item).parent().children().length-1){
-                $(activeLink).next().children().first().attr("src", "/assets/right-arrow.png");
-              }
+            if(index == liElements.length-2){ 
+              $("#nextImage").children(":eq(0)").attr("src", "/assets/right-arrow.png");
             }
+            url = liElements.children(":eq(" + (index + 1) + ")").find("img").attr("path");
+
+            $(activeLink).attr("href", url);
+            $(activeLink).find("img").attr("src", url);
           }
-          $("#preImage").find("img").attr("src", "/assets/left-arrow-live.png");
+          $("#preImage").children(":eq(0)").attr("src", "/assets/left-arrow-live.png");
         })
       }else{
         return;
       }
     }
 
-    $("#preImage").bind("click",function(){
+    $("#preImage").bind("click", function(){
       var activeLink = $(this).next(),
           imageIndex = $(this).next().find("img").attr("src"); 
 
-      matchLi(activeLink,".issue .attachments ul.thumbnails li",imageIndex,"pre")
+      matchLi(activeLink, "ul.thumbnails li", imageIndex, "pre");
     })
     $("#nextImage").bind("click",function(){
       var activeLink = $(this).prev(),
           imageIndex = $(this).prev().find("img").attr("src");
 
-      matchLi(activeLink,".issue .attachments ul.thumbnails li",imageIndex,"next")  
+      matchLi(activeLink, "ul.thumbnails li", imageIndex, "next");
     });
   })
 <% end -%>
