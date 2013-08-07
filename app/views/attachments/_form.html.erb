@@ -12,11 +12,11 @@
     <span class="attachment_name"></span>
     <%= link_to_function(image_tag('icon-trash.png'), 'removeFileField(this)', :title => (l(:button_delete))) %>
   </div>
-
-   <% @issue.attachments.each do |attachment|%>
+  <% attachments = @issue.attachments - @issue.journals.map(&:own_attachments).flatten %>
+  <% attachments.each do |attachment|%>
     <label><span attachment-id= <%= attachment.id %>><%= attachment.filename %></span>
-    <span class = 'delete'><%= link_to_function(image_tag('icon-trash.png'), :title => (l(:button_delete))) %></span></label>
-   <% end %>
+      <span class = 'delete'><%= link_to_function(image_tag('icon-trash.png'), :title => (l(:button_delete))) %></span></label>
+  <% end %>
 </div>
   
   <%= hidden_field_tag 'remove_attachments'%>

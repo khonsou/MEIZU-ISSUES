@@ -903,6 +903,7 @@ class Issue < ActiveRecord::Base
       end
 
       # TODO: Rename hook
+      @is_journal_update = params["notes"].nil? ? false : true
       Redmine::Hook.call_hook(:controller_issues_edit_before_save, { :params => params, :issue => self, :time_entry => @time_entry, :journal => @current_journal})
       if save
         # TODO: Rename hook
@@ -1166,16 +1167,16 @@ class Issue < ActiveRecord::Base
     end
   end
 
-  # Callback on attachment deletion
+  # Callback on attachment add
   def attachment_added(obj)
-    if @current_journal && !obj.new_record?
+    if @is_journal_update && @current_journal && !obj.new_record?
       @current_journal.details << JournalDetail.new(:property => 'attachment', :prop_key => obj.id, :value => obj.filename)
     end
   end
 
   # Callback on attachment deletion
   def attachment_removed(obj)
-    if @current_journal && !obj.new_record?
+    if @is_journal_update && @current_journal && !obj.new_record?
       @current_journal.details << JournalDetail.new(:property => 'attachment', :prop_key => obj.id, :old_value => obj.filename)
       @current_journal.save
     end
@@ -1301,6 +1302,5 @@ class Issue < ActiveRecord::Base
                                                 and #{where}
                                                 and #{Issue.table_name}.project_id=#{Project.table_name}.id
                                                 and #{visible_condition(User.current, :project => project)}
-                                              group by s.id, s.is_closed, j.id")
-  end
+                                              group by s.id, s.is_closed, j.id") end
 end

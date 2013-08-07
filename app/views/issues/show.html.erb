@@ -111,12 +111,10 @@
         <div class="actions">
           <%= relative_time(@issue.created_on) %>
         </div>
-
-
       </div>
     
       <div class="issue-content">
-        <% attachments = @issue.attachments | @issue.journals.map(&:own_attachments).flatten %>
+        <% attachments = @issue.attachments - @issue.journals.map(&:own_attachments).flatten %>
         <% if @issue.description? || attachments.any? -%>
           <% if @issue.description? %>
             <div class="wiki description">
