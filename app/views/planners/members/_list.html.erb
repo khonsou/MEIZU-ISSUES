@@ -1,10 +1,10 @@
-<ul class="thumbnails">
+<ul class="thumbnails" style='margin-left: 98px;'>
   <% @users.each do |m| %>    
-    <li class="span2">
-      <div>
-      <%= link_to image_tag(m.avatar_url(:large),:class => 'img-circle'), planners_member_path(m), :class => "all-member-photo"%>
+    <li class='image-space'>
+      <div class='line-space'>
+      <%= link_to image_tag(m.avatar_url(:medium),:class => 'img-circle'), planners_member_path(m), :class => "all-member-photo"%>
         <div class="caption">
-          <h5 style="text-align:center;"><%= m.lastname %><%= m.firstname %></h5>
+          <h5 class='image-name'><%= m.lastname %><%= m.firstname %></h5>
         </div>
       </div>
     </li>
