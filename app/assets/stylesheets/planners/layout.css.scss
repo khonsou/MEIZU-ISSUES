@@ -22,16 +22,17 @@ body>#wrap {
   padding: 30px 0 40px 15px;
   color: #a7abb1;
   z-index: 999;
-
+  border-right: 1px solid #ccc;  
+  height: 100%;
 }
 
 #main {
   padding: 15px 35px 40px 0;
-  margin-left: 250px;
+  margin-left: 247px;
   position: relative;
   min-height: 600px;
-  border-left: 1px solid #ccc;  
-  background: #ffffff;
+  background: #fff;
+  border-bottom:1px solid #ddd;  
 }
 
 .sidebar-nav {
@@ -57,7 +58,8 @@ body>#wrap {
 .navbar-inverse{
 
   .brand{
-    margin-right: 170px;
+    margin-right: 100px;
+    margin-left: 0px;
     color: $fontColor;
   }
         
