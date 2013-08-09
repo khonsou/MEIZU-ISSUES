@@ -1,10 +1,11 @@
 <% @projects.each do |p| %>      
   <li class="span2 project-item">
     <div>
-      <%= link_to image_tag(p.icon_url(:large)), "/planners/projects/#{p.id}", :class => "project-picture thumbnail" %>
+      <%= link_to image_tag(p.icon_url(:large)), "/planners/projects/#{p.id}", :class => "project-picture thumbnail", :title => "#{p.name}" %>
       <div class="caption">
-        <h5><%= p.name %></h5>
-        <p class="small"><%= p.description %></p>
+        <h5><%= truncate(strip_tags(p.name),:length => 15) %></h5>
+        <p class="small" title="<%= p.description %>"><%= truncate(strip_tags(p.description),
+:length => 10) %></p>
       </div>
     </div>
   </li>

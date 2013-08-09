@@ -7,15 +7,15 @@
   <div class="row-fluid grid img-polaroid">
     <div  class="span12">
       <div class="row-fluid">
-        <div class="span4">
+        <div class="span4" style="margin-top:-15px;">
           <h3>{{ currentMonth.getFullYear()}} - {{ currentMonth.getMonth() + 1 }}</h3>
         </div>
         <div class="span3 offset5">
           <div class="header">
-            <nav>  
+            <nav style="margin-right:35px;">  
               <div class="btn-group">
-                <a class="btn" href="/planners/projects/<%= @project.id %>">天</a>
-                <a class="btn" href="/planners/projects/<%= @project.id %>?week=true">周</a>                
+                <a class="btn <%= 'active' if params[:week] == nil %>" href="/planners/projects/<%= @project.id %>">天</a>
+                <a class="btn <%= 'active' if params[:week].present? %>" href="/planners/projects/<%= @project.id %>?week=true">周</a> 
               </div>
               <div class="btn-group">
                 <button class="prev btn" >◀</button>

@@ -1,19 +1,17 @@
 <ul class="thumbnails">
   <% @projects.each do |p| %>      
-    <li class="span2">
+    <li class="span2 project-item" style="height:215px;overflow:hidden;">
       <div>
-        <%= link_to image_tag(p.icon_url(:large)), "/planners/projects/#{p.id}", :class => "thumbnail" %>
+        <%= link_to image_tag(p.icon_url(:large)), "/planners/projects/#{p.id}", :class => "project-picture thumbnail", :title => "#{p.name}" %>
         <div class="caption">
-          <h5><%= p.name %></h5>
-          <p class="small">6月20号 - 6月30号</p>
+          <h5><%= truncate(strip_tags(p.name),:length => 15) %></h5>
+          <p class="small" title="<%= p.description %>"><%= truncate(strip_tags(p.description),
+:length => 10) %></p>
         </div>
       </div>
     </li>
   <% end %>    
 </ul>
-<% page = (params[:page] ? params[:page].to_i+1 : 2) %>
-<% if @projects.num_pages > 1 && @projects.num_pages >= page %>
-  <div class="pull-right">
-    <a href="planners/projects">所有项目</a>
-  </div>
-<% end -%>
+<div class="pull-right projects-link">
+  <a href="planners/projects">所有项目</a>
+</div>

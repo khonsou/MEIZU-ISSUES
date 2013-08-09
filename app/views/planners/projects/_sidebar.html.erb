@@ -31,7 +31,7 @@
   <ul class="nav nav-list"  ng-controller="MemberCtrl">            
     <li class="head">
       <h5>成员</h5>
-      <div class="pull-right"> 
+      <div class="pull-right invite-member-div"> 
         <%= link_to l(:label_planner_invite),new_member_planners_projects_path(project: @project), class:'invite-member', "ginkgo-invite-member" => "" %>
       </div>
     </li>
@@ -59,7 +59,7 @@
         <div ginkgo-task-popover ginkgo-draggable ng-show="tasks.length > 0"  ng-repeat="task in tasks"  class="external-event"  data-task-id="{{task.id}}" style="background-color:{{task.color}};"><span class="name">{{task.text}}</span></div>
       </div>
       <form ng-submit="addTask()">
-        <input type="text" ng-model="task.text"  size="10" class="span2"
+        <input type="text" ng-model="task.text"  size="10" 
                placeholder="添加新阶段">
         <!-- <input class="btn-primary" type="submit" value="add"> -->
       </form>

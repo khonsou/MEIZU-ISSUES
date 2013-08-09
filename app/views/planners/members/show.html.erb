@@ -7,7 +7,7 @@
       </li>
       <li>
         <a href="#">
-          <img src="<%= @member.user.avatar_url(:large) %>" class="img-polaroid" style="height:135px;width:95%;">
+          <img src="<%= @member.user.avatar_url(:large) %>" class="img-polaroid" style="width:95%;">
         </a>
       </li>
       <li class="head">
@@ -17,10 +17,10 @@
         <% @projects.each do |project| %>
           <div class="clearfix">
             <a class="photo" href="/planners/projects/<%= project.id %>">
-              <img class="img-circle" src="<%= project.icon_url(:medium) %>" style="width:50px;">
+              <img class="img-polaroid personal-project" src="<%= project.icon_url(:medium) %>">
             </a>            
-            <div style="margin-left:5px;">
-              <a class="name" href="/planners/projects/<%= project.id %>"><%= project.name %></a>
+            <div style="margin-left:5px;margin-top:7px;">
+              <a class="personal-project" href="/planners/projects/<%= project.id %>"><%= project.name %></a>
             </div>          
           </div>
         <% end %>
@@ -35,12 +35,12 @@
   <div class="row-fluid grid img-polaroid">
     <div  class="span12">
       <div class="row-fluid">
-        <div class="span4">
+        <div class="span4" style="margin-top:-15px;">
           <h3>{{ currentMonth.getFullYear()}} - {{ currentMonth.getMonth() + 1 }}</h3>
         </div>
         <div class="span3 offset5">
           <div class="header">
-            <nav>  
+            <nav style="margin-right:35px;">  
               <div class="btn-group">
                 <button class="prev btn" >◀</button>
                 <button class="toCenter btn" >今天</button>                

@@ -35,7 +35,8 @@
   text-align: left;
 }
 #slideRight li.head{
-  border-bottom: 1px #a7abb1 dashed;
+  border-bottom: 1px #a7abb1 dotted;
+  position: relative;
 }
 #slideRight li.head>div{
   padding: 5px 0 5px 0;
@@ -48,8 +49,9 @@
   font-weight: bold;
 }
 .role{
-  color:#666;
+  color:#999999;
   font-size: 14px;
+  margin-top: -7px;
 }
 .classify ul{
   margin-left: 0;

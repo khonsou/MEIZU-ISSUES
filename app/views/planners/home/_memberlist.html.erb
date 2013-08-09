@@ -1,18 +1,16 @@
 <ul class="thumbnails">
   <% @users.each do |m| %>    
-    <li class="span2">
-      <div>
-      <%= link_to image_tag(m.avatar_url(:large),:class => 'img-circle'), planners_member_path(m), :class => "all-member-photo"%>
+    <li class="image-space">
+      <div class="line-space">
+      <%= link_to image_tag(m.avatar_url(:medium),:class => 'img-circle'), planners_member_path(m), :class => "all-member-photo"%>
         <div class="caption">
-          <h5 style="text-align:center;"><%= m.lastname %><%= m.firstname %></h5>
+          <h5 class="image-name"><%= m.lastname %><%= m.firstname %></h5>
         </div>
       </div>
     </li>
   <% end %>    
 </ul>
-<% page = (params[:page] ? params[:page].to_i+1 : 2) %>
-<% if @users.num_pages > 1 && @users.num_pages >= page %>
-  <div class="pull-right">
-    <a href="/planners/members">所有成员</a>
-  </div>
-<% end -%>
+
+<div class="pull-right members-link" style="margin-bottom:40px;">
+  <a href="/planners/members">所有成员</a>
+</div>

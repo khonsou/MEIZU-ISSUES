@@ -1,17 +1,32 @@
 .nav-list{
   li.head{
-    h5,div.pull-right{
+    div.pull-right{
       display:inline-block;
     }
 
     h5{
       font-size:20px;
-      color: #000000;
+      color: #3e3e3e;
+      display:inline-block;
+      padding-right: 25px;
+    }
+
+    .invite-member-div{
+      margin-top:3px;
     }
 
     #members{
       .member-infor{
         margin-left:5px;
+        margin-top:5px;
+      }
+
+      .destroy{
+        margin-top:5px;
+      }
+
+      .name{
+        color:#000000;
       }
     }
 
@@ -19,6 +34,9 @@
       display:inline-block;
       padding:10px 0 10px 10px!important;
       text-align:right;
+      position: absolute;
+      right: 0;
+      top: 0;
     }
   }
 
@@ -31,12 +49,26 @@
       width:185px;
     }
   }
-	
+
   .form-span3{
     margin-left:3px;
   }
 
   #descriptionToPro{
-    color:#000000;
+    color:#111111;
+    text-indent: 2em;
+    margin-bottom:10px;
+  }
+
+  li.classify{
+    input[type="text"]{
+      width:185px;
+    }
+  }
+}
+
+.ng-scope{
+  >li:first-child,>li:last-child{
+    border-bottom: 1px #a7abb1 dotted;
   }
 }
