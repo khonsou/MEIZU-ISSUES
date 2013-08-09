@@ -6,12 +6,15 @@
   <%= render '/projects/title_bar' %>
 <% end -%>
 
-<h4><%= h @page.pretty_title %></h4>
-
 <%= form_for @content, :as => :content,
             :url => {:action => 'update', :id => @page.title},
             :html => {:method => :put, :multipart => true, :id => 'wiki_form'} do |f| %>
   <div class="row-fluid">
+    <% if @page.new_record? %>
+      <h4><%= h @page.pretty_title %></h4>
+    <% else %>
+      <%= text_field_tag 'wiki_page[title]', @page.pretty_title,  :required => true, class: 'span24', placeholder: l(:field_title) %>
+    <% end %>
     <%= f.hidden_field :version %>
     <% if @section %>
       <%= hidden_field_tag 'section', @section %>

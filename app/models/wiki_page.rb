@@ -58,6 +58,7 @@ class WikiPage < ActiveRecord::Base
   DEFAULT_PROTECTED_PAGES = %w(sidebar)
 
   safe_attributes 'parent_id',
+    'title',
     :if => lambda {|page, user| page.new_record? || user.allowed_to?(:rename_wiki_pages, page.project)}
 
   def initialize(attributes=nil, *args)
