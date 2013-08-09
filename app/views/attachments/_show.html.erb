@@ -1,36 +1,30 @@
  <div id="container-modal" class="modal hide" tabindex="-1" role="dialog"  aria-hidden="true" style="display:table;_position:relative;  
     overflow:hidden;">
-    <div style="">
-  <div class="modal-body" style="text-align:center;height:380px;padding: 30px 80px;vertical-align:middle;  display:table-cell;  _position:absolute;  _top:50%; ">   
+    
+  <div class="modal-body" style="text-align:center;height: 400px;padding: 30px 80px;vertical-align:middle;  display:table-cell;  _position:absolute;  _top:50%; ">   
     <%= link_to image_tag('/assets/left-arrow-live.png'),"#", {:id => "preImage",:title => "上一张",:index => @attachment.filename} %> 
      <%= link_to image_tag(url_for(:controller => 'attachments', :action => 'show', :id => @attachment, :filename => @attachment.filename)),
     { :controller => 'attachments', :action => 'show', :id => @attachment, :filename => @attachment.filename },
     { :title => '点击查看大图', :target => '_blank' } %>
     <%= link_to image_tag('/assets/right-arrow-live.png'),"#", {:id => "nextImage",:title => "下一张"} %> 
-  </div> </div>
-  <div>
-  <div class="modal-footer" style="display:table-cell;position:absolute;_top:80%;z-index:10001;left: 550px;top: 380px; ">
+  </div> 
+  <div class="modal-footer" style="position:absolute;_top:80%;z-index:10001;right:0;top: 415px;background-color:transparent;padding:10px 30px 10px;  ">
     <%= submit_tag "关闭",  class: 'button blue', data: { dismiss: 'modal' } %>    
   </div>    
-  </div>
 </div> 
 
-
  <!-- <div id="container-modal" class="modal hide" tabindex="-1" role="dialog"  aria-hidden="true" >
-  <div  style="display:table;_position:relative;  
-    overflow:hidden;">
-  <div class="modal-body" style="text-align:center;height:380px;padding: 30px 80px;vertical-align:middle;  display:table-cell;  _position:absolute;  _top:50%; "> 	
+  <div class="modal-body" style="text-align:center;padding: 30px 80px;"> 	
     <%= link_to image_tag('/assets/left-arrow-live.png'),"#", {:id => "preImage",:title => "上一张",:index => @attachment.filename} %> 
      <%= link_to image_tag(url_for(:controller => 'attachments', :action => 'show', :id => @attachment, :filename => @attachment.filename)),
     { :controller => 'attachments', :action => 'show', :id => @attachment, :filename => @attachment.filename },
     { :title => '点击查看大图', :target => '_blank' } %>
     <%= link_to image_tag('/assets/right-arrow-live.png'),"#", {:id => "nextImage",:title => "下一张"} %> 
   </div>  
-  </div> 
-  <div class="modal-footer" style="display:table-cell;position:absolute;_top:80%;z-index:10001; ">
+  <div class="modal-footer">
     <%= submit_tag "关闭",  class: 'button blue', data: { dismiss: 'modal' } %>    
   </div>    
-</div>  -->
+</div>  --> 
 <%= javascript_tag do %>
   $(document).ready(function(){
     (function(){
