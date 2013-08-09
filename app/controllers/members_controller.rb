@@ -100,6 +100,8 @@ class MembersController < ApplicationController
   def destroy
     if request.delete? && @member.deletable?
       @member.destroy
+      member_invitations = MemberInvitation.where(:project_id => @member.project_id, :state => "pending", :user_id => @member.user_id)
+      member_invitations.map{|m| m.reject!(m.token)}
     end
     respond_to do |format|
       format.html { redirect_to :controller => 'projects', :action => 'settings', :tab => 'members', :id => @project }
