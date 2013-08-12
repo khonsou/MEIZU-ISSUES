@@ -294,7 +294,7 @@ angular.module('ginkgo.directives', []).
                var targetOffset = element.offset();
                $('#calendar_item_editor_singleton').html(compile);
                $('#calendar_item_editor_singleton').show()
-                                                   .css('top', targetOffset.top - 55).
+                                                   .css('top', targetOffset.top ).
                                                     css('left', targetOffset.left + 50);
                 $('#calendar_item_editor_singleton').find('.cancel').on('click', function(){
                   $('#calendar_item_editor_singleton').hide();
