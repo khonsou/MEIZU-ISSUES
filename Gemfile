@@ -23,6 +23,7 @@ gem 'jbuilder'
 gem 'ng-rails-csrf'
 gem 'acts_as_list'
 gem 'kaminari'
+gem 'redis-rails'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.4'

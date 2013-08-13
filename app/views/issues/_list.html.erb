@@ -4,6 +4,7 @@
   <% else %>
     <% issues.each do |issue| %>
       <div class="issue-item">
+       <% cache("issue_partial_cached-#{issue.id}-#{issue.updated_on}", expires_in: 24.hours) do%>
         <div class="row-fluid info">
           <div class="span14">
             <%= link_to truncate(issue.subject, length: 22), issue_path(issue), class: 'subject', title: issue.subject %>
@@ -28,9 +29,10 @@
             </span>
           </div>
         </div>
-        <% if issue.journals.count > 0 %>
+       <% end -%>
+       <% if issue.journals.count > 0 %>
           <div class="row-fluid journal">
-            <% journal = issue.journals.order('created_on').last %>
+          <% journal = issue.journals.order('created_on').last %>
             <%= link_to issue_path(issue, anchor: "change-#{journal.id}") do %>
               <div class="span25">
                 <div class="avatar pull-left">
@@ -38,16 +40,20 @@
                 </div>
                 <div class="pull-left span22">
                   <div class="clearfix">
+                  <% cache("journal_users-#{journal.id}", expires_in: 24.hours) do %>
                     <div class="pull-left name"><%= journal.user %></div>
-                    <div class="pull-right"><%= relative_time(journal.created_on) %></div>
+                  <% end %>
+                  <div class="pull-right"><%= relative_time(journal.created_on) %></div>
                   </div>
-                  <div class="wiki span22 padright22">
-                    <% if journal.notes %>
-                      <%= truncate(h(journal.notes), length: 75) %>
-                    <% else %>
-                      <%= details_to_strings(journal.details, true).join %>
-                    <% end -%>
-                  </div>
+                  <% cache("journal_notes-#{journal.id}", expires_in: 24.hours) do %>
+                    <div class="wiki span22 padright22">
+                      <% if journal.notes %>
+                        <%= truncate(h(journal.notes), length: 75) %>
+                      <% else %>
+                        <%= details_to_strings(journal.details, true).join %>
+                    <% end %>
+                    </div>
+                  <% end %>
                 </div>
               </div>
             <% end -%>
@@ -61,13 +67,17 @@
                 </div>
                 <div class="pull-left span22">
                   <div class="clearfix">
+                  <% cache("issue_author-#{issue.id}-#{issue.updated_on}", expires_in: 24.hours) do %>
                     <div class="pull-left name"><%= issue.author %></div>
-                    <div class="pull-right"><%= relative_time(issue.created_on) %></div>
+                  <% end %>
+                  <div class="pull-right"><%= relative_time(issue.created_on) %></div>
                   </div>
+                <% cache("issue_-description-#{issue.id}-#{issue.updated_on}", expires_in: 24.hours) do %>
                   <div>
                     <%= truncate(h(issue.description), length: 75) %>
                   </div>
-                </div>
+                <% end %>
+              </div>
               </div>
             <% end %>
           </div>

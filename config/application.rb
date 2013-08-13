@@ -46,6 +46,34 @@ module RedmineApp
     # Enable the asset pipeline
     config.assets.enabled = true
 
+    # Redis use example:
+      # RedisStore.new
+      # # => host: localhost, port: 6379, db: 0
+      #
+      # RedisStore.new "example.com"
+      # # => host: example.com, port: 6379, db: 0
+      #
+      # RedisStore.new "example.com:23682"
+      # # => host: example.com, port: 23682, db: 0
+      #
+      # RedisStore.new "example.com:23682/1"
+      # # => host: example.com, port: 23682, db: 1
+      #
+      # RedisStore.new "example.com:23682/1/theplaylist"
+      # # => host: example.com, port: 23682, db: 1, namespace: theplaylist
+      #
+      # RedisStore.new "localhost:6379/0", "localhost:6380/0"
+      # # => instantiate a cluster
+    begin
+      redis_host = 'localhost'
+      redis_port = 6379  
+      redis = Redis.new(:host => redis_host, :port => redis_port)
+      redis.get("availabilit_test_key")
+      config.cache_store = :redis_store, "redis://#{redis_host}:#{redis_port}/0/plano"
+    rescue Exception => e
+      config.cache_store = :memory_store
+    end
+
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
