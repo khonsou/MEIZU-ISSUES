@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130715030944) do
+ActiveRecord::Schema.define(:version => 20130813013232) do
 
   create_table "attachments", :force => true do |t|
     t.integer  "container_id"
@@ -429,20 +429,21 @@ ActiveRecord::Schema.define(:version => 20130715030944) do
   end
 
   create_table "projects", :force => true do |t|
-    t.string   "name",        :default => "",    :null => false
+    t.string   "name",         :default => "",    :null => false
     t.text     "description"
-    t.string   "homepage",    :default => ""
-    t.boolean  "is_public",   :default => true,  :null => false
+    t.string   "homepage",     :default => ""
+    t.boolean  "is_public",    :default => true,  :null => false
     t.integer  "parent_id"
     t.datetime "created_on"
     t.datetime "updated_on"
     t.string   "identifier"
-    t.integer  "status",      :default => 1,     :null => false
+    t.integer  "status",       :default => 1,     :null => false
     t.integer  "lft"
     t.integer  "rgt"
     t.string   "icon"
     t.integer  "creator_id"
-    t.boolean  "mute",        :default => false, :null => false
+    t.boolean  "mute",         :default => false, :null => false
+    t.integer  "issues_count", :default => 0
   end
 
   add_index "projects", ["creator_id"], :name => "index_projects_on_creator_id"
