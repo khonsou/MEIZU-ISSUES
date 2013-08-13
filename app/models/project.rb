@@ -653,7 +653,7 @@ class Project < ActiveRecord::Base
   end
 
   def joined_on(user = User.current)
-    Rails.cache.fetch("position_#{self.id}_#{user.id}") { members.where(user_id: user.id).first.try(:position) }
+    Rails.cache.fetch("position_#{self.id}_#{user.id}", expires_in: 24.hours) { members.where(user_id: user.id).first.try(:position) }
   end
 
   # Returns an auto-generated project identifier based on the last identifier used

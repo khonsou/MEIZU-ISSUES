@@ -129,6 +129,11 @@ class MembersController < ApplicationController
     if params[:currentPosition]
       @current_position = params[:currentPosition].to_i
     end
+
+    project_ids = Member.where(user_id:User.current.id)
+    project_ids.each do |p|
+      Rails.cache.delete("position_#{p.project_id}_#{User.current.id}")
+    end
     user_project = Member.where(user_id: User.current.id, project_id: @project_id).first
     user_project.insert_at(@current_position)
     render :text => '', :status => :ok, :layout => nil
