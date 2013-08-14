@@ -28,7 +28,7 @@
         <div class="span17">
           <span class="user-name"><%= link_to_user(member.user) %></span>
           <% if project.creator == User.current %>
-            <%= link_to image_tag("/assets/planners/delete.png"), membership_path(member), :remote => true, :data => {:confirm => l(:text_are_you_sure)}, :method => :delete, :class => "pull-right icon_delete", "hidden" => true %>
+            <%= link_to image_tag("/assets/planners/icon-delete.png"), membership_path(member), :remote => true, :data => {:confirm => member.user.to_s + "将被移出项目\"" + project.to_s + "\"\n" + l(:text_are_you_sure)}, :method => :delete, :class => "pull-right icon_delete", "hidden" => true %>
           <% end -%>
           <br>
           <span class="role"><%= member.roles.map(&:name).join(', ') %></span>
@@ -41,9 +41,9 @@
 <%= javascript_tag do %>
   $(document).ready(function(){
     $(".item_member").hover(function(){
-      $(".icon_delete").show();
+      $(".icon_delete",this).show();
     },function(){
-      $(".icon_delete").hide();
+      $(".icon_delete",this).hide();
     });
   })
 <% end -%>
