@@ -2,77 +2,82 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
   
-   .sidebar {
-     .actions {
-       margin-bottom: $baseLineHeight;
-     }
-     width:190px;
-   }
+  .sidebar {
+    .actions {
+      margin-bottom: $baseLineHeight;
+    }
+    width:190px;
+  }
    
-   .sidebar label{
-     font-size:20px;
-   }
+  .sidebar label{
+    font-size:20px;
+  }
    
-   .search-result-counts {
+  .search-result-counts {
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; 
     list-style-type: none;
     margin: 0;
-
+    
     li {
-      line-height: 40px;
+      line-height: 50px;
       border-bottom: $dashedBorder;
-       
 
-      a {
-        display: inline-block;
-        padding-right: 15px;
-        text-decoration: none;
-        width:130px;
-        font-size:17px;
-        &:hover {
-          cursor:pointer;
-          font-weight: bold;
-          
-        }
-      }
-      
       label{
-        display:inline-block;
+        display:block;
+        margin: 16px 42px;
+        font-size: 16px;
+        color: #000;
       }
     }
-
+    
     li.active {
-      a {
+      background: transparent url('icon-arrow-right.png') no-repeat 170px 1px;
+    }
+
+    li:first-child {
+      background: none;
+
+      label{
+        cursor: default;
+        margin-left: 25px;
+        font-size: 18px;
         font-weight: bold;
       }
-      background: transparent url('icon-arrow-right.png') no-repeat 175px 10px;
     }
- 
   }
  
- #project-list ul,#member-list ul{
+#project-list ul,#member-list ul{
   text-align: center;
-  padding-left: 90px;
-  font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; 
-  font-weight: bold;
- }
+  padding-top: 30px;
+  padding-left: 50px;
+
+  label{
+    padding-left: 0px;
+    padding-top: 0px;
+  }
+
+  .picture{
+    margin: 0 18% ;
+    width:120px;
+    height:120px;
+  }
+
+  img{
+      width:120px;
+      height:120px;
+  }
+}
  
- #project-list label, #member-list label{
+#project-list label, #member-list label{
   font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; 
   font-size:17px;
   font-weight: bold;
- }
- 
- 
- #project-list,#member-list{
-  overflow:auto;
- }
- 
- #project-list img,#member-list img{
-   width:120px;
-   margin:30px;
- }
- 
- #project-list .nav li,#member-list .nav li{
-   float:left;
- }
- 
+  padding-left: 35px;
+  padding-top: 25px;
+}
+
+.divider{ 
+  border-top:1px dashed #cccccc;
+  height: 0px;
+  overflow:hidden;
+}

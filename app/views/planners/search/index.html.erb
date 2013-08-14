@@ -1,26 +1,20 @@
 <%html_title(l(:label_search))-%>
 <% content_for:sidebar do %>
 <div class="span5 sidebar">
-  <h4 class="title">搜索结果:</h4>
   <ul class="search-result-counts">
-    
-    <li class="active">
-      <a id="all-link">所有</a>
-      <label>(<%=@result_projects.length+@result_users.length%>)</label>
+    <li><label>搜索结果:</label></li>
+    <li class="all-link">
+        <label>全部 &nbsp;(<%=@result_users.length + @result_projects.length + @result_tags.length%>)</label>
     </li>
-    <li class="active">
-      <a id="project-link">项目</a>
-      <label>(<%=@result_projects.length%>)</label>
+    <li class="member-link">
+        <label>成员 &nbsp;(<%=@result_users.length%>)</label>
     </li>
-    <li class="active">
-      <a id="member-link">成员</a>
-      <label>(<%=@result_users.length%>)</label>
+    <li class="project-link">
+        <label>项目 &nbsp;(<%=@result_projects.length%>)</label>
     </li>
-    <li class="active">
-      <a id="tag-link">Tags</a>
-      <label>(<%=@result_tags.length%>)</label>
+    <li class="tag-link">
+      <label>Tags &nbsp;(<%=@result_tags.length%>)</labe>
     </li>
-    
   <ul>
 </div>
 <% end -%>
@@ -36,24 +30,33 @@
   function hide_all(){
     $("#member-list").hide();
     $("#project-list").hide();
+    $(".all-link").removeClass("active");
+    $(".project-link").removeClass("active");
+    $(".member-link").removeClass("active");
+    $(".tag-link").removeClass("active");
   }
   
-  $("#all-link").click(function(){
+  $(".all-link").click(function(){
+    hide_all();
     show_all();
+    $(this).addClass("active")
   });
   
-  $("#project-link").click(function(){
+  $(".project-link").click(function(){
     hide_all(); 
     $("#project-list").show();
+    $(this).addClass("active")
   });
   
-   $("#member-link").click(function(){
+  $(".member-link").click(function(){
     hide_all();
     $("#member-list").show();
+    $(this).addClass("active")
   });
   
-   $("#tag-link").click(function(){
+  $(".tag-link").click(function(){
     hide_all();
-     $("#tag-list").show();
-  });
+    $("#tag-list").show();
+    $(this).addClass("active")
+});
 <% end -%>

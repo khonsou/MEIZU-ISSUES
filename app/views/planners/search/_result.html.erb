@@ -1,35 +1,42 @@
-<div id="project-list">
-  <%unless @result_projects.empty? then%>
-    <label>项目</label>
-    <ul class="nav nav-tabs media-list">
-      <%@result_projects.each do |project|%>  
-        <li>
-           <%=link_to "/planners/projects/#{project.id}", :class =>"pull-left hidden-phone" do %>
-            <%= image_tag project.icon_url(:large), :class => "img-rounded" %>
-           <%end -%>
-           <label><%=project.name%></label>
-        </li>
-      <%end -%>       
-    <%end -%>
+<div id="member-list">
+<%unless @result_users.empty? then%>
+  <label>成员:</label>
+  <ul class="thumbnails">
+    <% @result_users.each do |m| %>    
+      <li class="span2">
+        <div>
+        <%= link_to image_tag(m.avatar_url(:large),:class => 'img-circle'), user_path(m), :class => "all-member-photo"%>
+          <div class="caption">
+            <h5><%= m.lastname %><%= m.firstname %></h5>
+          </div>
+        </div>
+      </li>
+    <% end %>
   </ul>
+  <div class="divider"></div>
+<% end %>
 </div>
 
-<div id="member-list">
-  <label>成员</label>
-  <ul class="nav nav-tabs media-list">
-    <%unless @result_users.empty? then%>
-      <%@result_users.each do |user|%>  
-        <li>
-           <%=link_to user_path(user), :class =>"pull-left hidden-phone" do %>
-            <%= image_tag user.avatar_url(:large), :class => "img-circle" %>
-           <%end-%>
-           <label><%=user.name%></label>
+<div id="project-list">
+  <%unless @result_projects.empty? then%>
+    <label>项目:</label>
+    <ul class="thumbnails">
+      <% @result_projects.each do |p| %>      
+        <li class="span2">
+          <div>
+            <%= link_to image_tag(p.icon_url(:large)), "/planners/projects/#{p.id}", :class => "picture thumbnail" %>
+            <div class="caption">
+            <h5><%= p.name %></h5>
+            <p class="small"><%= p.description %></p>
+            </div>
+          </div>
         </li>
-      <%end%>
-    <%end%>
-  </ul>
+      <% end %>
+    </ul>
+    <div class="divider"></div>
+  <% end %> 
 </div>
 
 <div id="tags">
-   
+
 </div>
