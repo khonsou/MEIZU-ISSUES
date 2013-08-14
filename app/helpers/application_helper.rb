@@ -297,20 +297,38 @@ module ApplicationHelper
     end
   end
 
+  # projects orders by &lft.
   def project_tree_options_for_select(projects, options = {})
     s = ''
     project_tree(projects) do |project, level|
       name_prefix = (level > 0 ? '&nbsp;' * 2 * level + '&#187; ' : '').html_safe
-      tag_options = {:value => project.id}
-      if project == options[:selected] || (options[:selected].respond_to?(:include?) && options[:selected].include?(project))
-        tag_options[:selected] = 'selected'
-      else
-        tag_options[:selected] = nil
-      end
-      tag_options.merge!(yield(project)) if block_given?
-      s << content_tag('option', name_prefix + truncate(h(project.name), length: 18), tag_options)
+      project_options_for_select_common(options, project, name_prefix, s)
     end
     s.html_safe
+  end
+
+  # projects orders by params projects.
+  def project_options_for_select(projects, options = {})
+    s = ''
+    projects.each do |project|
+      name_prefix = ""
+      project_options_for_select_common(options, project, name_prefix, s)
+    end
+    s.html_safe
+  end
+
+  # At first, I wanted to remove 'sort_by(&:lft)' from self.project_tree of project model, but I can't confirm whether it has other
+  # effects; so I devided project_options_for_select to three part, the one is kernel, the other one orders by &lft, 
+  # the last one orders by params projects.
+  def project_options_for_select_common(options, project, name_prefix, s)
+    tag_options = {:value => project.id}
+    if project == options[:selected] || (options[:selected].respond_to?(:include?) && options[:selected].include?(project))
+      tag_options[:selected] = 'selected'
+    else
+      tag_options[:selected] = nil
+    end
+    tag_options.merge!(yield(project)) if block_given?
+    s << content_tag('option', name_prefix + truncate(h(project.name), length: 18), tag_options)
   end
 
   # Yields the given block for each project with its level in the tree
