@@ -1,10 +1,10 @@
 <div id="container-modal" class="modal hide" tabindex="-1" role="dialog"  aria-hidden="true" >
-  <div class="modal-body" style="text-align:center;padding: 30px 80px;">  
-    <%= link_to image_tag('/assets/arrow-left.png'),"#", {:id => "preImage",:title => "上一张",:index => @attachment.filename} %> 
-     <%= link_to image_tag(url_for(:controller => 'attachments', :action => 'show', :id => @attachment, :filename => @attachment.filename)),
+  <div class="modal-body" style="text-align:center;padding: 30px 80px; position:relative; height:320px; *height:320px;">  
+    <%= link_to image_tag('/assets/arrow-left.png'),"#", {:id => "preImage", :title => "上一张", :index => @attachment.filename} %> 
+    <%= link_to image_tag(url_for(:controller => 'attachments', :action => 'show', :id => @attachment, :filename => @attachment.filename), :id => "issue-display"),
     { :controller => 'attachments', :action => 'show', :id => @attachment, :filename => @attachment.filename },
     { :title => '点击查看大图', :target => '_blank' } %>
-    <%= link_to image_tag('/assets/arrow-right.png'),"#", {:id => "nextImage",:title => "下一张"} %> 
+    <%= link_to image_tag('/assets/arrow-right.png'), "#", {:id => "nextImage", :title => "下一张"} %> 
   </div>  
   <div class="modal-footer">
     <%= submit_tag "关闭",  class: 'button blue', data: { dismiss: 'modal' } %>    
@@ -37,45 +37,52 @@
         })
     })()
 
-    function matchLi(activeLink, liElements, imageIndex, direction){
-      var liElements = $(liElements);
-      if(direction == "pre"){
-        liElements.each(function(index, item){
-          var listImagePath = $(item).find("img").attr("path"),
-              url;
+    $("#issue-display").load(function(){
+      var height = $(this).height(),
+          top,
+          modalBodyHeight = $(".modal-body").height();     
 
-          if(imageIndex == listImagePath){
+      if(modalBodyHeight - height < 0){
+        top = 0;
+      }else{
+        top = modalBodyHeight - height;
+      }
+      $(this).css({"top":(top / 2) + "px"}).show();
+    })
+
+    function matchLi(activeLink, liElements, imageIndex, direction){
+      var liElements = $(liElements),
+          url,
+          listImagePath;
+
+      if(direction != "pre" && direction != "next"){
+        return;
+      }
+
+      liElements.each(function(index, item){
+        listImagePath = $(item).find("img").attr("path");
+        if(imageIndex == listImagePath){
+          if (direction == "pre"){
             if(index == 1){
               $("#preImage").hide();
             }
             url = liElements.children(":eq(" + (index - 1) + ")").find("img").attr("path");
-
-            $(activeLink).attr("href", url);
-            $(activeLink).find("img").attr("src", url);
-           
-          }
-          $("#nextImage").show();
-        })
-      }else if(direction == "next"){
-        liElements.each(function(index, item){
-          var listImagePath = $(item).find("img").attr("path"),
-              url;
-
-          if(imageIndex == listImagePath){
-            if(index == liElements.length-2){ 
+            $("#nextImage").show();
+          } else {
+            if(index == liElements.length-2){
               $("#nextImage").hide();
             }
             url = liElements.children(":eq(" + (index + 1) + ")").find("img").attr("path");
-
-            $(activeLink).attr("href", url);
-            $(activeLink).find("img").attr("src", url);
+            $("#preImage").show();
           }
-          $("#preImage").show();
-        })
-      }else{
-        return;
-      }
+        }
+      })
+
+      $(activeLink).attr("href", url);
+      $(activeLink).find("img").attr("src", url);
+      $(activeLink).find("img").hide();
     }
+
 
     $("#preImage").bind("click", function(){
       var activeLink = $(this).next(),

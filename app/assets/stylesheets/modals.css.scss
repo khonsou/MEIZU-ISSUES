@@ -26,6 +26,11 @@
   img{
     max-height:380px;
   }
+
+  img#issue-display{
+    max-height:100%;
+    position:relative;
+  }
   
   .box{
     border: none;
