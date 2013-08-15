@@ -129,8 +129,10 @@ class WikiController < ApplicationController
   # Creates a new page or updates an existing one
   def update
     return render_403 unless editable?
+    start_page = @wiki.pages.where(title: @wiki.start_page).first
     @page.content = WikiContent.new(:page => @page) if @page.new_record?
     @page.safe_attributes = params[:wiki_page]
+    @wiki.update_attribute(:start_page, @page.title) if start_page && start_page == @page
 
     @content = @page.content_for_version(params[:version])
     @content.text = initial_page_content(@page) if @content.text.blank?
