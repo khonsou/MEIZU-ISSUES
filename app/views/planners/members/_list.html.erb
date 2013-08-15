@@ -1,15 +1,14 @@
-<ul class="thumbnails" style='margin-left: 98px;'>
-  <% @users.each do |m| %>    
-    <li class='image-space'>
-      <div class='line-space'>
-      <%= link_to image_tag(m.avatar_url(:medium),:class => 'img-circle'), planners_member_path(m), :class => "all-member-photo"%>
-        <div class="caption">
-          <h5 class='image-name'><%= m.lastname %><%= m.firstname %></h5>
-        </div>
+<% @users.each do |m| %>    
+  <li class='image-space'>
+    <div class='line-space'>
+    <%= link_to image_tag(m.avatar_url(:medium),:class => 'img-circle'), planners_member_path(m), :class => "all-member-photo"%>
+      <div class="caption">
+        <h5 class='image-name'><%= m.lastname %><%= m.firstname %></h5>
       </div>
-    </li>
-  <% end %>    
-</ul>
+    </div>
+  </li>
+<% end %>
+    
 <% page = (params[:page] ? params[:page].to_i+1 : 2) %>
 <% if @users.num_pages > 1 && @users.num_pages >= page %>
   <div class="load-more">

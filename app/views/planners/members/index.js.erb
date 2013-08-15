@@ -1,1 +1,2 @@
-$(".load-more").replaceWith("<%= escape_javascript render(:partial => 'list') %>")
+$(".member-list .load-more").remove();
+$(".thumbnails, .member-list").append("<%= escape_javascript render(:partial => 'list') %>");
