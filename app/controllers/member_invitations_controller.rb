@@ -1,5 +1,9 @@
 class MemberInvitationsController < ApplicationController
+  model_object MemberInvitation
   before_filter :find_optional_project, :only => [:new, :create]
+  before_filter :find_model_object, :only => [:destroy]
+  before_filter :find_project_from_association, :only => [:destroy]
+  before_filter :authorize, :only => [:destroy]
 
   def new
     @all_recipients = User.status(User::STATUS_ACTIVE)
@@ -58,6 +62,13 @@ class MemberInvitationsController < ApplicationController
       redirect_to home_path, notice: l(:notice_member_invitation_rejected)
     else
       redirect_to home_path, alert: l(:error_member_invitation)
+    end
+  end
+
+  def destroy
+    @object.destroy if @project.creator == User.current
+    respond_to do |format|
+      format.js {render '/members/destroy.js.erb', {:project => @project} }
     end
   end
 end

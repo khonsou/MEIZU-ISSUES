@@ -12,6 +12,9 @@
     <% else %>
       <%= link_to_stranger(pending) %>
     <% end %>
+    <% if project.creator == User.current %>
+      <%= link_to image_tag("/assets/planners/icon-delete.png"), pending, :remote => true, :data => {:confirm => l(:text_are_you_sure)}, :method => :delete, :class => "pull-right icon_delete", "hidden" => true %>
+   <% end-%>
   </span><br>
   <span class="role"><%= l(:label_invited_member) %></span>
 </div>

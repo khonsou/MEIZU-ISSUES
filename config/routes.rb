@@ -126,7 +126,7 @@ RedmineApp::Application.routes.draw do
 
   match 'projects/:id/settings/:tab', :to => "projects#settings"
 
-  resources :member_invitations, only: [:new, :create, :show] do
+  resources :member_invitations, only: [:new, :create, :show, :destroy] do
     member do
       match 'accept'
       match 'reject'

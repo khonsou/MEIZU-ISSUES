@@ -241,7 +241,6 @@ class ApplicationController < ActionController::Base
   # Finds and sets @project based on @object.project
   def find_project_from_association
     render_404 unless @object.present?
-
     @project = @object.project
   end
 
