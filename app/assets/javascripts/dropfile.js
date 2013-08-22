@@ -7,8 +7,8 @@ $(document).ready( function(){
   Dropzone.options.dropzone = {
     dictDefaultMessage: "<i class='icon-asset'></i> 添加附件",
     url: url,
-    maxFilesize: 5, // MB
-    maxThumbnailFilesize: 5 ,
+    maxFilesize: 20, // MB
+    maxThumbnailFilesize: 20 ,
   
     init: function() {
        this.on("processingfile", function(file) {
