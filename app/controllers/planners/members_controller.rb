@@ -13,9 +13,9 @@ class Planners::MembersController < ApplicationController
   def show
     @load_angular = true
     
-    @member = Member.find(params[:id])
-    @projects = @member.user.projects
-    @events_groups = @member.user.members.inject([]) {| ary, member | ary << member.events }
+    @user = User.find(params[:id])
+    @projects = @user.projects
+    @events_groups = @user.members.inject([]) {| ary, member | ary << member.events }
     @events_groups.reject! { |c| c.empty? }
         
     respond_to do |format|

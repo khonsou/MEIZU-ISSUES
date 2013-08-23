@@ -2,12 +2,12 @@
   <div class="well sidebar-nav">
     <ul class="nav nav-list" id="slideRight" ng-controller="MemberCtrl">
       <li class="form-horizontal head">
-          <h5 style="display:inline-block;"><%= @member.name %></h5>
+          <h5 style="display:inline-block;"><%= @user.name %></h5>
           <div style="display:inline-block;padding:10px;" class="pull-right"><img src="/assets/project_header/down.png" alt="down"/></div>
       </li>
       <li>
         <a href="#">
-          <img src="<%= @member.user.avatar_url(:large) %>" class="img-polaroid" style="width:95%;">
+          <img src="<%= @user.avatar_url(:large) %>" class="img-polaroid" style="width:95%;">
         </a>
       </li>
       <li class="head">
