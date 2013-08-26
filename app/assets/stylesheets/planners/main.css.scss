@@ -131,11 +131,16 @@ min-height:500px;
 }
 div.events.holdable  .event.Task{
   background-color: #3366CC;
+  text-align:center;
 }
 div.events.holdable  .event.Member{
   
   background-color: #a6c6d3;
-   
+  
+  span.event{
+    margin-left:-20px;
+  }
+
   .img-circle{
     height:24px;
     width:24px;
@@ -144,6 +149,7 @@ div.events.holdable  .event.Member{
     border: 1px solid #a6c6d3;
     padding: 1px; 
     background-color: #FFFFFF;
+    top:-6px;
   }  
    
   span.title{
@@ -342,7 +348,7 @@ border-radius: 4px;
 	padding: 0;
 /*  background: #333;*/
 	color: #ddd;
-	text-align: center;
+/*	text-align: center;*/
 /*  cursor: pointer;*/
 }
 #frame ul li.active {
