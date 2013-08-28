@@ -1,6 +1,10 @@
-$('#push_notification_popover ul.dropdown-menu').html("<%= j render('popover', { push_notifications: @push_notifications, pending_members: @pending_members }) %>");
-<% if @push_notifications.size > 0 || @pending_members.size > 0 %>
-  $('#push_notification_popover').addClass('has_notification');
+<% if !@changes.empty? || params[:refresh]=='1' %>
+  $('#push_notification_popover ul.dropdown-menu').html("<%= j render('popover', { push_notifications: @push_notifications, pending_members: @pending_members }) %>");
+  <% if @push_notifications.empty? && @pending_members.empty? %>
+    $('#push_notification_popover').removeClass('has_notification');
+  <% else %>
+    $('#push_notification_popover').addClass('has_notification');
+  <% end %>
 <% else %>
-  $('#push_notification_popover').removeClass('has_notification');
-<% end %>
+  ;
+<% end-%>

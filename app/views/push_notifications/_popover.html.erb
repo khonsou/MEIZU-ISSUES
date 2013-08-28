@@ -7,12 +7,16 @@
 
 <% unless push_notifications.blank? && pending_members.blank? %>
   <% pending_members[0..9].each do |push_notification| %>
-    <%= render "/push_notifications/#{push_notification.underscore}", { push_notification: push_notification, popover: true } %>
+    <% cache("push_notifications-#{User.current.id}-#{push_notification.id}-#{push_notification.updated_at}", expires_in: 24.hours) do%>
+      <%= render "/push_notifications/#{push_notification.underscore}", { push_notification: push_notification, popover: true } %>
+    <% end -%>
   <% end -%>
 
   <% if pending_members.size < 10 %>
     <% push_notifications[0..9 - pending_members.size].each do |push_notification| %>
-        <%= render "/push_notifications/#{push_notification.underscore}", { push_notification: push_notification, popover: true } %>
+        <% cache("push_notifications-#{User.current.id}-#{push_notification.id}-#{push_notification.updated_at}", expires_in: 24.hours) do%>
+	  <%= render "/push_notifications/#{push_notification.underscore}", { push_notification: push_notification, popover: true } %>
+        <% end-%>
     <% end -%>
   <% end -%>
 <% else %>

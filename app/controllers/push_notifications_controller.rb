@@ -51,5 +51,12 @@ class PushNotificationsController < ApplicationController
     @push_notifications = User.current.push_notifications.where("pusher_type != 'MemberInvitation'").unread
     @pending_members = member_invitations.map{|p| p.push_notifications}.reverse.flatten
     @unread_count = @push_notifications.count + @pending_members.size
+   
+    @changes = session[:notifications].nil? ? @push_notifications.map{|notification| notification.id} : \
+			      (@push_notifications.map{|notification| notification.id} - session[:notifications])
+    @changes += session[:pending_members].nil? ? @pending_members.map{|member| member.id} : \
+			      (@pending_members.map{|member| member.id} - session[:pending_members])
+    session[:notifications] = @push_notifications.map{|notification| notification.id}
+    session[:pending_members] = @pending_members.map{|member| member.id}
   end
 end
