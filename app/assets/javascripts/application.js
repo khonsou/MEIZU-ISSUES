@@ -14,7 +14,6 @@
 //= require favico.min
 
 
-//= require bootstrapx-clickover
 //= require jquery.pin
 //= require atwho
 

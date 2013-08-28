@@ -10,7 +10,11 @@ function changeAssign(div){
     url: $(div).parents('form').attr("action"),
     dataType: "script",
     data: $(div).parents('form').serialize(),
-    type: "PUT"
+    type: "PUT",
+    complete: function(){
+      $('.popover:not([data-donotclose])').prev().popover('destroy')
+      $('.popover:visible').remove()
+    }
   });
   
 } 
@@ -136,19 +140,59 @@ function initAt(){
 }
 
 $(document).ready( function(){
-  $('.select-menu-button').clickover({
-      html: true,
-      trigger: 'click',
-      placement: 'right',
-      content: function(){
-        var div_id =  "div-id-" + $.now();
-        return details_in_popup($(this).attr('href'), div_id)
-      }      
-  })      
+  
+   $('.select-menu-button').on('click', function(){
+     if ( $('.popover:visible').length) {
+       $('.popover:not([data-donotclose])').prev().popover('destroy')
+       $('.popover:visible').remove()
+     }else{
+       var _this = this;
+       $.ajax({
+         url: $(this).attr('href'),
+         dataType: "script",
+         type: "GET",
+         complete: function(response){
+           $(_this).popover({
+              html:true, 
+              placement:'right',
+              trigger: 'manual',
+              title: $(this).data('title'),
+              content:response.responseText}).popover('show')         
+              
+           listFilter($("#issue-form"), $(".select-assign"));  
+           
+           $( "#datepicker-div" ).datepicker({
+             onSelect: function(date){
+               $.ajax({
+                 url: $(_this).data('url'),
+                 dataType: "script",
+                 data: "issue[due_date]=" + date ,
+                 type: "PUT"
+               });     
+             }
+           });            
+         }
+       }); 
+     }
+     return false;
+   })    
+
+   
+   // click to close the popover
+   $(document).click(function(e){
+     var isDatepicker = $(e.target).hasClass('ui-datepicker-prev') || $(e.target).hasClass('ui-datepicker-next') ;            
+     if (!$(e.target).parents('.popover').length && !isDatepicker) {
+       if ( $('.popover:visible').length) {
+         $('.popover:not([data-donotclose])').prev().popover('destroy')
+       }
+     }
+   })
+    
+
   
   $(".pinned").pin({
     containerSelector: ".container" ,
-    minHeight: 100,
+    minHeight: 0,
     minWidth: 960
   })
   

@@ -9,7 +9,7 @@
   display: inline-block;
   color: #999;
   font-size: 12px;
-  padding: 4px 10px;
+  padding: 4px 9px;
 }
 
 .view-switcher a.active, .view-switcher a.active-right {

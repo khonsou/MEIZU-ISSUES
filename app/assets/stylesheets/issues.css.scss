@@ -74,6 +74,7 @@
 #watchers ul {
   border-bottom: $dashedBorder;
   margin-bottom: 10px;
+  padding-left: 0px;
 }
 
 .issue-info {
@@ -124,7 +125,15 @@
 
   .avatar, .author {
     @extend .pull-left;
-    margin-right: 8px;
+  }
+  
+  .avatar.col-md-1{
+    width:6.33333%;
+    padding-right:5px;
+  }
+  
+  .issue-holder.col-md-11{
+    padding-left:5px;
   }
 
   .author {
@@ -377,7 +386,7 @@ h2.title{
 .showmebox.inline-help {
   padding: 10px;
   margin: 0 -20px;
-  width: 160px;
+  width: 205px;
   z-index: 10000;
   position:absolute;
   bottom: 200px;
