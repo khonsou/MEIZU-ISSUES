@@ -2,7 +2,8 @@ body {
   padding-top: 110px;
   background: #eff3f3 url('/assets/bg.png') repeat ; 
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  line-height: 18px;  
+  line-height: 18px;
+  font-size:12px;  
 }
 a{
   color:#737883;
@@ -105,8 +106,9 @@ a.bluelink{
 
     h5 {
       font-weight: normal;
-      padding-bottom: 5px;
+      padding-bottom: 10px;
       border-bottom: $dashedBorder;
+      font-size: 12px;
       
       a.button{
         padding: 1px  10px;
@@ -157,6 +159,14 @@ a.bluelink{
       padding-top: 5px;
       color: $lightTextColor;
     }
+
+    h5{
+      vertical-align: bottom;
+    }
+  }
+
+  .project-info .hidden-sm{
+    max-width:100%;
   }
 
   .search-result-counts {

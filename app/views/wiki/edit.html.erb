@@ -9,11 +9,11 @@
 <%= form_for @content, :as => :content,
             :url => {:action => 'update', :id => @page.title},
             :html => {:method => :put, :multipart => true, :id => 'wiki_form'} do |f| %>
-  <div class="row-fluid">
+  <div class="row" style="margin-left:0px;">
     <% if @page.new_record? %>
       <h4><%= h @page.pretty_title %></h4>
     <% else %>
-      <%= text_field_tag 'wiki_page[title]', @page.pretty_title,  :required => true, class: 'span24', placeholder: l(:field_title) %>
+      <%= text_field_tag 'wiki_page[title]', @page.pretty_title,  :required => true, class: 'form-control', placeholder: l(:field_title) %>
     <% end %>
     <%= f.hidden_field :version %>
     <% if @section %>
@@ -23,9 +23,9 @@
     <%= error_messages_for 'content' %>
 
     <%= text_area_tag 'content[text]', @text, :cols => 100, :rows => 20,
-                      :class => 'wiki-edit span24', :accesskey => accesskey(:edit) %>
+                      :class => 'wiki-edit form-control', :accesskey => accesskey(:edit) %>
 
-    <p><%= f.text_field :comments, class: 'span24', placeholder: l(:field_comments) %></p>
+    <p><%= f.text_field :comments, class: 'form-control', placeholder: l(:field_comments) %></p>
     
     <div class="clearfix">
       <div class="pull-left">

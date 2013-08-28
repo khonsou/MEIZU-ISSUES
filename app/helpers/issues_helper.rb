@@ -407,7 +407,7 @@ module IssuesHelper
   def render_return_to_main_page
     s = ''
     if params[:project_id] # this could be done in a better way %>
-      s << "<a href=\"#{issues_path}\"  class=\"btn span24\">"
+      s << "<a href=\"#{issues_path}\"  class=\"btn col-md-12\" style=\"margin-bottom:10px;text-align:left;\">"
       s << "<i class=\"icon-arrow-left\"></i>"
       s << "#{l(:return_to_main_page)}"
       s << "</a>"
