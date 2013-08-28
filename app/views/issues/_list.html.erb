@@ -34,9 +34,6 @@
           <div class="row journal">
           <% journal = issue.journals.order('created_on').last %>
             <%= link_to issue_path(issue, anchor: "change-#{journal.id}") do %>
-<!--                 <div class="avatar pull-left col-md-1 col-xs-1">
-                 
-                </div> -->
                 <div class="pull-left col-md-12 col-xs-12" style="position:relative;padding-left:60px;">
                   <span class="avatar">
                      <%= image_tag journal.user.avatar_url(:small), :class => "img-rounded" %>
@@ -62,9 +59,6 @@
         <% else %>
           <div class="row journal"> 
             <%= link_to issue_path(issue) do %>
-                <!-- <div class="avatar pull-left col-md-1 col-xs-1">
-                  
-                </div> -->
                 <div class="pull-left col-md-12 col-xs-12" style="position:relative;padding-left:60px;">
                   <span class="avatar">
                     <%= image_tag issue.author.avatar_url(:small), :class => "img-rounded" %>

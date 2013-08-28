@@ -38,6 +38,7 @@
   .search-query {
     @extend .basic-form;
     height: 30px;
+    width: 180px;
     line-height: 15px;
     padding-left: 30px;
     color: $lightTextColor;

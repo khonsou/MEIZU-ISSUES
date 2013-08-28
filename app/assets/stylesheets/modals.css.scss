@@ -12,20 +12,9 @@
 
 // Base modal 32
 .modal {
-/*  background-color: $lightBackgroudThree;
-  border: $darkSolidBorder;
-  @include box-shadow($boxShadowFive);*/
-/*  width: 640px;*/
-
   display: none;
 /*  overflow: visible;*/
   position: fixed;
-/*  top: 10%;
-  right: auto;
-  bottom: auto;
-  left: 50%;
-  z-index: 1040;
-  margin-left: -280px;*/
   -webkit-border-radius:6px;
   -moz-border-radius:6px;
   border-radius: 6px;
