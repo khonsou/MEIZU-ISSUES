@@ -1,16 +1,16 @@
 <%= error_messages_for 'project' %>
 
-<div class="row-fluid form-content">
+<div class="row form-content">
   <div>
-    <%= f.text_field :name, :required => true, class: 'span24', placeholder: l(:field_name) %>
+    <%= f.text_field :name, :required => true, class: 'col-md-12', placeholder: l(:field_name) %>
   </div>
 
-  <div class="row-fluid">
-    <div class="span19">
-      <%= f.text_area :description, :rows => 6, :class => 'wiki-edit span24', placeholder: l(:field_description) %>
+  <div class="row">
+    <div class="col-md-9">
+      <%= f.text_area :description, :rows => 6, :class => 'wiki-edit col-md-12', placeholder: l(:field_description) %>
     </div>
 
-    <div class="span5">
+    <div class="col-md-3">
       <div class="image-selector-container">
         <div class="image-selector">
           <%= image_tag(@project.icon_url(:medium)) %>
@@ -23,8 +23,8 @@
     </div>  
   </div>
   
-  <div class="row-fluid">
-    <div class="span19">
+  <div class="row">
+    <div class="col-md-9">
       <label class="checkbox inline">
         <%= f.check_box :mute %> 默认关闭所有通知和邮件
       </label>

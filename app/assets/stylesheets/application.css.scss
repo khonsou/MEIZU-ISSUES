@@ -15,11 +15,22 @@ $textColor: #737883;
 // Links 39
 // -------------------------
 $linkColor: #737883;
+$linkColorHover: #737883;
 
 // Typography 45
 // -------------------------
 $baseFontSize: 12px;
 
+@mixin border-top-left-radius($radius) {
+  border-left-radius: $radius;
+}
+@mixin border-top-right-radius($radius) {
+  border-right-radius: $radius;
+}
+@mixin border-radius($radius) {
+  border-radius: $radius;
+}
+$white: #fff;
 
 // Buttons 69
 // -------------------------
@@ -93,7 +104,7 @@ $red: #f8000e;
 
 $baseLineHeight: 18px;
 
-@import "bootstrap-responsive";
+//@import "bootstrap-responsive";
 @import "datepicker";
 @import "layout";
 @import "form";
@@ -118,4 +129,4 @@ $baseLineHeight: 18px;
 @import "newfeatures";
 
 @import "bootstrapSwitch";
-@import "responsive";
+//@import "responsive";

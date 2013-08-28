@@ -28,7 +28,7 @@
 
 <div class="clearfix">
   <%= form_tag(request.path, { method: 'get', id: 'issues-sort-form', class: 'pull-left' }) do %>
-    <%= select_tag 'sort_by', options_for_select(@sort_types.inject({}) { |types, value| types[l("sort_by_#{value}")] = value; types }, @selected_sort_type) %>
+    <%= select_tag 'sort_by', options_for_select(@sort_types.inject({}) { |types, value| types[l("sort_by_#{value}")] = value; types }, @selected_sort_type), { class: 'form-control'} %>
     <%= submit_tag '', class: 'hidden' %>
   <% end -%>
   <% if (@project.nil? && !@projects.blank?) || User.current.allowed_to?(:add_issues, @project) %>

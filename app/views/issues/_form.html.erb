@@ -1,12 +1,14 @@
-<div class="form-content">
-  <div class="row-fluid">
+<div class="form-content form-horizontal">
+  <div class="row">
 
     <div>
       <% if @issue.safe_attribute? 'project_id' %>
         <% select_option = disabled_for_form_elements ? %>
         <% {:disabled => true} : %>
         <% {:onchange => "updateIssueFrom('#{escape_javascript project_issue_form_path(@project, :id => @issue, :format => 'js')}')"} %>
-      <p><%= f.select :project_id, project_options_for_select(find_visible_projects, :selected => @issue.project), {:required => true}, select_option %></p>
+      <p>
+        <%= f.select :project_id, project_options_for_select(find_visible_projects, :selected => @issue.project), {:required => true}, select_option %>
+      </p>
       <% end %>
     </div>
 
@@ -27,7 +29,7 @@
           <%= f.text_area :description,
                          placeholder: l(:field_description),
                          rows: '3',
-                         class: 'wiki-edit span24 hasAt hasAtTopic' %>
+                         class: 'wiki-edit col-md-12 hasAt' %>
         <% end %>
       </p>
       <% end %>

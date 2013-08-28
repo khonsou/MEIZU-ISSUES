@@ -30,7 +30,7 @@
   <!-- page specific tags -->
   <%= yield :header_tags -%>
 </head>
-<body class="<%=h body_css_classes %>" style = "position:relative;">
+<body class="<%=h body_css_classes %>" style = "position:relative;padding-top:70px;">
   
 <%= render '/shared/topnav' %>
 <% if User.current.logged? %>
@@ -62,13 +62,13 @@
 <div class="container" style = "position:relative;">    
     <div class="row">
       <% if content_for?(:sidebar) %>
-        <div class="span5 sidebar">
+        <div class="col-md-2 sidebar">
           <%= yield :sidebar %>
           <%= view_layouts_base_sidebar_hook_response %>
         </div>
       <% end -%>
 
-      <div class="<%= content_for?(:sidebar) ? 'span19' : 'span24' %>">
+      <div class="<%= content_for?(:sidebar) ? 'col-md-10' : 'col-md-12' %>">
         <% if content_for?(:title_bar) %>
           <div class="title-bar">
             <%= yield :title_bar %>

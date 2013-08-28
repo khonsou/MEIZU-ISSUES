@@ -4,7 +4,9 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 18px;  
 }
-
+a{
+  color:#737883;
+}
 a.light{
   color:#02c3ed;
 }
@@ -16,10 +18,11 @@ a.bluelink{
   color:#02aee5;
 }
 
-
+/*
 .container {
   margin-bottom: 50px;
 }
+*/
 
 .main {
   @include border-radius($borderRadius);

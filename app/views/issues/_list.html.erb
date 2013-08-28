@@ -4,49 +4,48 @@
   <% else %>
     <% issues.each do |issue| %>
       <div class="issue-item">
-       <% cache("issue_partial_cached-#{issue.id}-#{issue.updated_on}", expires_in: 24.hours) do%>
-        <div class="row-fluid info">
-          <div class="span14">
+        <% cache("issue_partial_cached-#{issue.id}-#{issue.updated_on}", expires_in: 24.hours) do%>
+        <div class="row info">
+          <div class="col-md-7">
             <%= link_to truncate(issue.subject, length: 22), issue_path(issue), class: 'subject', title: issue.subject %>
             <% if project.blank? %>
               <span class="project">[<%= link_to truncate(issue.project.name, length: 8), project_path(issue.project) %>]</span>
             <% end -%>
           </div>
-          <div class="span4 due">
+          <div class="col-md-2 due">
             <% if issue.due_date %>
               <span class="<%= 'overdue' if issue.overdue? %>"><i class="icon-due"></i><%= format_date(issue.due_date) %></span>
             <% end -%>
           </div>
-          <div class="span4 assignee">
+          <div class="col-md-2 assignee">
             <% if issue.assigned_to %>
               <i class="icon-assignee"></i>
               <%= link_to_user(issue.assigned_to) %>
             <% end -%>
           </div>
-          <div class="span2">
+          <div class="col-md-1">
             <span class="pull-right">
               <%= render 'action_menu', { issue: issue } %>
             </span>
           </div>
         </div>
-       <% end -%>
-       <% if issue.journals.count > 0 %>
-          <div class="row-fluid journal">
+        <% end -%>
+        <% if issue.journals.count > 0 %>
+          <div class="row journal">
           <% journal = issue.journals.order('created_on').last %>
             <%= link_to issue_path(issue, anchor: "change-#{journal.id}") do %>
-              <div class="span25">
-                <div class="avatar pull-left">
+                <div class="avatar pull-left col-md-1">
                   <%= image_tag journal.user.avatar_url(:small), :class => "img-rounded" %>
                 </div>
-                <div class="pull-left span22">
+                <div class="pull-left col-md-11" style="padding-left:0;">
                   <div class="clearfix">
-                  <% cache("journal_users-#{journal.id}", expires_in: 24.hours) do %>
-                    <div class="pull-left name"><%= journal.user %></div>
-                  <% end %>
-                  <div class="pull-right"><%= relative_time(journal.created_on) %></div>
+                    <% cache("journal_users-#{journal.id}", expires_in: 24.hours) do %>
+                      <div class="pull-left name"><%= journal.user %></div>
+                    <% end %>
+                    <div class="pull-right"><%= relative_time(journal.created_on) %></div>
                   </div>
                   <% cache("journal_notes-#{journal.id}", expires_in: 24.hours) do %>
-                    <div class="wiki span22 padright22">
+                    <div class="wiki col-md-11 padright22">
                       <% if journal.notes %>
                         <%= truncate(h(journal.notes), length: 75) %>
                       <% else %>
@@ -55,30 +54,27 @@
                     </div>
                   <% end %>
                 </div>
-              </div>
             <% end -%>
           </div>
         <% else %>
-          <div class="row-fluid journal"> 
+          <div class="row journal"> 
             <%= link_to issue_path(issue) do %>
-              <div class="span25">
-                <div class="avatar pull-left">
+                <div class="avatar pull-left col-md-1">
                   <%= image_tag issue.author.avatar_url(:small), :class => "img-rounded" %>
                 </div>
-                <div class="pull-left span22">
+                <div class="pull-left col-md-11" style="padding-left:0;">
                   <div class="clearfix">
-                  <% cache("issue_author-#{issue.id}-#{issue.updated_on}", expires_in: 24.hours) do %>
-                    <div class="pull-left name"><%= issue.author %></div>
+                    <% cache("issue_author-#{issue.id}-#{issue.updated_on}", expires_in: 24.hours) do %>
+                      <div class="pull-left name"><%= issue.author %></div>
+                    <% end %>
+                    <div class="pull-right"><%= relative_time(issue.created_on) %></div>
+                  </div>
+                  <% cache("issue_-description-#{issue.id}-#{issue.updated_on}", expires_in: 24.hours) do %>
+                    <div>
+                      <%= truncate(h(issue.description), length: 75) %>
+                    </div>
                   <% end %>
-                  <div class="pull-right"><%= relative_time(issue.created_on) %></div>
-                  </div>
-                <% cache("issue_-description-#{issue.id}-#{issue.updated_on}", expires_in: 24.hours) do %>
-                  <div>
-                    <%= truncate(h(issue.description), length: 75) %>
-                  </div>
-                <% end %>
-              </div>
-              </div>
+                </div>
             <% end %>
           </div>
         <% end -%>

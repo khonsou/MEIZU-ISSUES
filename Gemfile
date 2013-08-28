@@ -30,7 +30,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.2'
   gem 'therubyracer', '~> 0.10.0'
   gem 'uglifier', '>= 1.2.3'
-  gem 'bootstrap-sass', '~> 2.3.1.0'
+  gem 'bootstrap-sass', :git => 'git://github.com/thomas-mcdonald/bootstrap-sass.git', :branch => '3'
   gem 'jquery-fileupload-rails', '~> 0.3.4'
 end
 

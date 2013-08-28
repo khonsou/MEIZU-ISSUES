@@ -1,6 +1,6 @@
 <%= labelled_fields_for :issue, @issue do |f| %>
   <% if @issue.safe_attribute? 'assigned_to_id' %>
-    <div class="span9">
+    <div class="col-md-4">
       <span><%= l(:field_assigned_to) %></span>
       <%= f.hidden_field :assigned_to_id, style: "width:50%" %>
     </div>
@@ -10,7 +10,7 @@
   <% end %>
   
   <% if @issue.safe_attribute? 'due_date' %>
-    <div class="span15">
+    <div class="col-md-8">
       <span><%= l(:field_due_date) %></span>
       <%= f.text_field :due_date, :size => 10, :disabled => !@issue.leaf?, :required => @issue.required_attribute?('due_date'), class: 'span6' %><%= calendar_for('issue_due_date') if @issue.leaf? %>
     </div>

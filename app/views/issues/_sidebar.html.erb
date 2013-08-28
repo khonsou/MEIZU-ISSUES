@@ -3,7 +3,7 @@
     <%= render '/projects/info', { project: @project } %>
   <% else %>
     <div class="actions">
-      <%= link_to new_project_path, class: 'btn span24', remote: true do %>
+      <%= link_to new_project_path, class: 'btn btn-default col-md-12', remote: true do %>
       <i class="icon-new"></i>
         <%= l(:label_project_new) %>
       <% end -%>

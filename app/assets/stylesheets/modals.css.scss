@@ -16,6 +16,21 @@
   border: $darkSolidBorder;
   @include box-shadow($boxShadowFive);
   width: 640px;
+
+  display: none;
+  overflow: auto;
+  position: fixed;
+  top: 10%;
+  right: auto;
+  bottom: auto;
+  left: 50%;
+  z-index: 1040;
+  margin-left: -280px;
+  -webkit-border-radius:6px;
+  -moz-border-radius:6px;
+  border-radius: 6px;
+  background-clip: padding-box;
+  outline: none;
 }
 
 // Body (where all modal content resides) 67
@@ -54,6 +69,8 @@
   padding: 25px $gridGutterWidth 10px;
   background-color: $lightBackgroudThree;
   border-top: $dashedBorder;
+
+  margin-top:0;
 }
 
 // theme style

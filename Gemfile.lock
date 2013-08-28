@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
+  revision: a71f09a26b2d6a56a70a2cdf26110434cd3fbdf8
+  branch: 3
+  specs:
+    bootstrap-sass (3.0.0.0)
+      sass (~> 3.2)
+
 GEM
   remote: http://ruby.taobao.org/
   specs:
@@ -35,8 +43,6 @@ GEM
     arel (3.0.2)
     awesome_print (1.0.2)
     blankslate (2.1.2.4)
-    bootstrap-sass (2.3.1.0)
-      sass (~> 3.2)
     builder (3.0.0)
     capistrano (2.14.2)
       highline
@@ -196,7 +202,7 @@ DEPENDENCIES
   acts-as-taggable-on
   acts_as_list
   awesome_print (~> 1.0.2)
-  bootstrap-sass (~> 2.3.1.0)
+  bootstrap-sass!
   builder (= 3.0.0)
   capistrano
   capistrano-ext
