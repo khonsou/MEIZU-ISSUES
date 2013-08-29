@@ -11,14 +11,14 @@
     </div>
   <% end %>
 
-  <div class = "field">
+  <div class = "form-group">
     <%= f.label :title %><br />
-    <%= f.text_area :title, :rows => 2, :placeholder => '在此添加标题....', :id => "message_area" %>
+    <%= f.text_area :title, :rows => 2, :placeholder => '在此添加标题....', :id => "message_area", :class => "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <a href="" data-format='true' class="light pull-right">Textile语法</a>
     <%= f.label :description %><br />
-    <%= f.text_area :description, :rows => 6, :placeholder => '在此添加描述...', :id => "message_area" %>
+    <%= f.text_area :description, :rows => 6, :placeholder => '在此添加描述...', :id => "message_area", :class => "form-control" %>
   </div>
   <div class="actions">
     <%= f.submit '提交' %>

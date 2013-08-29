@@ -15,8 +15,8 @@
 <% end %>
 
 <label for='name'><%= l(:label_user) %>:</label>
-<%= text_field_tag 'name', params[:name], :size => 30 %>
-<%= submit_tag l(:button_apply), :class => "small", :name => nil %>
+<%= text_field_tag 'name', params[:name], :size => 30, :class => 'form-control' %>
+<%= submit_tag l(:button_apply), :class => "small btn", :name => nil %>
 <%= link_to l(:button_clear), users_path %>
 </fieldset>
 <% end %>

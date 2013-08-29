@@ -1,0 +1,90 @@
+.nav-stacked > li {
+  float: none;
+}
+
+.nav-stacked > li + li {
+  margin-top: 0;
+}
+
+.nav-stacked > li > a {
+  margin-right: 0;
+}
+
+.nav-tabs.nav-stacked {
+  border-bottom: 0;
+}
+
+.nav-tabs.nav-stacked > li > a {
+  border: 1px solid #dddddd;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+
+.nav-tabs.nav-stacked > li:first-child > a {
+  -webkit-border-top-right-radius: 4px;
+  -moz-border-radius-topright: 4px;
+  border-top-right-radius: 4px;
+  -webkit-border-top-left-radius: 4px;
+  -moz-border-radius-topleft: 4px;
+  border-top-left-radius: 4px;
+}
+
+.nav-tabs.nav-stacked > li:last-child > a {
+  -webkit-border-bottom-right-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+  border-bottom-right-radius: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.nav-tabs.nav-stacked > li > a:hover,
+.nav-tabs.nav-stacked > li > a:focus {
+  border-color: #ddd;
+  z-index: 2;
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
+  background-color: #f7f7f7;
+}
+
+/*admin  projects and user module */
+label {
+  display: block;
+  font-weight: normal;
+}
+
+legend {
+  font-size: 18px;
+  line-height: 40px;
+}
+
+select {
+  width: 220px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  height: 34px;
+  line-height: 34px;
+  border-radius: 4px;
+}
+
+#name{
+  display:inline-block;
+  width:auto;
+}
+
+#enumeration_name,
+#custom_field_name,
+#custom_field_min_length,
+#custom_field_max_length,
+#custom_field_regexp,
+#custom_field_default_value{
+  width:220px;
+}
+
+#tab-content-general form {
+  input[type='text'],textarea{
+      width:220px;
+  }
+}
+

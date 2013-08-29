@@ -1,18 +1,18 @@
 <%= form_tag({:action => 'edit'}) do %>
 
 <div class="box tabular settings">
-<p><%= setting_text_field :app_title, :size => 30 %></p>
+<p><%= setting_text_field :app_title, :size => 30, :class => 'form-control' %></p>
 
-<p><%= setting_text_area :welcome_text, :cols => 60, :rows => 5, :class => 'wiki-edit' %></p>
+<p><%= setting_text_area :welcome_text, :cols => 60, :rows => 5, :class => 'wiki-edit', :class => 'form-control' %></p>
 
-<p><%= setting_text_field :attachment_max_size, :size => 6 %> <%= l(:"number.human.storage_units.units.kb") %></p>
+<p><%= setting_text_field :attachment_max_size, :size => 6, :class => 'form-control' %> <%= l(:"number.human.storage_units.units.kb") %></p>
 
-<p><%= setting_text_field :per_page_options, :size => 20 %>
+<p><%= setting_text_field :per_page_options, :size => 20, :class => 'form-control' %>
 <em class="info"><%= l(:text_comma_separated) %></em></p>
 
-<p><%= setting_text_field :activity_days_default, :size => 6 %> <%= l(:label_day_plural) %></p>
+<p><%= setting_text_field :activity_days_default, :size => 6, :class => 'form-control' %> <%= l(:label_day_plural) %></p>
 
-<p><%= setting_text_field :host_name, :size => 60 %>
+<p><%= setting_text_field :host_name, :size => 60, :class => 'form-control' %>
 <em class="info"><%= l(:label_example) %>: <%= @guessed_host_and_path %></em></p>
 
 <p><%= setting_select :protocol, [['HTTP', 'http'], ['HTTPS', 'https']] %></p>
@@ -23,19 +23,19 @@
 
 <p><%= setting_select :wiki_compression, [['Gzip', 'gzip']], :blank => :label_none %></p>
 
-<p><%= setting_text_field :feeds_limit, :size => 6 %></p>
+<p><%= setting_text_field :feeds_limit, :size => 6, :class => 'form-control' %></p>
 
-<p><%= setting_text_field :file_max_size_displayed, :size => 6 %> <%= l(:"number.human.storage_units.units.kb") %></p>
+<p><%= setting_text_field :file_max_size_displayed, :size => 6, :class => 'form-control' %> <%= l(:"number.human.storage_units.units.kb") %></p>
 
-<p><%= setting_text_field :diff_max_lines_displayed, :size => 6 %></p>
+<p><%= setting_text_field :diff_max_lines_displayed, :size => 6, :class => 'form-control' %></p>
 
-<p><%= setting_text_field :login_domain, :size => 20 %></p>
+<p><%= setting_text_field :login_domain, :size => 20, :class => 'form-control' %></p>
 
-<p><%= setting_text_field :repositories_encodings, :size => 60 %>
+<p><%= setting_text_field :repositories_encodings, :size => 60, :class => 'form-control' %>
 <em class="info"><%= l(:text_comma_separated) %></em></p>
 
 <%= call_hook(:view_settings_general_form) %>
 </div>
 
-<%= submit_tag l(:button_save) %>
+<%= submit_tag l(:button_save), {:class => 'btn'} %>
 <% end %>
