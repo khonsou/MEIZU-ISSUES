@@ -35,7 +35,7 @@ function listFilter(header, list) {
   // header is any element, list is an unordered list
   // create and add the filter form to the header
   var form = $("<form>").attr({"class":"filterform","action":"#"}),
-      input = $("<input>").attr({"class":"filterinput","type":"text","placeholder":"筛选" });
+      input = $("<input>").attr({"class":"filterinput form-control","type":"text","placeholder":"筛选" });
   $(form).append(input).prependTo(header);
 
   $(input)
@@ -160,6 +160,7 @@ $(document).ready( function(){
               content:response.responseText}).popover('show')         
               
            listFilter($("#issue-form"), $(".select-assign"));  
+           $('.filterinput').focus();
            
            $( "#datepicker-div" ).datepicker({
              onSelect: function(date){

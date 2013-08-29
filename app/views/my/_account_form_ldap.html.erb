@@ -3,15 +3,18 @@
                    :html => { :id => 'my_account_form',
                               :method => :post } do |f| %>
   <div class="modal-body">
-    <div class="row-fluid">
-      <div class="span19">
-        <p class="mini alert">从LDAP登录的用户不能修改姓名和邮箱</p>        
-        <label><%= l(:field_firstname) %></label>
-        <%= f.text_field :name, :required => true, :readonly => true %>
-        <label><%= l(:field_mail) %></label>
-        <%= f.text_field :mail, :required => true, :readonly => true %>
+    <div class="row">
+      <div class="col-md-8">
+        <p class="mini alert">从LDAP登录的用户不能修改姓名和邮箱</p>               <div class="form-group">         
+          <label><%= l(:field_firstname) %></label>
+          <%= f.text_field :name, :class => "form-control",:required => true, :readonly => true %>
+        </div>
+        <div class="form-group">                  
+          <label><%= l(:field_mail) %></label>
+          <%= f.text_field :mail, :class => "form-control",:required => true, :readonly => true %>
+        </div>  
       </div>
-      <div class="span5">
+      <div class="col-md-4">
         <div class="image-selector-container">
           <div class="image-selector">
             <%= image_tag(@user.avatar_url(:medium)) %>

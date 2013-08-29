@@ -25,8 +25,12 @@
 .navbar .nav {
   left: $gridGutterWidth;
   margin-left: 45px;
+  margin-top:10px;
 }
 
+.navbar-form {
+  margin-top: 20px;
+}
 // Links 29
 .navbar .nav > li > a,
 .navbar .nav > .active > a {

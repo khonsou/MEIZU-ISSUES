@@ -4,6 +4,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 18px;
   font-size:12px;  
+  color:#737883; 
 }
 a{
   color:#737883;
@@ -225,9 +226,9 @@ a.bluelink{
 }
 
 @media (min-width: 1200px) { 
-  .container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
-    width: 1170px;
-  }
+/*  .container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
+    width: 970px;
+  }*/
   .span5 {
     width: 270px;
   }

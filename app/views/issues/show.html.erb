@@ -5,9 +5,9 @@
 <% end %>
 
 <% content_for :sidebar do %>
-  <div class="row-fluid">
-    <div class="<%= 'pinned' if !@user_agent.mobile? %>">
-      <%= link_to project_issues_path(@issue.project), class: 'btn span24 box project-name' do %>
+  <div class="">
+    <div class="<%= 'pinned' if !@user_agent.mobile? %> ">
+      <%= link_to project_issues_path(@issue.project), class: 'btn box project-name' do %>
         <i class="icon-arrow-left"></i><%= @issue.project.name %>
       <% end -%>
 

@@ -3,14 +3,18 @@
                    :html => { :id => 'my_account_form',
                               :method => :post } do |f| %>
   <div class="modal-body">
-    <div class="row-fluid">
-      <div class="span19">
-        <label><%= l(:field_firstname) %></label>
-        <%= f.text_field :firstname, :required => true %>
-        <label><%= l(:field_mail) %></label>
-        <%= f.text_field :mail, :required => true %>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="form-group">
+          <label><%= l(:field_firstname) %></label>
+          <%= f.text_field :firstname, :class => "form-control", :required => true %>
+        </div>
+        <div class="form-group">          
+          <label><%= l(:field_mail) %></label>
+          <%= f.text_field :mail, :class => "form-control", :required => true %>
+        </div>  
       </div>
-      <div class="span5">
+      <div class="col-md-4">
         <div class="image-selector-container">
           <div class="image-selector">
             <%= image_tag(@user.avatar_url(:medium)) %>

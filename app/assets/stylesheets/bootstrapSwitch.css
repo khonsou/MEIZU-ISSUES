@@ -3,13 +3,15 @@
   border: 1px solid #ddd;
   border-radius: 14px;
   margin: 16px 0px 16px 0;
-  width: 145px;
+  width: 100%;
 }
 .view-switcher a {
   display: inline-block;
   color: #999;
   font-size: 12px;
-  padding: 4px 9px;
+  padding: 4px 0px;
+  text-align: center;
+  width: 48%;  
 }
 
 .view-switcher a.active, .view-switcher a.active-right {

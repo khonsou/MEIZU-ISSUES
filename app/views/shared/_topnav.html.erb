@@ -7,14 +7,14 @@
           <span class="icon-bar"></span>
         </button>
         <%= link_to home_path, class: 'navbar-brand' do %>
-           <!-- image_tag 'logo.png' 50px -->Meizu issues discuss
+          <img alt="Logo" src="/assets/logo-new.png">
         <% end -%>
       </div>
 
       <div class="navbar-collapse  collapse">      
         <% if User.current.logged? %>
           <ul class="nav navbar-nav">
-            <li class="active">
+            <li class="">
               <%= link_to home_path do %>
                 <i class="icon-home"></i><%= l(:label_home) %>
               <% end -%>

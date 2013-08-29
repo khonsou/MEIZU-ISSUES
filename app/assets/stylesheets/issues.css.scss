@@ -146,6 +146,10 @@
 
   .issue-content {
     margin: 0px 0 30px 0px;
+    
+    ul.details{
+      padding: 0px 20px;
+    }
   }
 
   h3 {
@@ -368,7 +372,7 @@ h2.title{
   
   a.project-name{
     overflow: hidden;
-    width: 170px;
+    width: 100%;
   }
 }
 
@@ -480,5 +484,5 @@ h2.title{
 }
 
 .title-bar .nav-tabs > li > a, .tabbable .tab-title .nav-tabs > li > a {
-  width:120px;
+  width:160px;
 }
