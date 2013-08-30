@@ -60,7 +60,9 @@
     <h5>
       <i class="icon-members"></i><%= l(:label_member_plural) %>
       <% if User.current.allowed_to?(:manage_member_invitations, project) %>
-        <%= link_to l(:label_invite), new_member_invitation_path(project_id: project), remote: true, class: 'button blue btn-mini pull-right btn-xs' %>
+        <%= link_to new_member_invitation_path(project_id: project), remote: true, class: 'pull-right btn-xs' do %>
+          <span class='icon-new'></span>
+        <% end %>
       <% end -%>
     </h5>
     <ul id="memberlist">
