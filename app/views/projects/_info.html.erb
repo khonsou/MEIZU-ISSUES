@@ -63,10 +63,8 @@
         <%= link_to l(:label_invite), new_member_invitation_path(project_id: project), remote: true, class: 'button blue btn-mini pull-right' %>
       <% end -%>
     </h5>
-    <ul>
-      <div id="memberlist">
-        <%= render '/projects/memberlist', { project: project } %>
-      </div>
+    <ul id="memberlist">
+      <%= render '/projects/memberlist', { project: project } %>
     </ul>
 
     <% if project.member_principals.count + project.true_pending_invitations.count > 10 %>
