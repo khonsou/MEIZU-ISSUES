@@ -1,25 +1,30 @@
 <div class="modal" id="container-modal">
-  <%= labelled_form_for @issue, :html => {:id => 'issue-form', :multipart => true} do |f| %>
-    <div class="modal-body">
-      <%= error_messages_for 'issue' %>
-      <% if @edit_allowed || !@allowed_statuses.empty? %>
-        <div id="all_attributes">
-          <%= render :partial => 'form', :locals => {:f => f} %>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <%= labelled_form_for @issue, :html => {:id => 'issue-form', :multipart => true} do |f| %>
+        <div class="modal-body">
+          <%= error_messages_for 'issue' %>
+          <% if @edit_allowed || !@allowed_statuses.empty? %>
+            <div id="all_attributes">
+              <%= render :partial => 'form', :locals => {:f => f} %>
+            </div>
+            <div id="attachments_form">
+              <%= render :partial => 'attachments/form', :locals => {:container => @issue} %>
+            </div>
+          <% end %>
+          <a href="#" data-format='true' class="light pull-right">Textile语法</a>
         </div>
-        <div id="attachments_form">
-          <%= render :partial => 'attachments/form', :locals => {:container => @issue} %>
+        <div class="modal-footer" style="margin-top:50px;">
+           <button class="btn btn-default btn-sm" data-dismiss="modal" aria-hidden="true"><%= l(:button_cancel) %></button>
+          <%= submit_tag l(:button_submit), class: 'button blue btn-sm' %>
         </div>
-      <% end %>
-      <a href="#" data-format='true' class="light pull-right">Textile语法</a>
+        <div id="formatting-help-edit" class="popup showmebox inline-help formatting-edit">
+          <%= render :partial => "shared/textile" %>  
+        </div>
+      <% end -%>
+      
     </div>
-    <div class="modal-footer" style="margin-top:50px;">
-       <button class="btn btn-default btn-sm" data-dismiss="modal" aria-hidden="true"><%= l(:button_cancel) %></button>
-      <%= submit_tag l(:button_submit), class: 'button blue btn-sm' %>
-    </div>
-  <% end -%>
-  <div id="formatting-help-edit" class="popup showmebox inline-help formatting-edit">
-    <%= render :partial => "shared/textile" %>  
-  </div>
+  </div>    
 </div>
 
 <script type="text/javascript">

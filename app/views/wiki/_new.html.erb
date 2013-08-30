@@ -1,14 +1,18 @@
 <div class="modal" id="container-modal">
-  <%= form_tag(new_project_wiki_path(project_id: @project), method: :get) do %>
-    <div class="modal-body">
-      <div class="form-content">
-        <label><%= l(:label_wiki_page_new) %></label>
-        <%= text_field_tag 'id' %>
-      </div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <%= form_tag(new_project_wiki_path(project_id: @project), method: :get) do %>
+        <div class="modal-body">
+          <div class="form-content">
+            <label><%= l(:label_wiki_page_new) %></label>
+            <%= text_field_tag 'id' %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= link_to l(:button_close), '#', class: 'btn', data: { dismiss: 'modal' } %>
+          <%= submit_tag l(:button_create), class: 'button blue btn-sm' %>
+        </div>
+      <% end %>
     </div>
-    <div class="modal-footer">
-      <%= link_to l(:button_close), '#', class: 'btn', data: { dismiss: 'modal' } %>
-      <%= submit_tag l(:button_create), class: 'button blue' %>
-    </div>
-  <% end %>
+  </div>  
 </div>

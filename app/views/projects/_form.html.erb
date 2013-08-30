@@ -6,11 +6,11 @@
   </div>
 
   <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-9 col-xs-9">
       <%= f.text_area :description, :rows => 6, :class => 'wiki-edit col-md-12', placeholder: l(:field_description) %>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-3 col-xs-3">
       <div class="image-selector-container">
         <div class="image-selector">
           <%= image_tag(@project.icon_url(:medium)) %>
@@ -24,7 +24,7 @@
   </div>
   
   <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-9 col-xs-9">
       <label class="checkbox inline">
         <%= f.check_box :mute %> 默认关闭所有通知和邮件
       </label>

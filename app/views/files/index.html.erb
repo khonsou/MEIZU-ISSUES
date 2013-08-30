@@ -13,7 +13,7 @@
     <h4 class="pull-left"><%=l(:label_attachment_plural)%></h4>
 
     <%= form_tag(project_files_path(@project), :multipart => true, id: 'new-files-form') do %>
-      <span class="button blue fileinput-button bg-upload">
+      <span class="button blue btn-sm fileinput-button bg-upload">
         <!-- <i class="icon-plus icon-white"></i> -->
         <span><%= l(:button_upload) %></span>
         <%= file_field_tag 'file', multiple: true, name: 'attachments[][file]' %>

@@ -21,21 +21,23 @@
     </div>
   </li>
 <% else %>
-  <li class="item row">
+  <li class="item">
     <%= link_to read_push_notification_path(push_notification, pusher_path: member_invitation_path(push_notification.pusher)) do %>
-      <div class="col-md-3">
-        <div class="user-image pull-left">
-          <%= image_tag push_notification.author.avatar_url(:small), :class => "img-rounded" %>          
+      <div class="row">
+        <div class="col-md-3">
+          <div class="user-image pull-left">
+            <%= image_tag push_notification.author.avatar_url(:small), :class => "img-rounded" %>          
+          </div>
+          <%= push_notification.author.name %><br>
+          <span class="time"><%= localize(push_notification.created_at, format: :short) %></span>
         </div>
-        <%= push_notification.author.name %><br>
-        <span class="time"><%= localize(push_notification.created_at, format: :short) %></span>
-      </div>
-      <div class="col-md-9">
-        <% case push_notification.event_name %>
-        <% when 'create' %>
-          邀请你加入<%= push_notification.project.name %>
-        <% end -%>
-        <span class="project">(<%= push_notification.project.name %>)</span>
+        <div class="col-md-9">
+          <% case push_notification.event_name %>
+          <% when 'create' %>
+            邀请你加入<%= push_notification.project.name %>
+          <% end -%>
+          <span class="project">(<%= push_notification.project.name %>)</span>
+        </div>
       </div>
     <% end -%>
   </li>

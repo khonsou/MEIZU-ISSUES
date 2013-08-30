@@ -36,36 +36,38 @@
     </div>
   </li>
 <% else %>
-  <li class="item row">
+  <li class="item">
     <%= link_to read_push_notification_path(push_notification, pusher_path: issue_path(push_notification.pusher.journal.journalized)) do %>
-      <div class="col-md-3">
-        <div class="user-image pull-left">
-          <%= image_tag push_notification.author.avatar_url(:small), :class => "img-rounded" %>     
+      <div class="row">
+        <div class="col-md-3">
+          <div class="user-image pull-left">
+            <%= image_tag push_notification.author.avatar_url(:small), :class => "img-rounded" %>     
+          </div>
+          <%= push_notification.author.name %><br>
+          <span class="time"><%= localize(push_notification.created_at, format: :short) %></span>
         </div>
-        <%= push_notification.author.name %><br>
-        <span class="time"><%= localize(push_notification.created_at, format: :short) %></span>
-      </div>
-      <div class="col-md-9">
-        <% case push_notification.event_name %>
-        <% when 'add_due_date' %>
-          设置了<%= push_notification.pusher.journal.journalized.subject %>在<%= push_notification.pusher.value %>过期
-        <% when 'remove_due_date' %>
-          取消了<%= push_notification.pusher.journal.journalized.subject %>的过期时间
-        <% when 'add_assignee' %>
-          <% assignee = User.find(push_notification.pusher.value) %>
-          分配<%= push_notification.pusher.journal.journalized.subject %>给<%= assignee == User.current ? '你' : assignee.name %>
-        <% when 'remove_assignee' %>
-          取消了<%= push_notification.pusher.journal.journalized.subject %>的负责人
-        <% when 'close' %>
-          关闭了<%= push_notification.pusher.journal.journalized.subject %>
-        <% when 'reopen' %>
-          重开了<%= push_notification.pusher.journal.journalized.subject %>
-        <% when 'description' %>
-          更新了<%= push_notification.pusher.journal.journalized.subject %>的描述
-        <% when 'update' %>
-          更新了<%= push_notification.pusher.journal.journalized.subject %>
-        <% end -%>
-        <span class="project">(<%= push_notification.project.name %>)</span>
+        <div class="col-md-9">
+          <% case push_notification.event_name %>
+          <% when 'add_due_date' %>
+            设置了<%= push_notification.pusher.journal.journalized.subject %>在<%= push_notification.pusher.value %>过期
+          <% when 'remove_due_date' %>
+            取消了<%= push_notification.pusher.journal.journalized.subject %>的过期时间
+          <% when 'add_assignee' %>
+            <% assignee = User.find(push_notification.pusher.value) %>
+            分配<%= push_notification.pusher.journal.journalized.subject %>给<%= assignee == User.current ? '你' : assignee.name %>
+          <% when 'remove_assignee' %>
+            取消了<%= push_notification.pusher.journal.journalized.subject %>的负责人
+          <% when 'close' %>
+            关闭了<%= push_notification.pusher.journal.journalized.subject %>
+          <% when 'reopen' %>
+            重开了<%= push_notification.pusher.journal.journalized.subject %>
+          <% when 'description' %>
+            更新了<%= push_notification.pusher.journal.journalized.subject %>的描述
+          <% when 'update' %>
+            更新了<%= push_notification.pusher.journal.journalized.subject %>
+          <% end -%>
+          <span class="project">(<%= push_notification.project.name %>)</span>
+        </div>
       </div>
     <% end -%>
   </li>

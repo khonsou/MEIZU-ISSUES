@@ -1,5 +1,5 @@
 <div id="project-list">
-  <ul class="nav nav-tabs nav-stacked span24 media-list">
+  <ul class="nav nav-tabs nav-stacked media-list">
     <% find_visible_projects.each do |project| %>
 
       <% cache("#{project.id}-#{project.updated_on}", :expires_in => 24.hour) do %>
