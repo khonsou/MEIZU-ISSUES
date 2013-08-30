@@ -3,10 +3,10 @@
 <% for journal in journals %>
   <div id="change-<%= journal.id %>" class="<%= journal.css_classes %>">
     <div id="note-<%= journal.indice %>" class="row clearfix">
-      <div class="avatar col-md-1">
-        <%= link_to_user(journal.user, :avatar => :small) %>
-      </div>
-      <div class="issue-holder col-md-11">
+      <div class="issue-holder col-md-12 col-xs-12 col-sm-12">
+        <span class="avatar">
+          <%= link_to_user(journal.user, :avatar => :small) %>        
+        </span>
         <div class="author-header clearfix">
           <div class="author">
             <strong><%= link_to_user journal.user %></strong>

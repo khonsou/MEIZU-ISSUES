@@ -127,13 +127,19 @@
     @extend .pull-left;
   }
   
-  .avatar.col-md-1{
-    width:6.33333%;
-    padding-right:5px;
-  }
-  
-  .issue-holder.col-md-11{
-    padding-left:5px;
+  .issue-holder{
+    padding-left: 45px;
+    position:relative;
+    
+    .avatar{
+      position: absolute;
+      top: 0px;
+      left: 0;
+      width: 32px;
+      height: 32px;
+      padding: 3px;
+      color: #bbb;
+    }
   }
 
   .author {
@@ -187,7 +193,7 @@
 }
 
 .issue-header{
-  margin:0px 0px 20px 40px;
+  margin:0px 0px 20px 0px;
   position:relative;
   
   h2{

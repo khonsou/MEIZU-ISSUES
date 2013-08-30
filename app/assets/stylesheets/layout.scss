@@ -28,7 +28,7 @@ a.bluelink{
 
 .main {
   @include border-radius($borderRadius);
-  padding: 20px $gridGutterWidth;
+  padding: 3em;
   background-color: $white;
 
   background-repeat: repeat-x;

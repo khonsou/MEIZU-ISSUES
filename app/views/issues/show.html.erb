@@ -5,70 +5,70 @@
 <% end %>
 
 <% content_for :sidebar do %>
-  <div class="">
-    <div class="<%= 'pinned' if !@user_agent.mobile? %> ">
-      <%= link_to project_issues_path(@issue.project), class: 'btn box project-name' do %>
+  <div class="<%= '' if !@user_agent.mobile? %> ">
+    <div class="col-md-12" style="padding:0px;">
+      <%= link_to project_issues_path(@issue.project), class: 'btn box project-name', style: "width: 100%;" do %>
         <i class="icon-arrow-left"></i><%= @issue.project.name %>
       <% end -%>
-
-      <div class="issue-info">
-        <div class="attributes">
-        
-          <div class="view-switcher">
-            <% if @issue.closed? %>
-              <%= link_to reopen_issue_path(@issue), :method => "post" do  %>
-                <i class='icon-open'></i> 开放
-              <% end %>
-              <%= link_to reopen_issue_path(@issue), :method => "post", :class => "active-right" do  %>
-                <i class='icon-blue-arrow-left'></i> 关闭
-              <% end %>
-            <% else %>  
-              <%= link_to close_issue_path(@issue), :method => "post", :class => "active" do  %>
-                 开放 <i class='icon-blue-arrow-right'></i>
-              <% end %>
-              <%= link_to close_issue_path(@issue), :method => "post" do  %>
-                 关闭 <i class='icon-closed'></i>
-              <% end %>
-            <% end %>
-          </div>
-        
-          <div class="assignee js-select hidden-phone hidden-tablet">
-            <div class="info">指派给: </div>
-            <% if @issue.closed? %>
-              <span class="btn minibutton js-menu-target" data-title="选择指派人" class="popover-link">
-                <span class="js-select-button" data-assign="name"><%= @issue.assigned_to.try(:name) %></span>
-              </span>
-            <% else %>  
-              <a class="btn minibutton select-menu-button js-menu-target"  href="<%= issue_path(@issue) %>" data-title="选择指派人" class="popover-link">
-                <span class="js-select-button" data-assign="name"><%= @issue.assigned_to.try(:name) %></span>
-              </a> 
-            <% end %>  
-          </div>
-        
-          <div class="due  js-select hidden-phone hidden-tablet">
-            <div class="info">计划完成日期: </div>
-            <% if @issue.closed? %>
-              <span class="btn minibutton js-menu-target">
-                <span class="js-select-button"><%= format_date(@issue.due_date) %></span>
-              </span>
-            <% else %>  
-              <a class="btn minibutton select-menu-button js-menu-target" data-title="选择日期" href="<%= issue_path(@issue, :date => true) %>">
-                <span class="js-select-button" data-assign="date"><%= format_date(@issue.due_date) %></span>            
-              </a>  
-            <% end %>
-          </div>                                   
-        
-        </div>
-      </div>
-
-      <% if User.current.allowed_to?(:add_issue_watchers, @project) ||
-        (@issue.watchers.present? && User.current.allowed_to?(:view_issue_watchers, @project)) %>
-        <div id="watchers">
-          <%= render :partial => 'watchers/watchers', :locals => {:watched => @issue} %>
-        </div>
-      <% end %>
     </div>
-  </div>  
+
+    <div class="issue-info">
+      <div class="attributes">
+      
+        <div class="view-switcher">
+          <% if @issue.closed? %>
+            <%= link_to reopen_issue_path(@issue), :method => "post" do  %>
+              <i class='icon-open'></i> 开放
+            <% end %>
+            <%= link_to reopen_issue_path(@issue), :method => "post", :class => "active-right" do  %>
+              <i class='icon-blue-arrow-left'></i> 关闭
+            <% end %>
+          <% else %>  
+            <%= link_to close_issue_path(@issue), :method => "post", :class => "active" do  %>
+               开放 <i class='icon-blue-arrow-right'></i>
+            <% end %>
+            <%= link_to close_issue_path(@issue), :method => "post" do  %>
+               关闭 <i class='icon-closed'></i>
+            <% end %>
+          <% end %>
+        </div>
+      
+        <div class="assignee js-select hidden-phone hidden-tablet">
+          <div class="info">指派给: </div>
+          <% if @issue.closed? %>
+            <span class="btn minibutton js-menu-target" data-title="选择指派人" class="popover-link">
+              <span class="js-select-button" data-assign="name"><%= @issue.assigned_to.try(:name) %></span>
+            </span>
+          <% else %>  
+            <a class="btn minibutton select-menu-button js-menu-target"  href="<%= issue_path(@issue) %>" data-title="选择指派人" class="popover-link">
+              <span class="js-select-button" data-assign="name"><%= @issue.assigned_to.try(:name) %></span>
+            </a> 
+          <% end %>  
+        </div>
+      
+        <div class="due  js-select hidden-phone hidden-tablet">
+          <div class="info">计划完成日期: </div>
+          <% if @issue.closed? %>
+            <span class="btn minibutton js-menu-target">
+              <span class="js-select-button"><%= format_date(@issue.due_date) %></span>
+            </span>
+          <% else %>  
+            <a class="btn minibutton select-menu-button js-menu-target" data-title="选择日期" href="<%= issue_path(@issue, :date => true) %>">
+              <span class="js-select-button" data-assign="date"><%= format_date(@issue.due_date) %></span>            
+            </a>  
+          <% end %>
+        </div>                                   
+      
+      </div>
+    </div>
+
+    <% if User.current.allowed_to?(:add_issue_watchers, @project) ||
+      (@issue.watchers.present? && User.current.allowed_to?(:view_issue_watchers, @project)) %>
+      <div id="watchers">
+        <%= render :partial => 'watchers/watchers', :locals => {:watched => @issue} %>
+      </div>
+    <% end %>
+  </div>
 <% end -%>
 
 <div class="issue">
@@ -100,10 +100,10 @@
   <div class="clearfix" />
 
   <div class="row journal issue-body">
-    <div class="avatar col-md-1">
-      <%= link_to_user(@issue.author, :avatar => :small) %>
-    </div>    
-    <div class="issue-holder col-md-11">
+    <div class="issue-holder col-md-12 col-xs-12 col-sm-12">
+      <span class="avatar">
+        <%= link_to_user(@issue.author, :avatar => :small) %>        
+      </span>
       <div class="author-header clearfix">
         <div class="author">
           <strong><%= link_to_user(@issue.author) %></strong><br/>
@@ -129,7 +129,7 @@
   </div>
  
   <% if !@issue.closed? && User.current.allowed_to?(:add_issue_notes, @issue.project) %>    
-      <div class="clearfix tabnav">
+      <div class="clearfix tabnav row">
         <ul class="nav nav-tabs">
           <li class="active">
             <a href="#home">回复</a>
@@ -141,29 +141,31 @@
         <a href="" data-format='true' class="light pull-right">Textile语法</a>   
       </div>
       
-      <%= labelled_form_for @issue, html: { :multipart => true, :class => form_class, :id => form_class, :"data-url" => "/projects/#{@issue.project.id}/files/upload" } do |f| %>      
-        <div class="tab-content overflow">
-          <div class="tab-pane active" id="home">
-            <%= text_area_tag 'notes', @notes, :rows => 3, :class => 'wiki-edit col-md-12 form-control hasAt autosize', :placeholder => '在此添加讨论内容......' %>
-            <% if old_browser?(@user_agent) %>
-              <%= render :partial => 'attachments/form', :locals => {:container => @issue} %>
-            <% end %>
+      <div class="row">
+        <%= labelled_form_for @issue, html: { :multipart => true, :class => form_class, :id => form_class, :"data-url" => "/projects/#{@issue.project.id}/files/upload" } do |f| %>      
+          <div class="tab-content overflow">
+            <div class="tab-pane active" id="home">
+              <%= text_area_tag 'notes', @notes, :rows => 3, :class => 'wiki-edit col-md-12 form-control hasAt autosize', :placeholder => '在此添加讨论内容......' %>
+              <% if old_browser?(@user_agent) %>
+                <%= render :partial => 'attachments/form', :locals => {:container => @issue} %>
+              <% end %>
+            </div>
+            <div class="tab-pane" id="preview">
+              <div id="preview-content"></div> 
+            </div>          
           </div>
-          <div class="tab-pane" id="preview">
-            <div id="preview-content"></div> 
-          </div>          
-        </div>
         
-        <div class="row-fluid">        
-          <div class="pull-right" id="close-button">
-            <%= link_to close_issue_path(@issue), class: 'btn', :method => "post" do  %>
-              <%= l(:button_close) %>
-            <% end %>
-            <%= submit_tag l(:button_close_submit), disable_with: l(:button_submiting), class: 'btn', id: "button_close_submit" %>
-            <%= submit_tag l(:button_submit), disable_with: l(:button_submiting), class: 'button blue full', id: "button_submit" %>
-          </div>
-        </div>  
-      <% end %>
+          <div class="row-fluid">        
+            <div class="pull-right" id="close-button">
+              <%= link_to close_issue_path(@issue), class: 'btn', :method => "post" do  %>
+                <%= l(:button_close) %>
+              <% end %>
+              <%= submit_tag l(:button_close_submit), disable_with: l(:button_submiting), class: 'btn', id: "button_close_submit" %>
+              <%= submit_tag l(:button_submit), disable_with: l(:button_submiting), class: 'button blue full', id: "button_submit" %>
+            </div>
+          </div>  
+        <% end %>
+      </div>
 
   <% end -%>
   
