@@ -1,5 +1,7 @@
 #s2id_member-invitation-recipients {
   margin-bottom: 15px;
+  padding-left:0;
+  padding-right:0;
 
   .select2-choices {
     @extend .basic-form;
@@ -19,6 +21,10 @@
         right: 5px;
         top: 3px;
       }
+    }
+
+    input.select2-input{
+        height:100%;
     }
   }
 }

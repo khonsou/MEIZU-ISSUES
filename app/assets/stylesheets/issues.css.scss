@@ -6,7 +6,7 @@
 
 .issue-list {  
   .issue-item {
-    padding: 15px 0px 10px;
+    padding: 15px 0px 25px;
     border-bottom: $dashedBorder;
 
     [class*="span"] {
@@ -61,6 +61,18 @@
       .span17 {
         width: 482px;
         margin-left: 5px;
+      }
+    }
+
+    .journal{
+      .avatar{
+        position: absolute;
+        top: 0px;
+        left: 15px;
+        width: 28px;
+        height: 28px;
+        padding: 0;
+        color: #bbb;
       }
     }
   }

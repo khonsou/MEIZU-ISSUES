@@ -1,16 +1,16 @@
-<div class="row-fluid form-content" id="invitations">
+<div class="row form-content" id="invitations">
   <div class="title">
     <span><%= l(:field_project) %></span>
-    <%= select_tag 'project_id', project_tree_options_for_select(find_visible_projects, :selected => @project), class: 'span24' %>
+    <%= select_tag 'project_id', project_tree_options_for_select(find_visible_projects, :selected => @project), class: 'col-md-12' %>
   </div>
 
   <div>
-    <%= text_field_tag 'recipients', nil, id: "member-invitation-recipients", class: 'span24' %>
+    <%= text_field_tag 'recipients', nil, id: "member-invitation-recipients", class: 'col-md-12' %>
   </div>
 
   <div>
     <label><%= l(:field_description) %></label>
-    <%= text_area_tag 'description', nil, :rows => 6, :class => 'span24' %>
+    <%= text_area_tag 'description', nil, :rows => 6, :class => 'col-md-12' %>
   </div>
 </div>
 
