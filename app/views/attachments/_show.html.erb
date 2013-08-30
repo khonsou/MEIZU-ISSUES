@@ -1,14 +1,18 @@
-<div id="container-modal" class="modal hide" tabindex="-1" role="dialog"  aria-hidden="true" >
-  <div class="modal-body" style="text-align:center;padding: 30px 80px; position:relative; height:320px; *height:320px;">  
-    <%= link_to image_tag('/assets/arrow-left.png'),"#", {:id => "preImage", :title => "上一张", :index => @attachment.filename} %> 
-    <%= link_to image_tag(url_for(:controller => 'attachments', :action => 'show', :id => @attachment, :filename => @attachment.filename), :id => "issue-display"),
-    { :controller => 'attachments', :action => 'show', :id => @attachment, :filename => @attachment.filename },
-    { :title => '点击查看大图', :target => '_blank' } %>
-    <%= link_to image_tag('/assets/arrow-right.png'), "#", {:id => "nextImage", :title => "下一张"} %> 
+<div id="container-modal" class="modal" tabindex="-1" role="dialog"  aria-hidden="true" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body" style="text-align:center;padding: 30px 80px; position:relative; height:320px; *height:320px;">  
+        <%= link_to image_tag('/assets/arrow-left.png'),"#", {:id => "preImage", :title => "上一张", :index => @attachment.filename} %> 
+        <%= link_to image_tag(url_for(:controller => 'attachments', :action => 'show', :id => @attachment, :filename => @attachment.filename), :id => "issue-display"),
+        { :controller => 'attachments', :action => 'show', :id => @attachment, :filename => @attachment.filename },
+        { :title => '点击查看大图', :target => '_blank' } %>
+        <%= link_to image_tag('/assets/arrow-right.png'), "#", {:id => "nextImage", :title => "下一张"} %> 
+      </div>  
+      <div class="modal-footer">
+        <%= submit_tag "关闭",  class: 'button blue btn-sm', data: { dismiss: 'modal' } %>    
+      </div>    
+    </div>
   </div>  
-  <div class="modal-footer">
-    <%= submit_tag "关闭",  class: 'button blue btn-sm', data: { dismiss: 'modal' } %>    
-  </div>    
 </div> 
 <%= javascript_tag do %>
   $(document).ready(function(){

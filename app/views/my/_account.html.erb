@@ -1,27 +1,32 @@
 <div class="modal" id="container-modal">
-  <div class="tabbable"> <!-- Only required for left/right tabs -->
-    <div class="tab-title">
-      <ul class="nav nav-tabs">
-        <li class="active"><%= link_to l(:label_my_account), '#account-tab-content', data: { toggle: 'tab' }, class: 'account' %></li>
-        <% if !User.current.from_ldap? %>              
-          <li><%= link_to l(:button_change_password), '#password-tab-content', data: { toggle: 'tab' }, class: 'password' %></li>
-        <% end %>  
-      </ul>
-    </div>
-    <div class="tab-content">
-      <% if User.current.from_ldap? %>      
-        <div class="tab-pane active" id="account-tab-content">
-          <%= render 'account_form_ldap' %>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="tabbable"> <!-- Only required for left/right tabs -->
+        <div class="tab-title">
+          <ul class="nav nav-tabs">
+            <li class="active"><%= link_to l(:label_my_account), '#account-tab-content', data: { toggle: 'tab' }, class: 'account' %></li>
+            <% if !User.current.from_ldap? %>              
+              <li><%= link_to l(:button_change_password), '#password-tab-content', data: { toggle: 'tab' }, class: 'password' %></li>
+            <% end %>  
+          </ul>
         </div>
-      <% else %>  
-        <div class="tab-pane active" id="account-tab-content">
-          <%= render 'account_form' %>
-        </div>      
-        <div class="tab-pane" id="password-tab-content">
-          <%= render 'password_form' %>
+        <div class="tab-content">
+          <% if User.current.from_ldap? %>      
+            <div class="tab-pane active" id="account-tab-content">
+              <%= render 'account_form_ldap' %>
+            </div>
+          <% else %>  
+            <div class="tab-pane active" id="account-tab-content">
+              <%= render 'account_form' %>
+            </div>      
+            <div class="tab-pane" id="password-tab-content">
+              <%= render 'password_form' %>
+            </div>
+          <% end %>  
         </div>
-      <% end %>  
+      </div>
+      
     </div>
-  </div>
+  </div>    
 </div>
 

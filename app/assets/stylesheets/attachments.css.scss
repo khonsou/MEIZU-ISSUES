@@ -15,9 +15,13 @@ div.add_attachments{
   
   >li {
     margin-bottom: 10px;
+    list-style: none;
+    margin-right: 20px;
 
     a {
       @extend .thumbnail;
+      display: inline-block;
+      max-width: auto;
     }
   }
 }

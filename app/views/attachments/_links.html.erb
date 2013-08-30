@@ -21,9 +21,9 @@
   <% images = attachments.select(&:thumbnailable?) %>
   <% if images.any? %>
     <div class="row-fluid">
-      <ul class="thumbnails">
+      <ul class="thumbnails clearfix">
         <% images.each do |attachment| %>
-          <li class="span6">
+          <li class="pull-left">
             <%= render :partial => "shared/thumbnail", :locals => {:attachment => attachment, :count => 1} %>
           </li>
         <% end %>

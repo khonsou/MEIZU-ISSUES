@@ -27,10 +27,10 @@
           <% thumbnails = journal.own_attachments.select(&:thumbnailable?) %>
           <% if thumbnails.any? %>
             <div class="row-fluid">
-              <ul class="thumbnails">
+              <ul class="thumbnails clearfix">
                 <% thumbnails.each do |thumbnail| %>
                   <% thumbnail_count += 1 %>
-                  <li class="span6"><%= render :partial => "shared/thumbnail", :locals => {:attachment => thumbnail, :count => thumbnail_count} %></li>
+                  <li class="pull-left"><%= render :partial => "shared/thumbnail", :locals => {:attachment => thumbnail, :count => thumbnail_count} %></li>
                 <% end %>
               </ul>
             </div>
