@@ -272,13 +272,22 @@ input#created_on_end {
     margin-left: 10px;
   }
 
-  #search-input {
+  #search-input,#tag_list {
     width: 96%;
     @extend .basic-form;
   }
 
   .btn-primary {
     margin-right: 15px;
+  }
+
+  .row-distance {
+    margin-bottom: 10px;
+  }
+  .select2-container {
+    .select2-choice {
+      height: 34px;
+    }
   }
 }
 

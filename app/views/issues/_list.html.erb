@@ -48,7 +48,7 @@
                     <div class="pull-right"><%= relative_time(journal.created_on) %></div>
                   </div>
                   <% cache("journal_notes-#{journal.id}", expires_in: 24.hours) do %>
-                    <div class="wiki col-md-11 padright22">
+                    <div class="wiki col-md-11 padright22" style="padding-left:0px;">
                       <% if journal.notes %>
                         <%= truncate(h(journal.notes), length: 75) %>
                       <% else %>

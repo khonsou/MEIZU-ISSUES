@@ -23,56 +23,56 @@
 
 <%= form_tag({}, { :method => :get, class: 'advance-search', id: 'advance_search_formx' }) do %>
 
-  <div class="row-fluid types">
-    <label class="span6"><%= check_box_tag 'all_object_types', 1, true %> <%= l(:label_all) %></label>
+  <div class="row types">
+    <label class="col-md-3"><%= check_box_tag 'all_object_types', 1, true %> <%= l(:label_all) %></label>
     <% @object_types.each do |t| %>
-      <label class="span6"><%= check_box_tag t, 1, @scope.include?(t), class: 'object-type' %> <%= type_label(t) %></label>
+      <label class="col-md-3"><%= check_box_tag t, 1, @scope.include?(t), class: 'object-type' %> <%= type_label(t) %></label>
     <% end %>
   </div>
 
-  <div class="row-fluid">
-    <div class="span12">
+  <div class="row row-distance">
+    <div class="col-md-6">
       <%= label_tag l(:field_due_date) %>
-      <%= text_field_tag 'due_date_start', params[:due_date_start], class: 'span6' %>
-      to
-      <%= text_field_tag 'due_date_end', params[:due_date_end], class: 'span6' %>
+      <%= text_field_tag 'due_date_start', params[:due_date_start], class: 'col-md-3 form-control' %>
+      <span style="float:left;margin-top:10px;">to</span>
+      <%= text_field_tag 'due_date_end', params[:due_date_end], class: 'col-md-3 form-control' %>
       <%= calendar_for('due_date_start') %>
       <%= calendar_for('due_date_end') %>
     </div>
-    <div class="span6">
+    <div class="col-md-3">
       <%= label_tag l(:field_status) %>
-      <%= select_tag 'issue_status', options_for_select([[l(:label_open), 'open'], [l(:label_close), 'close'], [l(:label_all), 'all']], params[:issue_status] || 'all'), class: 'span6' %>
+      <%= select_tag 'issue_status', options_for_select([[l(:label_open), 'open'], [l(:label_close), 'close'], [l(:label_all), 'all']], params[:issue_status] || 'all'), class: 'col-md-3 ' %>
     </div>
-    <div class="span6">
+    <div class="col-md-3 ">
       <%= label_tag l(:field_watched) %>
-      <%= select_tag 'issue_watched', options_for_select([[l(:general_text_yes), 'yes'], [l(:general_text_no), 'no'], [l(:label_all), 'all']], params[:issue_watched] || 'all'), class: 'span6' %>
+      <%= select_tag 'issue_watched', options_for_select([[l(:general_text_yes), 'yes'], [l(:general_text_no), 'no'], [l(:label_all), 'all']], params[:issue_watched] || 'all'), class: 'col-md-3 ' %>
     </div>
   </div>
   
-  <div class="row-fluid">
-    <div class="span12">
+  <div class="row row-distance">
+    <div class="col-md-6 ">
       <%= label_tag l(:field_created_on) %>
-      <%= text_field_tag 'created_on_start', params[:created_on_start], class: 'span6' %>
-      to
-      <%= text_field_tag 'created_on_end', params[:created_on_end], class: 'span6' %>
+      <%= text_field_tag 'created_on_start', params[:created_on_start], class: 'col-md-3 form-control' %>
+      <span style="float:left;margin-top:10px;">to</span>
+      <%= text_field_tag 'created_on_end', params[:created_on_end], class: 'col-md-3 form-control' %>
       <%= calendar_for('created_on_start') %>
       <%= calendar_for('created_on_end') %>
     </div>
-    <div class="span12">
+    <div class="col-md-6 ">
       <%= label_tag "search-input", l(:description_search), :class => "hidden-for-sighted" %>
-      <%= text_field_tag 'q', @question, :size => 60, :id => 'search-input', class: 'span12' %>
+      <%= text_field_tag 'q', @question, :size => 60, :id => 'search-input', class: 'col-md-6 form-control' %>
     </div>
   </div>
 
-  <div class="row-fluid">
-    <div class="span12">
+  <div class="row row-distance">
+    <div class="col-md-6 ">
       <% issue_assigned_user = User.find(params[:issue_assigned_to_id]) rescue nil %>
       <%= label_tag l(:field_assigned_to) %>
       <%= hidden_field_tag :issue_assigned_to_id, issue_assigned_user.try(:id), style: "width:140px" %>
     </div>
-    <div class="span12">
+    <div class="col-md-6 ">
       <%= label_tag "标签" %>
-      <input type="text" id="tag_list" name="tag_list", placeholder="标签", class="span6 tm-input" />
+      <input type="text" id="tag_list" name="tag_list", placeholder="标签", class="col-md-3 tm-input form-control" />
     </div>
     <script>
       <%= render :partial => "auto_completes/select2_script_for_assigned_to", :locals => {:dom_id => 'issue_assigned_to_id', :project_id => nil, :user => @user } %>
