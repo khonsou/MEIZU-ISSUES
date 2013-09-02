@@ -1,20 +1,18 @@
 <div class="modal" id="container-modal" >
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <%=l(:label_planner_new)%>
-      </div>
-
-      <div class="modal-body">
-        <%= labelled_form_for @project, multipart: true do |f| %>
+      <%= labelled_form_for @project, multipart: true do |f| %>
+        <div class="modal-header">
+          <%=l(:label_planner_new)%>
+        </div>
+        <div class="modal-body">
           <%= render :partial => 'form', :locals => { :f => f } %>
-        <% end %>  
-      </div>
-
-      <div class="modal-footer">
-        <%= link_to l(:button_close), '#', class: 'btn', data: { dismiss: 'modal' } %>
-        <%= submit_tag l(:button_create), disable_with:   l(:button_submiting), class: 'button blue btn-sm' %>
-      </div>
+        </div>
+        <div class="modal-footer">
+          <%= link_to l(:button_close), '#', class: 'btn', data: { dismiss: 'modal' } %>
+          <%= submit_tag l(:button_create), disable_with:   l(:button_submiting), class: 'button blue btn-sm' %>
+        </div>
+      <% end %>
     </div>  
   </div>
 </div>
