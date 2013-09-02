@@ -42,6 +42,28 @@
   /*margin-left: 25px;*/
 }
 
+
+#new_project {
+  .row {
+    .col-md-9 {
+      input#project_mute {
+        height: auto;
+      }
+    }
+
+    label {
+      margin-top: 10px;
+    }
+  }
+}
+.col-md-3 {
+  .image-selector {
+    img {
+      max-width: 100%;
+    }
+  }
+}
+
 // wiki
 .wiki-nav {
   border-bottom: $dashedBorder;

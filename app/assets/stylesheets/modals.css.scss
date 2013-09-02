@@ -32,6 +32,20 @@
   background-clip: padding-box;
   outline: none;
 }
+.modal-body {
+  .row {
+    input {
+      height: 30px;
+    }
+
+    .select2-container {
+      a:first-child {
+        height: 30px;
+      }
+    }
+  }
+}
+
 
 // Body (where all modal content resides) 67
 .modal-body {

@@ -1,19 +1,28 @@
-<div id="container-modal" class="modal user-info" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-body">
-    <div class="row">
-      <div class="col-md-3">
-        <%= image_tag @user.avatar_url(:medium), :class => "img-rounded" %>
-      </div>
-      <div class="col-md-9">
-        <p class="name"><%= @user.name %></p>
-        <p><%= @user.mail %></p>
-        <div>
-          <%= link_to l(:label_invite), new_member_invitation_path(user_id: @user.id), remote: true, class: 'button blue' %>
+<div class="modal user-info" id="container-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="tabbable"> <!-- Only required for left/right tabs -->
+        <div class="tab-content">
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-3">
+                <%= image_tag @user.avatar_url(:medium), :class => "img-rounded" %>
+              </div>
+              <div class="col-md-9">
+                <p class="name"><%= @user.name %></p>
+                <p><%= @user.mail %></p>
+                <div>
+                  <%= link_to l(:label_invite), new_member_invitation_path(user_id: @user.id), remote: true, class: 'button blue' %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <%= link_to l(:button_close), '#', class: 'button blue', data: { dismiss: 'modal' }, "aria-hidden" => true %>
+          </div>
         </div>
       </div>
+      
     </div>
-  </div>
-  <div class="modal-footer">
-    <%= link_to l(:button_close), '#', class: 'button blue', data: { dismiss: 'modal' }, "aria-hidden" => true %>
-  </div>
+  </div>    
 </div>

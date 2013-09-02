@@ -11,8 +11,8 @@
   
   <% if @issue.safe_attribute? 'due_date' %>
     <div class="col-md-8">
-      <span><%= l(:field_due_date) %></span>
-      <%= f.text_field :due_date, :size => 10, :disabled => !@issue.leaf?, :required => @issue.required_attribute?('due_date'), class: 'span6' %><%= calendar_for('issue_due_date') if @issue.leaf? %>
+      <span class="pull-left"><%= l(:field_due_date) %></span>
+      <%= f.text_field :due_date, :size => 10, :disabled => !@issue.leaf?, :required => @issue.required_attribute?('due_date'), class: 'col-md-3 form-control' %><%= calendar_for('issue_due_date') if @issue.leaf? %>
     </div>
   <% end %>
 <% end %>
