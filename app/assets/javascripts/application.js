@@ -25,3 +25,4 @@
 //= require ./bootstrap-tagmanager
 
 //= require project.sortable
+//= require model-scroll

@@ -28,7 +28,7 @@
               </ul>
             </li>
             <li class="dropdown account">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-members"></i> <%= User.current.name %><b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-members"></i> <%= User.current.name %><i class="icon-select"></i></a>
               <ul class="dropdown-menu">
                 <li>                
                   <%= link_to l(:label_my_account), my_account_path, remote: true %>

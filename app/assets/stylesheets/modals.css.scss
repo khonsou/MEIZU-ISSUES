@@ -20,6 +20,17 @@
   background-clip: padding-box;
   outline: none;
 }
+
+// Show no-scroll for modal only when modal is opened
+body.modal-open-noscroll {
+  margin-right: 0!important;
+  overflow: hidden;
+}
+
+.modal-open-noscroll .navbar-fixed-top, .modal-open .navbar-fixed-bottom {
+  margin-right: 0!important;
+}
+
 .modal-body {
   .row {
     input {

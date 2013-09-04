@@ -30,7 +30,7 @@
   <!-- page specific tags -->
   <%= yield :header_tags -%>
 </head>
-<body class="<%=h body_css_classes %>" style = "position:relative;padding-top:70px;">
+<body class="<%=h body_css_classes %> modal-shiftfix" style = "position:relative;padding-top:70px;">
   
 <%= render '/shared/topnav' %>
 <% if User.current.logged? %>
@@ -90,3 +90,4 @@
   <%= fix_for_bootstrap_dropdown %>
 </body>
 </html>
+
