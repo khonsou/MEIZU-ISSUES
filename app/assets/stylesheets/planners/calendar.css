@@ -87,7 +87,7 @@ ul{
 }
 .photo+div{
   display: inline-block;
-  width:60%;
+  width:50%;
 }
 .head .pull-right h5, .head .pull-right h5 a{
   background: url("/assets/project_header/add-white.png") no-repeat scroll 0  black;

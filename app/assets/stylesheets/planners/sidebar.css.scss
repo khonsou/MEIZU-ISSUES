@@ -16,6 +16,10 @@
     }
 
     #members{
+      height: 325px;
+      overflow-y: auto;
+      overflow-x: hidden;
+
       .member-infor{
         margin-left:5px;
         margin-top:5px;
@@ -23,6 +27,7 @@
 
       .destroy{
         margin-top:5px;
+        margin-right: 15px;
       }
 
       .name{
