@@ -34,7 +34,14 @@
           <div class="row journal">
           <% journal = issue.journals.order('created_on').last %>
             <%= link_to issue_path(issue, anchor: "change-#{journal.id}") do %>
+<<<<<<< HEAD
                 <div class="pull-left col-md-12 col-xs-12" style="position:relative;padding-left:60px;">
+=======
+<!--                 <div class="avatar pull-left col-md-1 col-xs-1">
+                 
+                </div> -->
+                <div class="pull-left col-md-12 col-xs-12 journal-content">
+>>>>>>> 45d7f5c... [#2326] fix bug issues list and delete bug js code
                   <span class="avatar">
                      <%= image_tag journal.user.avatar_url(:small), :class => "img-rounded" %>
                   </span>
