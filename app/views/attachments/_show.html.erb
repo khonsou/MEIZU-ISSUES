@@ -101,15 +101,4 @@
       matchLi(activeLink, "ul.thumbnails li", imageIndex, "next");
     });
   })
-
-  $(document).ready(function(){
-    $('#container-modal').on('show.bs.modal', function () {
-      if(!isScroll().scrollY){
-        // no-scroll
-        $('body').addClass("modal-open-noscroll");
-      }else { 
-        $('body').removeClass("modal-open-noscroll");
-      }
-    })
-  })
 <% end -%>
