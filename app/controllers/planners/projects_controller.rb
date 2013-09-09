@@ -1,6 +1,8 @@
 class Planners::ProjectsController < ApplicationController
   layout 'planner'
   before_filter :find_optional_project, :only => [:new_member, :add_member]
+  before_filter :find_project, :only => [ :update]
+  before_filter :authorize, :only => [ :update]
 
   def index
     @projects = Project.order('created_on desc').page(params[:page]).per(50)
@@ -102,7 +104,12 @@ class Planners::ProjectsController < ApplicationController
       format.json 
     end      
   end
-
+  
+  def change_creator
+    @project = Project.find(params[:project_id])
+    @user = false
+  end 
+  
   private
 
   # Validates parent_id param according to user's permissions

@@ -103,6 +103,7 @@ RedmineApp::Application.routes.draw do
         get 'new_member'
         post 'add_member'
       end  
+      get 'change_creator'
       resources :tasks, shallow: true
       resources :events, shallow: true            
     end      

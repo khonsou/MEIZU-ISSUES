@@ -45,8 +45,10 @@ class Planners::MembersController < ApplicationController
   
   def destroy
     @member = Member.find(params[:id])
-    @member.destroy
-    @project = @member.project
+    if User.current == @member.project.creator
+      @member.destroy
+      @project = @member.project
+    end
     respond_to do |format|
       format.json 
     end  

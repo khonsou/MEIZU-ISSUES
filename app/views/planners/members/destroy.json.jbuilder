@@ -1,6 +1,11 @@
 json.members @project.members do |json, member|
   json.name member.name
   json.id member.id
+  if @project.creator == User.current
+      json.deletable (@project.creator == member.user)? false:true
+  else
+    json.deletable false
+  end
 end  
 
 json.events @project.events do |json, event|

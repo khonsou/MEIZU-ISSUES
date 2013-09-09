@@ -14,6 +14,11 @@
                   <%= link_to l(:button_edit), edit_planners_project_path(@project), remote: true %>
                 </li>
               <% end -%>
+              <% if User.current == @project.creator%>
+                <li class="action-edit">
+                  <%= link_to  l(:button_change_project_creator),  planners_project_change_creator_path(@project), remote: true %>
+                </li>
+              <% end-%>
             </ul>
           </div>
         </div>
@@ -45,7 +50,7 @@
             <a class="name" href="/planners/members/{{member.id}}">{{member.name}}</span>
             <div class="role">master</div>
           </div>
-          <a class="pull-right destroy" href="/planners/members/{{member.id}}" data-member-id="{{member.id}}" rel="nofollow" ginkgo-destroy-member=""><img src="/assets/planners/delete.png"></a>                       
+          <a class="pull-right destroy" ng-show="member.deletable" href="/planners/members/{{member.id}}" data-member-id="{{member.id}}" rel="nofollow" ginkgo-destroy-member=""><img src="/assets/planners/delete.png"></a>                       
         </div>
       </div>
     </li>
