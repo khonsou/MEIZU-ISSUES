@@ -285,6 +285,7 @@ input#created_on_end {
     margin-bottom: 10px;
   }
   .select2-container {
+    
     .select2-choice {
       height: 34px;
     }
@@ -361,4 +362,7 @@ input#created_on_end {
     margin-bottom: 5px;
   }
   
+}
+.select2-container{
+  display: block;
 }

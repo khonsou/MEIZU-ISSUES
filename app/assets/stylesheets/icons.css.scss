@@ -137,7 +137,10 @@
   width: 230px;
   top: 0px !important;  
 }
-.popover.right .arrow{
+.assignee .popover.right .arrow{
+  top: 45px;
+}
+.due .popover.right .arrow{
   top: 30px;
 }
 
