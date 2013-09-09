@@ -1,0 +1,9 @@
+<% attachments = @issue.attachments - @issue.journals.map(&:own_attachments).flatten %>
+<% if @issue.description? || attachments.any? -%>
+  <% if @issue.description? %>
+    <div class="wiki description">
+      <%= textilizable(@issue, :description, :attachments => attachments) %>
+    </div>
+  <% end %>
+  <%= render 'attachments/links', { :attachments => attachments, :options => { deletable: false, author: false }, :thumbnails => true } %>
+<% end -%>

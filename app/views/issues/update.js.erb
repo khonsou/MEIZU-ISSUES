@@ -2,3 +2,4 @@ $('[data-assign=name]').text('<%= @issue.assigned_to.try(:name) %>')
 $('[data-assign=date]').text('<%= format_date(@issue.due_date) %>')
 
 $('.history').html("<%= j(render :partial => 'history', :locals => { :issue => @issue, :journals => @journals }) %>");
+$('.issue_content').html("<%= j(render :partial => 'issue_content', :locals => { :issue => @issue}) %>");

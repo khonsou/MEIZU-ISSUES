@@ -43,3 +43,55 @@
     <% end %>
   </div>
 </div>
+
+<script type="text/javascript">
+  var blobs = new Array();
+  $('#issue_description').bind('paste',function(event){
+    event.clipboardData = event.originalEvent.clipboardData;
+    if(!event.clipboardData){
+      return;
+    }
+    Array.prototype.forEach.call(
+      event.clipboardData.types,function(type,i){
+      if(event.clipboardData.items[i].type.match(/image.*/)){
+        var blob = event.clipboardData.items[i].getAsFile();
+        var path = event.clipboardData.getData("text/plain");
+        var blobitem = {};
+        path = path.split("/");
+        blob.webkitRelativePath="";
+        blob.name = path[path.length-1];
+      
+        blobitem.name = "attachments[" + fileFieldCount + "][file]";
+        blobitem.value = blob;
+        blobs.push(blobitem);
+        
+        addFileNameDiv(blob.name);        
+
+        fileFieldCount++;
+        }
+      }
+    )
+  });
+
+  $("#issue-form").submit(function(){
+    var formobj = document.getElementById("issue-form");
+    var formdata = new FormData(formobj);
+    while(blobs.length != 0) {
+      var blobitem = blobs.shift();
+      formdata.append(blobitem.name,blobitem.value,blobitem.value.name);
+    }
+    $.ajax({
+      url: $(this).attr("action"),
+      type: "POST",
+      data: formdata,
+      dataType: "script",
+      processData: false,  // tell jQuery not to process the data
+      contentType: false,   // tell jQuery not to set contentType
+      success: function(){
+        $('#container-modal').modal('hide');
+        $('#container-modal').remove();
+      }
+    });
+    return false;
+  });
+</script>

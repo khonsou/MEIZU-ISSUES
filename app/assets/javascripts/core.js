@@ -293,17 +293,38 @@ function addFileField(field) {
   $(attachment).show();
 }
 
+function addFileNameDiv(filename) {
+  // add file name div
+  var attachment = $("#attachments_fields").find('.attachment_field:first').clone();
+  $(attachment).find(".attachment_name").text(filename);
+  $(attachment).data("field-id", "attachments[" + fileFieldCount + "][file]");
+  $("#attachments_fields").prepend(attachment);
+  $(attachment).show();
+}
+
 function removeFileField(el) {  
   var upload_field_id = $(el).parents('.attachment_field').data('field-id');
-  $("#" + upload_field_id).remove()
-  $(el).parents('.attachment_field').remove();      
-  
+  $("#" + upload_field_id).remove();
+  // remove file from input
+  $(el).parents('.attachment_field').remove();
+  // remove blob from array
+  removeBlobFormArray(upload_field_id);
+
   // if only one file field, show it
   if($('.bg-upload').length == 1){
     $('.bg-upload').show();
   }
-  
+
   return false;
+}
+
+function removeBlobFormArray(name) {
+  for(var i=0; i<blobs.length; i++) {
+    if(blobs[i].name == name) {
+      blobs.splice(i,1);
+      return;
+    }
+  }
 }
 
 function checkFileSize(el, maxSize, message) {
