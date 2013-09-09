@@ -8,6 +8,9 @@
   .sidebar+div {
     width: 80%;
   }
+  .controller-account .container .main, .controller-account .container .main {
+    width: 600px;
+  }
 }
 
 @media (min-width: 992px) { 
@@ -19,5 +22,8 @@
   }
   .sidebar+div {
     width: 80%;
+  }
+  .controller-account .container .main, .controller-account .container .main {
+    width: 600px;
   }
 }

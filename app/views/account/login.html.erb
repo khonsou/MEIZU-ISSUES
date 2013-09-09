@@ -4,7 +4,7 @@
     <%= form_tag(signin_path) do %>
       <%= back_url_hidden_field_tag %>
 
-      <div class="row-fluid">
+      <div>
 
         <div class="header">
           <span class="title"><%= l(:field_login) %></span>
@@ -12,9 +12,9 @@
 
         <div class="body clearfix">
           <label for="username"><%= l(:field_mail) %></label>
-          <%= text_field_tag 'username',nil,placeholder:'请输入公司邮箱地址', :tabindex => '1', class: 'span24'%>
+          <%= text_field_tag 'username',nil,placeholder:'请输入公司邮箱地址', :tabindex => '1', class: 'col-md-12 col-xs-12'%>
           <label for="password"><%=l(:field_password)%></label>
-          <%= password_field_tag 'password',nil,placeholder:'公司邮箱密码', :tabindex => '2', class: 'span24' %>
+          <%= password_field_tag 'password',nil,placeholder:'公司邮箱密码', :tabindex => '2', class: 'col-md-12  col-xs-12' %>
         </div>
 
         <div class="footer">
