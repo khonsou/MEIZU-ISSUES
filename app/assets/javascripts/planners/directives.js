@@ -264,8 +264,14 @@ angular.module('ginkgo.directives', []).
      link: function(scope, element, attrs) {
        attrs.$observe('taskId', function(value) {            
            var task = _.find(scope.tasks, function(e){ return e.id == parseInt(value); })        
-           scope.colors = ["#009900", '#aa0000', "#ec61a2", "#3185c5", "#46647c", "#b3a543",
-                          "#ff9c00",  "#000000"];
+           scope.colors = [{"background-color":"#009900"}, 
+                           {"background-color":'#aa0000'}, 
+                           {"background-color":"#ec61a2"},
+                           {"background-color":"#3185c5"},
+                           {"background-color":"#46647c"},
+                           {"background-color":"#b3a543"},
+                           {"background-color":"#ff9c00"},
+                           {"background-color":"#000000"}];
 
            var template = 
            '<div class="popover-content balloon right_side">' +
@@ -275,7 +281,7 @@ angular.module('ginkgo.directives', []).
                 '<div class="swatches">' +          
                    '<span ng-repeat="color in colors">' +
                      '<input type="radio"  id="calendar_editor_singleton_swatch_{{$index}}" name="color" value="{{color}}">' +                      
-                     '<label class="swatch" for="calendar_editor_singleton_swatch_{{$index}}" style="background-color: {{color}}"></label>' +           
+                     '<label class="swatch" for="calendar_editor_singleton_swatch_{{$index}}" ng-style="color"></label>' +           
                    '</span>' +                            
                '</div>' +         
                '<div class="control-group">' + 
@@ -308,13 +314,13 @@ angular.module('ginkgo.directives', []).
                     });  
                   }
                 }) 
-                $('#calendar_item_editor_singleton').find('input[type=submit]').on('click', function(){                                                                  
+                $('#calendar_item_editor_singleton').find('input[type=submit]').on('click', function(){                                                                 
 //                  scope.$apply(function(){         
-                    var eventFormData = $('#calendar_item_editor_singleton').find('form').serializeObject() ;                                     
+                    var eventFormData = $('#calendar_item_editor_singleton').find('form').serializeObject() ;                                
                     scope.updateTask({
                       id: task.id,
                       task: {name: eventFormData.text,
-                             color: eventFormData.color}
+                             color: eventFormData.color && eventFormData.color.match(/\#\w+/)[0]}
                     })
   //                });                    
                   $('#calendar_item_editor_singleton').hide();                                      

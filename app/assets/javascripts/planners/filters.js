@@ -83,8 +83,7 @@ angular.module('ginkgo.filters', []).
             event = out[i];
       
             var eventStyle = getEventStyle(out[i], date);
-            out[i].left = eventStyle.left;
-            out[i].width = eventStyle.width;   
+            out[i].style = {"margin-left" : eventStyle.left , "width" : eventStyle.width, "background-color": out[i].color};   
             if (out[i].projectId == undefined) {
               out[i].index = _.sortedIndex(events, event , 'position');                          
             }else{

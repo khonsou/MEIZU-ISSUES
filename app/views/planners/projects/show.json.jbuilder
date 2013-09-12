@@ -1,6 +1,6 @@
 json.tasks @project.tasks do |json, task|
   json.text task.name
-  json.color task.color  
+  json.color :background => task.color
   json.id task.id
 end  
 

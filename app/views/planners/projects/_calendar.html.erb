@@ -6,7 +6,7 @@
         <% (month.beginning_of_month..month.end_of_month).to_a.each do |day| %>
           <div class="day-header <%= 'sun-color-date' if day.saturday? || day.sunday? %>" >
             <% if day.day == 1 %>
-            <span style="font-weight:bold;color:#333;font-size:13px;"><%= day.month %>月</span>
+            <span style="font-weight:bold;color:#333;font-size:13px;display:inline-block;width:28px;"><%= day.month %>月</span>
             <% else %>
             <span ><%= day.day %></span>          
             <% end %>
@@ -16,7 +16,7 @@
       
       <div class="month-row">
         <div class="events holdable" style="width:100%;padding-top:{{ eventsInMonth[0].index * 30}}px;">                      
-          <div  ng-repeat="event in eventsInMonth = (events | filterByMonth:'<%= month.to_s %>' | orderBy:'position' ) " ginkgo-draggable="true" class="event  tip wraps_next  {{event.eventableType}}" style="margin-left:{{event.left}};width:{{event.width}};background-color:{{event.color}};"  ginkgo-resizeable="true" data-event-id="{{event.id}}"  data-position="{{event.position}}" ginkgo-popover="true" ng-switch on="event.eventableType" data-toggle="tooltip" title="{{ event.startTime }} - {{event.endTime }}">          
+          <div  ng-repeat="event in eventsInMonth = (events | filterByMonth:'<%= month.to_s %>' | orderBy:'position' ) " ginkgo-draggable="true" class="event  tip wraps_next  {{event.eventableType}}" ng-style="event.style"  ginkgo-resizeable="true" data-event-id="{{event.id}}"  data-position="{{event.position}}" ginkgo-popover="true" ng-switch on="event.eventableType" data-toggle="tooltip" title="{{ event.startTime }} - {{event.endTime }}">          
             <span ng-switch-when="Task" class="event">
               <span class="title">{{ event.text }} </span>
             </span>
@@ -42,7 +42,7 @@
         <% (month.beginning_of_month..month.end_of_month).to_a.each do |day| %>
           <div class="day-header <%= 'sun-color-date' if day.saturday? || day.sunday? %>" >
             <% if day.day == 1 %>
-              <span style="font-weight:bold;color:#333;font-size:13px;"><%= day.month %>月</span>
+              <span style="font-weight:bold;color:#333;font-size:13px;display:inline-block;width:28px;"><%= day.month %>月</span>
             <% else %>
               <span ><%= day.day %></span>          
             <% end %>

@@ -67,6 +67,8 @@ body>#wrap {
     background: $headerBackground;
     color:$fontColor!important;
     border-color: darken(#a6c6d3,10%);
+    /*IE gradient*/
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#a6c6d3', endColorstr = '#84b0c2', GradientTpe = 0);
 
     #quick-search{
       padding-right:6.5%;
