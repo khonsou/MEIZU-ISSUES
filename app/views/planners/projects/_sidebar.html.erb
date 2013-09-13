@@ -45,12 +45,13 @@
     <li class="head">        
       <div id="members">
         <div ng-repeat="member in members" ginkgo-draggable="true" class="member" data-member-id="{{member.id}}">
-          <a class="photo" href="/planners/members/{{member.id}}">
-            <img class="img-circle" src="/assets/project_header/person.png">
+          <a class="photo" href="/planners/members/{{member.id}}" style="width:40px">
+            <img src="{{member.icon}}" class="img-circle">
           </a>            
           <div class="member-infor">
             <a class="name" href="/planners/members/{{member.id}}">{{member.name}}</span>
-            <div class="role">master</div>
+            <div ng-show="!member.deletable" class="role">master</div>
+            <div ng-show="member.deletable" class="role">member</div>
           </div>
           <a class="pull-right destroy" ng-show="member.deletable" href="/planners/members/{{member.id}}" data-member-id="{{member.id}}" rel="nofollow" ginkgo-destroy-member=""><img src="/assets/planners/delete.png"></a>                       
         </div>
