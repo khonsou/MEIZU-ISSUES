@@ -1,5 +1,6 @@
 <% if !@changes.empty? || params[:refresh]=='1' %>
   $('#push_notification_popover ul.dropdown-menu').html("<%= j render('popover', { push_notifications: @push_notifications, pending_members: @pending_members }) %>");
+  _favicon.badge(<%= @unread_count %>);
   <% if @push_notifications.empty? && @pending_members.empty? %>
     $('#push_notification_popover').removeClass('has_notification');
   <% else %>

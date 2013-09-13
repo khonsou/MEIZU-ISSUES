@@ -10,8 +10,13 @@ var load_popover_push_notifications = function(refresh) {
 };
 
 $(document).ready(function() {
+  window._favicon = new Favico({
+      animation:'slide'
+  });  
+  
   //if(window._rails_env != "development"){
     load_popover_push_notifications(true);
     setInterval(load_popover_push_notifications, 60 * 1000);
   //}
+    
 });

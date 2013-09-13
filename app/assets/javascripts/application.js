@@ -11,6 +11,8 @@
 //= require select2
 //= require dropzone
 //= require jquery.autosize-min
+//= require favico.min
+
 
 //= require bootstrapx-clickover
 //= require jquery.pin
