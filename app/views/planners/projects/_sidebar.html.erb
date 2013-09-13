@@ -5,9 +5,11 @@
       <div class="pull-right dropdown-icon">
         <div class="actions span">
           <div class="btn-group">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-              <img src="/assets/project_header/down.png" alt="down"/>
-            </a>
+            <% if User.current == @project.creator%>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <img src="/assets/project_header/down.png" alt="down"/>
+              </a>
+            <% end-%>
             <ul class="dropdown-menu pull-right">
               <% if User.current.allowed_to?(:edit_project, @project) && @project.creator == User.current %>
                 <li class="action-edit">
