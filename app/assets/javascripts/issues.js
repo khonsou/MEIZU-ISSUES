@@ -67,12 +67,16 @@ function listFilter(header, list) {
   ;
 }
 
+
+
 function initAt(){
+
+  
   $('.hasAt').atwho({
     at: "@", 
     data: window._project_watchers,
     limit: 2000,
-    tpl: "<li data-pinyin='${pinyin}' data-value='${name}'> ${name} </li>"  ,
+    tpl: "<li data-pinyin='@${pinyin}' data-value='${name}'> ${name} </li>"  ,
     callbacks: {      
       matcher: function(flag, subtext) {
         flag = flag.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
@@ -115,7 +119,20 @@ function initAt(){
          })
       }   
     }  
-  });    
+  }).atwho({
+    at: "#", 
+    search_key: "subject",
+    data:  window._issues,
+    limit: 5,
+    tpl: "<li  data-value='#${id}'> ${id} ${subject} </li>"  ,   
+    callbacks: {      
+      remote_filter: function(query, callback) {
+        $.getJSON("/projects/" + window._project_id + "/issues.json", {q: query}, function(data) {
+          callback(data.issues)
+        });
+      }
+    }  
+  });        
 }
 
 $(document).ready( function(){

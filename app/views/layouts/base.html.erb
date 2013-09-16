@@ -12,11 +12,17 @@
   <%= javascript_tag do %>
     window._rails_env = "<%= Rails.env %>"
     window._project_watchers = new Array();
+    window._issues = new Array();    
     <% if @project.present? %>
+      window._project_id = '<%= @project.identifier %>';            
       <% @project.member_principals.map(&:user).each do |user| %>
         window._project_watchers.push( {name: '<%= user.name %>', pinyin: '<%= PinYin.of_string(user.name).join %>' } );
-      <% end %>    
+      <% end %>
+      <% @project.issues.open.limit(5) do |issue| %>
+        window._issues.push( {subject: '<%= issue.subject %>', id: '<%= issue.id %>' } );
+      <% end %>              
     <% end %>  
+
   <% end %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>

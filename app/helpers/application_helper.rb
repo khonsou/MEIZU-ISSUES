@@ -772,8 +772,8 @@ module ApplicationHelper
             if oid.to_s == identifier && issue = Issue.visible.find_by_id(oid, :include => :status)
               anchor = comment_id ? "note-#{comment_id}" : nil
               link = link_to("##{oid}", {:only_path => only_path, :controller => 'issues', :action => 'show', :id => oid, :anchor => anchor},
-                                        :class => issue.css_classes,
-                                        :title => "#{truncate(issue.subject, :length => 100)} (#{issue.status.name})")
+                                        :class => "#{issue.css_classes} tip",
+                                        :title => "课题: #{truncate(issue.subject, :length => 100)} (#{issue.status.name})")
             end
           when 'document'
             if document = Document.visible.find_by_id(oid)

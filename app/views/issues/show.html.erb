@@ -144,7 +144,7 @@
         <div class="tab-content overflow">
           <div class="tab-pane active" id="home">
             <div class="row-fluid">
-              <%= text_area_tag 'notes', @notes, :rows => 3, :class => 'wiki-edit span24 hasAt autosize', :placeholder => '在此添加讨论内容......' %>
+              <%= text_area_tag 'notes', @notes, :rows => 3, :class => 'wiki-edit span24 hasAt hasAtTopic autosize', :placeholder => '在此添加讨论内容......' %>
               <% if old_browser?(@user_agent) %>
                 <%= render :partial => 'attachments/form', :locals => {:container => @issue} %>
               <% end %>

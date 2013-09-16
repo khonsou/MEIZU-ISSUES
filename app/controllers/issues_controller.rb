@@ -22,12 +22,12 @@ class IssuesController < ApplicationController
   before_filter :find_issue, :only => [:show, :edit, :update, :close, :reopen]
   before_filter :find_issues, :only => [:bulk_edit, :bulk_update, :destroy]
   before_filter :find_project, :only => [:new, :create]
-  before_filter :authorize, :except => [:index, :assigned_to_me, :reported, :watched, :closed, :close, :reopen]
-  before_filter :find_optional_project, :only => [:index, :assigned_to_me, :reported, :watched, :closed]
+  before_filter :authorize, :except => [:index, :assigned_to_me, :reported, :watched, :closed, :close, :reopen, :search]
+  before_filter :find_optional_project, :only => [:index, :assigned_to_me, :reported, :watched, :closed, :search]
   before_filter :sort_issues, :only => [:index, :assigned_to_me, :reported, :watched, :closed]
   before_filter :check_for_default_issue_status, :only => [:new, :create]
   before_filter :build_new_issue_from_params, :only => [:new, :create]
-  before_filter :find_issues_with_project, only: [:index, :assigned_to_me, :reported, :watched, :closed]
+  before_filter :find_issues_with_project, only: [:index, :assigned_to_me, :reported, :watched, :closed, :search]
   before_filter :load_issues_count, only: [:index, :assigned_to_me, :reported, :watched, :closed]
 
   accept_rss_auth :index, :show
@@ -57,8 +57,12 @@ class IssuesController < ApplicationController
   include Redmine::Export::PDF
 
   def index
-    @issues = @issues.open
-    process_issues
+    if params[:q].present?
+      @issues = @issues.open.where(" subject LIKE ?", "%#{params[:q]}%").order('issues.created_on DESC').limit(5)      
+    else  
+      @issues = @issues.open
+      process_issues
+    end  
   end
 
   def assigned_to_me
