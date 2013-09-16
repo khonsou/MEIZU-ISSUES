@@ -345,6 +345,8 @@ input#created_on_end {
 }
 
 #attachments_fields {
+  display: none;
+  
   input[type="file"] {
     height: auto;
     line-height: normal;
