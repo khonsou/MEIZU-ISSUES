@@ -66,6 +66,7 @@ class IssuesController < ApplicationController
   end
 
   def assigned_to_me
+  
     @issues = @issues.open.assigned_to(User.current)
     process_issues
   end

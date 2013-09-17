@@ -52,6 +52,7 @@ text-decoration: none;
   @include border-radius($borderRadius);
   
   background-image: linear-gradient(#fdfdfd, #ebebeb);
+  background-image: -webkit-linear-gradient(#fdfdfd, #ebebeb);  
   background-repeat: repeat-x;
   border: 1px solid #ecedf0;
   border-left: 1px solid #dfdfe1;   
@@ -131,7 +132,7 @@ span.btn:hover, span.btn:active{
   padding-left: 0px;
   padding-right: 27px;
   width: 100%;
-  height: 25px;
+  height: 30px;
 }
 
 span.minibutton{
@@ -149,7 +150,7 @@ a.minibutton, a.minibutton:hover,  a.minibutton:visited{
   
 .minibutton {
   padding: 0 10px;
-  line-height: 24px;
+  line-height: 27px;
   box-shadow: none;
 }
 .minibutton i {

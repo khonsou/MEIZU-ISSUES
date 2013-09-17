@@ -1,11 +1,11 @@
-<div class="avatar span7">
+<div class="avatar col-md-3">
   <% if u = pending.true_user %>
     <%= link_to_user(u, :avatar => :small) %>
   <% else %>
     <%= image_tag User.new.avatar_url(:small) %>
   <% end %> 
 </div>
-<div class="span17">
+<div class="col-md-9">
   <span class="user-name">
     <% if u %>
       <%= link_to_user(u) %>

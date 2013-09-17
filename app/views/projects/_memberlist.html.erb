@@ -1,12 +1,12 @@
 <% if project.true_pending_invitations.count > 9 %>
   <% project.true_pending_invitations[0..9].each do |pending| %>
-    <li class="row-fluid item_member">
+    <li class="row item_member">
       <%= render '/projects/pending_members', {pending: pending} %>
     </li>
   <% end -%>
 <% else %>      
   <% project.true_pending_invitations.each do |pending| %>
-    <li class="row-fluid item_member">
+    <li class="row item_member">
       <%= render '/projects/pending_members', {pending: pending} %>
     </li>
   <% end -%>

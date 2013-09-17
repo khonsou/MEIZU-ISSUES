@@ -28,7 +28,7 @@ a.bluelink{
 
 .main {
   @include border-radius($borderRadius);
-  padding: 3em;
+  padding: 20px 40px;
   background-color: $white;
 
   background-repeat: repeat-x;
@@ -213,12 +213,14 @@ a.bluelink{
 
 .box{
   background-image: linear-gradient(#fdfdfd, #ebebeb);
+  background-image: -webkit-linear-gradient(#fdfdfd, #ebebeb);  
   background-repeat: repeat-x;
   border: 1px solid #ecedf0;
   border-left: 1px solid #dfdfe1;   
   border-bottom: 1px solid #d3d3d3;
   border-right: 1px solid #ebebeb;    
   box-shadow:  1px 1px rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow:  1px 1px rgba(0, 0, 0, 0.05);  
 }
 
 .row-fluid .padright22{

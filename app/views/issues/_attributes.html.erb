@@ -1,8 +1,8 @@
 <%= labelled_fields_for :issue, @issue do |f| %>
   <% if @issue.safe_attribute? 'assigned_to_id' %>
     <div class="col-md-4">
-      <span><%= l(:field_assigned_to) %></span>
-      <%= f.hidden_field :assigned_to_id, style: "width:50%" %>
+      <span class="pull-left"> <%= l(:field_assigned_to) %></span>
+      <%= f.hidden_field :assigned_to_id %>
     </div>
     <script>
       <%= render :partial => "auto_completes/select2_script_for_assigned_to", :locals => {:dom_id => 'issue_assigned_to_id', :project_id => @issue.project.id, :user => @issue.assigned_to} %>
