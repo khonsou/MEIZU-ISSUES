@@ -478,9 +478,9 @@ private
     if params[:limit] && params[:limit].to_i > 0
       @limit = params[:limit].to_i
     else
-      @limit = 20
+      @limit = Issue.per_page
     end
-    @issues = @issues.limit(@limit)
+    @issues = @issues.offset(@limit - Issue.per_page).limit(@limit)
 
     render 'index'
   end

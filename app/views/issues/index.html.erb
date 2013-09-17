@@ -10,4 +10,11 @@
 <% end -%>
 
 <%= render 'tabs' %>
-<%= render 'issues/list', { issues: @issues, limit: @limit, max_limit: @max_limit, project: @project } %>
+
+<div class="issue-list">
+  <% if @issues.empty? %>
+    <p class="nodata"><%= l(:label_no_data) %></p>
+  <% else %>
+    <%= render 'issues/list', { issues: @issues, limit: @limit, max_limit: @max_limit, project: @project } %>  
+  <% end -%>
+</div>  

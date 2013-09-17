@@ -53,6 +53,7 @@ class Issue < ActiveRecord::Base
                             :author_key => :author_id
 
   DONE_RATIO_OPTIONS = %w(issue_field issue_status)
+  PER_PAGE = 20
 
   attr_reader :current_journal
 
@@ -92,6 +93,11 @@ class Issue < ActiveRecord::Base
   after_save :after_create_from_copy
   after_destroy :update_parent_attributes
 
+
+  def self.per_page
+    PER_PAGE  
+  end
+  
   # Returns a SQL conditions string used to find all issues visible by the specified user
   def self.visible_condition(user, options={})
     Project.allowed_to_condition(user, :view_issues, options) do |role, user|

@@ -1,1 +1,1 @@
-$('.issue-list').html("<%= j render('list', { issues: @issues, limit: @limit, max_limit: @max_limit, project: @project }) %>");
+$('.load-more').replaceWith("<%= j render('list', { issues: @issues, limit: @limit, max_limit: @max_limit, project: @project }) %>");
