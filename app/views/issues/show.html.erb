@@ -7,7 +7,7 @@
 <% content_for :sidebar do %>
   <div class="<%= '' if !@user_agent.mobile? %> ">
     <div class="col-md-12" style="padding:0px;">
-      <%= link_to project_issues_path(@issue.project), class: 'btn box project-name', style: "width: 100%;" do %>
+      <%= link_to project_issues_path(@issue.project), class: 'btn box project-name', style: "width: 100%;white-space:inherit;" do %>
         <i class="icon-arrow-left"></i><%= @issue.project.name %>
       <% end -%>
     </div>
