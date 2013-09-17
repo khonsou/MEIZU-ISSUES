@@ -1,12 +1,16 @@
 <div class="modal" id="container-modal">
-  <%= labelled_form_for @project, :url => {:controller => 'projects', :action => 'update'} do |f| %>
-    <div class="modal-body">
-      <%= render :partial => 'form', :locals => { :f => f } %>
-    </div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <%= labelled_form_for @project, :url => {:controller => 'projects', :action => 'update'} do |f| %>
+        <div class="modal-body">
+          <%= render :partial => 'form', :locals => { :f => f } %>
+        </div>
 
-    <div class="footer">
-      <%= link_to l(:button_cancel), '#', class: 'button button-gray disable-hover', data: { dismiss: 'modal' } %>
-      <%= submit_tag l(:button_save), disable_with: l(:button_submiting), class: 'button button-gray' %>
+        <div class="footer">
+          <%= link_to l(:button_cancel), '#', class: 'button button-gray disable-hover', data: { dismiss: 'modal' } %>
+          <%= submit_tag l(:button_save), disable_with: l(:button_submiting), class: 'button button-gray' %>
+        </div>
+      <% end %>
     </div>
-  <% end %>
+  </div>  
 </div>
