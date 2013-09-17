@@ -107,7 +107,9 @@
 
     td.ui-datepicker-current-day {
       a.ui-state-active {
+        background-image: linear-gradient(#7EB6FF, #0068CA);
         background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#7EB6FF),color-stop(0.5,#138DFF),color-stop(0.5,#007DF3),color-stop(1,#0068CA));
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#007EB6FF', endColorstr='#ff0068CA', GradientType=0);
         color: white;
         text-shadow: rgba(0, 0, 0, 0.4) 0 1px 0;
         box-shadow: inset 0 1px 0 #77CFFF;
