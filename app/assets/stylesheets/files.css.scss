@@ -30,7 +30,8 @@
     border-bottom-color: #b3b3b3;  
     border-radius: 4px;
     background-image: linear-gradient(to bottom, white, #e6e6e6);
-    background-image: -webkit-linear-gradient(to bottom, white, #e6e6e6);  
+    background-image: -webkit-linear-gradient(to bottom, white, #e6e6e6);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);  
 
     font-size: 14px;
     text-shadow: 0 1px 0 #fff;

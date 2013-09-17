@@ -28,7 +28,8 @@
   .box{
     border: none;
     box-shadow: none;
-    background-image: linear-gradient(#fff, #fff);    
+    background-image: linear-gradient(#fff, #fff);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffffffff', GradientType=0);    
   }
 }
 

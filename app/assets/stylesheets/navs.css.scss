@@ -39,6 +39,7 @@
   
   .nav-tabs > li{
     background-image: linear-gradient(#fdfdfd, #ebebeb);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffdfdfd', endColorstr='#ffebebeb', GradientType=0);
     background-repeat: repeat-x;    
     border-radius: 1px 1px 0 0;
   }
