@@ -69,7 +69,7 @@ class Attachment < ActiveRecord::Base
 
   def validate_max_file_size
     if @temp_file && self.filesize > Setting.attachment_max_size.to_i.kilobytes
-      errors.add(:base, l(:error_attachment_too_big, :max_size => Setting.attachment_max_size.to_i.kilobytes))
+      errors.add(:base, l(:error_attachment_too_big, :max_size => Setting.attachment_max_size.to_i / 1024))
     end
   end
 

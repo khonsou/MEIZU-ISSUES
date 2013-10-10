@@ -39,9 +39,10 @@ class FilesController < ApplicationController
 
       Mailer.delay.attachments_added(attachments[:files])
     end
-
-    @attachments = @project.attachments    
     
+    @unsaved_attachments = attachments[:unsaved]
+    @attachments = @project.attachments    
+
   end
   
   # this action is for upload assets from issue

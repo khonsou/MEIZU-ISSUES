@@ -1042,7 +1042,7 @@ zh:
   description_all_columns: 所有列
   button_export: 导出
   label_export_options: "%{export_format} 导出选项"
-  error_attachment_too_big: 该文件无法上传。超过文件大小限制 (%{max_size})
+  error_attachment_too_big: 该文件无法上传。超过文件大小限制 (%{max_size}MB)
   notice_failed_to_save_time_entries: "无法保存下列所选取的 %{total} 个项目中的 %{count} 工时： %{ids}。"
   label_x_issues:
     zero:  0 课题

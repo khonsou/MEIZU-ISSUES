@@ -254,14 +254,14 @@ a.bluelink{
 }
 
 .newFeatures .row .span10{
-  background:url(/assets/light_one.png) no-repeat scroll left -5px transparent;
+  background:url(/assets/light_one.png) no-repeat scroll left center transparent;
   padding-left:30px;
   margin-left: 29px;
 }
 
 #newfeature-background .newFeature-title a{
   float:right;
-  margin-top: -29px;
+  margin-top: -18px;
 }
 
 .msg-details{
@@ -276,7 +276,10 @@ a.bluelink{
   width:100%;
   position:relative;top:-35px;
   background-color:#faf9de;
-  height:25px;
+}
+
+#newfeature-background p{
+  margin: 0px;
 }
 
 .newFeatures{

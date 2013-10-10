@@ -1,1 +1,6 @@
+<% if @unsaved_attachments.present? %>
+  $('.alert.alert-warning').text("<%= j @unsaved_attachments.first.errors.full_messages.join() %>").show();
+<% else %>  
+  $('.alert.alert-warning').hide();
+<% end %>  
 $('table.files').replaceWith("<%= j render('list', { attachments: @attachments }) %>");
