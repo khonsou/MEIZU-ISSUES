@@ -199,6 +199,7 @@ a.bluelink{
 
 .box{
   background-image: linear-gradient(#fdfdfd, #ebebeb);
+  background-image: -webkit-linear-gradient(#fdfdfd, #ebebeb);  
   background-repeat: repeat-x;
   border: 1px solid #ecedf0;
   border-left: 1px solid #dfdfe1;   

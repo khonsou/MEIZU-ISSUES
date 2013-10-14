@@ -39,6 +39,7 @@
   
   .nav-tabs > li{
     background-image: linear-gradient(#fdfdfd, #ebebeb);
+    background-image: -webkit-linear-gradient(#fdfdfd, #ebebeb);    
     background-repeat: repeat-x;    
     border-radius: 1px 1px 0 0;
   }

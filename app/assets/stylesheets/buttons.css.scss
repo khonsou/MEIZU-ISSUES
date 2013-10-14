@@ -51,6 +51,7 @@ text-decoration: none;
   @include border-radius($borderRadius);
   
   background-image: linear-gradient(#fdfdfd, #ebebeb);
+  background-image: -webkit-linear-gradient(#fdfdfd, #ebebeb);  
   background-repeat: repeat-x;
   border: 1px solid #ecedf0;
   border-left: 1px solid #dfdfe1;   
@@ -69,6 +70,7 @@ text-decoration: none;
 span.btn:hover, span.btn:active{
  box-shadow:none;
  background-image: linear-gradient(#f5f5f5, #ebebeb);
+ background-image: -webkit-linear-gradient(#f5f5f5, #ebebeb); 
  cursor: default;
 }
 .btn-primary {

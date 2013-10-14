@@ -14,6 +14,7 @@
 
 .view-switcher a.active, .view-switcher a.active-right {
   background-image: linear-gradient(whitesmoke, #ebebeb);
+  background-image: -webkit-linear-gradient(whitesmoke, #ebebeb);  
   border: 1px solid #ebebeb;
   background-repeat: repeat-x;  
   border-radius: 14px;
