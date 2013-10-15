@@ -76,7 +76,7 @@ function initAt(){
     at: "@", 
     data: window._project_watchers,
     limit: 2000,
-    tpl: "<li data-pinyin='@${pinyin}' data-value='${name}'> ${name} </li>"  ,
+    tpl: "<li data-pinyin='@${pinyin}' data-value='@${name}'> ${name} </li>"  ,
     callbacks: {      
       matcher: function(flag, subtext) {
         flag = flag.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
