@@ -16,8 +16,35 @@
 
 <%= javascript_tag do %>
   $(document).ready(function() {
-    $('#member-invitation-recipients').val(<%== @recipients.map { |u| u.mail ? u.to_s(true) : nil }.compact %>).select2({
+    $('#member-invitation-recipients').val(<%= @recipients.map { |u| u.mail ? u.to_s(true) : nil }.compact %>).select2({
+      selectOnBlur: true,
       tags:<%== @all_recipients.map { |u| u.mail ? u.to_s(true) : nil }.compact %>,
-    });
+
+    })
+    
+    $('#invite-submit').submit(function(event){
+      var re = /\S+@\S+\.\S+/;      
+      var result = true;
+            
+      if($('#member-invitation-recipients').val() == ""){
+        return true;
+      }      
+      var emails = $('#member-invitation-recipients').val().split(",")      
+      console.log(emails)
+      
+
+      $.each(emails, function(index, email){
+        if(!re.test(email)){
+          alert(email + "格式不正确");
+          result = false;
+          return false;
+        }        
+      })
+
+      return result;
+    })
+    
+
+       
   });
 <% end -%>

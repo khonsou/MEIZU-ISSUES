@@ -1,5 +1,5 @@
 <div class="modal" id="container-modal">
-  <%= form_tag(member_invitations_path, method: :post, remote: true) do %>
+  <%= form_tag(member_invitations_path, method: :post, remote: true, :id => "invite-submit") do %>
     <div class="modal-body">
       <%= render :partial => 'form' %>
     </div>

@@ -10,7 +10,7 @@ gem "fastercsv", "~> 1.5.0", :platforms => [:mri_18, :mingw_18, :jruby]
 gem "builder", "3.0.0"
 gem 'mini_magick', '~> 3.4'
 gem "carrierwave", "~> 0.6.1"
-gem "select2-rails", "~> 3.2.1"
+gem "select2-rails", "~> 3.5.0"
 gem 'delayed_job_active_record'
 gem 'daemons'
 gem "unicode-display_width"
