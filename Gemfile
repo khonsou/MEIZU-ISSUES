@@ -28,7 +28,7 @@ gem 'redis-rails'
 group :assets do
   gem 'sass-rails',   '~> 3.2.4'
   gem 'coffee-rails', '~> 3.2.2'
-  gem 'therubyracer', '~> 0.10.0'
+  gem 'therubyracer', '~> 0.12.0'
   gem 'uglifier', '>= 1.2.3'
   gem 'bootstrap-sass', '~> 2.3.1.0'
   gem 'jquery-fileupload-rails', '~> 0.3.4'
