@@ -11,17 +11,21 @@
   }
 }
 
-.dropzone .preview:hover .success-mark,
+.dropzone .dz-preview:hover .success-mark,
 .dropzone-previews .preview:hover .success-mark{
   display: none;
 }
 
-.dropzone .preview:hover .error-mark,
+.dropzone .dz-preview:hover .error-mark,
 .dropzone-previews .preview:hover .error-mark {
   display: block;
 }
 
-.dropzone.clickable .message, .btn.bg-files, .modal-body .btn.bg-files{
+.dropzone.dz-started .dz-message{
+  display:block;
+}
+
+.dropzone .dz-message span, .btn.bg-files, .modal-body .btn.bg-files{
   @extend .box;
   border: 1px solid #cccccc;
   border-color:rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25) ; 
@@ -55,15 +59,15 @@
 }
 
 
-.dropzone .preview, .dropzone-previews .preview{
+.dropzone .dz-preview, .dropzone-previews .preview{
   margin-bottom:35px;
 }
 
-.dropzone.clickable .message  .icon-asset{
+.dropzone.dz-clickable .dz-message  .icon-asset{
   height: 20px;
   margin-top: -2px;
 }
 
-.dropzone.clickable a.light{
+.dropzone.dz-clickable a.light{
   cursor: pointer;
 }

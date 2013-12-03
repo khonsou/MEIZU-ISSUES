@@ -11,21 +11,21 @@ $(document).ready( function(){
     maxThumbnailFilesize: 20 ,
   
     init: function() {
-       this.on("processingfile", function(file) {
+       this.on("processing", function(file) {
          this.options.paramName = "attachments[" + attachFieldCount + "][file]";
          attachFieldCount ++ ;       
        });
     
        this.on("addedfile", function(file) {     
-         $('#button_submit').attr('disabled', true);
+//         $('#button_submit').attr('disabled', true);
          var _this = this;          
-         $(file.previewTemplate.querySelector(".error-mark")).on('click', function() {
+         $(file.previewTemplate.querySelector(".dz-error-mark")).on('click', function() {
             _this.removeFile(file); 
          });
        });  
           
        this.on("removedfile", function(file) { 
-         var attachment_token = $(file.previewTemplate.querySelector('.details .fileid')).val();
+         var attachment_token = $(file.previewTemplate.querySelector('.dz-details .fileid')).val();
          $.ajax({
            url: "/attachments/" + attachment_token,
            dataType: "script",
@@ -33,15 +33,15 @@ $(document).ready( function(){
          })
        });     
      
-       this.on("finished", function(file, responseText, e) {       
-         file.previewTemplate.querySelector(".details").appendChild(Dropzone.createElement("<input  class=\"fileid\" type=\"hidden\"  name=\"attachments[" + fileFieldCount + "][token]\" value=\"" + responseText.attachment_token + "\" >"))
+       this.on("success", function(file, responseText, e) {       
+         file.previewTemplate.querySelector(".dz-details").appendChild(Dropzone.createElement("<input  class=\"fileid\" type=\"hidden\"  name=\"attachments[" + fileFieldCount + "][token]\" value=\"" + responseText.attachment_token + "\" >"))
          fileFieldCount ++ ;               
        });
      
        this.on("complete", function() {
-         if (this.filesQueue.length == 0 && this.filesProcessing.length == 0) {
-           $('#button_submit').attr('disabled', false);
-         }
+         // if (this.filesQueue.length == 0 && this.filesProcessing.length == 0) {
+         //   $('#button_submit').attr('disabled', false);
+         // }
        });
      
      }

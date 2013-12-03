@@ -70,6 +70,7 @@ module Redmine
               if file = attachment['file']
                 next unless file.size > 0
                 a = Attachment.create(:file => file, :author => author)
+
               elsif token = attachment['token']
                 a = Attachment.find_by_token(token)
                 next unless a
