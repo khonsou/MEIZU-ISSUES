@@ -16,6 +16,31 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 namespace :redmine do
+  
+  desc 'transform the textile text to html '
+  task :textile_to_html => :environment do
+    Journal.find_each do |j|      
+      if j.notes.present?
+        j.notes = CGI.unescapeHTML  Redmine::WikiFormatting.to_html(Setting.text_formatting, j.notes)      
+        j.save
+      end  
+    end  
+    
+    Issue.find_each do |j|      
+      if j.description.present?
+        j.description = CGI.unescapeHTML  Redmine::WikiFormatting.to_html(Setting.text_formatting, j.description)      
+        j.save
+      end  
+    end  
+
+    WikiContent.find_each do |j|  
+      if j.text.present?          
+        j.text = CGI.unescapeHTML  Redmine::WikiFormatting.to_html(Setting.text_formatting, j.text)      
+        j.save
+      end  
+    end  
+  end
+  
   namespace :attachments do
     desc 'Removes uploaded files left unattached after one day.'
     task :prune => :environment do

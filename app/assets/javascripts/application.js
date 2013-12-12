@@ -13,6 +13,7 @@
 //= require jquery.autosize-min
 //= require favico.min
 
+//= require jquery-te-1.4.0.min
 
 //= require bootstrapx-clickover
 //= require jquery.pin

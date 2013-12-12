@@ -1,7 +1,7 @@
 <%= labelled_form_for @wiki,
                    :as => :wiki,
                    :url => { :controller => 'wikis', :action => 'edit', :id => @project },
-                   :remote => true, :method => 'post' do |f| %>
+                   :remote => true, :method => 'post', :id => "wysihtml5-textarea" do |f| %>
 
 <%= error_messages_for 'wiki' %>
 
@@ -16,3 +16,5 @@
 
 <%= submit_tag((@wiki.nil? || @wiki.new_record?) ? l(:button_create) : l(:button_save)) %>
 <% end %>
+
+

@@ -557,7 +557,7 @@ module ApplicationHelper
 
     text = text.dup
     macros = catch_macros(text)
-    text = Redmine::WikiFormatting.to_html(Setting.text_formatting, text, :object => obj, :attribute => attr)
+#    text = Redmine::WikiFormatting.to_html(Setting.text_formatting, text, :object => obj, :attribute => attr)
 
     @parsed_headings = []
     @heading_anchors = {}

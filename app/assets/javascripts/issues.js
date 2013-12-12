@@ -72,7 +72,7 @@ function listFilter(header, list) {
 function initAt(){
 
   
-  $('.hasAt').atwho({
+  $('.jqte_editor').atwho({
     at: "@", 
     data: window._project_watchers,
     limit: 2000,

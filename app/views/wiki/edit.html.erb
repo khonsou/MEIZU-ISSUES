@@ -28,20 +28,18 @@
     <p><%= f.text_field :comments, class: 'span24', placeholder: l(:field_comments) %></p>
     
     <div class="clearfix">
-      <div class="pull-left">
-        <a href="" data-format='true' class="light">Textile语法</a>
-      </div>  
       <div class="pull-right">
-        <%= preview_link({:controller => 'wiki', :action => 'preview', :project_id => @project, :id => @page.title }, 'wiki_form') %>
         <%= submit_tag l(:button_save), class: 'button blue' %>
       </div>
     </div>
   </div>
 <% end %>
 
-<div id="preview" class="wiki"></div>
-
-<div class="textile-tips">
-	<%= render :partial => "shared/textile" %>
-</div>
 <% html_title @page.pretty_title %>
+
+
+<%= javascript_tag do %>
+  
+   $(".wiki-edit").jqte();
+   
+<% end %>   
