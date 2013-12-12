@@ -229,3 +229,31 @@
 }
 
 
+#files_list .thumbnails{
+  margin:0px;
+}
+
+#files_list .span3{
+  margin:0px;
+  width:230px;
+  height:300px;
+  border:1px solid #e9e9e9;
+}
+
+#files_list .thumbnails li a{
+  border:none;
+  box-shadow: none;  
+}
+
+
+#files_list div.thumbnail{
+  border:none;
+  box-shadow: none;  
+  width: 230px;
+  height: 300px;
+  vertical-align: middle;
+  display: table-cell;
+  text-align: center;
+}
+
+

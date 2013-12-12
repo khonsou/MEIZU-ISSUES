@@ -1,4 +1,24 @@
 <div class="alert alert-warning" style="display:none;"></div>
+
+
+<div id="files_list">
+  <ul class="thumbnails">
+    <% attachments.each do |file| %>  
+      <li class="span3">
+        <div class="thumbnail">
+          <%= thumbnail_tag(file) %>
+          <b> <%= link_to_attachment file, :download => true, :title => file.description, target: '_blank' %></b>
+          <p>  <%= file.author.name %> 添加于<%= format_time(file.created_on) %></p>
+          <p>  <% if User.current.allowed_to?(:manage_files, @project) %>
+            <%= link_to(image_tag('icon-trash.png'), attachment_path(file), :data => {:confirm => l(:text_are_you_sure)}, :method => :delete) %>
+          <% end -%></p>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<% if false %>
 <table class="table files">
   <thead>
     <tr>
@@ -26,3 +46,4 @@
     <% end %>
   </tbody>
 </table>
+<% end %>

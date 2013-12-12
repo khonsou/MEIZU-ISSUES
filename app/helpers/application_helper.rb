@@ -166,9 +166,15 @@ module ApplicationHelper
   end
 
   def thumbnail_tag(attachment)
-    link_to image_tag(url_for(:controller => 'attachments', :action => 'thumbnail', :id => attachment)),
-      { :controller => 'attachments', :action => 'show', :id => attachment, :filename => attachment.filename },
-      { :title => attachment.filename, :target => '_blank' }
+    if attachment.thumbnailable?
+      link_to image_tag(url_for(:controller => 'attachments', :action => 'thumbnail', :id => attachment, :size => 200)),
+        { :controller => 'attachments', :action => 'show', :id => attachment, :filename => attachment.filename },
+        { :title => attachment.filename, :target => '_blank' }
+    else
+      link_to image_tag(attachment.extension_image),
+        { :controller => 'attachments', :action => 'show', :id => attachment, :filename => attachment.filename },
+        { :title => attachment.filename, :target => '_blank' }
+    end      
   end
 
   def toggle_link(name, id, options={})

@@ -183,6 +183,16 @@ class Attachment < ActiveRecord::Base
   def thumbnailable?
     image?
   end
+  
+  def extension_image
+    exts = %w(xls zip rar pdf doc  psd)
+    ext = Redmine::MimeType::MIME_TYPES[Redmine::MimeType.of  filename]
+    if exts.include?(ext)
+      "/assets/file_#{ext}.png"
+    else
+      "/assets/file_default.png"      
+    end    
+  end
 
   # Returns the full path the attachment thumbnail, or nil
   # if the thumbnail cannot be generated.

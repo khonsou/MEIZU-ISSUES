@@ -187,8 +187,6 @@ GEM
       multi_json (~> 1.0, >= 1.0.2)
     unicode-display_width (0.1.1)
     useragent (0.6.0)
-    wysihtml5-rails (0.0.4)
-      railties (>= 3.1.0)
     yard (0.8.3)
 
 PLATFORMS
@@ -235,5 +233,4 @@ DEPENDENCIES
   uglifier (>= 1.2.3)
   unicode-display_width
   useragent
-  wysihtml5-rails
   yard
