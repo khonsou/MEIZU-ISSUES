@@ -14,7 +14,7 @@ gem "select2-rails", "~> 3.5.0"
 gem 'delayed_job_active_record'
 gem 'daemons'
 gem "unicode-display_width"
-gem 'dropzonejs-rails' , '> 0.1.8'
+#gem 'dropzonejs-rails'
 gem "useragent"
 gem "jquery-atwho-rails"
 gem 'ruby-pinyin'
