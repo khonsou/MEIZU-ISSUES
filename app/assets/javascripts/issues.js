@@ -158,6 +158,12 @@ $(document).ready( function(){
     $('#formatting-help').fadeIn();
     return false;
   })
+  
+  $('[data-link]').click(function(){
+    location.href = $(this).data('link');
+    return false;
+  })
+  
     
   $("a.close").click(function(){
     $(this).parent().hide();  
@@ -175,6 +181,8 @@ $(document).ready( function(){
   });
   
   $('textarea.autosize').autosize({append: "\n"});   
+
+  
 
    $('#notes').bind('paste',function(event){
       var that = this;

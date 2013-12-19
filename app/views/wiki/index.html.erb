@@ -12,4 +12,41 @@
   <p class="nodata"><%= l(:label_no_data) %></p>
 <% end %>
 
-<%= render_page_hierarchy(@pages_by_parent_id, nil, :timestamp => true) %>
+<section class="documents">
+  
+  <% @pages.each do |page| %>
+  <article class="document" data-behavior="link_container">
+    <div class="document_page">
+      <div class="wrap">
+        <header>
+          <a href="<%=  url_for({:controller => 'wiki', :action => 'show', :project_id => page.project, :id => page.title}) %>">
+          <h3>
+            <%= page.pretty_title %>
+          </h3>
+          </a>        
+        </header>
+
+        <div class="formatted_content" data-link="<%=  url_for({:controller => 'wiki', :action => 'show', :project_id => page.project, :id => page.title}) %>">
+          <%= textilizable page.content, :text, :attachments => page.content.page.attachments,
+                :edit_section_links => (@sections_editable && {:controller => 'wiki', :action => 'edit', :project_id => page.project, :id => page.title}) %>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="truncated"></div>
+
+      <div>
+        <p>
+          <%= page.content.author.name %> 创建于
+          <time data-local-date=""><%= format_time(page.created_on) %></time>
+        </p>
+      </div>
+
+    </footer>
+  </article>
+  <% end %>
+  
+</section>
+
+<%#= render_page_hierarchy(@pages_by_parent_id, nil, :timestamp => true) %>

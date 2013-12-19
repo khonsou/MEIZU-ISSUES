@@ -53,3 +53,188 @@ h3:hover a.wiki-anchor {
 .wiki{
   word-wrap: break-word;
 }
+
+
+
+section.documents article.document {
+width: 31%;
+margin: 10px 2% 20px -3px;
+display: inline-block;
+vertical-align: top;
+box-sizing: border-box;
+position: relative;
+}
+section.documents article.document div.document_page {
+box-sizing: border-box;
+background: #ffc;
+padding: 1px;
+display: block;
+margin: 0;
+padding: 0 19px;
+height: 353px;
+overflow: hidden;
+word-wrap: break-word;
+-webkit-box-shadow: 0 0 2px rgba(0,0,0,0.3);
+-moz-box-shadow: 0 0 2px rgba(0,0,0,0.3);
+box-shadow: 0 0 2px rgba(0,0,0,0.3);
+}
+section.documents article.document div.document_page div.wrap {
+cursor: pointer;
+display: block;
+border-left: 1px solid #fce3b0;
+}
+section.documents article.document header {
+padding: 28px 0 14px 5px;
+margin: 0 0 3px;
+background-image: url("/assets/wiki.png");
+background-repeat: no-repeat;
+background-size: 320px 14px;
+background-position: left bottom;
+}
+section.documents article.document header h3 {
+margin: 0;
+font-size: 15px;
+line-height: 17px;
+}
+section.documents article.document div.formatted_content {
+font-size: 11px;
+line-height: 14px;
+padding: 0 0 0 5px;
+margin: 0;
+max-width: 100%;
+vertical-align: top;
+background-image: url("/assets/wiki.png");
+background-repeat: repeat-y;
+background-size: 320px 14px;
+background-position: left -3px;
+height: 350px;
+overflow: hidden;
+}
+section.documents article.document div.truncated {
+width: 100%;
+height: 21px;
+top: 0;
+left: 0;
+margin: -45px 0 5px;
+border-bottom: 21px solid #ffc;
+background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255,255,204,0)), to(#ffc));
+}
+
+section.documents article.document footer {
+font-size: 12px;
+line-height: 14px;
+color: #777;
+text-align: center;
+position: relative;
+padding-top: 3px;
+}
+
+
+
+div.wiki_document {
+padding: 0 0 40px;
+background-color: #ffffcc;
+-webkit-box-shadow: 0 0 2px rgba(0,0,0,0.3);
+-moz-box-shadow: 0 0 2px rgba(0,0,0,0.3);
+box-shadow: 0 0 2px rgba(0,0,0,0.3);
+}
+
+#wiki_form textarea.name{
+padding: 40px 40px 26px 20px;
+margin-left: 33px;
+font-weight: bold;
+border-left: 1px solid #fce3b0;
+font-size: 20px;
+line-height: 26px;
+resize: none;
+overflow: hidden;
+min-height: 27px;
+width: 505px;
+display: block;
+border: 0;
+background-color: #ffffcc;
+color: #000;
+-webkit-appearance: none;
+}
+
+#wiki_form textarea:focus{
+  border: none;
+  overflow: auto;
+  outline: none;
+
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+}
+
+#wiki_form div.document_body, .wiki_document div.document_body {
+display: block;
+border: 0;
+background-color: #ffffcc;
+border-left: 1px solid #fce3b0;
+color: #000;
+padding: 0 40px 0 16px;
+margin-left: 33px;
+font-size: 14px;
+line-height: 20px;
+}
+
+
+
+.jqte, .jqte_editor{
+  overflow:hidden;
+  background-color: rgb(255, 255, 204);
+  border-collapse: separate;
+  border: 0px none rgb(0, 0, 0);
+  clear: none;
+  display: block;
+  float: none;
+  margin: 0px;
+  outline: rgb(0, 0, 0) none 0px;
+  outline-offset: 0px;
+  padding: 0px;
+  position: static;
+  top: auto;
+  left: auto;
+  right: auto;
+  bottom: auto;
+  z-index: auto;
+  vertical-align: baseline;
+  text-align: start;
+  box-sizing: content-box;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+  width: 525px;
+/*  height: 640px;*/
+  resize: none;
+  min-height: 540px;
+  max-height: auto;  
+  background-color: #ffffcc;
+  background-image: url(/assets/wiki.gif);
+  background-repeat: repeat-y;
+  background-position: -1px top;
+  padding: 4px 0 0 0px;
+}
+
+#wiki_form .jqte_toolbar{
+  margin-bottom: 20px;
+}
+
+.wiki_document .formatted_content {
+background-color: #ffffcc;
+background-image: url(https://d1kwjg6ihle0hs.cloudfront.net/assets/documents/document_body_rules-1ac7a478045b3d7b29c0ca9da413e153.gif);
+background-repeat: repeat-y;
+background-position: -1px top;
+padding: 4px 0 0 17px;
+}
+
+.wiki_document div.disabled.name {
+padding: 40px 40px 26px 20px;
+font-weight: bold;
+font-size: 20px;
+line-height: 26px;
+}

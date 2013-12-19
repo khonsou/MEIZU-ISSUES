@@ -6,34 +6,33 @@
   <%= render '/projects/title_bar' %>
 <% end -%>
 
-<%= form_for @content, :as => :content,
-            :url => {:action => 'update', :id => @page.title},
-            :html => {:method => :put, :multipart => true, :id => 'wiki_form'} do |f| %>
-  <div class="row-fluid">
-    <% if @page.new_record? %>
-      <h4><%= h @page.pretty_title %></h4>
-    <% else %>
-      <%= text_field_tag 'wiki_page[title]', @page.pretty_title,  :required => true, class: 'span24', placeholder: l(:field_title) %>
-    <% end %>
-    <%= f.hidden_field :version %>
-    <% if @section %>
-      <%= hidden_field_tag 'section', @section %>
-      <%= hidden_field_tag 'section_hash', @section_hash %>
-    <% end %>
-    <%= error_messages_for 'content' %>
 
-    <%= text_area_tag 'content[text]', @text, :cols => 100, :rows => 20,
-                      :class => 'wiki-edit span24', :accesskey => accesskey(:edit) %>
+<div class="wiki_document">
+  <%= form_for @content, :as => :content,
+              :url => {:action => 'update', :id => @page.title},
+              :html => {:method => :put, :multipart => true, :id => 'wiki_form'} do |f| %>
+    <div class="row-fluid">
+      <%= text_area_tag 'wiki_page[title]', @page.pretty_title,  :required => true, :rows => 1, class: 'span24 name', placeholder: l(:field_title) %>
+      <%= f.hidden_field :version %>
+      <% if @section %>
+        <%= hidden_field_tag 'section', @section %>
+        <%= hidden_field_tag 'section_hash', @section_hash %>
+      <% end %>
+      <%= error_messages_for 'content' %>
 
-    <p><%= f.text_field :comments, class: 'span24', placeholder: l(:field_comments) %></p>
+      <div class="document_body">
+        <%= text_area_tag 'content[text]', @text, :cols => 100, :rows => 20,
+                        :class => 'wiki-edit span24 autosize', :accesskey => accesskey(:edit) %>
+      </div> 
     
-    <div class="clearfix">
-      <div class="pull-right">
-        <%= submit_tag l(:button_save), class: 'button blue' %>
+      <div class="clearfix" style="margin-right:20px;">
+        <div class="pull-right">
+          <%= submit_tag l(:button_save), class: 'button blue' %>
+        </div>
       </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
 
 <% html_title @page.pretty_title %>
 
@@ -41,5 +40,5 @@
 <%= javascript_tag do %>
   
    $(".wiki-edit").jqte();
-   
+
 <% end %>   

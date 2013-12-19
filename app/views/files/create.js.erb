@@ -3,4 +3,4 @@
 <% else %>  
   $('.alert.alert-warning').hide();
 <% end %>  
-$('table.files').replaceWith("<%= j render('list', { attachments: @attachments }) %>");
+$('#files_list').replaceWith("<%= j render('list', { attachments: @attachments }) %>");

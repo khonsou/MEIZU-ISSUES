@@ -105,7 +105,7 @@ class WikiController < ApplicationController
     end
 
     @content = @page.content_for_version(params[:version])
-    @content.text = initial_page_content(@page) if @content.text.blank?
+    #@content.text = initial_page_content(@page) if @content.text.blank?
     # don't keep previous comment
     @content.comments = nil
 
@@ -135,7 +135,7 @@ class WikiController < ApplicationController
     @wiki.update_attribute(:start_page, @page.title) if start_page && start_page == @page
 
     @content = @page.content_for_version(params[:version])
-    @content.text = initial_page_content(@page) if @content.text.blank?
+#    @content.text = initial_page_content(@page) if @content.text.blank?
     # don't keep previous comment
     @content.comments = nil
 
