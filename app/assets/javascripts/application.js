@@ -13,7 +13,8 @@
 //= require jquery.autosize-min
 //= require favico.min
 
-//= require jquery-te-1.4.0.min
+
+//= require qeditor
 //= require highlight.pack.js
 
 //= require bootstrapx-clickover

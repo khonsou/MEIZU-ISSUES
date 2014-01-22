@@ -72,7 +72,7 @@ function listFilter(header, list) {
 function initAt(){
 
   
-  $('.jqte_editor').atwho({
+  $('.hasAt').atwho({
     at: "@", 
     data: window._project_watchers,
     limit: 2000,
@@ -136,7 +136,7 @@ function initAt(){
 }
 
 $(document).ready( function(){
-  $('.wiki i').each(function(i, e) {hljs.highlightBlock(e)});
+  $('.wiki pre').each(function(i, e) {hljs.highlightBlock(e)});
   
   $('.select-menu-button').clickover({
       html: true,
@@ -186,7 +186,7 @@ $(document).ready( function(){
 
   
 
-   $('.jqte_editor').bind('paste',function(event){
+   $('.allowPaste').bind('paste',function(event){
       var that = this;
        event.clipboardData = event.originalEvent.clipboardData;
               

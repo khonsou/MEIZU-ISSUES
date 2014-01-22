@@ -42,7 +42,7 @@
               <div class="pull-right"><%= relative_time(journal.created_on) %></div>
               </div>
               <% cache("journal_notes-#{journal.id}", expires_in: 24.hours) do %>
-                <div class="wiki span22 padright22">
+                <div class="wiki  padright22">
                   <% if journal.notes %>
                     <%= truncate(Sanitize.clean(journal.notes), length: 75) %>
                   <% else %>

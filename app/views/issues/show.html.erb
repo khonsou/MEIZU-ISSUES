@@ -129,10 +129,10 @@
  
   <% if !@issue.closed? && User.current.allowed_to?(:add_issue_notes, @issue.project) %>          
       <%= labelled_form_for @issue, html: { :multipart => true, :class => form_class, :id => form_class, :"data-url" => "/projects/#{@issue.project.id}/files/upload" } do |f| %>      
-        <div class="tab-content overflow">
+        <div class="tab-content overflow form-content">
           <div class="tab-pane active" id="home">
             <div class="row-fluid">
-              <%= text_area_tag 'notes', @notes, :rows => 3, :class => 'wiki-edit span24 hasAt hasAtTopic autosize', :placeholder => '在此添加讨论内容......', :id => 'wysihtml5-textarea' %>
+              <%= text_area_tag 'notes', @notes, :rows => 3, :class => 'wiki-edit span24 hasAt hasAtTopic autosize allowPaste', :placeholder => '在此添加讨论内容......', :id => 'wysihtml5-textarea' %>
               <% if old_browser?(@user_agent) %>
                 <%= render :partial => 'attachments/form', :locals => {:container => @issue} %>
               <% end %>
@@ -163,7 +163,8 @@
 
 <%= javascript_tag do %>
   
-   $("#wysihtml5-textarea").jqte();
+  // $("#wysihtml5-textarea").jqte();
+  $("#wysihtml5-textarea").qeditor({});
 
   $(document).ready(function(){
     $("#close-button").find("input:first").hide();
