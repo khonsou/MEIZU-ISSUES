@@ -44,10 +44,10 @@
               <% cache("journal_notes-#{journal.id}", expires_in: 24.hours) do %>
                 <div class="wiki span22 padright22">
                   <% if journal.notes %>
-                    <%= truncate(h(journal.notes), length: 75) %>
+                    <%= truncate(Sanitize.clean(journal.notes), length: 75) %>
                   <% else %>
-                    <%= details_to_strings(journal.details, true).join %>
-                <% end %>
+                    <%= details_to_strings(Sanitize.clean(journal.details), true).join %>
+                  <% end %>
                 </div>
               <% end %>
             </div>
@@ -70,7 +70,7 @@
               </div>
             <% cache("issue_-description-#{issue.id}-#{issue.updated_on}", expires_in: 24.hours) do %>
               <div>
-                <%= truncate(h(issue.description), length: 75) %>
+                <%= truncate(Sanitize.clean(issue.description), length: 75) %>
               </div>
             <% end %>
           </div>

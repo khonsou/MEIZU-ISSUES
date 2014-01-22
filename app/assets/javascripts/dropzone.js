@@ -542,7 +542,7 @@ require.register("dropzone/lib/dropzone.js", function(exports, require, module){
       dragleave: function(e) {
         return this.element.classList.remove("dz-drag-hover");
       },
-      paste: noop,
+//      paste: noop,
       reset: function() {
         return this.element.classList.remove("dz-started");
       },
@@ -889,11 +889,12 @@ require.register("dropzone/lib/dropzone.js", function(exports, require, module){
             },
             "dragend": function(e) {
               return _this.emit("dragend", e);
-            },
-            "paste": function(e) {
-              noPropagation(e);
-              return _this.paste(e);
             }
+            // ,
+            // "paste": function(e) {
+            //   noPropagation(e);
+            //   return _this.paste(e);
+            // }
           }
         }
       ];
@@ -1096,18 +1097,18 @@ require.register("dropzone/lib/dropzone.js", function(exports, require, module){
       }
     };
 
-    Dropzone.prototype.paste = function(e) {
-      var items, _ref;
-      return;
-      if ((e != null ? (_ref = e.clipboardData) != null ? _ref.items : void 0 : void 0) == null) {
-        return;
-      }
-      this.emit("paste", e);
-      items = e.clipboardData.items;
-      if (items.length) {
-        return this._addFilesFromItems(items);
-      }
-    };
+    // Dropzone.prototype.paste = function(e) {
+    //   var items, _ref;
+    //   return;
+    //   if ((e != null ? (_ref = e.clipboardData) != null ? _ref.items : void 0 : void 0) == null) {
+    //     return;
+    //   }
+    //   this.emit("paste", e);
+    //   items = e.clipboardData.items;
+    //   if (items.length) {
+    //     return this._addFilesFromItems(items);
+    //   }
+    // };
 
     Dropzone.prototype.handleFiles = function(files) {
       var file, _i, _len, _results;

@@ -94,6 +94,7 @@ GEM
     mime-types (1.25.1)
     mini_magick (3.4)
       subexec (~> 0.2.1)
+    mini_portile (0.5.2)
     mocha (0.12.3)
       metaclass (~> 0.0.1)
     multi_json (1.8.2)
@@ -107,6 +108,8 @@ GEM
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
     ng-rails-csrf (0.1.0)
+    nokogiri (1.6.1)
+      mini_portile (~> 0.5.0)
     polyglot (0.3.3)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
@@ -159,6 +162,8 @@ GEM
     rmagick (2.13.2)
     ruby-openid (2.1.8)
     ruby-pinyin (0.2.1)
+    sanitize (2.1.0)
+      nokogiri (>= 1.4.4)
     sass (3.2.5)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -225,6 +230,7 @@ DEPENDENCIES
   rmagick (>= 2.0.0)
   ruby-openid (~> 2.1.4)
   ruby-pinyin
+  sanitize
   sass-rails (~> 3.2.4)
   select2-rails (~> 3.5.0)
   shoulda (~> 2.11)

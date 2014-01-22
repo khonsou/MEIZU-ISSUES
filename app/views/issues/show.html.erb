@@ -127,18 +127,7 @@
     <%= render :partial => 'history', :locals => { :issue => @issue, :journals => @journals } %>
   </div>
  
-  <% if !@issue.closed? && User.current.allowed_to?(:add_issue_notes, @issue.project) %>    
-      <div class="clearfix tabnav">
-        <div data-behavior="wysiwyg_toolbar" id="wysihtml5-toolbar" style="display: none;">
-          <a data-wysihtml5-command="bold">粗体</a>
-          <a data-wysihtml5-command="underline">下划线</a>
-
-          <a data-wysihtml5-command="insertOrderedList">数字</a>
-          <a data-wysihtml5-command="insertUnorderedList">列表</a>
-
-        </div>
-      </div>
-      
+  <% if !@issue.closed? && User.current.allowed_to?(:add_issue_notes, @issue.project) %>          
       <%= labelled_form_for @issue, html: { :multipart => true, :class => form_class, :id => form_class, :"data-url" => "/projects/#{@issue.project.id}/files/upload" } do |f| %>      
         <div class="tab-content overflow">
           <div class="tab-pane active" id="home">
@@ -149,9 +138,6 @@
               <% end %>
             </div>
           </div>
-          <div class="tab-pane" id="preview">
-            <div id="preview-content"></div> 
-          </div>          
         </div>
         
         <div class="row-fluid">        

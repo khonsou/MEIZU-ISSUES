@@ -136,6 +136,8 @@ function initAt(){
 }
 
 $(document).ready( function(){
+  $('.wiki i').each(function(i, e) {hljs.highlightBlock(e)});
+  
   $('.select-menu-button').clickover({
       html: true,
       trigger: 'click',
@@ -184,9 +186,10 @@ $(document).ready( function(){
 
   
 
-   $('#notes').bind('paste',function(event){
+   $('.jqte_editor').bind('paste',function(event){
       var that = this;
        event.clipboardData = event.originalEvent.clipboardData;
+              
        if(!event.clipboardData){
           return;
        }

@@ -27,6 +27,7 @@
           <%= f.text_area :description,
                          placeholder: l(:field_description),
                          rows: '3',
+                         id: 'wysihtml5-textarea',
                          class: 'wiki-edit span24 hasAt hasAtTopic' %>
         <% end %>
       </p>
@@ -44,6 +45,9 @@
   </div>
 </div>
 
+<script type="text/javascript">
+   $("#wysihtml5-textarea").jqte();
+</script>   
 
 <% if false %>
 <script type="text/javascript">
