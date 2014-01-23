@@ -1,14 +1,16 @@
 <div id="files_list">
   <ul class="thumbnails">
     <% attachments.each do |file| %>  
-      <li class="span3">
-        <div class="thumbnail">
+      <li class="span3">        
+        <div class="thumbnail" style="">
+          <% if User.current.allowed_to?(:manage_files, @project) %>          
+            <span  class="trash">
+              <%= link_to("<i class='qicon-trash'></i>".html_safe, attachment_path(file), :data => {:confirm => "确定删除吗？"}, :method => :delete) %>
+            </span>
+          <% end -%>
           <%= thumbnail_tag(file) %>
           <b> <%= link_to_attachment file, :download => true, :title => file.description, target: '_blank' %></b>
           <p>  <%= file.author.name %> 添加于<%= format_time(file.created_on) %></p>
-          <p>  <% if User.current.allowed_to?(:manage_files, @project) %>
-            <%= link_to(image_tag('icon-trash.png'), attachment_path(file), :data => {:confirm => "确定删除吗？"}, :method => :delete) %>
-          <% end -%></p>
         </div>
       </li>
     <% end %>

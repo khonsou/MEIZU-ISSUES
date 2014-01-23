@@ -32,7 +32,7 @@ module Redmine
       end
 
       def to_html
-        words = self.words.collect{|word| h(word)}
+        words = self.words.collect{|word| word.html_safe}
         words_add = 0
         words_del = 0
         dels = 0

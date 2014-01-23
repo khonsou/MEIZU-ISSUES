@@ -140,12 +140,17 @@
 }
 
 .form-content .row-fluid .hasAt{
-  margin:0px 0px 10px 0px;
+  margin:0px auto 10px ;
   min-height: 100px;  
 }
 
-.wiki_document .qeditor_preview{
-/*  height:500px;*/
+.form-content  .row-fluid .qeditor_fullscreen .hasAt{
+  float:none;
+}
+
+
+.wiki_document .row-fluid  .qeditor_preview{
+  min-height:500px;
 }
 
 .wiki_document .qeditor_preview:focus {

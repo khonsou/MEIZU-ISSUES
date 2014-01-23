@@ -168,7 +168,7 @@ color: #000;
 }
 
 #wiki_form div.document_body, .wiki_document div.document_body {
-height:500px;
+min-height:500px;
 display: block;
 border: 0;
 background-color: #ffffcc;
@@ -227,7 +227,7 @@ line-height: 20px;
 
 .wiki_document .formatted_content {
 background-color: #ffffcc;
-background-image: url(https://d1kwjg6ihle0hs.cloudfront.net/assets/documents/document_body_rules-1ac7a478045b3d7b29c0ca9da413e153.gif);
+background-image: url(/assets/document_body_rules.gif);
 background-repeat: repeat-y;
 background-position: -1px top;
 padding: 4px 0 0 17px;

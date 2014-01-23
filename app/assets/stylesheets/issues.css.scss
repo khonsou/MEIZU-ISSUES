@@ -137,6 +137,14 @@
 
   .issue-content {
     margin: 0px 0 30px 0px;
+    
+    a{
+      color:#4183c4;
+    }
+    a:hover{
+      color:#4183c4;
+      text-decoration:underline;
+    }
   }
 
   h3 {

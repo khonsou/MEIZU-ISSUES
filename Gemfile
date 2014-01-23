@@ -25,6 +25,7 @@ gem 'acts_as_list'
 gem 'kaminari'
 gem 'redis-rails'
 gem 'sanitize'
+gem 'rails_autolink'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.4'

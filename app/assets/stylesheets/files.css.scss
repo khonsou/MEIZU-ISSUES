@@ -251,6 +251,14 @@
   vertical-align: middle;
   display: table-cell;
   text-align: center;
+  position:relative;
+}
+
+#files_list div.thumbnail span.trash{
+  top: 0px;right: 0px;position: absolute;display:none;
+}
+#files_list div.thumbnail:hover span.trash{
+  display:block;
 }
 
 #files_list div.thumbnail b a{
