@@ -229,8 +229,8 @@ input#created_on_end {
     @include clearfix;
     margin-bottom: 15px;
 
-    span {
-      margin: 0 15px 0 0;
+    span.qlabel {
+      margin: 0px 10px 0px 0px;
       line-height: 30px;
       font-size: $bigFontSize;
     }

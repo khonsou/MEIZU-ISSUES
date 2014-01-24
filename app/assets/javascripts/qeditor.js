@@ -35,8 +35,8 @@ QEDITOR_ALLOW_TAGS_ON_PASTE = "div,p,ul,ol,li,hr,br,b,strong,i,em,img,h2,h3,h4,h
 QEDITOR_DISABLE_ATTRIBUTES_ON_PASTE = ["style", "class", "id", "name", "width", "height"];
 
 window.QEditor = {
-  //actions: ['bold', 'italic', 'underline', 'strikethrough', 'insertunorderedlist', 'insertorderedlist', 'blockquote', 'pre'],
-  actions: ['bold', 'strikethrough', 'insertunorderedlist', 'insertorderedlist', 'blockquote', 'pre'],
+  actions: ['bold', 'italic', 'underline', 'strikethrough', 'insertunorderedlist', 'insertorderedlist', 'blockquote', 'pre'],
+  
   action: function(el, a, p) {
     var editor;
     editor = $(".qeditor_preview", $(el).parent().parent());
