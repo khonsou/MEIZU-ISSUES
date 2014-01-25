@@ -46,7 +46,7 @@
                   <% if journal.notes %>
                     <%= truncate(Sanitize.clean(journal.notes), length: 75) %>
                   <% else %>
-                    <%= details_to_strings(Sanitize.clean(journal.details), true).join %>
+                    <%= Sanitize.clean details_to_strings(journal.details, true).join %>
                   <% end %>
                 </div>
               <% end %>
